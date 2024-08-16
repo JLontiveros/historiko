@@ -11,16 +11,29 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
+        <video autoPlay loop muted id='video'>
+          <source src={backgroundVideo} type='video/mp4'/>
+        </video>
+        <div className="content-overlay">
+          <Navbar />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </div>
         </div>
-        <video autoPlay loop muted id='video'><source src={backgroundVideo} type='video/mp4'/></video>
-        
+          <div className='text'>
+            <div className='heading'>
+              <h1>"Sa Historiko, Buhay ang <br/> 
+              Pagmamahal sa Bayan!"</h1>
+            </div>
+            <div className='subheading'>
+              <h3>"Maligayang pagdating! Tuklasin ang kwento ng ating mga bayani at ang diwa <br/> 
+              ng nasyonalismo. Sama-sama nating buhayin ang kasaysayan!"</h3>
+            </div>
+          </div>
       </div>
     </Router>
   );
