@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import './Navbar.css';
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -16,6 +17,7 @@ function Navbar() {
               <li><Link to="/modules">Modules</Link></li>
               <li><Link to="/topic-marking">Topic Marking</Link></li>
               <li><Link to="/mini-games">Mini Games</Link></li>
+              <li><Link to="/auth">Sign In / Sign Up</Link></li>
             </ul>
           )}
         </li>
