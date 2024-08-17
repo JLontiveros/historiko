@@ -4,7 +4,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    height: 100%;
+    background-color: #ec9a9a;
   }
   
   .App {
@@ -13,13 +14,19 @@ body {
   }
   
   #video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: -1;
+  }
+
+  #video2 {
+    position: relative;
+    margin-top: -3.9px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     z-index: -1;
   }
   
@@ -34,27 +41,24 @@ body {
     display: grid;
     grid-template-columns: 0fr 3fr;
     padding: 1rem;
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 0;
     left: 0;
+    margin-top: auto;
   }
   
   nav ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
     display: flex;
+    margin-bottom: 1vh;
     justify-content: end;
     align-items: center;
-    gap: 50px;
     margin-right: 100px;
   }
   
   nav img {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
     height: 120px;
     width: 120px;
     display: flex;
@@ -104,16 +108,16 @@ body {
     background-color: rgba(85, 85, 85, 0.8);
   }
   
-  .content {
-    padding-top: 120px; /* Adjust based on your navbar height */
-  }
+  
   
   /* Add more specific styles for your components here */
 
   .text {
+    position: absolute;
+    padding: 10px;
     display: grid;
     grid-template-rows: 1fr 0fr;
-    margin-top: 40px;
+    margin-top: 70px;
   }
 
   .heading, .subheading {
