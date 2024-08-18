@@ -8,6 +8,7 @@ import SignUp from './components/SignUp/SignUp';
 import backgroundVideo from "./assets/hero.mp4";
 import backgroundVideo2 from "./assets/underhero.mp4";
 import './App.css';
+import Modules from './components/Modules/Modules';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/about" element={<About />} />
-            </Routes>
+              <Route path="/modules" element={<Modules />} />
+              </Routes>
           </div>
         </div>
         <div className='text'>
