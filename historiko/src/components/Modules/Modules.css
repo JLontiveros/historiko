@@ -1,0 +1,55 @@
+/* src/components/Modules/Modules.css */
+.modules {
+    padding: 20px;
+    background-color: #e6f2ff;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .module-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 50px;
+  }
+  
+  .module {
+    background-color: #8a7fd5;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    color: white;
+    text-align: center;
+  }
+  
+  .module-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .module h2 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  .question-mark {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  .module ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .module li {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+  }
