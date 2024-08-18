@@ -3,7 +3,7 @@ import React from 'react';
 import './Modules.css';
 import flagsImage from '../../assets/flag.png';
 import axesImage from '../../assets/axe.png';
-import characterImage from '../../assets/boy.png';
+import characterImage from '../../assets/boyinverted.png';
 import questionMark from '../../assets/mark.png';
 
 function Modules() {
