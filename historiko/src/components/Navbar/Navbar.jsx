@@ -11,18 +11,18 @@ function Navbar() {
         <img src={logo} className="img" alt="Logo" />
       <ul>
         <li onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
-          <Link to="/">Home</Link>
+          <Link to="/Home">Home</Link>
           {showDropdown && (
             <ul className="dropdown">
-              <li><Link to="/modules">Modules</Link></li>
-              <li><Link to="/topic-marking">Topic Marking</Link></li>
-              <li><Link to="/mini-games">Mini Games</Link></li>
-              <li><Link to="/auth">Sign In / Sign Up</Link></li>
+              <li><Link to="/Modules">Modules</Link></li>
+              <li><Link to="/Topic-marking">Topic Marking</Link></li>
+              <li><Link to="/Mini-games">Mini Games</Link></li>
+              <li><Link to="/Auth">Sign In / Sign Up</Link></li>
             </ul>
           )}
         </li>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><Link to="/about">About</Link></li>
+        <li><Link to="/Profile">Profile</Link></li>
+        <li><Link to="/About">About</Link></li>
       </ul>
     </nav>
   );

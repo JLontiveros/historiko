@@ -1,9 +1,9 @@
 /* src/components/Modules/Modules.css */
+
 .modules {
     padding: 20px;
     background-color: #e6f2ff;
-    min-height: 100vh;
-    position: relative;
+    min-height: 93vh;
   }
   
   .module-container {
@@ -12,31 +12,35 @@
     flex-wrap: wrap;
     gap: 20px;
     padding-top: 50px;
+    margin-top: 120px;
   }
   
   .module {
     background-color: #8a7fd5;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 40px;
     width: 300px;
     color: white;
     text-align: center;
   }
   
   .module-icon {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 10px;
+    margin-top: -125px;
   }
   
   .module h2 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    margin-top: -20px;
+    color: rgb(214, 182, 2);
   }
   
   .question-mark {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin-right: 10px;
     vertical-align: middle;
   }
@@ -53,3 +57,36 @@
     display: flex;
     align-items: center;
   }
+
+  .character {
+    width: 350px;
+    height: 350px;
+    margin-right: 900px;
+    margin-top: -310px;
+  }
+
+  button {
+    border-radius: 50px;
+    border: none;
+    padding: 15px 50px;
+    margin-top: 10px;
+    background-color: rgb(119, 202, 202);
+    color: white;
+    cursor: pointer;
+  }
+
+  /* .modules-button {
+    border-radius: 20px;
+    border: 1px solid #8e2de2;
+    background: #8e2de2;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  } */
+
+  

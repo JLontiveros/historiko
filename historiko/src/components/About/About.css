@@ -1,0 +1,52 @@
+ 
+ .about{
+    margin-top: 180px;
+ }
+
+ .box {
+    border: 10px solid rgb(79, 79, 165);
+    border-radius: 30px;
+    margin: 20px 20px;
+    background-color: #e6f2ff;
+ }
+ 
+ .about h1, .about p{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 40px;
+    color: rgb(21, 21, 173);
+ }
+
+ .one, .two{
+    margin-left: 60px;
+ }
+
+ .bullet, .bullet2 {
+    margin-left: 50px;
+ }
+
+ .box h2 {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-left: 40px;
+    margin-bottom: -5px;
+    color: rgb(21, 21, 173);
+ }
+
+ .layunin {
+    display: flex;
+    justify-content: start;
+    margin-left: 30px;
+    color: rgb(21, 21, 173);
+    text-align: start;
+ }
+
+
+ .man{
+    width: 450px;
+    height: 450px;
+    margin-left: 1130px;
+    margin-top: -470px;
+ }
