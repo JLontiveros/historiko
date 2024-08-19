@@ -6,6 +6,8 @@ import Profile from './components/Profile/Profile';
 import About from './components/About/About';
 import './App.css';
 import Modules from './components/Modules/Modules';
+import Unatalakayin from './components/Unatalakayin/Unatalakayin';
+import Dalwatalakayin from './components/Dalwatalakayin/Dalwatalakayin';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Route path="/Profile" element={<Profile />} />
               <Route path="/About" element={<About />} />
               <Route path="/Modules" element={<Modules />} />
+              <Route path="/Unatalakayin" element={<Unatalakayin />} />
+              <Route path="/Dalwatalakayin" element={<Dalwatalakayin/>} />
             </Routes>
           </div>
         </div>        
