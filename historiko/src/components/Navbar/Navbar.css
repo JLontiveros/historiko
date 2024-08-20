@@ -5,7 +5,7 @@
     grid-template-columns: 0fr 3fr;
     padding: 1rem;
     position: absolute;
-    width: 100%;
+    width: 90%;
     top: 0;
     left: 0;
     margin-top: auto;
@@ -17,7 +17,7 @@
     margin-bottom: 1vh;
     justify-content: end;
     align-items: center;
-    margin-right: 100px;
+    margin-right: -30px;
   }
   
   nav img {
