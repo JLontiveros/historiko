@@ -1,0 +1,187 @@
+.profile {
+    background-color: #e6f2ff;
+}
+
+.girlicon {
+    height: 100px;
+    width: 100px;
+    margin-top: 130px;
+    margin-left: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: start;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #F0F0F0;
+    margin-top: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #4a00e0;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.user img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 30px;
+    background-color: tomato;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column; /* Stack the username and status vertically */
+    color: white;
+    margin-left: 10px;
+}
+
+.user-info span:first-child {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: -20px; /* Space between the username and status */
+}
+
+.btnright {
+    display: flex;
+    flex-direction: column; /* Stack the buttons vertically */
+    gap: 5px;
+    justify-content: flex-end;
+    align-items: flex-end; /* Align buttons to the right */
+    margin-right: 10px;
+}
+
+.btnright button {
+    background-color: rgb(255, 229, 79);
+    color: rgb(21, 21, 173);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.btnright button:hover {
+    background-color: #0056b3;
+}
+
+.btnright img {
+    height: 15px;
+    width: 15px;
+    margin-left: 5px;
+}
+
+.btnright button:last-child {
+    padding-left: 30px;
+}
+
+
+.edit-form {
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    margin-top: 20px;
+    padding: 50px;
+    padding-right: 20px;
+    background-color:#27675D;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-20px); /* Initially shifted upwards */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.edit-form.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Reset the position */
+}
+
+.edit-form form div {
+    margin-bottom: 15px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.edit-form input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.edit-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: -100px;
+}
+
+.edit-form button:hover {
+    background-color: #218838;
+}
+
+.user-tag {
+    margin-top: -20px;
+}
+
+.upload-pic, 
+.user-tag,
+.edit-form button {
+    margin-left: -20px;
+}
+
+.edit-form button {
+    padding: 10px 50px;
+    font-size: 20px;
+}
+
+.edit-user,
+.edit-pass,
+.edit-bio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-right: 20px;
+}
+
+.edit-user label,
+.edit-pass label,
+.edit-bio label{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-left: -20px;
+}
+
+.upload-pic img {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    margin-top: -40px;
+}
