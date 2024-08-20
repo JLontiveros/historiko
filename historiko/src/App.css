@@ -5,11 +5,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ec9a9a;
+    /* overflow: hidden; */
   }
   
   .App {
     text-align: center;
-
   }
   
   

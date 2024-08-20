@@ -1,16 +1,16 @@
 /* src/components/Unatalakayin/Unatalakayin.css */
 .dalwatalakayin {
     background-color: #e6f2ff;
-    min-height: 100vh;
+    min-height: 94.5vh;
     padding: 20px;
   }
   
-  h1 {
+  .dalwatalakayin h1 {
     text-align: center;
     color: #0000FF;
-    font-size: 36px;
-    margin-top: 80px; /* Adjusted to accommodate the navbar */
-    margin-bottom: 30px;
+    font-size: 40px;
+    margin-top: 110px; /* Adjusted to accommodate the navbar */
+    margin-bottom: 60px;
   }
   
   .events-container {
@@ -29,27 +29,40 @@
     margin-bottom: 20px;
   }
   
-  .event-icon {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+  .event img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: -10px;
+    margin-top: -70px;
   }
   
   .event h2 {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 10px;
+    color: rgb(255, 229, 79);
   }
   
   .event p {
     font-size: 0.9em;
-    margin-bottom: 15px;
+    text-align: justify;
+    margin-top: 30px;
   }
   
-  button {
-    background-color: #77caca;
+  .eventbtns {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .eventbtns button {
+    background-color: rgb(255, 229, 79);
     border: none;
     color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 15px 50px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventbtns button:hover {
+    background-color: #669999;
   }

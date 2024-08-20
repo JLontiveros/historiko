@@ -5,12 +5,12 @@
     padding: 20px;
   }
   
-  h1 {
+  .unatalakayin h1 {
     text-align: center;
     color: #0000FF;
-    font-size: 36px;
-    margin-top: 80px; /* Adjusted to accommodate the navbar */
-    margin-bottom: 30px;
+    font-size: 40px;
+    margin-top: 110px; /* Adjusted to accommodate the navbar */
+    margin-bottom: 60px;
   }
   
   .events-container {
@@ -45,11 +45,21 @@
     margin-bottom: 15px;
   }
   
-  button {
-    background-color: #77caca;
+  .eventbtns2 {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .eventbtns2 button {
+    background-color: rgb(255, 229, 79);
     border: none;
     color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 15px 50px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventbtns2 button:hover {
+    background-color: #669999;
   }
