@@ -21,7 +21,7 @@
     display: grid;
     grid-template-rows: 1fr 0fr;
     margin-top: 70px;
-  }
+  } 
 
   .heading, .subheading {
     display: flex;
