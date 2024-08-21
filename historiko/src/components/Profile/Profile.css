@@ -22,7 +22,7 @@
     margin-right: 10px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #4a00e0;
+    background-color: #8c85d5   ;
 }
 
 .user {
@@ -88,6 +88,101 @@
     padding-left: 30px;
 }
 
+
+
+/* Gantimpala */
+
+.second-container {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+}
+
+.gantimpala-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    background-color: #F0F0F0;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #a0a7ed;
+}
+
+.gantimpala-container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #004085;
+}
+
+.badge {
+    height: 100px;
+    width: 100px;
+}
+
+.gantimpalas {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    background-color: #e8e1ff;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column; /* Stack the username and status vertically */
+    justify-content: start;
+    align-items: start;
+    margin-left: 10px;
+}
+
+.info span:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: -20px;
+    text-align: left;
+}
+
+.info span:nth-child(2) {
+    margin-left: -20px;
+}
+
+
+.resulta-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #F0F0F0;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #a0a7ed;
+}
+
+.resulta-container h1 {
+    display: flex;
+    justify-content: center;
+    color: #004085;
+}
+
+.resulta-container span {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-left: 20px;
+    margin-top: -50px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+}
+
+
+
+/* Edit Form */
 
 .edit-form {
     position: fixed;
