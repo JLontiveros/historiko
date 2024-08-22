@@ -1,5 +1,5 @@
-// src/components/Unatalakayin/Unatalakayin.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Unatalakayin.css';
 import Navbar from '../Navbar/Navbar';
 import bellsImage from '../../assets/bell.png';
@@ -29,9 +29,9 @@ function Unatalakayin() {
         </div>
       </div>
       <div className="eventbtns2">
-        <button>See more</button>
-        <button>See more</button>
-        <button>See more</button>
+        <Link to="/unangputok" className="link-button">See more</Link>
+        <Link to="/tiradpass" className="link-button">See more</Link>
+        <Link to="/balangiga" className="link-button">See more</Link>
       </div>
     </div>
   );

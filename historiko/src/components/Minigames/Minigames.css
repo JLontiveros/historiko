@@ -1,0 +1,60 @@
+.minigame-container {
+    background-image: url('/path/to/playground-background.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .game-area {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .virtual-flashcard, .guess-game {
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+  }
+  
+  .virtual-flashcard {
+    background-color: lightblue;
+  }
+  
+  .guess-game {
+    background-color: lightyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .character-image {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .question-mark {
+    width: 50px;
+  }
+  
+  .play-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .play-button:hover {
+    background-color: #0056b3;
+  }
