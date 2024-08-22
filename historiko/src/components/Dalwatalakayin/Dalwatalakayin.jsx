@@ -1,10 +1,10 @@
-// src/components/Unatalakayin/Unatalakayin.jsx
+
 import React from 'react';
 import './Dalwatalakayin.css';
 import Navbar from '../Navbar/Navbar';
-import bellsImage from '../../assets/bell.png';
-import plaquetteImage from '../../assets/firstshot.png';
-import swordsImage from '../../assets/sword.png';
+import bellsImage from '../../assets/bato.png';
+import plaquetteImage from '../../assets/sigaw.jpg';
+import swordsImage from '../../assets/tejeros.png';
 
 function Dalwatalakayin() {
   return (
@@ -14,18 +14,18 @@ function Dalwatalakayin() {
       <div className="events-container">
         <div className="event">
           <img src={plaquetteImage} alt="firstshot" className="event-icon" />
-          <h2>Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa</h2>
-          <p>Ang "Unang Putok sa panlulukan ng Silencio at Sociego, Sta. Mesa" ay tumutukoy sa isang makasaysayang pangyayari na naganap noong gabi ng Agosto 30, 1896, na nagmarka ng simula ng armadong himagsikan laban sa pamahalaang kolonyal ng Espanya sa Pilipinas.</p>
+          <h2>Sigaw ng Pugad-Lawin</h2>
+          <p>makasaysayang sandali kung saan pinagpunit ng mga Katipunero ang kanilang mga sedula bilang simbolo ng pagtalikod sa Espanya. Dito nagsimula ang kanilang armadong paghihimagsik para sa kalayaan ng Pilipinas.</p>
         </div>
         <div className="event">
           <img src={swordsImage} alt="sword" className="event-icon" />
-          <h2>Labanan sa Tirad Pass</h2>
-          <p>Ang "Labanan sa Tirad Pass" ay isang makasaysayang kaganapan sa kasaysayan ng Pilipinas na naganap noong Disyembre 2, 1899, sa panahon ng Digmaang Pilipino-Amerikano.</p>
+          <h2>Tejeros Convention</h2>
+          <p>pagpupulong na naganap noong 1897, kung saan nagtipun-tipon ang mga rebolusyonaryong Pilipino upang talakayin ang pagkakaroon ng isang pamahalaang rebolusyonaryo. Dito, nahalal si Emilio Aguinaldo bilang pangulo, na nagbigay-daan sa mahigpit na alitan sa pagitan ng mga paksiyon ng Katipunan at nagmarka ng isang mahalagang yugto sa pakikibaka para sa kalayaan ng Pilipinas.</p>
         </div>
         <div className="event">
           <img src={bellsImage} alt="Bell" className="event-icon" />
-          <h2>Balangiga Massacre</h2>
-          <p>Ang "Balangiga Massacre" ay isang makasaysayang pangyayari na naganap noong Setyembre 28, 1901, sa bayan ng Balangiga, Samar, sa panahon ng Digmaang Pilipino-Amerikano. Ang insidenteng ito ay kilala rin bilang "Balangiga Encounter" sa Pilipinas, habang sa Estados Unidos, ito ay tinatawag na "Balangiga Massacre."</p>
+          <h2>Kasunduan sa Biak-na-Bato</h2>
+          <p>Disyembre 14, 1897, nilagdaan ang Kasunduan sa Biak-na-Bato, na naglalayong tapusin ang himagsikan sa pagitan ng mga rebolusyonaryong Pilipino at pamahalaang Espanyol. Sa ilalim ng kasunduang ito, pumayag si Emilio Aguinaldo at ang kanyang mga kasamahan na magtungo sa Hong Kong kapalit ng bayad na mula sa Espanya, ngunit hindi nito tuluyang napigilan ang paghahangad ng mga Pilipino para sa kalayaan.</p>
         </div>
       </div>
       <div className="eventbtns">
