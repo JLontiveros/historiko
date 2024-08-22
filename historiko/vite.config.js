@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.mkv'],
   optimizeDeps: {
-    include: ['styled-components']
-  }
+    include: ['styled-components', '@react-spring/parallax']
+  },
 })

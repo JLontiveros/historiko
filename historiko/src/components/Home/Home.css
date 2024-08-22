@@ -1,47 +1,88 @@
-#video {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: -1;
-  }
+.home-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
 
-  #video2 {
-    position: relative;
-    margin-top: -3.9px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: -1;
-  }
+.video-section {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
 
-  .text {
-    position: absolute;
-    padding: 10px;
-    display: grid;
-    grid-template-rows: 1fr 0fr;
-    margin-top: 70px;
-  } 
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.background-video2 {
+  position: relative;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 
-  .heading, .subheading {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-left: 30px;
-    color: navy;
-  }
+.text-overlay, .signup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  box-sizing: border-box;
+}
 
-  .heading {
-    font-size: 30px;    
-    margin-top: 20px;
-  }
+.text-overlay {
+  align-items: flex-start;
+}
 
-  .heading h1 {
-    margin-left: -20px;    
-  }
+.heading, .subheading {
+  color: navy;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
 
-  .subheading {
-    display: flex;
-    margin-top: -30px;
-    text-align: left;
+.heading {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  font-size: 1.2em;
+}
+
+
+
+.video-section.snap-in {
+  animation: snapIn 0.5s ease-out;
+}
+
+@keyframes snapIn {
+  from {
+    transform: translateY(100%);
   }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Ensure SignUp component is visible */
+.signup-overlay .auth-container {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  max-width: 768px;
+}
