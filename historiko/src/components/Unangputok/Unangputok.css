@@ -1,63 +1,108 @@
 .unangputok-container {
-    background-color: #e6f2ff;
-    padding: 20px;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-  }
-  
-  .unangputok-title {
-    color: #0047ab;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  .unangputok-content {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .unangputok-image-container {
-    width: 40%;
-    background-color: #d9e6ff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .unangputok-image {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .unangputok-description {
-    width: 60%;
-    background-color: #b3ccff;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  .unangputok-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .unangputok-date {
-    color: #4169e1;
-    font-size: 18px;
-  }
-  
-  .unangputok-view-button {
-    background-color: #4169e1;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .unangputok-view-button:hover {
-    background-color: #3255b2;
-  }
+  background-color: #e6f2ff;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  margin-top: 130px;
+  margin-left: 100px;
+  margin-right: 80px;
+}
+
+.unangputok-container-left {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.unangputok-container-left img {
+  width: 350px;
+  height: 400px;
+  margin-top: 65px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  border-radius: 20px; /* Adjust this value to change the roundness of the corners */
+  box-shadow: 10px 10px #8c85d5; /* Adds the box shadow */
+}
+
+.unangputok-container-right {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.unangputok-container-right h1 {
+  color: #0047ab;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.unangputok-description {
+  position: relative;
+  margin-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.unangputok-description img {
+  position: absolute;
+  top: -106px; /* Adjust this value to position the heart image as needed */
+  right: 65px; /* Adjust this value to position the heart image as needed */
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.unangputok-description img:hover {
+  transform: scale(1.2);
+}
+
+.unangputok-blank {
+  position: absolute;
+  top: -70px; /* Adjust this value to position the blank div as needed */
+  left: 0;
+  height: 4px;
+  width: 760px;
+  margin-left: 90px;
+  background-color: gold;
+}
+
+.unangputok-description p {
+  background-color: #8c85d5;
+  margin-left: 70px;
+  margin-right: 50px;
+  margin-top: -70px;
+  padding: 5px;
+  text-align: justify;
+  font-size: 20px;
+  display: block;
+  line-height: 1.7;
+}
+
+.unangputok-date {
+  color: #4169e1;
+  font-size: 18px;
+  margin-top: -20px;
+}
+
+.unangputok-view-button:hover {
+  background-color: #3255b2;
+}
+
+.unangputok-view-button {
+  width: 120px;
+  margin-top: -10px;
+  margin-left: 400px;
+  margin-right: 400px;
+  border-radius: 50px;
+  background-color: #8a7fd5;
+  color: white;
+  border: none;
+  padding: 0px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+}

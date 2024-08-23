@@ -29,9 +29,9 @@ function Unatalakayin() {
         </div>
       </div>
       <div className="eventbtns2">
-        <Link to="/unangputok" className="link-button">See more</Link>
-        <Link to="/tiradpass" className="link-button">See more</Link>
-        <Link to="/balangiga" className="link-button">See more</Link>
+        <button><Link to="/unangputok" className="link-button">See more</Link></button>
+        <button><Link to="/tiradpass" className="link-button">See more</Link></button>
+        <button><Link to="/balangiga" className="link-button">See more</Link></button>
       </div>
     </div>
   );

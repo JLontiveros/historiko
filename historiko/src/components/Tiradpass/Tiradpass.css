@@ -1,63 +1,102 @@
 .tiradpass-container {
-    background-color: #e6f2ff;
-    padding: 20px;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
+  background-color: #e6f2ff;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 130px;
+  margin-left: 50px;
+  margin-right: 80px;
   }
   
-  .tiradpass-title {
-    color: #0047ab;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
+.tiradpass-title {
+  color: #0047ab;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.tiradpass-content {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.tiradpass-content img {
+  width: 350px;
+  height: 400px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+  border-radius: 20px; /* Adjust this value to change the roundness of the corners */
+  box-shadow: 10px 10px #8c85d5; /* Adds the box shadow */
+}
   
-  .tiradpass-content {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
+.tiradpass-description {
+  position: relative;
+  margin-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tiradpass-description img {
+  position: absolute;
+  top: -40px; /* Adjust this value to position the heart image as needed */
+  right: 875px; /* Adjust this value to position the heart image as needed */
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.tiradpass-description img:hover {
+  transform: scale(1.2);
+}
+
+.tiradpass-blank {
+  position: absolute;
+  top: -4px; /* Adjust this value to position the blank div as needed */
+  left: 0;
+  height: 4px;
+  width: 690px;
+  margin-left: 90px;
+  background-color: gold;
+}
   
-  .tiradpass-image-container {
-    width: 40%;
-    background-color: #d9e6ff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .tiradpass-image {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .tiradpass-description {
-    width: 60%;
-    background-color: #b3ccff;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  .tiradpass-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .tiradpass-date {
-    color: #4169e1;
-    font-size: 18px;
-  }
-  
-  .tiradpass-view-button {
-    background-color: #4169e1;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .tiradpass-view-button:hover {
-    background-color: #3255b2;
-  }
+.tiradpass-container-right p {
+  background-color: #8c85d5;
+  margin-left: 70px;
+  margin-right: 200px;
+  margin-top: -40px;
+  padding: 5px;
+  text-align: justify;
+  font-size: 20px;
+  display: block;
+  line-height: 1.7;
+}
+
+.tiradpass-date {
+  color: #4169e1;
+  font-size: 18px;
+  margin-top: -20px;
+  margin-left: -30px;
+}
+
+.tiradpass-view-button:hover {
+  background-color: #3255b2;
+}
+
+.tiradpass-view-button {
+  width: 200px;
+  margin-top: 0px;
+  margin-left: 400px;
+  margin-right: 400px;
+  border-radius: 50px;
+  background-color: #8a7fd5;
+  color: white;
+  border: none;
+  padding: 15px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+}
