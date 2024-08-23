@@ -20,7 +20,7 @@ function Modules() {
               <div className="image-container">
                 <img src={questionMark} alt="Question mark" className="question-mark" />
               </div>
-              Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa
+              Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa
             </li>
             <li>
               <div className="image-container">

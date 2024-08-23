@@ -20,23 +20,26 @@
   
   .virtual-flashcard, .guess-game {
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 45%;
   }
   
   .virtual-flashcard {
     background-color: lightblue;
+    border: 10px solid gold;
   }
   
   .guess-game {
-    background-color: lightyellow;
+    background-color: gold;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 10px solid red;
   }
   
   .character-image {
     width: 100px;
+    height: 100px;
     margin-bottom: 10px;
   }
   

@@ -1,11 +1,13 @@
 import React from 'react';
 import './About.css';
 import characterImage from '../../assets/boycropped.png';
+import roombg from '../../assets/roombg.png';
 
 const About = () => {
   return (
     <>
     <div className='about'>
+    <img src={roombg} alt='background' className='about-bg'/>
       <h1>Patungkol sa Historiko</h1>
       <div className='box'>
         <p>Maligayang pagdating sa Historiko! Kami ay isang pangkat na naglalayong palakasin ang diwa ng History sa pamamagitan ng pag-aaral ng kasaysayan ng Pilipinas, partikular sa:</p>
