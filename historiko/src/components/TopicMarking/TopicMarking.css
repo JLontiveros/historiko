@@ -1,0 +1,107 @@
+.topic-marking h1 {
+    color: #0047ab;
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    margin-right: 900px;
+}
+
+.topic-container {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    margin-left: 50px;
+
+}
+
+.topic-container img {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.topic-container img:hover{
+    transform: scale(1.4);
+}
+
+.arrow-right {
+    margin-left: -25px;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+    background-color: #0047ab;
+    height: 300px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: -15px 3px 0px #ffc55c;
+}
+
+.topic-container h2,
+.topic-container img {
+    position: relative;
+    top: 80px;
+    font-size: 24px;
+    color: white;
+}
+
+.bookmark {
+    width: 160px;
+    height: 150px;
+    position: absolute;
+    top: 118px;
+    right: 570px;
+    transition: height 0.3s ease;
+    transform-origin: bottom;
+}
+
+.bookmark2 {
+    width: 160px;
+    height: 150px;
+    position: absolute;
+    top: 118px;
+    right: 275px; 
+    transition: height 0.3s ease;
+    transform-origin: bottom;
+}
+
+.bookmark3 {
+    width: 160px;
+    height: 150px;
+    position: absolute;
+    top: 118px;
+    right: -20px; 
+    transition: height 0.3s ease;
+    transform-origin: bottom;
+}
+
+.bookmark4 {
+    width: 160px;
+    height: 150px;
+    position: absolute;
+    top: 118px;
+    right: -320px; 
+}
+
+.card1 img,
+.card2 img,
+.card3 img,
+.card4 img {
+    width: 70px;
+    height: 70px;
+    top: 10px;
+    right: 16px;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.card1 img:hover,
+.card2 img:hover,
+.card3 img:hover,
+.card4 img:hover{
+    transform: scale(1.2);
+}

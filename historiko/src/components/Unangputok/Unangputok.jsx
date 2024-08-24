@@ -30,7 +30,7 @@ const Unangputok = () => {
             Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino. Napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.
             </p>
           </div>
-          <button className="unangputok-view-button">VIEW MORE</button>
+          <button>VIEW MORE</button>
         </div>
     
     </div>
