@@ -12,6 +12,7 @@ import Minigames from './components/Minigames/Minigames';
 import UnangPutok from './components/Unangputok/Unangputok';
 import TiradPass from './components/TiradPass/TiradPass';
 import Balangiga from './components/Balangiga/Balangiga';
+import TopicMarking from './components/TopicMarking/TopicMarking';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/balangiga" element={<Balangiga />} />
               <Route path="/Dalwatalakayin" element={<Dalwatalakayin />} />
               <Route path="/Minigames" element={<Minigames />} />
+              <Route path="/TopicMarking" element={<TopicMarking />} />
             </Routes>
           </div>
         </div>        

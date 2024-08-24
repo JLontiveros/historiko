@@ -1,72 +1,85 @@
- /* Navbar styles */
- nav {
-    background-color: transparent; /* Added some transparency */
-    display: grid;
-    grid-template-columns: 0fr 3fr;
-    padding: 1rem;
-    position: absolute;
-    width: 90%;
-    top: 0;
-    left: 0;
-    margin-top: auto;
-    z-index: 1;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-    margin-bottom: 1vh;
-    justify-content: end;
-    align-items: center;
-    margin-right: -30px;
-  }
-  
-  nav img {
-    list-style-type: none;
-    height: 120px;
-    width: 120px;
-    display: flex;
-    justify-content: start;
-  }
-  
-  nav ul li {
-    margin: 0 1rem;
-    position: relative;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-  }
-  
-  .dropdown {
-    display: none;
-    position: absolute;
-    background-color: rgba(68, 68, 68, 0.8);
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  nav ul li:hover .dropdown {
-    display: block;
-  }
+/* Navbar styles */
+nav {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  position: absolute;
+  width: 90%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
 
-  nav ul li a:hover {
-    color: navy;
-  }
-  
-  .dropdown li {
-    padding: 0.5rem;
-  }
-  
-  .dropdown li a {
-    color: navy;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown li:hover {
-    background-color: rgba(85, 85, 85, 0.8);
-  }
+nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: end;
+  align-items: center;
+}
+
+nav img {
+  height: 120px;
+  width: 120px;
+  display: block;
+}
+
+nav ul li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #a0a7ed;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+nav ul li:hover .dropdown {
+  display: block;
+}
+
+nav ul li a:hover {
+  color: navy;
+}
+
+.dropdown li {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 2px solid white; /* Underline separator */
+  font-size: 18px;
+}
+
+.dropdown li:last-child {
+  border-bottom: none; /* Remove underline from the last item */
+}
+
+.dropdown li a {
+  color: navy;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown li:hover {
+  background-color: rgba(85, 85, 85, 0.8);
+}
