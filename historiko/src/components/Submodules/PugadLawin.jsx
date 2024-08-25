@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PugadLawin.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
@@ -35,6 +36,12 @@ const PugadLawin = () => {
     setIsZoomed(!isZoomed);
   };
 
+  const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    navigate('/PugadLawin3d');
+  };
+
   useEffect(() => {
     document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
     document.body.style.backgroundSize = 'cover';
@@ -50,7 +57,10 @@ const PugadLawin = () => {
   }, [selectedImage]);
 
   return (
+    <>
     <div className="PugadLawin">
+    <button onClick={handleViewMore}>View in 3D</button>
+    <div className="PugadLawin-container">
       <div className="PugadLawin-description-container">
         <h1>Description:</h1>
         <p>{descriptions[selectedImage]}</p>
@@ -73,6 +83,8 @@ const PugadLawin = () => {
         <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

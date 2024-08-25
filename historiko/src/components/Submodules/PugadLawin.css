@@ -3,17 +3,26 @@ body {
     padding: 0;
     transition: background-image 0.5s ease;
   }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(230, 242, 255, 0.7); /* #e6f2ff with 70% opacity */
+    z-index: -1;
+  }
   
-  .PugadLawin {
-    margin-top: 200px;
+  .PugadLawin-container {
+    margin-top: 150px;
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    z-index: 1;
   }
   
   .PugadLawin-description-container {
@@ -41,9 +50,10 @@ body {
   .PugadLawin-image-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 50px;
+    margin-left: 30px;
     overflow: hidden;
-    gap: 10px;
+    gap: 20px;
+    padding: 20px;
   }
   
   .image-wrapper {
@@ -84,10 +94,27 @@ body {
     cursor: pointer;
     transition: transform 0.3s ease;
     position: relative;
-    top: 60px;
+    top: 40px;
     left: 510px;
   }
   
   .PugadLawin-arrow-keys img:hover {
+    transform: scale(1.2);
+  }
+
+  .PugadLawin button {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: gold;
+    color: #0047ab;
+    position: relative;
+    top: 160px;
+    left: 650px;
+  }
+  
+  .PugadLawin button:hover {
     transform: scale(1.2);
   }

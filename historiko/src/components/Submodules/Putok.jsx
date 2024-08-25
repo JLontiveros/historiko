@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Putok.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
@@ -35,6 +36,13 @@ const Putok = () => {
     setIsZoomed(!isZoomed);
   };
 
+  const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    navigate('/Putok3d');
+  };
+
+
   useEffect(() => {
     document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
     document.body.style.backgroundSize = 'cover';
@@ -50,7 +58,10 @@ const Putok = () => {
   }, [selectedImage]);
 
   return (
+    <>
     <div className="putok">
+    <button onClick={handleViewMore}>View in 3D</button>
+    <div className="putok-container">
       <div className="putok-description-container">
         <h1>Description:</h1>
         <p>{descriptions[selectedImage]}</p>
@@ -73,6 +84,8 @@ const Putok = () => {
         <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

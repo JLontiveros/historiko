@@ -17,11 +17,17 @@ import TiradPass from './components/TiradPass/TiradPass';
 import Balangiga from './components/Balangiga/Balangiga';
 import TopicMarking from './components/TopicMarking/TopicMarking';
 import Putok from './components/Submodules/Putok';
+import Putok3d from './components/Sub3d/Putok3d';
 import Tirad from './components/Submodules/Tirad';
+import Tirad3d from './components/Sub3d/Tirad3d';
 import Balangiga1 from './components/Submodules/Balangiga1';
+import Balangiga3d from './components/Sub3d/Balangiga3d';
 import PugadLawin from './components/Submodules/PugadLawin';
+import PugadLawin3d from './components/Sub3d/PugadLawin3d';
 import Convention from './components/Submodules/Convention';
+import Convention3d from './components/Sub3d/Convention3d';
 import Kasunduan from './components/Submodules/Kasunduan';
+import Kasunduan3d from './components/Sub3d/Kasunduan3d';
 
 
 function App() {
@@ -48,11 +54,17 @@ function App() {
               <Route path="/Minigames" element={<Minigames />} />
               <Route path="/TopicMarking" element={<TopicMarking />} />
               <Route path="/Putok" element={<Putok />} />
+              <Route path="/Putok3d" element={<Putok3d />} />
               <Route path="/Tirad" element={<Tirad />} />
+              <Route path="/Tirad3d" element={<Tirad3d />} />
               <Route path="/Balangiga1" element={<Balangiga1 />} />
+              <Route path="/Balangiga3d" element={<Balangiga3d />} />
               <Route path="/PugadLawin" element={<PugadLawin />} />
+              <Route path="/PugadLawin3d" element={<PugadLawin3d />} />
               <Route path="/Convention" element={<Convention />} />
+              <Route path="/Convention3d" element={<Convention3d />} />
               <Route path="/Kasunduan" element={<Kasunduan />} />
+              <Route path="/Kasunduan3d" element={<Kasunduan3d />} />
             </Routes>
           </div>
         </div>        
