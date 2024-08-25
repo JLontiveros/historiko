@@ -61,7 +61,7 @@
   background-color: rgb(255, 229, 79);
   color: #8a7fd5;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 15px 50px;
   border-radius: 25px;
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -71,4 +71,23 @@
 .link-button:hover {
   background-color: #669999;
   color: white;
+}
+
+.eventbtns2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.eventbtns2 button {
+  background-color: rgb(255, 229, 79);
+  border: none;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.eventbtns2 button:hover {
+  background-color: #669999;
 }

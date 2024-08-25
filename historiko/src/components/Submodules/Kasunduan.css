@@ -1,0 +1,63 @@
+.kasunduan {
+    margin-top: 200px;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+}
+
+.kasunduan-description-container {
+    display: grid;
+    text-align: justify;
+    color: #0047ab;
+    margin-left: 50px;
+}
+
+.kasunduan-description-container h1 {
+    font-size: 50px;
+    text-shadow: 3px 3px 0px #5676a3;
+    margin-top: -10px;
+}
+
+.kasunduan-description-container p {
+    font-size: 20px;
+    font-weight: 600;
+    display: block;
+    line-height: 1.7;
+    margin-top: -20px;
+    margin-left: 10px;
+}
+
+.kasunduan-image-container img {
+    width: 280px;
+    height: 350px;
+    border: 5px solid white;
+    border-radius: 20px;
+}
+
+.kasunduan-image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 50px;
+    overflow: hidden;
+}
+
+.kasunduan-arrow-keys img {
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 60px;
+    left: 510px;
+}
+
+.kasunduan-arrow-keys img:hover{
+    transform: scale(1.2);
+}
+
+.second-image {
+    background-color: red;
+}
+
+.third-image {
+    background-color: yellow;
+}
