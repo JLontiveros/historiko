@@ -1,46 +1,84 @@
-.putok {
+body {
+    margin: 0;
+    padding: 0;
+    transition: background-image 0.5s ease;
+  }
+  
+  .putok {
     margin-top: 200px;
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-}
-
-.putok-description-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .putok-description-container {
     display: grid;
     text-align: justify;
     color: #0047ab;
     margin-left: 50px;
-}
-
-.putok-description-container h1 {
+  }
+  
+  .putok-description-container h1 {
     font-size: 50px;
     text-shadow: 3px 3px 0px #5676a3;
     margin-top: -10px;
-}
-
-.putok-description-container p {
+  }
+  
+  .putok-description-container p {
     font-size: 20px;
     font-weight: 600;
     display: block;
     line-height: 1.7;
     margin-top: -20px;
     margin-left: 10px;
-}
-
-.putok-image-container img {
-    width: 280px;
-    height: 350px;
-    border: 5px solid white;
-    border-radius: 20px;
-}
-
-.putok-image-container {
+  }
+  
+  .putok-image-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 50px;
     overflow: hidden;
-}
-
-.putok-arrow-keys img {
+    gap: 10px;
+  }
+  
+  .image-wrapper {
+    width: 280px;
+    height: 350px;
+    border: 5px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .image-wrapper.selected {
+    border-color: #0047ab;
+    transform: scale(1.05);
+  }
+  
+  .image-wrapper.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    z-index: 1000;
+    width: 560px;
+    height: 700px;
+  }
+  
+  .putok-arrow-keys img {
     height: 80px;
     width: 80px;
     cursor: pointer;
@@ -48,16 +86,8 @@
     position: relative;
     top: 60px;
     left: 510px;
-}
-
-.putok-arrow-keys img:hover{
+  }
+  
+  .putok-arrow-keys img:hover {
     transform: scale(1.2);
-}
-
-.second-image {
-    background-color: red;
-}
-
-.third-image {
-    background-color: yellow;
-}
+  }
