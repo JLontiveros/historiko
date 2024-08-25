@@ -19,7 +19,9 @@ import TopicMarking from './components/TopicMarking/TopicMarking';
 import Putok from './components/Submodules/Putok';
 import Tirad from './components/Submodules/Tirad';
 import Balangiga1 from './components/Submodules/Balangiga1';
-
+import PugadLawin from './components/Submodules/PugadLawin';
+import Convention from './components/Submodules/Convention';
+import Kasunduan from './components/Submodules/Kasunduan';
 
 
 function App() {
@@ -48,6 +50,9 @@ function App() {
               <Route path="/Putok" element={<Putok />} />
               <Route path="/Tirad" element={<Tirad />} />
               <Route path="/Balangiga1" element={<Balangiga1 />} />
+              <Route path="/PugadLawin" element={<PugadLawin />} />
+              <Route path="/Convention" element={<Convention />} />
+              <Route path="/Kasunduan" element={<Kasunduan />} />
             </Routes>
           </div>
         </div>        
