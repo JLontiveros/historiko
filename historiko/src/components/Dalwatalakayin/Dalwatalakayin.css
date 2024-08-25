@@ -1,68 +1,74 @@
 /* src/components/Unatalakayin/Unatalakayin.css */
 .dalwatalakayin {
-    background-color: #e6f2ff;
-    min-height: 94.5vh;
-    padding: 20px;
-  }
-  
-  .dalwatalakayin h1 {
-    text-align: center;
-    color: #0000FF;
-    font-size: 40px;
-    margin-top: 110px; /* Adjusted to accommodate the navbar */
-    margin-bottom: 60px;
-  }
-  
-  .events-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .event {
-    background-color: #8a7fd5;
-    border-radius: 20px;
-    padding: 20px;
-    width: 300px;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .event img {
-    width: 150px;
-    height: 150px;
-    margin-bottom: -10px;
-    margin-top: -70px;
-  }
-  
-  .event h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: rgb(255, 229, 79);
-  }
-  
-  .event p {
-    font-size: 0.9em;
-    text-align: justify;
-    margin-top: 30px;
-  }
-  
-  .eventbtns {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .eventbtns button {
-    background-color: rgb(255, 229, 79);
-    border: none;
-    color: white;
-    padding: 15px 50px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .eventbtns button:hover {
-    background-color: #669999;
-  }
+  background-color: #e6f2ff;
+  min-height: 94.5vh;
+  padding: 20px;
+}
+
+.dalwatalakayin h1 {
+  text-align: center;
+  color: #0000FF;
+  font-size: 40px;
+  margin-top: 110px;
+  margin-bottom: 60px;
+}
+
+.events-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.event {
+  background-color: #8a7fd5;
+  border-radius: 20px;
+  padding: 20px;
+  width: 300px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-icon {
+  width: 150px;
+  height: 150px;
+  margin-bottom: -10px;
+  margin-top: -70px;
+  align-self: center;
+}
+
+.event h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: rgb(255, 229, 79);
+}
+
+.event-content {
+  flex-grow: 1;
+}
+
+.event p {
+  font-size: 0.9em;
+  text-align: justify;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.link-button {
+  display: inline-block;
+  background-color: rgb(255, 229, 79);
+  color: #8a7fd5;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: auto;
+}
+
+.link-button:hover {
+  background-color: #669999;
+  color: white;
+}

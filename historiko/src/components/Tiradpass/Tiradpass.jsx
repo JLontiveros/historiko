@@ -1,9 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Tiradpass.css';
 import kidst from '../../assets/kidst.png'
 import heart from '../../assets/heart.png'
 
 const Tiradpass = () => {
+
+  const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    navigate('/tirad');
+  };
+
   return (
     <div className="tiradpass-container"> 
       <div className="tiradpass-container-right">
@@ -19,7 +27,7 @@ const Tiradpass = () => {
           Ang Labanan sa Tirad Pass (Espanyol; Castilian: Batalla de Paso Tirad; Tagalog: Labanan sa Pasong Tirad; Ang Iloko: Gubat ti Paso), na kung minsan ay tinatawag na "Philippine Thermopylae ", ay isang labanan sa Digmaang Pilipino Amerikano na nakipaglaban noong Disyembre 2, 1899, sa hilagang Luzon sa Pilipinas, kung saan ang isang 60 tauhan na Pilipinong bantay sa likod na pinamumunuan ni Brigadier General Gregorio del Pilar ay sumuko sa mahigit 500 Amerikano, karamihan ay mula sa 33rd Volunteer Infantry Regiment sa ilalim ni Major Peyton C. March,  habang inaantala ang pagsulong ng mga Amerikano upang matiyak na nakatakas si Pangulong Emilio Aguinaldo at ang kanyang mga tropa. 
           </p>
         </div>
-        <button>VIEW MORE</button>
+        <button onClick={handleViewMore}>VIEW MORE</button>
       </div>
 
       <div className="tiradpass-content">
