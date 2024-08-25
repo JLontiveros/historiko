@@ -12,6 +12,28 @@ nav {
   z-index: 1;
 }
 
+.nav-left {
+  display: flex;
+  align-items: center;
+  width: 120px; /* Set this to the width of your logo */
+}
+
+.back-icon {
+  color: blue;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  margin-left: 90%;
+  left: 5%; /* Adjust this value to match your nav padding */
+}
+
+nav img {
+  height: 120px;
+  width: 120px;
+  display: block;
+}
+
 nav ul {
   list-style-type: none;
   display: flex;
@@ -19,12 +41,6 @@ nav ul {
   padding: 0;
   justify-content: end;
   align-items: center;
-}
-
-nav img {
-  height: 120px;
-  width: 120px;
-  display: block;
 }
 
 nav ul li {
