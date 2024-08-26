@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, createContext, useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
@@ -29,47 +29,74 @@ import Convention3d from './components/Sub3d/Convention3d';
 import Kasunduan from './components/Submodules/Kasunduan';
 import Kasunduan3d from './components/Sub3d/Kasunduan3d';
 
+// Create Authentication Context
+const AuthContext = createContext(null);
+
+export const useAuth = () => useContext(AuthContext);
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const login = (userData) => {
+    setIsAuthenticated(true);
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+  };
+
+  // Wrapper for protected routes
+  const ProtectedRoute = ({ children }) => {
+    if (!isAuthenticated) {
+      return <Navigate to="/" replace />;
+    }
+    return children;
+  };
+
   return (
-    <Router>
-      <div className="App">
-        <div className="content-overlay">
-          <Navbar />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Home" element={<Home />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/About" element={<About />} />
-              <Route path="/Modules" element={<Modules />} />
-              <Route path="/Unatalakayin" element={<Unatalakayin />} />
-              <Route path="/Unangputok" element={<UnangPutok />} />
-              <Route path="/Tiradpass" element={<TiradPass />} />
-              <Route path="/balangiga" element={<Balangiga />} />
-              <Route path="/Dalwatalakayin" element={<Dalwatalakayin />} />
-              <Route path="/Sigaw" element={<Sigaw />} />
-              <Route path="/Tejeros" element={<Tejeros />} />
-              <Route path="/Bato" element={<Bato />} />
-              <Route path="/Minigames" element={<Minigames />} />
-              <Route path="/TopicMarking" element={<TopicMarking />} />
-              <Route path="/Putok" element={<Putok />} />
-              <Route path="/Putok3d" element={<Putok3d />} />
-              <Route path="/Tirad" element={<Tirad />} />
-              <Route path="/Tirad3d" element={<Tirad3d />} />
-              <Route path="/Balangiga1" element={<Balangiga1 />} />
-              <Route path="/Balangiga3d" element={<Balangiga3d />} />
-              <Route path="/PugadLawin" element={<PugadLawin />} />
-              <Route path="/PugadLawin3d" element={<PugadLawin3d />} />
-              <Route path="/Convention" element={<Convention />} />
-              <Route path="/Convention3d" element={<Convention3d />} />
-              <Route path="/Kasunduan" element={<Kasunduan />} />
-              <Route path="/Kasunduan3d" element={<Kasunduan3d />} />
-            </Routes>
-          </div>
-        </div>        
-      </div>
-    </Router>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+      <Router>
+        <div className="App">
+          <div className="content-overlay">
+            <Navbar />
+            <div className="content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Home />} />
+                <Route path="/Profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                <Route path="/About" element={<About />} />
+                <Route path="/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
+                <Route path="/Unatalakayin" element={<ProtectedRoute><Unatalakayin /></ProtectedRoute>} />
+                <Route path="/Unangputok" element={<ProtectedRoute><UnangPutok /></ProtectedRoute>} />
+                <Route path="/Tiradpass" element={<ProtectedRoute><TiradPass /></ProtectedRoute>} />
+                <Route path="/balangiga" element={<ProtectedRoute><Balangiga /></ProtectedRoute>} />
+                <Route path="/Dalwatalakayin" element={<ProtectedRoute><Dalwatalakayin /></ProtectedRoute>} />
+                <Route path="/Sigaw" element={<ProtectedRoute><Sigaw /></ProtectedRoute>} />
+                <Route path="/Tejeros" element={<ProtectedRoute><Tejeros /></ProtectedRoute>} />
+                <Route path="/Bato" element={<ProtectedRoute><Bato /></ProtectedRoute>} />
+                <Route path="/Minigames" element={<ProtectedRoute><Minigames /></ProtectedRoute>} />
+                <Route path="/TopicMarking" element={<ProtectedRoute><TopicMarking /></ProtectedRoute>} />
+                <Route path="/Putok" element={<ProtectedRoute><Putok /></ProtectedRoute>} />
+                <Route path="/Putok3d" element={<ProtectedRoute><Putok3d /></ProtectedRoute>} />
+                <Route path="/Tirad" element={<ProtectedRoute><Tirad /></ProtectedRoute>} />
+                <Route path="/Tirad3d" element={<ProtectedRoute><Tirad3d /></ProtectedRoute>} />
+                <Route path="/Balangiga1" element={<ProtectedRoute><Balangiga1 /></ProtectedRoute>} />
+                <Route path="/Balangiga3d" element={<ProtectedRoute><Balangiga3d /></ProtectedRoute>} />
+                <Route path="/PugadLawin" element={<ProtectedRoute><PugadLawin /></ProtectedRoute>} />
+                <Route path="/PugadLawin3d" element={<ProtectedRoute><PugadLawin3d /></ProtectedRoute>} />
+                <Route path="/Convention" element={<ProtectedRoute><Convention /></ProtectedRoute>} />
+                <Route path="/Convention3d" element={<ProtectedRoute><Convention3d /></ProtectedRoute>} />
+                <Route path="/Kasunduan" element={<ProtectedRoute><Kasunduan /></ProtectedRoute>} />
+                <Route path="/Kasunduan3d" element={<ProtectedRoute><Kasunduan3d /></ProtectedRoute>} />
+              </Routes>
+            </div>
+          </div>        
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

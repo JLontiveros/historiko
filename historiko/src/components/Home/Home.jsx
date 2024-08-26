@@ -3,10 +3,12 @@ import './Home.css';
 import SignUp from '../SignUp/SignUp';
 import backgroundVideo from "../../assets/hero.mp4";
 import backgroundVideo2 from "../../assets/underhero.mp4";
+import { useAuth } from '../../App'; // Import the useAuth hook
 
 const Home = () => {
   const secondSectionRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const { isAuthenticated, user } = useAuth(); // Use the authentication context
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +53,14 @@ const Home = () => {
           <source src={backgroundVideo2} type='video/mp4'/>
         </video>
         <div className='signup-overlay'>
-          <SignUp />
+          {isAuthenticated ? (
+            <div className="welcome-message">
+              <h2>Welcome to Historiko, {user.username}!</h2>
+              <p>You're now logged in. Explore our modules and learn about Philippine history!</p>
+            </div>
+          ) : (
+            <SignUp />
+          )}
         </div>
       </section>
     </div>

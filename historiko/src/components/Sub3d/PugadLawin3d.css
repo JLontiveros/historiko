@@ -1,0 +1,36 @@
+
+.PugadLawin3d-container {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    margin-top: 130px;
+    margin-left: 50px;
+}
+
+.PugadLawin3d-container img {
+    height: 60px;
+    width: 70px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 50px;
+    left: 150px;
+}
+
+.PugadLawin3d-container img:hover {
+    transform: scale(1.2);
+}
+
+.PugadLawin3d-container h1 {
+    width: 65%;
+    font-weight: 900;
+    font-size: 45px;
+    color: #0047ab;
+    margin-left: 30px;
+}
+
+.picture3d img {
+    height: 450px;
+    border: 10px solid white;
+    border-radius: 20px;
+    margin-top: -20px;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App';
 import './Signup.css';
 
 const SignUp = () => {
@@ -7,6 +8,8 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const { login } = useAuth();
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
@@ -19,7 +22,6 @@ const SignUp = () => {
       return;
     }
     try {
-      // Check if username already exists
       const { data: existingUser, error: checkError } = await supabase
         .from('users')
         .select('username')
@@ -35,15 +37,14 @@ const SignUp = () => {
         return;
       }
 
-      // Insert new user into the users table
       const { data, error } = await supabase
         .from('users')
-        .insert([{ username, password }]);
+        .insert([{ username, password, name }]);
 
       if (error) throw error;
 
       alert('Sign up successful!');
-      // You might want to automatically sign in the user here
+      login({ username });
     } catch (error) {
       alert(error.message);
     }
@@ -54,7 +55,7 @@ const SignUp = () => {
     try {
       const { data, error } = await supabase
         .from('users')
-        .select()
+        .select('*')
         .eq('username', username)
         .eq('password', password)
         .single();
@@ -63,7 +64,7 @@ const SignUp = () => {
 
       if (data) {
         alert('Sign in successful!');
-        // Here you would typically set user session or redirect
+        login({ username });
       } else {
         alert('Invalid username or password');
       }
@@ -78,6 +79,13 @@ const SignUp = () => {
         <div className="form-container sign-up-container">
           <form onSubmit={handleSignUp}>
             <h1 className="title">Create Account</h1>
+            <input
+              type="text"
+              placeholder="Name"
+              className="input-field"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <input
               type="text"
               placeholder="Username"

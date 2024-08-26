@@ -86,3 +86,22 @@
 .question-mark:hover {
   transform: scale(1.4);
 }
+
+.title-container {
+  position: relative;
+}
+
+.hover-text {
+  position: absolute;
+  top: 10%;
+  left: -10px;
+  width: 100%;
+  background-color: rgb(119, 202, 202);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  line-height: 1.5;
+}
