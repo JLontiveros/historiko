@@ -13,15 +13,15 @@ const Balangiga1 = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
-    { src: kidst, bg: bg1 },
-    { src: kidst, bg: bg2 },
-    { src: kidst, bg: bg3 },
+    { src: kidst, bg: bg1, description: "Capt. Thomas Connell"  },
+    { src: kidst, bg: bg2, description: "Brig. Gen Jacob Smith"  },
+    { src: kidst, bg: bg3, description: "Kiram Bates Treaty 1899"  },
   ];
 
   const descriptions = [
-    "Ang labanan ay isang operasyon militar na binalak ni Kapitan Eugenio Daza ng Area Commander ng mga pwersa ni Vicente Lukban patungong Southeastern Samar, na naganap sa Balangiga noong 1901 sa panahon ng Digmaang Pilipino at Amerikano. Ang pagsalakay ay pinamunuan ni Valeriano Abanador na Jefe de la Policia (Chief of Police).",
-    "This is the description for the second image. You can replace this text with the actual description.",
-    "This is the description for the third image. You can replace this text with the actual description.",
+    "Agosto 11, 1901 Nang makarating sa lugar ang Company C of the 9th Infantry Regiment ng Amerika sa pamumuno ni Capt. Thomas Connell sa Balangiga, Samar. Layunin nila na sugpuin ang mga Pilipinong patuloy na nakikipaglaban sa pamumuno ni Vicente Lukban sa pamamagitan ng pagsira sa mga pananim at ari-arian na siyang pinagkukunan ng suplay ng mga gerilya. Setyembre  28, 1901, isinagawa ang planong pagpatay sa buong pangkat ng amerikanong sundalo sa tulong ng mga mamamayan ng Balangiga. Sa 74 na miyembro ng Company C ay 36 ang nasawi kasama si Capt. Thomas Connell, 22 ang sugatan at 4 ang nawala.",
+    "Bilang ganti ay ipinadala ang malaking bilang ng mga sundalong Amerikano sa pangunguna ni Brigadier  Gen Jacob Smith. Malawakang pagpatay at pagsunog sa mga ari-arian ang isingawa nila sa Balangiga. ANg lahat ng kalalakihang may kakayahang humawak ng armas mula 10 taong gulang pataas ay pinagutos na patayin. Sa loob ng anim na buwan ang balangiga ay nagmistulang isang disyerto dahil sinunog ng mga amerikano ang buong baying ito.",
+    "Ang mga moro sa Mindanao at Sulu ay nanahimik, at nagmasid lamang upang hindi masangkot sa digmaan. Lumagda ng isang kasunduan si Brigadier General John C. Bates at si Sultan Jamal ul Kiram II kasama ang mga kinatawang datu ng sulu noong Agosto 10, 1899 na nagsasaad na kinikilala ng Sultan ang kapangyarihan ng Estados Unidos sa buong kapuluan ng Sulu, Igagalang ng estados unidos ang mga karapatan at karangalan ng sultan ang kaniyang mga datu; at hindi makikialam ang estados unidos sa relihiyon ng mga moro.  Hindi kinilala ang kasunduang Bates makalipas ang dalawang taon ay pinuksa ng mga amerikano ang mga muslim sa Mindanao matapos nilang matalo ang mga Pilipino sa Luzon.",
   ];
 
   const handlePrev = () => {
@@ -58,27 +58,28 @@ const Balangiga1 = () => {
 
   return (
     <>
-    <div className="balangiga">
+    <div className="balangiga1">
     <button onClick={handleViewMore}>View in 3D</button>
     <div className="balangiga1-container">
-      <div className="balangiga-description-container">
+      <div className="balangiga1-description-container">
         <h1>Description:</h1>
         <p>{descriptions[selectedImage]}</p>
       </div>
-      <div className="balangiga-image-container">
+      <div className="balangiga1-image-container">
         {images.map((image, index) => (
           <div
             key={index}
-            className={`image-wrapper ${index === selectedImage ? 'selected' : ''} ${
+            className={`balangiga1-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
               isZoomed && index === selectedImage ? 'zoomed' : ''
             }`}
             onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
           >
             <img src={image.src} alt={`Image ${index + 1}`} />
+            <div className="balangiga1-image-description">{image.description}</div>
           </div>
         ))}
       </div>
-      <div className="balangiga-arrow-keys">
+      <div className="balangiga1-arrow-keys">
         <img src={arrownav2} alt="left" onClick={handlePrev} />
         <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
       </div>

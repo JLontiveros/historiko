@@ -19,26 +19,27 @@ body::before {
   margin-top: 150px;
   display: grid;
   grid-template-columns: 0.5fr 1fr;
-  border-radius: 10px;
   padding: 30px;
+  border-radius: 10px;
   position: relative;
-  z-index: 1;
+  z-index: 1;  
+  overflow-x: hidden;
 }
 
-.balangiga-description-container {
+.balangiga1-description-container {
   display: grid;
   text-align: justify;
   color: #0047ab;
   margin-left: 50px;
 }
 
-.balangiga-description-container h1 {
+.balangiga1-description-container h1 {
   font-size: 50px;
   text-shadow: 3px 3px 0px #5676a3;
   margin-top: -10px;
 }
 
-.balangiga-description-container p {
+.balangiga1-description-container p {
   font-size: 20px;
   font-weight: 600;
   display: block;
@@ -47,38 +48,53 @@ body::before {
   margin-left: 10px;
 }
 
-.balangiga-image-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin-left: 30px;
-  overflow: hidden;
+.balangiga1-image-container {
+  display: flex;
   gap: 20px;
   padding: 20px;
+  margin-left: 30px;
 }
 
-.image-wrapper {
-  width: 280px;
+.balangiga1-image-wrapper {
+  flex: 0 0 280px;
   height: 350px;
   border: 5px solid white;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-.image-wrapper img {
+.balangiga1-image-wrapper img {
   width: 100%;
-  height: 100%;
+  height: 80%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.image-wrapper.selected {
-  border-color: #0047ab;
-  transform: scale(1.15); /* Increased from 1.05 to 1.15 */
+.balangiga1-image-description {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
-.image-wrapper.zoomed {
+.balangiga1-image-wrapper.selected {
+  border-color: #0047ab;
+  transform: scale(1.05);
+  grid-column: 1 / -1;  /* Make the selected image span full width */
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+}
+
+.balangiga1-image-wrapper.zoomed {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -88,21 +104,28 @@ body::before {
   height: 700px;
 }
 
-.balangiga-arrow-keys img {
+.balangiga1-arrow-keys {
+  position: fixed;
+  bottom: 10px; /* Adjust the distance from the bottom of the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0px; /* Adjust the gap between the arrow keys */
+}
+
+.balangiga1-arrow-keys img {
   height: 80px;
   width: 80px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  position: relative;
-  top: 40px;
-  left: 510px;
 }
 
-.balangiga-arrow-keys img:hover {
+.balangiga1-arrow-keys img:hover {
   transform: scale(1.2);
 }
 
-.balangiga button {
+.balangiga1 button {
   width: 100px;
   height: 30px;
   border-radius: 10px;
@@ -113,8 +136,9 @@ body::before {
   position: relative;
   top: 160px;
   left: 650px;
+  transition: transform 0.3s ease;
 }
 
-.balangiga button:hover {
+.balangiga1 button:hover {
   transform: scale(1.2);
 }

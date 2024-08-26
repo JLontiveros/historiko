@@ -7,29 +7,47 @@ import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png'; // Add your background images
 import bg2 from '../../assets/historikobg.png';
 import bg3 from '../../assets/kidst.png';
+import bg4 from '../../assets/kidst.png';
+import bg5 from '../../assets/kidst.png';
+import bg6 from '../../assets/kidst.png';
+import bg7 from '../../assets/kidst.png';
+import bg8 from '../../assets/kidst.png';
+import bg9 from '../../assets/kidst.png';
 
 const Tirad = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
-    { src: kidst, bg: bg1 },
-    { src: kidst, bg: bg2 },
-    { src: kidst, bg: bg3 },
+    { src: kidst, bg: bg1, description: "General Arthur McArthur" },
+    { src: kidst, bg: bg2, description: "Pasong Tirad Pass, Ilocos Sur" },
+    { src: kidst, bg: bg3, description: "Gregorio Del Pilar" },
+    { src: kidst, bg: bg4, description: "Januario Galut" },
+    { src: kidst, bg: bg5, description: "General Friedrich Funston" },
+    { src: kidst, bg: bg6, description: "Macario Sakay" },
+    { src: kidst, bg: bg7, description: "Miguel Malvar" },
+    { src: kidst, bg: bg8, description: "Vicente Lukban" },
+    { src: kidst, bg: bg9, description: "Simeon Ola" },
   ];
 
   const descriptions = [
-    "Ang labanan ay isang operasyon militar na binalak ni Kapitan Eugenio Daza ng Area Commander ng mga pwersa ni Vicente Lukban patungong Southeastern Samar, na naganap sa Balangiga noong 1901 sa panahon ng Digmaang Pilipino at Amerikano. Ang pagsalakay ay pinamunuan ni Valeriano Abanador na Jefe de la Policia (Chief of Police).",
-    "This is the description for the second image. You can replace this text with the actual description.",
-    "This is the description for the third image. You can replace this text with the actual description.",
+    "Si Gen Arthur McArthur ang namuno sa pagsalakay sa Malolos, Bulacan ang himpilan ni Emilio Aguinaldo.  Dahil sa malakas na puwersang military ng amerika, tumakas si Emilio Aguinaldo kasama ang kanyang gabinete, kagawa at sundalo upang maiwasan ang pagtugis ng mga amerikano at sila ay dumaan sa pasong Tirad.",
+    "Ang Pasong Tirad ay isang makitid at istratehikong lagusan sa kabundukan ng Tirad na bahagi ng kabundukan ng bayan ng Concepcion, Ilocos Sur  na Gregorio del Pilar ngayon, sa may kanlurang bahagi ng Cordillera. Sa pasong tirad ay humimpil ang batang Heneral na si Gregorio del Pilar kasama ang 60 sundalo upang hadlangan ang 300 amerikanong sundalo na tumutugis kay Aguinaldo. ",
+    "Si Gregorio Del Pilar ay isang batang heneral na tinaguriang bayani ng pasong tirad na nagpamalas ng tapang, kagitingan at pagmamahal sa bayan. Minarapat nyang magpaiwan upang magkaroon ng sapat na oras si Emilio Aguinaldo upang makalayo at makarating sa Palanan, Isabela.",
+    "Nahirapan ang mga amerikano na magapi si Del Pilar sapagkat mataas ang kanilang kinalalagyan. Sa kasamaang palad ay tinulungan ang mga amerikano ng isang Igorot na nagngangalang Januario Galut na may kaalaman sa topograpiya ng lugar at itinuro nito ang kinaroroonan ni Del Pilar at natagpuan ng mga amerikano si Del PIlar noong Disyembre 2, 1899 at matapos nitoy walang tigil na putukan ang naganap at nasawi si Del Pilar kasama ang 60 nyang tauhan.  Siya ay nasawi sa 24 na taong gulang.",
+    "Marso 23, 1901, nadakip si Aguinaldo ng mga amerikano sa pangunguna ni General Friedrich Funston at sa tulong na rin ng ilang Pilipino mula sa Macabebe Scout sa pamumuno ni Tal Placido at Lazaro Segovia. Noong Abril 1, 1901, Nanumpa si Aguinaldo ng katapatan sa Estados Unidos at hinimok niya ang mga Pilipino na tanggapin na ang kapangyarihan ng mga amerikano.",
+    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore repudiandae, fugit natus dolorem facere quos unde at hic delectus error?",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sequi excepturi obcaecati? Rem quidem recusandae ea earum ipsa deserunt excepturi.",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem distinctio quaerat quibusdam similique, exercitationem deserunt in quam rerum maiores autem!"
   ];
 
   const handlePrev = () => {
-    setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
   };
-
+  
   const handleNext = () => {
-    setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
   const toggleZoom = () => {
@@ -66,17 +84,22 @@ const Tirad = () => {
         <p>{descriptions[selectedImage]}</p>
       </div>
       <div className="tirad-image-container">
-        {images.map((image, index) => (
-          <div
+      {images.map((image, index) => (
+            <div
             key={index}
-            className={`image-wrapper ${index === selectedImage ? 'selected' : ''} ${
+            className={`tirad-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
               isZoomed && index === selectedImage ? 'zoomed' : ''
             }`}
             onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
+            style={{
+              order: index === selectedImage ? -1 : 0,
+              zIndex: index === selectedImage ? 2 : 1
+            }}
           >
             <img src={image.src} alt={`Image ${index + 1}`} />
+            <div className="tirad-image-description">{image.description}</div>
           </div>
-        ))}
+          ))}
       </div>
       <div className="tirad-arrow-keys">
         <img src={arrownav2} alt="left" onClick={handlePrev} />

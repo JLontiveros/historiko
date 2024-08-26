@@ -15,17 +15,17 @@ function Unatalakayin() {
         <div className="event">
           <img src={plaquetteImage} alt="firstshot" className="event-icon" />
           <h2>Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa</h2>
-          <p>Ang "Unang Putok sa panlulukan ng Silencio at Sociego, Sta. Mesa" ay tumutukoy sa isang makasaysayang pangyayari na naganap noong gabi ng Agosto 30, 1896, na nagmarka ng simula ng armadong himagsikan laban sa pamahalaang kolonyal ng Espanya sa Pilipinas.</p>
+          <p>Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino</p>
         </div>
         <div className="event">
           <img src={swordsImage} alt="sword" className="event-icon" />
           <h2>Labanan sa Tirad Pass</h2>
-          <p>Ang "Labanan sa Tirad Pass" ay isang makasaysayang kaganapan sa kasaysayan ng Pilipinas na naganap noong Disyembre 2, 1899, sa panahon ng Digmaang Pilipino-Amerikano.</p>
+          <p>Nangyari ang isa sa makasaysayang sagupaan ng mga rebolusyonaryong Pilipino, ang Labanan sa Pasong Tirad sa pangunguna ni Heneral Gregorio Del Pilar.</p>
         </div>
         <div className="event">
           <img src={bellsImage} alt="Bell" className="event-icon" />
           <h2>Balangiga Massacre</h2>
-          <p>Ang "Balangiga Massacre" ay isang makasaysayang pangyayari na naganap noong Setyembre 28, 1901, sa bayan ng Balangiga, Samar, sa panahon ng Digmaang Pilipino-Amerikano. Ang insidenteng ito ay kilala rin bilang "Balangiga Encounter" sa Pilipinas, habang sa Estados Unidos, ito ay tinatawag na "Balangiga Massacre."</p>
+          <p>Pinakatanyag na labanan sa pagitan ng mga amerikano at mga Pilipino ay ang labanan sa balangiga na nangyari sa pamumuno ni Heneral Vicente Lukban sa Isla ng Samar."</p>
         </div>
       </div>
       <div className="eventbtns2">
