@@ -5,13 +5,17 @@ import kidst from '../../assets/kidst.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 
 const Bato = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
   const topicId = 5; // Assuming "Kasunduan sa Biak-na-Bato" is the 5th topic
+  const topicName = "Kasunduan sa Biak-na-Bato";
+
 
   useEffect(() => {
     if (user) {
@@ -82,7 +86,10 @@ const Bato = () => {
         .match({ user_id: userUUID, topic_id: topicId });
 
       if (error) console.error('Error removing mark:', error);
-      else setIsMarked(false);
+      else {
+        setIsMarked(false);
+        removeMarkedTopic(topicId);
+      }
     } else {
       const { error } = await supabase
         .from('user_topics')
@@ -94,7 +101,10 @@ const Bato = () => {
         });
 
       if (error) console.error('Error adding mark:', error);
-      else setIsMarked(true);
+      else {
+        setIsMarked(true);
+        addMarkedTopic({ id: topicId, topic_name: topicName });
+      }
     }
     setIsLoading(false);
   };
@@ -121,7 +131,7 @@ const Bato = () => {
 
         <div className="bato-container-right">
           <h1 className="bato-title">
-            Kasunduan sa Biak-na-Bato
+            {topicName}
           </h1>
           <div className="bato-description">
             <img 

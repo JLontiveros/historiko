@@ -5,13 +5,16 @@ import kidst from '../../assets/kidst.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 
 const Tiradpass = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { addMarkedTopic, removeMarkedTopic, markedTopics } = useMarkedTopics();
   const topicId = 2; // "Labanan sa Tirad Pass"
+  const topicName = "Labanan sa Tirad Pass";
 
   useEffect(() => {
     if (user) {
@@ -82,7 +85,10 @@ const Tiradpass = () => {
         .match({ user_id: userUUID, topic_id: topicId });
 
       if (error) console.error('Error removing mark:', error);
-      else setIsMarked(false);
+      else {
+        setIsMarked(false);
+        removeMarkedTopic(topicId);
+      }
     } else {
       const { error } = await supabase
         .from('user_topics')
@@ -94,7 +100,10 @@ const Tiradpass = () => {
         });
 
       if (error) console.error('Error adding mark:', error);
-      else setIsMarked(true);
+      else {
+        setIsMarked(true);
+        addMarkedTopic({ id: topicId, topic_name: topicName });
+      }
     }
     setIsLoading(false);
   };
@@ -108,10 +117,11 @@ const Tiradpass = () => {
   }
 
   return (
+    <>
     <div className="tiradpass-container"> 
       <div className="tiradpass-container-right">
         <h1 className="tiradpass-title">
-          Labanan sa Tirad Pass
+          {topicName}
         </h1>
         <div className="tiradpass-description">
           <img 
@@ -144,6 +154,7 @@ const Tiradpass = () => {
         <h2 className="tiradpass-date">Disyembre 2, 1899</h2>
       </div>
     </div>
+    </>
   );
 };
 

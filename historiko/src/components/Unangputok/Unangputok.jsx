@@ -5,13 +5,16 @@ import kidst from '../../assets/kidst.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 
 const Unangputok = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
   const topicId = 1; // "Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa"
+  const topicName = "Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa";
 
   useEffect(() => {
     if (user) {
@@ -82,7 +85,10 @@ const Unangputok = () => {
         .match({ user_id: userUUID, topic_id: topicId });
 
       if (error) console.error('Error removing mark:', error);
-      else setIsMarked(false);
+      else {
+        setIsMarked(false);
+        removeMarkedTopic(topicId);
+      }
     } else {
       const { error } = await supabase
         .from('user_topics')
@@ -94,7 +100,10 @@ const Unangputok = () => {
         });
 
       if (error) console.error('Error adding mark:', error);
-      else setIsMarked(true);
+      else {
+        setIsMarked(true);
+        addMarkedTopic({ id: topicId, topic_name: topicName });
+      }
     }
     setIsLoading(false);
   };
