@@ -5,13 +5,16 @@ import kidst from '../../assets/kidst.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 
 const Tejeros = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
   const topicId = 3; // "Tejeros Convention"
+  const topicName = "Tejeros Convention";
 
   useEffect(() => {
     if (user) {
@@ -82,7 +85,10 @@ const Tejeros = () => {
         .match({ user_id: userUUID, topic_id: topicId });
 
       if (error) console.error('Error removing mark:', error);
-      else setIsMarked(false);
+      else {
+        setIsMarked(false);
+        removeMarkedTopic(topicId);
+      }
     } else {
       const { error } = await supabase
         .from('user_topics')
@@ -94,7 +100,10 @@ const Tejeros = () => {
         });
 
       if (error) console.error('Error adding mark:', error);
-      else setIsMarked(true);
+      else {
+        setIsMarked(true);
+        addMarkedTopic({ id: topicId, topic_name: topicName });
+      }
     }
     setIsLoading(false);
   };
@@ -121,7 +130,7 @@ const Tejeros = () => {
 
         <div className="tejeros-container-right">
           <h1 className="tejeros-title">
-            Tejeros Convention
+            {topicName}
           </h1>
           <div className="tejeros-description">
             <img 

@@ -1,107 +1,141 @@
+.topic-marking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #e6f2ff;
+    min-height: 93vh;
+}
+
 .topic-marking h1 {
     color: #0047ab;
     font-size: 50px;
-    font-weight: 600;
-    margin-top: 150px;
+    font-weight: 800;
     margin-bottom: 50px;
+    margin-top: 150px;
     margin-right: 900px;
 }
 
 .topic-container {
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
-    margin-left: 50px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.topic-container img {
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.topics-wrapper {
+    width: 1000px;
+    overflow: hidden;
 }
 
-.topic-container img:hover{
-    transform: scale(1.4);
+.topics-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-.arrow-right {
-    margin-left: -25px;
-}
-
-.card1,
-.card2,
-.card3,
-.card4 {
+.topic-card {
+    flex: 0 0 calc(25% - 20px);
+    height: 350px;
     background-color: #0047ab;
-    height: 300px;
-    width: 200px;
-    padding: 10px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0 10px;
+    position: relative;
     box-shadow: -15px 3px 0px #ffc55c;
 }
 
-.topic-container h2,
-.topic-container img {
-    position: relative;
-    top: 80px;
-    font-size: 24px;
-    color: white;
-}
-
 .bookmark {
-    width: 160px;
-    height: 150px;
     position: absolute;
-    top: 118px;
-    right: 570px;
-    transition: height 0.3s ease;
-    transform-origin: bottom;
+    top: 0px;
+    left: 50px;
+    width: 95px;
+    height: 130px;
+    background-color: #ffc55c;
+    border: 1px solid black;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.bookmark2 {
-    width: 160px;
-    height: 150px;
-    position: absolute;
-    top: 118px;
-    right: 275px; 
-    transition: height 0.3s ease;
-    transform-origin: bottom;
+.heart {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
 }
 
-.bookmark3 {
-    width: 160px;
-    height: 150px;
-    position: absolute;
-    top: 118px;
-    right: -20px; 
-    transition: height 0.3s ease;
-    transform-origin: bottom;
+.topic-card h2 {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0 10px;
+    margin-top: 100px;
 }
 
-.bookmark4 {
-    width: 160px;
-    height: 150px;
-    position: absolute;
-    top: 118px;
-    right: -320px; 
-}
-
-.card1 img,
-.card2 img,
-.card3 img,
-.card4 img {
-    width: 70px;
-    height: 70px;
-    top: 10px;
-    right: 16px;
-    z-index: 1;
+.arrow {
+    width: 100px;
+    height: 100px;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.card1 img:hover,
-.card2 img:hover,
-.card3 img:hover,
-.card4 img:hover{
+.arrow:hover {
     transform: scale(1.2);
+}
+
+.left-arrow {
+    margin-right: 20px;
+}
+
+.right-arrow {
+    margin-left: 20px;
+}
+
+.no-topics-message {
+    font-size: 40px;
+    color: #0047ab;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+@media (max-width: 1200px) {
+    .topics-wrapper {
+        width: 800px;
+    }
+    .topic-card {
+        flex: 0 0 calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 900px) {
+    .topics-wrapper {
+        width: 600px;
+    }
+    .topic-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 650px) {
+    .topic-marking h1 {
+        font-size: 36px;
+    }
+    .topics-wrapper {
+        width: 300px;
+    }
+    .topic-card {
+        flex: 0 0 calc(100% - 20px);
+    }
 }

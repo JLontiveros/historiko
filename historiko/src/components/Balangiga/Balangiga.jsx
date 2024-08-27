@@ -5,13 +5,16 @@ import kidst from '../../assets/kidst.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 
 const Balangiga = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
+  const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
   const topicId = 6; // Assuming "Balangiga Massacre" is the 6th topic
+  const topicName = "Balangiga Massacre";
 
   useEffect(() => {
     if (user) {
@@ -82,7 +85,10 @@ const Balangiga = () => {
         .match({ user_id: userUUID, topic_id: topicId });
 
       if (error) console.error('Error removing mark:', error);
-      else setIsMarked(false);
+      else {
+        setIsMarked(false);
+        removeMarkedTopic(topicId);
+      }
     } else {
       const { error } = await supabase
         .from('user_topics')
@@ -94,7 +100,10 @@ const Balangiga = () => {
         });
 
       if (error) console.error('Error adding mark:', error);
-      else setIsMarked(true);
+      else {
+        setIsMarked(true);
+        addMarkedTopic({ id: topicId, topic_name: topicName });
+      }
     }
     setIsLoading(false);
   };
@@ -121,7 +130,7 @@ const Balangiga = () => {
         
         <div className="balangiga-container-right">
           <h1 className="balangiga-title">
-            Balangiga Massacre
+            {topicName}
           </h1>
           <div className="balangiga-description">
             <img 
