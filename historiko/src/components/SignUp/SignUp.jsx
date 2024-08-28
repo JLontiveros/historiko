@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import './Signup.css';
@@ -9,10 +9,15 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
+  };
+
+  const generateToken = () => {
+    return Math.random().toString(36).substr(2) + Date.now().toString(36);
   };
 
   const handleSignUp = async (e) => {
@@ -43,8 +48,12 @@ const SignUp = () => {
 
       if (error) throw error;
 
+      const newToken = generateToken();
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('username', username);
+      setToken(newToken);
       alert('Sign up successful!');
-      login({ username });
+      login({ username, token: newToken });
     } catch (error) {
       alert(error.message);
     }
@@ -63,8 +72,12 @@ const SignUp = () => {
       if (error) throw error;
 
       if (data) {
+        const newToken = generateToken();
+        localStorage.setItem('token', newToken);
+        localStorage.setItem('username', username);
+        setToken(newToken);
         alert('Sign in successful!');
-        login({ username });
+        login({ username, token: newToken });
       } else {
         alert('Invalid username or password');
       }
@@ -72,6 +85,30 @@ const SignUp = () => {
       alert(error.message);
     }
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    setToken(null);
+    logout();
+  };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  if (token) {
+    const storedUsername = localStorage.getItem('username');
+    return (
+      <div>
+        <h1>Welcome, {storedUsername}!</h1>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    );
+  }
 
   return (
     <div className="auth-container">

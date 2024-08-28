@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { MarkedTopicsProvider, useMarkedTopics } from './components/context/MarkedTopicsContext';
 import Navbar from './components/Navbar/Navbar';
@@ -39,19 +39,33 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+    if (token && storedUser) {
+      setIsAuthenticated(true);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const login = (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
+    localStorage.setItem('token', userData.token);
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
-  // Wrapper for protected routes
+  // Modified ProtectedRoute
   const ProtectedRoute = ({ children }) => {
-    if (!isAuthenticated) {
+    const token = localStorage.getItem('token');
+    if (!token && !isAuthenticated) {
       return <Navigate to="/" replace />;
     }
     return children;
