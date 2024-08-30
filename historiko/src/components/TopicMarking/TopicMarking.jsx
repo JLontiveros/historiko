@@ -5,81 +5,138 @@ import heartIcon from '../../assets/heart.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import { useMarkedTopics } from '../context/MarkedTopicsContext';
+import { useAuth } from '../../App';
 
 const TopicMarking = () => {
     const [topics, setTopics] = useState([]);
     const [error, setError] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const { markedTopics } = useMarkedTopics();
-  
+    const { markedTopics, addMarkedTopic, removeMarkedTopic, isLoading } = useMarkedTopics();
+    const { isAuthenticated, user } = useAuth();
+    const [isTopicsLoading, setIsTopicsLoading] = useState(true);
+
     useEffect(() => {
       fetchTopics();
     }, []);
-  
+
     const fetchTopics = async () => {
-        try {
-          const { data, error } = await supabase
-            .from('topics')
-            .select('id, topic_name');
-          
-          if (error) throw error;
-          setTopics(data);
-        } catch (error) {
-          console.error('Error fetching topics:', error.message);
-          setError('Failed to fetch topics. Please try again later.');
-        }
-      };
-    
-      const handlePrev = () => {
-        setCurrentIndex((prevIndex) => 
-          prevIndex > 0 ? prevIndex - 1 : Math.max(markedTopics.length - 4, 0)
-        );
-      };
-    
-      const handleNext = () => {
-        setCurrentIndex((prevIndex) => 
-          prevIndex < Math.max(markedTopics.length - 4, 0) ? prevIndex + 1 : 0
-        );
-      };
-    
-      if (error) {
-        return <div>Error: {error}</div>;
+      try {
+        const { data, error } = await supabase
+          .from('user_topics')
+          .select('id, topic_name');
+        
+        if (error) throw error;
+        setTopics(data);
+      } catch (error) {
+        console.error('Error fetching topics:', error.message);
+        setError('Failed to fetch topics. Please try again later.');
+      } finally {
+        setIsTopicsLoading(false);
       }
+    };
+
+    const handleMarkTopic = async (topic) => {
+      if (!isAuthenticated) {
+        setError('Please log in to mark topics.');
+        return;
+      }
+
+      if (!topic || !topic.id || !topic.topic_name) {
+        console.error('Invalid topic data:', topic);
+        setError('Invalid topic data. Please try again.');
+        return;
+      }
+
+      const isMarked = markedTopics.some(markedTopic => markedTopic.id === topic.id);
+
+      try {
+        if (isMarked) {
+          await removeMarkedTopic(topic.id, topic.topic_name);
+        } else {
+          await addMarkedTopic(topic.topic_name, topic.id);
+        }
+      } catch (error) {
+        console.error('Error marking/unmarking topic:', error);
+        setError('Failed to mark/unmark topic. Please try again.');
+      }
+    };
     
-      const displayedTopics = [...markedTopics, ...topics.filter(topic => !markedTopics.some(markedTopic => markedTopic.id === topic.id))];
+    const handlePrev = () => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex > 0 ? prevIndex - 1 : 0
+      );
+    };
     
-      return (
+    const handleNext = () => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex < displayedTopics.length - 4 ? prevIndex + 1 : prevIndex
+      );
+    };
+    
+    if (isLoading || isTopicsLoading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
+    
+    const displayedTopics = [
+      ...markedTopics,
+      ...topics.filter(topic => !markedTopics.some(markedTopic => markedTopic.topic_name === topic.topic_name))
+    ];
+    
+    return (
       <>
-        <div className="topic-marking">
+      <div className="topic-marking">
         <h1>Topic Marking</h1>
-        {markedTopics.length === 0 ? (
+        {error && <div className="error-message">{error}</div>}
+        {!isAuthenticated ? (
+          <div className="login-message">
+            Please log in to mark and view your topics.
+          </div>
+        ) : displayedTopics.length === 0 ? (
           <div className="no-topics-message">
-            No topics marked yet. Heart a topic to see it here!
+            No topics available. Please check back later.
           </div>
         ) : (
           <div className="topic-container">
-            <img src={arrownav2} onClick={handlePrev} className="arrow left-arrow"/>
+            <img 
+              src={arrownav2} 
+              onClick={handlePrev} 
+              className={`arrow left-arrow ${currentIndex === 0 ? 'disabled' : ''}`}
+              alt="Previous"
+            />
             <div className="topics-wrapper">
               <div className="topics-slider" style={{
                 transform: `translateX(-${currentIndex * 25}%)`,
                 transition: 'transform 0.5s ease-in-out'
               }}>
-                {markedTopics.map((topic) => (
+                {displayedTopics.map((topic) => (
                   <div key={topic.id} className="topic-card">
-                    <div className="bookmark">
-                      <img src={heartIcon} alt="heart" className="heart"/>
+                    <div className="bookmark" onClick={() => handleMarkTopic(topic)}>
+                      <img 
+                        src={heartIcon} 
+                        alt="heart" 
+                        className={`heart ${markedTopics.some(markedTopic => markedTopic.id === topic.id) ? 'marked' : ''}`}
+                      />
                     </div>
                     <h2>{topic.topic_name}</h2>
                   </div>
                 ))}
               </div>
             </div>
-            <img src={arrownav} onClick={handleNext} className="arrow right-arrow"/>
+            <img 
+              src={arrownav} 
+              onClick={handleNext} 
+              className={`arrow right-arrow ${currentIndex >= displayedTopics.length - 4 ? 'disabled' : ''}`}
+              alt="Next"
+            />
           </div>
         )}
       </div>
-      </>
+    </>
     );
-  }
+}
 
 export default TopicMarking;
