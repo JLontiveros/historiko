@@ -13,13 +13,16 @@
     font-weight: 800;
     margin-bottom: 50px;
     margin-top: 150px;
-    margin-right: 900px;
+    align-self: flex-start;
+    margin-left: 50px;
 }
 
 .topic-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .topics-wrapper {
@@ -80,15 +83,18 @@
 .arrow {
     width: 100px;
     height: 100px;
-    color: white;
-    font-size: 24px;
+    background-color: transparent;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.arrow img {
+    width: 100%;
+    height: 100%;
 }
 
 .arrow:hover {
@@ -131,11 +137,16 @@
 @media (max-width: 650px) {
     .topic-marking h1 {
         font-size: 36px;
+        margin-left: 20px;
     }
     .topics-wrapper {
         width: 300px;
     }
     .topic-card {
         flex: 0 0 calc(100% - 20px);
+    }
+    .arrow {
+        width: 60px;
+        height: 60px;
     }
 }

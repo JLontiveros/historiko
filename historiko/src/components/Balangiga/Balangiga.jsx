@@ -95,6 +95,7 @@ const Balangiga = () => {
         .insert({
           user_id: userUUID,
           topic_id: topicId,
+          topic_name: topicName,
           marked_at: new Date().toISOString(),
           status: 'to_review'
         });
