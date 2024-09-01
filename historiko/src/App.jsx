@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { MarkedTopicsProvider, useMarkedTopics } from './components/context/MarkedTopicsContext';
+import { RewardProvider } from './components/context/RewardContext';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
@@ -74,6 +75,7 @@ function App() {
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       <MarkedTopicsProvider> {/* Wrap the entire app with MarkedTopicsProvider */}
+      <RewardProvider>
       <Router>
         <div className="App">
           <div className="content-overlay">
@@ -112,6 +114,7 @@ function App() {
           </div>        
         </div>
       </Router>
+      </RewardProvider>
       </MarkedTopicsProvider>
     </AuthContext.Provider>
   );
