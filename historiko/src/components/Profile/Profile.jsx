@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
 import './Profile.css';
 import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
+import badgge from '../../assets/badgge.png';
 
 const Profile = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -16,6 +17,7 @@ const Profile = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const [id, setId] = useState ('')
+  const [rewards, setRewards] = useState([]);
 
 
 
@@ -25,6 +27,12 @@ const Profile = () => {
       console.log(user)
     }
   }, [isAuthenticated, user]);
+
+  useEffect(() => {
+    if (id) {
+      fetchUserRewards();
+    }
+  }, [id]);
 
   const fetchUserProfile = async () => {
     if (!user) return;
@@ -42,6 +50,27 @@ const Profile = () => {
       setBio(data.bio || 'Ako ay estudyante');
       setAvatarUrl(data.avatar_url || '');
       setId(data.id || ''); 
+    }
+  };
+
+  const fetchUserRewards = async () => {
+    const { data, error } = await supabase
+      .from('user_reward')
+      .select(`
+        id,
+        created_at,
+        rewards:reward_id (
+          id,
+          reward
+        )
+      `)
+      .eq('user_id', id);
+  
+    if (error) {
+      console.error('Error fetching user rewards:', error);
+    } else {
+      console.log('Fetched user rewards:', data);
+      setRewards(data || []);
     }
   };
 
@@ -155,6 +184,46 @@ const Profile = () => {
             <button onClick={handleEditClick}>Edit<img src={pen2} alt='pen'/></button>
           </div>
         </div>
+
+        <div className="second-container">
+          <div className="gantimpala-container">
+            <h1>Mga Gantimpala</h1>
+            <div className="gantimpala-content">
+              {rewards.length > 0 ? (
+                rewards.map((userReward, index) => (
+                  <div key={userReward.id} className={`gantimpalas ${index === 0 ? 'first' : index === 1 ? 'second' : 'third'}`}>
+                    <img src={badgge} className='badge' alt="Badge"/>
+                    <div className="info">
+                      <span>{userReward.rewards?.reward || 'Unnamed Reward'}</span>
+                      <span>Date: {new Date(userReward.created_at).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="no-rewards">No rewards found</div>
+              )}
+            </div>
+          </div>
+          <div className="resulta-container">
+            <h1>Resulta</h1>
+            <div className="first">
+              <span>Sigaw ng Pugad-Lawin</span>
+            </div>
+            <div className="second">
+              <span>Tejeros Convention</span>
+            </div>
+            <div className="third">
+              <span>Balangiga Massacre</span>
+            </div>
+            <div className="fourth">
+              <span>Kasunduan sa Biak-na-Bato</span>
+            </div>
+            <div className="fifth">
+              <span>Unang Putok sa panukulan ng Silencio at Sociego, Sta Mesa</span>
+            </div>
+          </div>
+        </div>
+
 
         <div className={`edit-form ${isFormVisible ? 'visible' : ''}`}>
           <form onSubmit={handleSave}>
