@@ -12,27 +12,53 @@ const TopicMarking = () => {
     const [error, setError] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const { markedTopics, addMarkedTopic, removeMarkedTopic, isLoading } = useMarkedTopics();
-    const { isAuthenticated, user } = useAuth();
     const [isTopicsLoading, setIsTopicsLoading] = useState(true);
+    const [userId, setUserId] = useState(null);
+    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
-      fetchTopics();
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            try {
+                const userData = JSON.parse(storedUser);
+                console.log('Parsed user data:', userData);
+                setUserId(userData.id);
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                setError('Error retrieving user data. Please log in again.');
+            }
+        }
     }, []);
 
+    useEffect(() => {
+        if (userId) {
+            fetchTopics();
+        }
+    }, [userId]);
+
     const fetchTopics = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('user_topics')
-          .select('id, topic_name');
-        
-        if (error) throw error;
-        setTopics(data);
-      } catch (error) {
-        console.error('Error fetching topics:', error.message);
-        setError('Failed to fetch topics. Please try again later.');
-      } finally {
-        setIsTopicsLoading(false);
-      }
+        if (!userId) {
+            console.log('No user ID available, skipping fetch');
+            setIsTopicsLoading(false);
+            return;
+        }
+
+        try {
+            console.log('Fetching topics for user ID:', userId);
+            const { data, error } = await supabase
+                .from('user_topics')
+                .select('id, topic_name')
+                .eq('user_id', userId);
+
+            if (error) throw error;
+            console.log('Fetched topics:', data);
+            setTopics(data);
+        } catch (error) {
+            console.error('Error fetching topics:', error.message);
+            setError('Failed to fetch topics. Please try again later.');
+        } finally {
+            setIsTopicsLoading(false);
+        }
     };
 
     const handleMarkTopic = async (topic) => {

@@ -72,12 +72,14 @@ const SignUp = () => {
       if (error) throw error;
 
       if (data) {
+        console.log(data.id)
         const newToken = generateToken();
+        localStorage.setItem('id', data.id);
         localStorage.setItem('token', newToken);
         localStorage.setItem('username', username);
         setToken(newToken);
         alert('Sign in successful!');
-        login({ username, token: newToken });
+        login({ username, token: newToken, id: data.id });
       } else {
         alert('Invalid username or password');
       }
@@ -87,6 +89,7 @@ const SignUp = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     setToken(null);
