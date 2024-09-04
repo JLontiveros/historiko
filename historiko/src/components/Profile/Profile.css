@@ -109,6 +109,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #a0a7ed;
     min-height: 460px; /* Adjust this value as needed */
+    height: auto;
+    max-height: 500px;
 }
 
 .gantimpala-content {
@@ -180,6 +182,8 @@
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #a0a7ed;
+    max-height: 500px;
+    height: auto;
 }
 
 .resulta-container h1 {
