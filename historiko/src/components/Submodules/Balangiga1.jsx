@@ -5,21 +5,19 @@ import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png'; // Add your background images
-import bg2 from '../../assets/historikobg.png';
-import bg3 from '../../assets/kidst.png';
+import genjacob from '../../assets/genjacob.png';
+import kirambates from '../../assets/kirambates.png';
 
 const Balangiga1 = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
-    { src: kidst, bg: bg1, description: "Capt. Thomas Connell"  },
-    { src: kidst, bg: bg2, description: "Brig. Gen Jacob Smith"  },
-    { src: kidst, bg: bg3, description: "Kiram Bates Treaty 1899"  },
+    { src: genjacob, bg: genjacob, description: "Brig. Gen Jacob Smith"  },
+    { src: kirambates, bg: kirambates, description: "Kiram Bates Treaty 1899"  },
   ];
 
   const descriptions = [
-    "Agosto 11, 1901 Nang makarating sa lugar ang Company C of the 9th Infantry Regiment ng Amerika sa pamumuno ni Capt. Thomas Connell sa Balangiga, Samar. Layunin nila na sugpuin ang mga Pilipinong patuloy na nakikipaglaban sa pamumuno ni Vicente Lukban sa pamamagitan ng pagsira sa mga pananim at ari-arian na siyang pinagkukunan ng suplay ng mga gerilya. Setyembre  28, 1901, isinagawa ang planong pagpatay sa buong pangkat ng amerikanong sundalo sa tulong ng mga mamamayan ng Balangiga. Sa 74 na miyembro ng Company C ay 36 ang nasawi kasama si Capt. Thomas Connell, 22 ang sugatan at 4 ang nawala.",
     "Bilang ganti ay ipinadala ang malaking bilang ng mga sundalong Amerikano sa pangunguna ni Brigadier  Gen Jacob Smith. Malawakang pagpatay at pagsunog sa mga ari-arian ang isingawa nila sa Balangiga. ANg lahat ng kalalakihang may kakayahang humawak ng armas mula 10 taong gulang pataas ay pinagutos na patayin. Sa loob ng anim na buwan ang balangiga ay nagmistulang isang disyerto dahil sinunog ng mga amerikano ang buong baying ito.",
     "Ang mga moro sa Mindanao at Sulu ay nanahimik, at nagmasid lamang upang hindi masangkot sa digmaan. Lumagda ng isang kasunduan si Brigadier General John C. Bates at si Sultan Jamal ul Kiram II kasama ang mga kinatawang datu ng sulu noong Agosto 10, 1899 na nagsasaad na kinikilala ng Sultan ang kapangyarihan ng Estados Unidos sa buong kapuluan ng Sulu, Igagalang ng estados unidos ang mga karapatan at karangalan ng sultan ang kaniyang mga datu; at hindi makikialam ang estados unidos sa relihiyon ng mga moro.  Hindi kinilala ang kasunduang Bates makalipas ang dalawang taon ay pinuksa ng mga amerikano ang mga muslim sa Mindanao matapos nilang matalo ang mga Pilipino sa Luzon.",
   ];

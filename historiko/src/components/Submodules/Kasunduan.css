@@ -23,6 +23,7 @@ body {
     border-radius: 10px;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
   }
   
   .Kasunduan-description-container {
@@ -30,6 +31,20 @@ body {
     text-align: justify;
     color: #0047ab;
     margin-left: 50px;
+    width: 500px;
+    max-height: 400px; /* Set the max height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+  }
+
+  .Kasunduan-description-container::-webkit-scrollbar {
+    width: 8px; /* Adjust the width of the scrollbar */
+    background: transparent; /* Make the scrollbar track (background) invisible */
+  }
+
+  .Kasunduan-description-container::-webkit-scrollbar-thumb {
+    background-color: #ecf0f3; /* Make the scrollbar thumb visible */
+    border-radius: 10px; /* Round the edges of the thumb */
   }
   
   .Kasunduan-description-container h1 {
@@ -45,47 +60,73 @@ body {
     line-height: 1.7;
     margin-top: -20px;
     margin-left: 10px;
+    padding: 10px;
   }
   
   .Kasunduan-image-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 30px;
-    overflow: hidden;
+    display: flex;
     gap: 20px;
     padding: 20px;
+    margin-left: 30px;
   }
   
-  .image-wrapper {
-    width: 280px;
+  .Kasunduan-image-wrapper {
     height: 350px;
+    width: auto;
     border: 5px solid white;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
   }
   
-  .image-wrapper img {
-    width: 100%;
+  .Kasunduan-image-wrapper img {
+    width: auto;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
-  
-  .image-wrapper.selected {
-    border-color: #0047ab;
-    transform: scale(1.05);
+
+  .Kasunduan-image-description {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
   }
   
-  .image-wrapper.zoomed {
+  .Kasunduan-image-wrapper.selected {
+    border-color: #0047ab;
+    transform: scale(1.05);
+    grid-column: 1 / -1;  /* Make the selected image span full width */
+    width: 100%;
+    max-width: 560px;
+    justify-self: center;
+  }
+  
+  .Kasunduan-image-wrapper.zoomed {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(2);
     z-index: 1000;
-    width: 560px;
-    height: 700px;
+    width: auto;
+    height: auto;
+  }
+
+  .Kasunduan-arrow-keys {
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the bottom of the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 0px; /* Adjust the gap between the arrow keys */
   }
   
   .Kasunduan-arrow-keys img {
@@ -93,9 +134,6 @@ body {
     width: 80px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    position: relative;
-    top: 40px;
-    left: 510px;
   }
   
   .Kasunduan-arrow-keys img:hover {
@@ -113,6 +151,7 @@ body {
     position: relative;
     top: 160px;
     left: 650px;
+    transition: transform 0.3s ease;
   }
   
   .Kasunduan button:hover {

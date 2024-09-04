@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Bato.css';
-import kidst from '../../assets/kidst.png';
+import groupnabiak from '../../assets/groupnabiak.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -123,7 +123,7 @@ const Bato = () => {
       <div className="bato-container">
         <div className="bato-container-left">    
           <img 
-            src={kidst}
+            src={groupnabiak}
             alt="Kasunduan sa Biak-na-Bato illustration" 
             className="bato-image"
           />
@@ -150,7 +150,7 @@ const Bato = () => {
               &nbsp;
             </div>
             <p>
-              Ang Kasunduan sa Biak-na-Bato ay isang kasunduan na nilagdaan noong Disyembre 14, 1897, sa pagitan ng mga rebolusyonaryong Pilipino sa pamumuno ni Emilio Aguinaldo at ng mga kinatawan ng pamahalaang Espanyol. Ito ay nagresulta sa pansamantalang paghinto ng labanan at ang boluntaryong pagpapatapon ni Aguinaldo at ng kanyang mga kasamahan sa Hong Kong.
+            Pinulong ni Emilio Aguinaldo ang mga pinuno ng hukbo upang bumuo ng Saligang Batas. Noong Nobyembre 1, 1897 ay nabuo ang konstitusyon ng Biak na Bato na isinulat nila Isabelo Artacho, At Feliz Ferrer na inisulat sa Biak na Bato sa bulacan na sinasabing ibinase sa SAligang batas ng bansang Cuba sa Jimaguayú. ANg biak na bato ay nagbigay para sa paglikha ng kataastaasang konseho pati narin ang karapatang pangtao kasama ang kalayaan, relihiyon, at edukasyon. Nagwakas ang katipunan at napalitan ng isang pamahalaan na may konstitusyong sinusunod. Nawala man ang samahang KKK ngunit ang mga kasapi nito ay patuloy pa ring nakipaglaban sa mga Espanyol.
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>

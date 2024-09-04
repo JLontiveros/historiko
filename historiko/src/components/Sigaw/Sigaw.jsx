@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Sigaw.css';
-import kidst from '../../assets/kidst.png';
+import taxreceipt from '../../assets/taxreceipt.jpg';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -122,11 +122,11 @@ const Sigaw = () => {
       <div className="sigaw-container">
         <div className="sigaw-container-left">    
           <img 
-            src={kidst}
+            src={taxreceipt}
             alt="Sigaw ng Pugad Lawin illustration" 
             className="sigaw-image"
           />
-          <h2 className="sigaw-date">Agosto 23, 1896</h2>
+          <h2 className="sigaw-date">Tax Receipt Torn by Members of the Katipunan</h2>
         </div>
 
         <div className="sigaw-container-right">
@@ -149,7 +149,8 @@ const Sigaw = () => {
               &nbsp;
             </div>
             <p>
-              Ang Sigaw ng Pugad Lawin, na naganap noong Agosto 23, 1896, ay ang simula ng Himagsikang Pilipino laban sa Espanya. Sa kaganapang ito, pinamunuan ni Andres Bonifacio ang mga Katipunero sa pagpunit ng kanilang mga sedula bilang simbolo ng paghihimagsik laban sa kolonyalismong Espanyol.
+            Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki at katapangan. <br /> At isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!”   at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa pugad lawin.
+
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>
