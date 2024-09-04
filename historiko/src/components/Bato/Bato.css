@@ -14,11 +14,11 @@
   }
   
   .bato-container-left img {
-    width: 350px;
-    height: 400px;
+    width: 550px;
+    height: 350px;
     margin-top: 65px;
+    margin-left: -20px;
     margin-bottom: 50px;
-    margin-left: 50px;
     border-radius: 20px; /* Adjust this value to change the roundness of the corners */
     box-shadow: 10px 10px #8c85d5; /* Adds the box shadow */
   }
@@ -101,7 +101,6 @@
     color: white;
     border: none;
     padding: 0px 10px;
-    border-radius: 50px;
     cursor: pointer;
     font-size: 16px;
   }

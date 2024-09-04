@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Tiradpass.css';
-import kidst from '../../assets/kidst.png';
+import genmcarthur from '../../assets/genmcarthur.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -120,6 +120,15 @@ const Tiradpass = () => {
   return (
     <>
     <div className="tiradpass-container"> 
+    <div className="tiradpass-container-left">
+        <img 
+          src={genmcarthur}
+          alt="Labanan sa Tirad pass illustration" 
+          className="tiradpass-image"
+        />
+        <h2 className="tiradpass-date">General Arhur McArthur</h2>
+      </div>
+
       <div className="tiradpass-container-right">
         <h1 className="tiradpass-title">
           {topicName}
@@ -140,19 +149,10 @@ const Tiradpass = () => {
             &nbsp;
           </div>
           <p>
-            Ang Labanan sa Tirad Pass (Espanyol; Castilian: Batalla de Paso Tirad; Tagalog: Labanan sa Pasong Tirad; Ang Iloko: Gubat ti Paso), na kung minsan ay tinatawag na "Philippine Thermopylae ", ay isang labanan sa Digmaang Pilipino Amerikano na nakipaglaban noong Disyembre 2, 1899, sa hilagang Luzon sa Pilipinas, kung saan ang isang 60 tauhan na Pilipinong bantay sa likod na pinamumunuan ni Brigadier General Gregorio del Pilar ay sumuko sa mahigit 500 Amerikano, karamihan ay mula sa 33rd Volunteer Infantry Regiment sa ilalim ni Major Peyton C. March,  habang inaantala ang pagsulong ng mga Amerikano upang matiyak na nakatakas si Pangulong Emilio Aguinaldo at ang kanyang mga tropa. 
+          Si Gen Arthur McArthur ang namuno sa pagsalakay sa Malolos, Bulacan ang himpilan ni Emilio Aguinaldo.  Dahil sa malakas na puwersang military ng amerika, tumakas si Emilio Aguinaldo kasama ang kanyang gabinete, kagawa at sundalo upang maiwasan ang pagtugis ng mga amerikano at sila ay dumaan sa pasong Tirad. 
           </p>
         </div>
         <button onClick={handleViewMore}>VIEW MORE</button>
-      </div>
-
-      <div className="tiradpass-content">
-        <img 
-          src={kidst}
-          alt="Labanan sa Tirad pass illustration" 
-          className="tiradpass-image"
-        />
-        <h2 className="tiradpass-date">Disyembre 2, 1899</h2>
       </div>
     </div>
     </>

@@ -5,10 +5,10 @@ import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png'; // Add your background images
-import bg2 from '../../assets/historikobg.png';
-import bg3 from '../../assets/kidst.png';
-import bg4 from '../../assets/kidst.png';
-import bg5 from '../../assets/kidst.png';
+import pasongtirad from '../../assets/pasongtirad.png';
+import gregdelpillar from '../../assets/gregdelpillar.png';
+import januario from '../../assets/januario.png';
+import genfriedrich from '../../assets/genfriedrich.png';
 import bg6 from '../../assets/kidst.png';
 import bg7 from '../../assets/kidst.png';
 import bg8 from '../../assets/kidst.png';
@@ -19,11 +19,10 @@ const Tirad = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
-    { src: kidst, bg: bg1, description: "General Arthur McArthur" },
-    { src: kidst, bg: bg2, description: "Pasong Tirad Pass, Ilocos Sur" },
-    { src: kidst, bg: bg3, description: "Gregorio Del Pilar" },
-    { src: kidst, bg: bg4, description: "Januario Galut" },
-    { src: kidst, bg: bg5, description: "General Friedrich Funston" },
+    { src: pasongtirad, bg: pasongtirad, description: "Pasong Tirad Pass, Ilocos Sur" },
+    { src: gregdelpillar, bg: gregdelpillar, description: "Gregorio Del Pilar" },
+    { src: januario, bg: januario, description: "Januario Galut" },
+    { src: genfriedrich, bg: genfriedrich, description: "General Friedrich Funston" },
     { src: kidst, bg: bg6, description: "Macario Sakay" },
     { src: kidst, bg: bg7, description: "Miguel Malvar" },
     { src: kidst, bg: bg8, description: "Vicente Lukban" },
@@ -31,15 +30,14 @@ const Tirad = () => {
   ];
 
   const descriptions = [
-    "Si Gen Arthur McArthur ang namuno sa pagsalakay sa Malolos, Bulacan ang himpilan ni Emilio Aguinaldo.  Dahil sa malakas na puwersang military ng amerika, tumakas si Emilio Aguinaldo kasama ang kanyang gabinete, kagawa at sundalo upang maiwasan ang pagtugis ng mga amerikano at sila ay dumaan sa pasong Tirad.",
     "Ang Pasong Tirad ay isang makitid at istratehikong lagusan sa kabundukan ng Tirad na bahagi ng kabundukan ng bayan ng Concepcion, Ilocos Sur  na Gregorio del Pilar ngayon, sa may kanlurang bahagi ng Cordillera. Sa pasong tirad ay humimpil ang batang Heneral na si Gregorio del Pilar kasama ang 60 sundalo upang hadlangan ang 300 amerikanong sundalo na tumutugis kay Aguinaldo. ",
     "Si Gregorio Del Pilar ay isang batang heneral na tinaguriang bayani ng pasong tirad na nagpamalas ng tapang, kagitingan at pagmamahal sa bayan. Minarapat nyang magpaiwan upang magkaroon ng sapat na oras si Emilio Aguinaldo upang makalayo at makarating sa Palanan, Isabela.",
     "Nahirapan ang mga amerikano na magapi si Del Pilar sapagkat mataas ang kanilang kinalalagyan. Sa kasamaang palad ay tinulungan ang mga amerikano ng isang Igorot na nagngangalang Januario Galut na may kaalaman sa topograpiya ng lugar at itinuro nito ang kinaroroonan ni Del Pilar at natagpuan ng mga amerikano si Del PIlar noong Disyembre 2, 1899 at matapos nitoy walang tigil na putukan ang naganap at nasawi si Del Pilar kasama ang 60 nyang tauhan.  Siya ay nasawi sa 24 na taong gulang.",
     "Marso 23, 1901, nadakip si Aguinaldo ng mga amerikano sa pangunguna ni General Friedrich Funston at sa tulong na rin ng ilang Pilipino mula sa Macabebe Scout sa pamumuno ni Tal Placido at Lazaro Segovia. Noong Abril 1, 1901, Nanumpa si Aguinaldo ng katapatan sa Estados Unidos at hinimok niya ang mga Pilipino na tanggapin na ang kapangyarihan ng mga amerikano.",
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore repudiandae, fugit natus dolorem facere quos unde at hic delectus error?",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sequi excepturi obcaecati? Rem quidem recusandae ea earum ipsa deserunt excepturi.",
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem distinctio quaerat quibusdam similique, exercitationem deserunt in quam rerum maiores autem!"
+    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
+    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
+    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
   ];
 
   const handlePrev = () => {

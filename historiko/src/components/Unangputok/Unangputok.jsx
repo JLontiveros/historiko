@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Unangputok.css';
-import kidst from '../../assets/kidst.png';
+import privwilliam from '../../assets/privwilliam.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -122,11 +122,11 @@ const Unangputok = () => {
       <div className="unangputok-container">
         <div className="unangputok-container-left">    
           <img 
-            src={kidst}
+            src={privwilliam}
             alt="Unang Putok illustration" 
             className="unangputok-image"
           />
-          <h2 className="unangputok-date">Pebrero 4, 1899</h2>
+          <h2 className="unangputok-date">Private William Walter Grayson</h2>
         </div>
 
         <div className="unangputok-container-right">
@@ -149,8 +149,7 @@ const Unangputok = () => {
               &nbsp;
             </div>
             <p>
-              Pebrero 4, 1899 - pinasinayaan ang Unang Republika sa Malolos, Bulacan. - Hindi kinilala ng mga Amerikano at iba pang dayuhang bansa ang pamahalaang ito • Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino. Napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas. <br/>
-              Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino. Napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.
+            Pebrero 4, 1899, Sumiklab ang digmaan sa pagitan ng Pilipinas at Amerika nang paputukan ni Pvt. William Walter Grayson ang tatlong Pilipinong Sundalo na naglalakad sa Calle Silencio at Sociego sa Sta. Mesa Manila. “HALT!! “ na ang ibigsabihin ay pahintuin ang mga sundalong Pilipino at ito ang nagging hudyat ng simula ng digmaang Pilipino – amerikano. Ang isa sa apat na Pilipinong sundalo na nabaril at nasawi ay si Corporal Anastacio Felix ng ikaapat na batalyon sa ilalim ng pamumuno ni Captain Serapio Narvaez.
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>

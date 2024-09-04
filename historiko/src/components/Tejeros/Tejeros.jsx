@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Tejeros.css';
-import kidst from '../../assets/kidst.png';
+import casa from '../../assets/casa.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -122,11 +122,11 @@ const Tejeros = () => {
       <div className="tejeros-container">
         <div className="tejeros-container-left">    
           <img 
-            src={kidst}
+            src={casa}
             alt="Tejeros Convention illustration" 
             className="tejeros-image"
           />
-          <h2 className="tejeros-date">Marso 22, 1897</h2>
+          <h2 className="tejeros-date">Casa Hacienda De Tejeros</h2>
         </div>
 
         <div className="tejeros-container-right">
@@ -149,7 +149,7 @@ const Tejeros = () => {
               &nbsp;
             </div>
             <p>
-              Ang Tejeros Convention, na ginanap noong Marso 22, 1897, ay isang mahalagang kaganapan sa kasaysayan ng Pilipinas. Ito ay isang pagpupulong ng mga lider ng Katipunan upang talakayin ang mga bagong istratehiya laban sa mga Espanyol at maghalal ng mga bagong pinuno. Sa convention na ito, nagkaroon ng mga kontrobersyal na resulta at pagkakahati-hati sa mga miyembro ng rebolusyon.
+            Nagkaroon muli ng isa pang pagpupulong noong Marso 22, 1897 sa Casa Hacienda De Tejeros sa San Francisco Malabon (CAVITE) na naglalayong pagkasunduin ang dalwang pangkat na dinaluhan ni Andres Bonifacio. <br />Sa pagpupulong na ito ay nagkaroon ng isang halalan, nanalo si Emilio Aguinaldo bilang Pangulo, si Mariano Trias bilang pangalawang pangulo, si Artemio Ricarte bilang Kapitan Heneral, si Emilianio Riego De Dios bilang Kalihim ng Digmaan at si Andres Bonfacio bilang Direktor ng interyor at ang pagkapanalo ni Andres ay mahigpit itong tinutulan ni Daniel Tirona sa kadahilanang hindi ito abogado at walang sapat na kaalaman sa mga batas.
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>
