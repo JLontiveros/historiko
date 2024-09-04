@@ -1,18 +1,24 @@
 .home-container {
   height: 100vh;
+  width: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  padding: 0;
+  margin: 0;
 }
 
 .video-section {
-  height: 100vh;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -1px;
+  line-height: 0;
 }
 
 .background-video {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -20,9 +26,10 @@
   object-fit: cover;
   z-index: -1;
 }
+
 .background-video2 {
   position: relative;
-  top: 0px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -30,51 +37,57 @@
   z-index: -1;
 }
 
-.text-overlay, .signup-overlay {
+.text-overlay,
+.signup-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 20%;
+  left: 30px;
+  width: calc(100% - 60px); /* Adjust width to account for left padding */
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  box-sizing: border-box;
-}
-
-.text-overlay {
+  justify-content: flex-start; /* Align content to the top */
   align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
-.heading, .subheading {
+.heading,
+.subheading {
   color: navy;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  max-width: 100%; /* Ensure text doesn't exceed container width */
 }
 
 .heading {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Increase space between heading and subheading */
+  line-height: 1.2; /* Adjust line height for better readability */
+}
+
+.heading h1 {
+  margin: 0;
+  padding: 0;
 }
 
 .subheading {
   font-size: 1.2em;
+  line-height: 1.4; /* Adjust line height for better readability */
 }
 
-
+.subheading h3 {
+  margin: 0;
+  padding: 0;
+}
 
 .video-section.snap-in {
   animation: snapIn 0.5s ease-out;
 }
 
 @keyframes snapIn {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
 /* Ensure SignUp component is visible */
@@ -85,4 +98,15 @@
   transform: none;
   width: 100%;
   max-width: 768px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2em;
+  }
+  
+  .subheading {
+    font-size: 1em;
+  }
 }
