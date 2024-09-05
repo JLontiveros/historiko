@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './Kasunduan3d.css';
 import { useNavigate } from 'react-router-dom';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
-import Historikobg from '../../assets/Historikobg.png';
+import {DefaultPlayer as Video} from 'react-html5video';
+import 'react-html5video/dist/styles.css';
+import biaknavid from '../../assets/biaknavid.mp4';
 
 const Kasunduan3d = () => {
   const navigate = useNavigate();
@@ -33,15 +35,21 @@ const Kasunduan3d = () => {
   return (
     <>
     <div className="Kasunduan3d">
-      <div className="Kasunduan3d-container">
-        <img src={arrownav2} alt="left" onClick={handleGoBack}/>
-        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quis!</h1>
-      </div>
-      <div className="picture3d">
-        <img src={Historikobg} className='picture-bg'/>
-      </div>
+  <div className="Kasunduan3d-container">
+    <img src={arrownav2} alt="left" onClick={handleGoBack} />
+    <h1>Kasunduan sa Biak na Bato</h1>
+  </div>
+  <div className="picture3d">
+    <div className="video-container">
+      <Video autoPlay loop onCanPlayThrough={()=>{
+        console.log('video play')
+      }}>
+        <source src={biaknavid} type="video/webm"/>
+      </Video>
     </div>
-    </>
+  </div>
+  </div>
+  </>
   )
 }
 

@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
-import Historikobg from '../../assets/Historikobg.png';
+import {DefaultPlayer as Video} from 'react-html5video';
+import 'react-html5video/dist/styles.css';
+import pugadvid from '../../assets/pugadvid.mp4';
 
 const PugadLawin3d = () => {
   const navigate = useNavigate();
@@ -35,10 +37,16 @@ const PugadLawin3d = () => {
     <div className="PugadLawin3d">
       <div className="PugadLawin3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, facilis!</h1>
+        <h1>Sigaw ng Pugad Lawin</h1>
       </div>
       <div className="picture3d">
-        <img src={Historikobg} className='picture-bg'/>
+        <div className="video-container">
+          <Video autoPlay loop onCanPlayThrough={()=>{
+            console.log('video play')
+          }}>
+            <source src={pugadvid} type="video/webm"/>
+          </Video>
+        </div>
       </div>
     </div>
     </>

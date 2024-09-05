@@ -108,10 +108,21 @@
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #a0a7ed;
-    min-height: 460px; /* Adjust this value as needed */
     height: auto;
-    max-height: 500px;
+    width: 960px;
+    max-height: 450px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
 }
+
+.gantimpala-container::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+    background: transparent; /* Make the scrollbar track (background) invisible */
+  }
+  .gantimpala-container::-webkit-scrollbar-thumb {
+    background-color: #ecf0f3; /* Make the scrollbar thumb visible */
+    border-radius: 10px; /* Round the edges of the thumb */
+  }
 
 .gantimpala-content {
     width: 100%;

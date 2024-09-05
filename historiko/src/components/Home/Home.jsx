@@ -55,8 +55,8 @@ const Home = () => {
         <div className='signup-overlay'>
           {isAuthenticated ? (
             <div className="welcome-message">
-              <h2>Welcome to Historiko, {user.username}!</h2>
-              <p>You're now logged in. Explore our modules and learn about Philippine history!</p>
+              {/* <h2>Welcome to Historiko, {user.username}!</h2>
+              <p>You're now logged in. Explore our modules and learn about Philippine history!</p> */}
             </div>
           ) : (
             <SignUp />
