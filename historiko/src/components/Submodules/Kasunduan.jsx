@@ -4,7 +4,7 @@ import './Kasunduan.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
-import groupnabiak from '../../assets/groupnabiak.png'; // Add your background images
+import groupnabiak from '../../assets/groupnabiak.png';
 import republikangbiak from '../../assets/republikangbiak.jpg';
 import trio from '../../assets/trio.png';
 import barkonguranus from '../../assets/barkonguranus.png';
@@ -84,7 +84,13 @@ const Kasunduan = () => {
             onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
             style={{
               order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1
+              zIndex: index === selectedImage ? 2 : 1,
+              display: 
+                index === selectedImage || 
+                index === (selectedImage + 1) % images.length || 
+                index === (selectedImage - 1 + images.length) % images.length 
+                  ? 'block' 
+                  : 'none'
             }}
           >
             <img src={image.src} alt={`Image ${index + 1}`} />
@@ -94,7 +100,9 @@ const Kasunduan = () => {
       </div>
       <div className="Kasunduan-arrow-keys">
         <img src={arrownav2} alt="left" onClick={handlePrev} />
-        <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        {selectedImage < images.length - 1 && (
+          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        )}
       </div>
     </div>
     </div>

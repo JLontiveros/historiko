@@ -9,13 +9,13 @@ nav {
   width: 90%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  width: 120px; /* Set this to the width of your logo */
+  width: 120px;
 }
 
 .back-icon {
@@ -25,7 +25,7 @@ nav {
   position: absolute;
   display: flex;
   margin-left: 90%;
-  left: 5%; /* Adjust this value to match your nav padding */
+  left: 5%;
 }
 
 nav img {
@@ -34,7 +34,7 @@ nav img {
   display: block;
 }
 
-nav ul {
+.desktop-menu {
   list-style-type: none;
   display: flex;
   margin: 0;
@@ -43,12 +43,12 @@ nav ul {
   align-items: center;
 }
 
-nav ul li {
+.desktop-menu li {
   margin: 0 1rem;
   position: relative;
 }
 
-nav ul li a {
+.desktop-menu li a {
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
@@ -69,23 +69,23 @@ nav ul li a {
   z-index: 2;
 }
 
-nav ul li:hover .dropdown {
+.desktop-menu li:hover .dropdown {
   display: block;
 }
 
-nav ul li a:hover {
+.desktop-menu li a:hover {
   color: navy;
 }
 
 .dropdown li {
   padding: 0.5rem;
   text-align: center;
-  border-bottom: 2px solid white; /* Underline separator */
+  border-bottom: 2px solid white;
   font-size: 18px;
 }
 
 .dropdown li:last-child {
-  border-bottom: none; /* Remove underline from the last item */
+  border-bottom: none;
 }
 
 .dropdown li a {
@@ -98,4 +98,59 @@ nav ul li a:hover {
 
 .dropdown li:hover {
   background-color: rgba(85, 85, 85, 0.8);
+}
+
+/* Mobile styles */
+.burger-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .burger-icon {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #a0a7ed;
+    padding: 1rem;
+  }
+
+  .mobile-menu li {
+    margin: 0.5rem 0;
+  }
+
+  .mobile-menu a {
+    color: navy;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  .mobile-submenu {
+    margin-left: 1rem;
+  }
+
+  .mobile-submenu li {
+    margin: 0.25rem 0;
+  }
+
+  .mobile-submenu a {
+    font-size: 1rem;
+  }
 }

@@ -4,7 +4,7 @@ import './PugadLawin.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
-import andresboni from '../../assets/andresboni.png'; // Add your background images
+import andresboni from '../../assets/andresboni.png';
 import bg2 from '../../assets/historikobg.png';
 import watawat from '../../assets/watawat.png';
 import trianggulo from '../../assets/trianggulo.png';
@@ -29,7 +29,7 @@ const PugadLawin = () => {
   ];
 
   const descriptions = [
-    "Maraming sumuporta kay Andres Bonifacio dahil mahusay siyang lider. Nagkasundo sila na ipagpatuloy ang paghihimagsik. Siya ay binansagang “Ama ng Katipunan”. Siya ang nagtatag at lumaon naging Supremo ng kilusang Katipunan na naglayong makamtan ang kasarinlan ng Pilipinas mula sa Espanya at nagpasimula ng Himagsikang Pilipino.",
+    "Maraming sumuporta kay Andres Bonifacio dahil mahusay siyang lider. Nagkasundo sila na ipagpatuloy ang paghihimagsik. Siya ay binansagang (Ama ng Katipunan). Siya ang nagtatag at lumaon naging Supremo ng kilusang Katipunan na naglayong makamtan ang kasarinlan ng Pilipinas mula sa Espanya at nagpasimula ng Himagsikang Pilipino.",
     "Inisip ng mga Pilipino na hndi na nila makakamit ang hinihinging pagbabago sa mapayapang paraan, at ang tanging paraan na lamang upang mabago ang pamumuhay ng mga Pilipino ay ang pagpapaalis ng mga espanyol sa pamamagitan ng rebolusyon. Hulyo 7, 1892, itinatag nina Andres Bonifacio, Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano sa isang bahay sa Azcarraga. Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.",
     "Sunod sunod ang mga labanang nangyari pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng cavite, batangas, bulacan, tarlac, pampanga, laguna at nueva ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat.",
     "Ang trianggulong Sistema ay ginagamit sa pagkuha ng mga kasaping katipunero. Ang dating miyembro ay maghahanap ng dalawang bagong miyembro na hindi magkakilala. Sa maikling panahon, lumaki ang samahan ng katpunan.",
@@ -90,7 +90,13 @@ const PugadLawin = () => {
             onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
             style={{
               order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1
+              zIndex: index === selectedImage ? 2 : 1,
+              display: 
+                index === selectedImage || 
+                index === (selectedImage + 1) % images.length || 
+                index === (selectedImage - 1 + images.length) % images.length 
+                  ? 'block' 
+                  : 'none'
             }}
           >
             <img src={image.src} alt={`Image ${index + 1}`} />
@@ -100,7 +106,9 @@ const PugadLawin = () => {
       </div>
       <div className="PugadLawin-arrow-keys">
         <img src={arrownav2} alt="left" onClick={handlePrev} />
-        <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        {selectedImage < images.length - 1 && (
+          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        )}
       </div>
     </div>
     </div>
