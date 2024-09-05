@@ -3,12 +3,12 @@ import './Home.css';
 import SignUp from '../SignUp/SignUp';
 import backgroundVideo from "../../assets/hero.mp4";
 import backgroundVideo2 from "../../assets/underhero.mp4";
-import { useAuth } from '../../App'; // Import the useAuth hook
+import { useAuth } from '../../App';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const { isAuthenticated, user } = useAuth(); // Use the authentication context
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,21 +35,21 @@ const Home = () => {
   return (
     <div className="home-container">
       <section className="video-section">
-        <video autoPlay loop muted className='background-video'>
+        <video autoPlay loop muted playsInline className='background-video'>
           <source src={backgroundVideo} type='video/mp4'/>
         </video>
         <div className='text-overlay'>
           <div className='heading'>
-            <h1>"Sa Historiko, Buhay ang <br/> Pagmamahal sa Bayan!"</h1>
+            <h1>"Sa Historiko, Buhay ang <br className="desktop-break"/> Pagmamahal sa Bayan!"</h1>
           </div>
           <div className='subheading'>
-            <h3>"Maligayang pagdating! Tuklasin ang kwento ng ating mga bayani at ang diwa <br/> ng nasyonalismo. Sama-sama nating buhayin ang kasaysayan!"</h3>
+            <h3>"Maligayang pagdating! Tuklasin ang kwento ng ating mga bayani at ang diwa <br className="desktop-break"/> ng nasyonalismo. Sama-sama nating buhayin ang kasaysayan!"</h3>
           </div>
         </div>
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
-        <video autoPlay loop muted className='background-video2'>
+        <video autoPlay loop muted playsInline className='background-video2'>
           <source src={backgroundVideo2} type='video/mp4'/>
         </video>
         <div className='signup-overlay'>

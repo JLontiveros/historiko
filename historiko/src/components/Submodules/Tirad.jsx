@@ -4,7 +4,7 @@ import './Tirad.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
-import bg1 from '../../assets/kidst.png'; // Add your background images
+import bg1 from '../../assets/kidst.png';
 import pasongtirad from '../../assets/pasongtirad.png';
 import gregdelpillar from '../../assets/gregdelpillar.png';
 import januario from '../../assets/januario.png';
@@ -91,7 +91,13 @@ const Tirad = () => {
             onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
             style={{
               order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1
+              zIndex: index === selectedImage ? 2 : 1,
+              display: 
+                index === selectedImage || 
+                index === (selectedImage + 1) % images.length || 
+                index === (selectedImage - 1 + images.length) % images.length 
+                  ? 'block' 
+                  : 'none'
             }}
           >
             <img src={image.src} alt={`Image ${index + 1}`} />
@@ -101,7 +107,9 @@ const Tirad = () => {
       </div>
       <div className="tirad-arrow-keys">
         <img src={arrownav2} alt="left" onClick={handlePrev} />
-        <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        {selectedImage < images.length - 1 && (
+          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        )}
       </div>
     </div>
     </div>

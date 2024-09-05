@@ -1,14 +1,11 @@
-/* components/SignUp/SignUp.css */
 .auth-container {
-  position: absolute;
+  position: relative;
   background: transparent;
-  top: 50%; /* Changed from 180% to center vertically */
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 10px;
   font-family: 'Arial', sans-serif;
   width: 100%;
   max-width: 768px;
+  margin: 0 auto;
 }
 
 .container {
@@ -20,7 +17,6 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  left: 300px;
 }
 
 .form-container {
@@ -106,12 +102,10 @@
 .overlay-right {
   right: 0;
   transform: translateX(0);
-  width: 300px;
 }
 
 .container.right-panel-active .overlay-left {
   transform: translateX(0);
-  width: 300px;
 }
 
 .container.right-panel-active .overlay-right {
@@ -131,8 +125,8 @@
 
 .title {
   font-weight: bold;
-  margin: 0 0 20px 0; /* Added bottom margin */
-  font-size: 24px; /* Increased font size */
+  margin: 0 0 20px 0;
+  font-size: 24px;
 }
 
 .input-field {
@@ -141,7 +135,7 @@
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
-  border-radius: 5px; /* Added border radius */
+  border-radius: 5px;
 }
 
 .btn {
@@ -156,7 +150,7 @@
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
-  margin-top: 20px; /* Added top margin */
+  margin-top: 20px;
 }
 
 .btn:active {
@@ -168,7 +162,6 @@
   border-color: #fff;
 }
 
-/* New styles for the <p> tag */
 .forgot-password {
   color: #8e2de2;
   font-size: 14px;
@@ -178,7 +171,6 @@
   cursor: pointer;
 }
 
-/* Adjust overlay panel content */
 .overlay-panel h1 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -192,10 +184,6 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .auth-container {
-    width: 90%;
-  }
-  
   .container {
     min-height: auto;
   }
@@ -208,6 +196,37 @@
   }
   
   .overlay-container {
-    display: none; /* Hide overlay on small screens */
+    display: none;
+  }
+
+  .sign-in-container,
+  .sign-up-container {
+    width: 100%;
+    left: 0;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .container.right-panel-active .sign-in-container,
+  .container.right-panel-active .sign-up-container {
+    transform: none;
+  }
+
+  .form-container form {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .input-field {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-size: 10px;
   }
 }

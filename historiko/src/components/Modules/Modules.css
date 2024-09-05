@@ -2,8 +2,8 @@
 
 .modules {
   padding: 20px;
-  background-color: #e6f2ff;
-  min-height: 93vh;
+  background-color: #cbe1ec;
+  min-height: 100vh;
 }
 
 .module-container {
@@ -23,7 +23,6 @@
   color: white;
   text-align: center;
 }
-
 
 .module-icon {
   width: 250px;
@@ -104,4 +103,86 @@
   transition: opacity 0.3s ease;
   border-radius: 10px;
   line-height: 1.5;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .character {
+    width: 250px;
+    height: 250px;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .module-container {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .module {
+    width: calc(50% - 20px);
+  }
+
+  .character {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .module-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .module {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .module-icon {
+    width: 200px;
+    height: 160px;
+  }
+
+  .character {
+    display: none;
+  }
+
+  .hover-text {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modules {
+    padding: 10px;
+  }
+
+  .module {
+    padding: 20px;
+  }
+
+  .module-icon {
+    width: 150px;
+    height: 120px;
+    margin-top: -80px;
+  }
+
+  .module h2 {
+    font-size: 1.2em;
+  }
+
+  .module li {
+    font-size: 0.8em;
+  }
+
+  .module button {
+    padding: 10px 30px;
+  }
+
+  .hover-text {
+    font-size: 0.9em;
+  }
 }
