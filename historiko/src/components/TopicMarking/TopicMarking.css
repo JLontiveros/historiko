@@ -1,3 +1,7 @@
+:root {
+    --slide-percentage: 25%;
+}
+
 .topic-marking {
     display: flex;
     flex-direction: column;
@@ -5,6 +9,9 @@
     padding: 20px;
     background-color: #e6f2ff;
     min-height: 93vh;
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width calculation */
+    overflow-x: hidden; /* Prevent horizontal scroll within this container */
 }
 
 .topic-marking h1 {
@@ -23,20 +30,26 @@
     justify-content: center;
     width: 100%;
     max-width: 1200px;
+    overflow: hidden; /* Prevent overflow from child elements */
 }
 
 .topics-wrapper {
+    width: 100%; /* Change from fixed width to 100% */
     width: 1000px;
     overflow: hidden;
 }
 
 .topics-slider {
+    width: 100%; /* Ensure full width */
     display: flex;
     transition: transform 0.5s ease-in-out;
+    /* Remove the inline style from your JSX and use this instead */
+    transform: translateX(calc(-1 * var(--slide-percentage) * var(--current-index, 0)));
 }
 
 .topic-card {
     flex: 0 0 calc(25% - 20px);
+    max-width: calc(25% - 20px); /* Add max-width to prevent overflow */
     height: 350px;
     background-color: #0047ab;
     border-radius: 20px;
@@ -122,6 +135,7 @@
     }
     .topic-card {
         flex: 0 0 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
     }
 }
 
@@ -131,22 +145,58 @@
     }
     .topic-card {
         flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
     }
 }
 
 @media (max-width: 650px) {
+    :root {
+        --slide-percentage: 100%;
+      }
+      
+    .topic-container {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
     .topic-marking h1 {
         font-size: 36px;
         margin-left: 20px;
+        margin-top: 150px;
     }
     .topics-wrapper {
         width: 300px;
+        width: 100%;
     }
     .topic-card {
         flex: 0 0 calc(100% - 20px);
+        max-width: calc(100% - 20px);
     }
     .arrow {
         width: 60px;
         height: 60px;
+        flex-shrink: 0;
+    }
+    .topic-container {
+        flex-direction: column;
+    }
+    .left-arrow, .right-arrow {
+        margin: 10px 0;
+    }
+    .bookmark {
+        left: 30px;
+        width: 75px;
+        height: 110px;
+    }
+    .heart {
+        width: 50px;
+        height: 50px;
+    }
+    .topic-card h2 {
+        font-size: 18px;
+        margin-top: 80px;
     }
 }
