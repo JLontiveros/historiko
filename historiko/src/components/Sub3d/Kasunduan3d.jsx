@@ -13,24 +13,47 @@ const Kasunduan3d = () => {
   const { saveReward } = useReward();
   const { user } = useAuth();
 
-  const handleGoBack = async () => {
-    const rewardId = 6; // Replace with the correct reward ID
+  // const handleGoBack = async () => {
+  //   const rewardId = 6; // Replace with the correct reward ID
     
-    if (user) {
-      const result = await saveReward(rewardId, user.id);
+  //   if (user) {
+  //     const result = await saveReward(rewardId, user.id);
       
-      if (result.success) {
-        console.log(result.message);
-        navigate(-1);
-      } else {
-        console.error(result.message);
-        // Optionally, add a notification or alert to show the error to the user.
+  //     if (result.success) {
+  //       console.log(result.message);
+  //       navigate(-1);
+  //     } else {
+  //       console.error(result.message);
+  //       // Optionally, add a notification or alert to show the error to the user.
+  //     }
+  //   } else {
+  //     console.error('No user is logged in');
+  //     // Optionally, redirect to login page or show an alert
+  //   }
+  // };
+
+  const handleGoBack = async () => {
+    const rewardIds = [6, 8]; // IDs for both rewards
+  
+    if (user) {
+      for (const rewardId of rewardIds) {
+        const result = await saveReward(rewardId, user.id);
+        
+        if (result.success) {
+          console.log(`Reward ${rewardId} saved: ${result.message}`);
+        } else {
+          console.error(`Failed to save reward ${rewardId}: ${result.message}`);
+          // Optionally, add a notification or alert to show the error to the user.
+        }
       }
+      navigate(-1);
     } else {
       console.error('No user is logged in');
       // Optionally, redirect to login page or show an alert
     }
   };
+
+  
 
   return (
     <>
