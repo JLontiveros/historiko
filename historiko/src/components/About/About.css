@@ -1,5 +1,4 @@
- 
- .about-bg {
+.about-bg {
    position: absolute;
    object-fit: cover;
    top: 0;
@@ -11,7 +10,7 @@
  }
  
  .about{
-    margin-top: 150px;  
+   margin-top: 150px;  
  }
 
  .box {
@@ -54,10 +53,105 @@
     text-align: start;
  }
 
-
  .man{
     width: 370px;
     height: 400px;
     margin-left: 1140px;
     margin-top: -470px;
  }
+
+/* Add responsive styles */
+@media screen and (max-width: 768px) {
+  .about {
+    margin-top: 100px;
+  }
+
+  .box {
+    border-width: 5px;
+    margin: 10px;
+  }
+
+  .about h1, .about p {
+    margin-left: 20px;
+  }
+
+  .one, .two {
+    margin-left: 30px;
+  }
+
+  .bullet, .bullet2 {
+    margin-left: 25px;
+  }
+
+  .box h2 {
+    margin-left: 20px;
+  }
+
+  .layunin {
+    margin-left: 15px;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layunin-man-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .layunin {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .man {
+    width: 40%;
+    height: auto;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about {
+    margin-top: 150px;
+  }
+
+  .about h1 {
+    font-size: 24px;
+  }
+
+  .box {
+    border-width: 3px;
+  }
+
+  .about p, .one, .two, .bullet, .bullet2 {
+    font-size: 16px;
+  }
+
+  .box h2 {
+    font-size: 18px;
+  }
+
+  .layunin-man-container {
+    flex-direction: column;
+  }
+
+  .layunin {
+   width: 60%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .man {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    bottom: 285px;
+    left: 90px;
+  }
+}
