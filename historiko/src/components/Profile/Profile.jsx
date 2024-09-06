@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
 import './Profile.css';
 import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
-import badgge from '../../assets/badgge.png';
 
 const Profile = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -16,15 +15,12 @@ const Profile = () => {
   const [avatarUrl, setAvatarUrl] = useState('');
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
-  const [id, setId] = useState ('')
+  const [id, setId] = useState('')
   const [rewards, setRewards] = useState([]);
-
-
 
   useEffect(() => {
     if (isAuthenticated && user) {
       fetchUserProfile();
-      console.log(user)
     }
   }, [isAuthenticated, user]);
 
@@ -49,7 +45,7 @@ const Profile = () => {
       setName(data.name || user.username);
       setBio(data.bio || 'Ako ay estudyante');
       setAvatarUrl(data.avatar_url || '');
-      setId(data.id || ''); 
+      setId(data.id || '');
     }
   };
 
@@ -61,7 +57,8 @@ const Profile = () => {
         created_at,
         rewards:reward_id (
           id,
-          reward
+          reward,
+          image_url
         )
       `)
       .eq('user_id', id);
@@ -90,31 +87,24 @@ const Profile = () => {
     try {
       let avatarUrlToSave = avatarUrl;
       
-      console.log(id)
-
-      // Check if a new avatar file was selected
       const avatarFile = document.getElementById('avatar').files[0];
       if (avatarFile && user) {
-        // Upload the new avatar image to Supabase Storage
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('avatars')
           .upload(`public/${user.username}/${avatarFile.name}`, avatarFile, {
-            cacheControl: '3600', // Cache for 1 hour
-            upsert: true // Overwrite if file already exists
+            cacheControl: '3600',
+            upsert: true
           });
   
         if (uploadError) throw uploadError;
   
-        // Get the public URL of the uploaded image
         avatarUrlToSave = supabase.storage
           .from('avatars')
           .getPublicUrl(uploadData.path).data.publicUrl;
   
-        // Update the state with the new avatar URL
         setAvatarUrl(avatarUrlToSave);
       }
   
-      // Update the users table with the new avatar URL, name, and bio
       const { error: userError } = await supabase
         .from('users')
         .update({ name, bio, avatar_url: avatarUrlToSave })
@@ -122,7 +112,6 @@ const Profile = () => {
   
       if (userError) throw userError;
   
-      // Update password if provided
       if (newPassword) {
         const { error: passwordError } = await supabase
           .from('users')
@@ -133,29 +122,21 @@ const Profile = () => {
   
       alert('Profile updated successfully!');
       setFormVisible(false);
-      fetchUserProfile(); // Refresh the profile data
+      fetchUserProfile();
     } catch (error) {
       console.error('Error updating profile:', error);
       alert('Error updating profile: ' + error.message);
     }
   };
   
-
   const handleAvatarUpload = async (event) => {
     const file = event.target.files[0];
-
     if (!file || !user) return;
-
     try {
-      // Upload the image to Supabase Storage
-
-      // Update the state with the new avatar URL
-      setAvatarUrl(avatarUrl);
-
-      alert('Avatar uploaded successfully!');
+      setAvatarUrl(URL.createObjectURL(file));
     } catch (error) {
-      console.error('Error uploading avatar:', error);
-      alert('Error uploading avatar: ' + error.message);
+      console.error('Error handling avatar upload:', error);
+      alert('Error handling avatar upload: ' + error.message);
     }
   };
 
@@ -192,7 +173,11 @@ const Profile = () => {
               {rewards.length > 0 ? (
                 rewards.map((userReward, index) => (
                   <div key={userReward.id} className={`gantimpalas ${index === 0 ? 'first' : index === 1 ? 'second' : 'third'}`}>
-                    <img src={badgge} className='badge' alt="Badge"/>
+                    <img 
+                      src={userReward.rewards?.image_url || 'path/to/default/badge.png'} 
+                      className='badge' 
+                      alt={userReward.rewards?.reward || 'Badge'}
+                    />
                     <div className="info">
                       <span>{userReward.rewards?.reward || 'Unnamed Reward'}</span>
                       <span>Date: {new Date(userReward.created_at).toLocaleDateString()}</span>
@@ -223,7 +208,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
 
         <div className={`edit-form ${isFormVisible ? 'visible' : ''}`}>
           <form onSubmit={handleSave}>
