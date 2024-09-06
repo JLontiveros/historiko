@@ -95,7 +95,7 @@ const TopicMarking = () => {
     
     const handleNext = () => {
       setCurrentIndex((prevIndex) => 
-        prevIndex < displayedTopics.length - 4 ? prevIndex + 1 : prevIndex
+        prevIndex < displayedTopics.length - 1 ? prevIndex + 1 : prevIndex
       );
     };
     
@@ -133,25 +133,27 @@ const TopicMarking = () => {
               className={`arrow left-arrow ${currentIndex === 0 ? 'disabled' : ''}`}
               alt="Previous"
             />
-            <div className="topics-wrapper">
-              <div className="topics-slider" style={{
-                transform: `translateX(-${currentIndex * 25}%)`,
-                transition: 'transform 0.5s ease-in-out'
-              }}>
-                {displayedTopics.map((topic) => (
-                  <div key={topic.id} className="topic-card">
-                    <div className="bookmark" onClick={() => handleMarkTopic(topic)}>
-                      <img 
-                        src={heartIcon} 
-                        alt="heart" 
-                        className={`heart ${markedTopics.some(markedTopic => markedTopic.id === topic.id) ? 'marked' : ''}`}
-                      />
-                    </div>
-                    <h2>{topic.topic_name}</h2>
+          <div className="topics-wrapper">
+            <div 
+              className="topics-slider" 
+              style={{
+                '--current-index': currentIndex
+              }}
+            >
+              {displayedTopics.map((topic) => (
+                <div key={topic.id} className="topic-card">
+                  <div className="bookmark" onClick={() => handleMarkTopic(topic)}>
+                    <img 
+                      src={heartIcon} 
+                      alt="heart" 
+                      className={`heart ${markedTopics.some(markedTopic => markedTopic.id === topic.id) ? 'marked' : ''}`}
+                    />
                   </div>
-                ))}
-              </div>
+                  <h2>{topic.topic_name}</h2>
+                </div>
+              ))}
             </div>
+          </div>
             <img 
               src={arrownav} 
               onClick={handleNext} 
