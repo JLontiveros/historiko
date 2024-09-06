@@ -1,67 +1,177 @@
 /* src/components/Unatalakayin/Unatalakayin.css */
 .unatalakayin {
-    background-color: #cbe1ec;
-    min-height: 100vh;
-    padding: 20px;
+  background-color: #cbe1ec;
+  min-height: 94.5vh;
+  padding: 20px;
+}
+
+.unatalakayin h1 {
+  text-align: center;
+  color: #0000FF;
+  font-size: 40px;
+  margin-top: 110px;
+  margin-bottom: 70px;
+}
+
+.events-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event {
+  background-color: #8a7fd5;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  color: white;
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.event-icon {
+  width: 180px;
+  height: 200px;
+  margin-bottom: -10px;
+  margin-top: -70px;
+  align-self: center;
+  border: 3px solid white;
+  border-radius: 20px;
+}
+
+.event h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: rgb(255, 229, 79);
+}
+
+.event-content {
+  flex-grow: 1;
+}
+
+.event p {
+  font-size: 0.9em;
+  text-align: justify;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.event-link {
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  right: 0;
+}
+
+.link-button {
+  display: inline-block;
+  background-color: rgb(255, 229, 79);
+  color: #8a7fd5;
+  text-decoration: none;
+  padding: 15px 50px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 80%;
+  max-width: 240px;
+  box-sizing: border-box;
+}
+
+.link-button:hover {
+  background-color: #669999;
+  color: white;
+}
+
+.eventbtns2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.eventbtns2 button {
+  background-color: rgb(255, 229, 79);
+  border: none;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.eventbtns2 button:hover {
+  background-color: #669999;
+}
+
+/* Desktop Layout (3 columns) */
+@media screen and (min-width: 1024px) {
+  .events-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
   }
-  
-  .unatalakayin h1 {
-    text-align: center;
-    color: #0000FF;
-    font-size: 40px;
-    margin-top: 110px; /* Adjusted to accommodate the navbar */
+
+  .event {
     margin-bottom: 60px;
   }
-  
-  .events-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .unatalakayin h1 {
+    font-size: 30px;
+    margin-top: 80px;
+    margin-bottom: 40px;
   }
-  
+
   .event {
-    background-color: #8a7fd5;
-    border-radius: 20px;
-    padding: 20px;
-    width: 300px;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
+    width: 100%;
+    max-width: none;
   }
-  
+
   .event-icon {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+    width: 150px;
+    height: 170px;
   }
-  
+
+  .link-button {
+    padding: 10px 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .unatalakayin h1 {
+    font-size: 24px;
+    margin-top: 130px;
+    margin-bottom: 30px;
+  }
+
+  .event-icon {
+    width: 120px;
+    height: 140px;
+    margin-top: 0px;
+  }
+
   .event h2 {
     font-size: 1.2em;
-    margin-bottom: 10px;
   }
-  
+
   .event p {
+    font-size: 0.8em;
+  }
+
+  .link-button {
+    padding: 10px 20px;
     font-size: 0.9em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
-  
-  .eventbtns2 {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .eventbtns2 button {
-    background-color: rgb(255, 229, 79);
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-  
-  .eventbtns2 button:hover {
-    background-color: #669999;
-  }
-  
+}
