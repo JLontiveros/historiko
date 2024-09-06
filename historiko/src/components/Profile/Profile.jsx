@@ -82,7 +82,7 @@ const Profile = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || !isFormVisible) return;
   
     try {
       let avatarUrlToSave = avatarUrl;
@@ -130,6 +130,7 @@ const Profile = () => {
   };
   
   const handleAvatarUpload = async (event) => {
+    if (!isFormVisible) return;
     const file = event.target.files[0];
     if (!file || !user) return;
     try {
@@ -209,56 +210,58 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className={`edit-form ${isFormVisible ? 'visible' : ''}`}>
-          <form onSubmit={handleSave}>
-            <div className="upload-pic flex-col">
-              <label htmlFor="avatar">
-                <img src={avatarUrl || uploadarea} alt='Upload avatar' />
-                <input
-                  type="file"
-                  id="avatar"
-                  accept="image/*"
-                  onChange={handleAvatarUpload}
-                  style={{ display: 'none' }}
+        {isFormVisible && (
+          <div className="edit-form visible">
+            <form onSubmit={handleSave}>
+              <div className="upload-pic flex-col">
+                <label htmlFor="avatar">
+                  <img src={avatarUrl || uploadarea} alt='Upload avatar' />
+                  <input
+                    type="file"
+                    id="avatar"
+                    accept="image/*"
+                    onChange={handleAvatarUpload}
+                    style={{ display: 'none' }}
+                  />
+                </label>
+              </div>
+              <div className='user-tag'>
+                <h1>{name}</h1>
+              </div>
+              <div className='edit-user'>
+                <label htmlFor="name">Name:</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
-              </label>
-            </div>
-            <div className='user-tag'>
-              <h1>{name}</h1>
-            </div>
-            <div className='edit-user'>
-              <label htmlFor="name">Name:</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className='edit-pass'>
-              <label htmlFor="pass">Change Password:</label>
-              <input 
-                type="password" 
-                id="pass" 
-                name="pass"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-            </div>
-            <div className='edit-bio'>
-              <label htmlFor="bio">Bio:</label>
-              <input 
-                type="text" 
-                id="bio" 
-                name="bio"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
-            <button type="submit">Save</button>
-          </form>
-        </div>
+              </div>
+              <div className='edit-pass'>
+                <label htmlFor="pass">Change Password:</label>
+                <input 
+                  type="password" 
+                  id="pass" 
+                  name="pass"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <div className='edit-bio'>
+                <label htmlFor="bio">Bio:</label>
+                <input 
+                  type="text" 
+                  id="bio" 
+                  name="bio"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                />
+              </div>
+              <button type="submit">Save</button>
+            </form>
+          </div>
+        )}
       </div>
     </>
   );
