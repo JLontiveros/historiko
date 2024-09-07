@@ -104,3 +104,61 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .tejeros-container {
+    grid-template-columns: 1fr;
+    margin: 20px;
+    margin-top: 130px;
+  }
+
+  .tejeros-container-left img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .tejeros-container-right h1 {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .tejeros-description {
+    margin-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .tejeros-description img {
+    top: -50px;
+    right: -5px;
+  }
+
+  .tejeros-blank {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .tejeros-container-right p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -10px;
+    font-size: 16px;
+  }
+
+  .tejeros-date {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .tejeros-container-right button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5px;
+    padding: 10px;
+  }
+}
