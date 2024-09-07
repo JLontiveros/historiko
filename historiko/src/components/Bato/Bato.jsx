@@ -127,7 +127,7 @@ const Bato = () => {
             alt="Kasunduan sa Biak-na-Bato illustration" 
             className="bato-image"
           />
-          <h2 className="bato-date">Disyembre 14, 1897</h2>
+          <h2 className="bato-date">Lorem ipsum dolor sit amet.</h2>
         </div>
 
         <div className="bato-container-right">

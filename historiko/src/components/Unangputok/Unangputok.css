@@ -105,3 +105,54 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .unangputok-container {
+    grid-template-columns: 1fr;
+    margin: 20px;
+    margin-top: 130px;
+  }
+  .unangputok-container-left img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+  }
+  .unangputok-container-right h1 {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  .unangputok-description {
+    margin-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .unangputok-description img {
+    top: -50px;
+    right: -5px;
+  }
+  .unangputok-blank {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 60px;
+  }
+  .unangputok-container-right p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -10px;
+    font-size: 16px;
+  }
+  .unangputok-date {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .unangputok-container-right button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5px;
+    padding: 10px;
+  }
+}
