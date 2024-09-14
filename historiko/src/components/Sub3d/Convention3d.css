@@ -38,3 +38,52 @@
     border-radius: 20px;
     margin-top: -20px;
 }
+
+@media screen and (max-width: 768px) {
+    .convention3d-container {
+        margin-top: 80px;
+        margin-left: 10px;
+    }
+
+    .convention3d-container h1 {
+        font-size: 30px;
+    }
+
+    .picture3d img {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .convention3d-container {
+        margin-top: 150px;
+        margin-left: 5px;
+    }
+
+    .convention3d-container img {
+        height: 50px;
+        width: 60px;
+        left: 10px;
+        top: 50px;
+    }
+
+    .convention3d-container h1 {
+        font-size: 24px;
+        margin-left: 30px;
+        margin-bottom: 40px;
+    }
+
+    .picture3d {
+        max-width: 380px;
+        max-height: 220px;
+        margin-left: -90px;
+    }
+
+    .picture3d img {
+        border-width: 5px;
+    }
+
+    .video-container {
+        max-width: 380px;
+    }
+}

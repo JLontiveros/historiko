@@ -1,4 +1,3 @@
-
 .PugadLawin3d-container {
     display: grid;
     grid-template-columns: 0.5fr 2fr;
@@ -37,4 +36,83 @@
     border: 10px solid white;
     border-radius: 20px;
     margin-top: -20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .PugadLawin3d-container {
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+        margin-left: 20px;
+    }
+
+    .PugadLawin3d-container img {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .PugadLawin3d-container h1 {
+        width: 90%;
+        font-size: 36px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .picture3d img {
+        left: 0;
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        margin: 20px auto;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .PugadLawin3d-container {
+        margin-top: 80px;
+        margin-left: 10px;
+    }
+
+    .PugadLawin3d-container h1 {
+        font-size: 30px;
+    }
+
+    .picture3d img {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .PugadLawin3d-container {
+        margin-top: 150px;
+        margin-left: 5px;
+    }
+
+    .PugadLawin3d-container img {
+        height: 50px;
+        width: 60px;
+        left: 50px;
+        top: 50px;
+    }
+
+    .PugadLawin3d-container h1 {
+        font-size: 24px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+    }
+
+    .picture3d {
+        max-width: 380px;
+        max-height: 220px;
+        margin-left: -90px;
+    }
+
+    .picture3d img {
+        border-width: 5px;
+    }
+
+    .video-container {
+        max-width: 380px;
+    }
 }

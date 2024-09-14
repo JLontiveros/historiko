@@ -35,7 +35,7 @@ const Tirad3d = () => {
   return (
     <>
     <div className="Tirad3d">
-      <div className="balangiga3d-container">
+      <div className="Tirad3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
         <h1>Labanan sa Tirad Pass</h1>
       </div>

@@ -1,159 +1,259 @@
 body {
-    margin: 0;
-    padding: 0;
-    transition: background-image 0.5s ease;
-  }
+  margin: 0;
+  padding: 0;
+  transition: background-image 0.5s ease;
+}
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(230, 242, 255, 0.7); /* #e6f2ff with 70% opacity */
-    z-index: -1;
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(230, 242, 255, 0.7);
+  z-index: -1;
+}
+
+.Kasunduan-container {
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.Kasunduan-description-container {
+  display: grid;
+  text-align: justify;
+  color: #0047ab;
+  margin-left: 50px;
+  width: 500px;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+
+.Kasunduan-description-container::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.Kasunduan-description-container::-webkit-scrollbar-thumb {
+  background-color: #ecf0f3;
+  border-radius: 10px;
+}
+
+.Kasunduan-description-container h1 {
+  font-size: 50px;
+  text-shadow: 3px 3px 0px #5676a3;
+  margin-top: -10px;
+}
+
+.Kasunduan-description-container p {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  line-height: 1.7;
+  margin-top: -20px;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.Kasunduan-image-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin-left: 30px;
+}
+
+.Kasunduan-image-wrapper {
+  height: 350px;
+  width: auto;
+  border: 5px solid white;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.Kasunduan-image-wrapper img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.Kasunduan-image-description {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.Kasunduan-image-wrapper.selected {
+  border-color: #0047ab;
+  transform: scale(1.05);
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+}
+
+.Kasunduan-image-wrapper.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 1000;
+  width: auto;
+  height: auto;
+}
+
+.Kasunduan-arrow-keys {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0px;
+}
+
+.Kasunduan-arrow-keys img {
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.Kasunduan-arrow-keys img:hover {
+  transform: scale(1.2);
+}
+
+.Kasunduan button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: gold;
+  color: #0047ab;
+  position: fixed;
+  top: 140px;
+  right: 50px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.Kasunduan button:hover {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .Kasunduan button {
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
   }
   
   .Kasunduan-container {
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 1;
-    overflow-x: hidden;
+    grid-template-columns: 1fr;
+    margin-top: 120px;
+    padding: 10px;
   }
-  
+
   .Kasunduan-description-container {
-    display: grid;
-    text-align: justify;
-    color: #0047ab;
-    margin-left: 50px;
-    width: 500px;
-    max-height: 400px; /* Set the max height for the container */
-    overflow-y: auto; /* Enable vertical scrolling */
-    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
-  }
-
-  .Kasunduan-description-container::-webkit-scrollbar {
-    width: 8px; /* Adjust the width of the scrollbar */
-    background: transparent; /* Make the scrollbar track (background) invisible */
-  }
-
-  .Kasunduan-description-container::-webkit-scrollbar-thumb {
-    background-color: #ecf0f3; /* Make the scrollbar thumb visible */
-    border-radius: 10px; /* Round the edges of the thumb */
-  }
-  
-  .Kasunduan-description-container h1 {
-    font-size: 50px;
-    text-shadow: 3px 3px 0px #5676a3;
-    margin-top: -10px;
-  }
-  
-  .Kasunduan-description-container p {
-    font-size: 20px;
-    font-weight: 600;
-    display: block;
-    line-height: 1.7;
-    margin-top: -20px;
-    margin-left: 10px;
-    padding: 10px;
-  }
-  
-  .Kasunduan-image-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    margin-left: 30px;
-  }
-  
-  .Kasunduan-image-wrapper {
-    height: 350px;
-    width: auto;
-    border: 5px solid white;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .Kasunduan-image-wrapper img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .Kasunduan-image-description {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    text-align: center;
-    padding: 10px;
+    margin-left: 0;
+    max-height: none;
+    padding: 0 10px;
     box-sizing: border-box;
+  }
+
+  .Kasunduan-description-container h1 {
+    font-size: 24px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .Kasunduan-description-container p {
     font-size: 14px;
+    margin-top: 10px;
+    margin-left: 0;
   }
-  
-  .Kasunduan-image-wrapper.selected {
-    border-color: #0047ab;
-    transform: scale(1.05);
-    grid-column: 1 / -1;  /* Make the selected image span full width */
+
+  .Kasunduan-image-container {
+    margin-left: 0;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .Kasunduan-image-wrapper {
+    height: auto;
     width: 100%;
-    max-width: 560px;
-    justify-self: center;
+    max-width: 300px;
   }
-  
-  .Kasunduan-image-wrapper.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    z-index: 1000;
-    width: auto;
+
+  .Kasunduan-image-wrapper img {
+    width: 100%;
     height: auto;
   }
 
+  .Kasunduan-image-wrapper.selected {
+    max-width: 100%;
+  }
+
   .Kasunduan-arrow-keys {
-    position: fixed;
-    bottom: 10px; /* Adjust the distance from the bottom of the screen */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    gap: 0px; /* Adjust the gap between the arrow keys */
+    bottom: 20px;
   }
-  
+
   .Kasunduan-arrow-keys img {
-    height: 80px;
-    width: 80px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .Kasunduan-arrow-keys img:hover {
-    transform: scale(1.2);
+    height: 40px;
+    width: 40px;
   }
 
   .Kasunduan button {
-    width: 100px;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Kasunduan-description-container h1 {
+    font-size: 28px;
+  }
+
+  .Kasunduan-description-container p {
+    font-size: 19px;
+  }
+
+  .Kasunduan-image-wrapper {
+    max-width: 250px;
+  }
+
+  .Kasunduan-arrow-keys img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .Kasunduan button {
+    top: 130px;
+    right: 20px;
     height: 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    background-color: gold;
-    color: #0047ab;
-    position: relative;
-    top: 160px;
-    left: 650px;
-    transition: transform 0.3s ease;
   }
-  
-  .Kasunduan button:hover {
-    transform: scale(1.2);
-  }
+}

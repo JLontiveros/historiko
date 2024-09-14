@@ -152,6 +152,7 @@ body::before {
   top: 160px;
   left: 650px;
   transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
 .PugadLawin button:hover {
@@ -159,9 +160,17 @@ body::before {
 }
 
 @media screen and (max-width: 768px) {
+  .PugadLawin button{
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+
   .PugadLawin-container {
     grid-template-columns: 1fr;
-    margin-top: 80px;
+    margin-top: 120px;
     padding: 10px;
   }
 
@@ -175,24 +184,31 @@ body::before {
   .PugadLawin-description-container h1 {
     font-size: 30px;
     text-align: center;
+    margin-top: 0;
   }
 
   .PugadLawin-description-container p {
     font-size: 16px;
     margin-left: 0;
+    margin-top: 10px;
   }
 
   .PugadLawin-image-container {
     margin-left: 0;
     padding: 10px;
     justify-content: center;
+    overflow: hidden;
   }
 
   .PugadLawin-image-wrapper {
-    height: 250px;
+    display: none;
+    height: 200px;
+    width: 100%;
+    max-width: 300px;
   }
 
   .PugadLawin-image-wrapper.selected {
+    display: block;
     max-width: 100%;
   }
 
@@ -206,31 +222,34 @@ body::before {
   }
 
   .PugadLawin button {
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .PugadLawin button:hover {
-    transform: translateX(-50%) scale(1.1);
+    top: 10px;
+    left: auto;
+    right: 10px;
+    position: fixed;
   }
 }
 
 @media screen and (max-width: 480px) {
   .PugadLawin-description-container h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .PugadLawin-description-container p {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .PugadLawin-image-wrapper {
-    height: 200px;
+    height: 180px;
   }
 
   .PugadLawin-arrow-keys img {
     height: 50px;
     width: 50px;
+  }
+
+  .PugadLawin button {
+    top: 130px;
+    right: 20px;
+    height: 30px;
   }
 }

@@ -5,6 +5,9 @@ import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
 import Historikobg from '../../assets/Historikobg.png';
+import {DefaultPlayer as Video} from 'react-html5video';
+import 'react-html5video/dist/styles.css';
+import biaknavid from '../../assets/biaknavid.mp4';
 
 const Balangiga3d = () => {
   const navigate = useNavigate();
@@ -40,7 +43,13 @@ const Balangiga3d = () => {
         <h1>Battle of Balangiga Monument</h1>
       </div>
       <div className="picture3d">
-        <img src={Historikobg} className='picture-bg'/>
+        <div className="video-container">
+          <Video autoPlay loop onCanPlayThrough={()=>{
+            console.log('video play')
+          }}>
+            <source src={biaknavid} type="video/webm"/>
+          </Video>
+        </div>
       </div>
     </div>
     </>
