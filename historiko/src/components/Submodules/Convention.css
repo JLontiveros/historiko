@@ -1,159 +1,255 @@
 body {
-    margin: 0;
-    padding: 0;
-    transition: background-image 0.5s ease;
-  }
+  margin: 0;
+  padding: 0;
+  transition: background-image 0.5s ease;
+}
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(230, 242, 255, 0.7); /* #e6f2ff with 70% opacity */
-    z-index: -1;
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(230, 242, 255, 0.7);
+  z-index: -1;
+}
+
+.convention-container {
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.convention-description-container {
+  display: grid;
+  text-align: justify;
+  color: #0047ab;
+  margin-left: 50px;
+  width: 500px;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+
+.convention-description-container::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.convention-description-container::-webkit-scrollbar-thumb {
+  background-color: #ecf0f3;
+  border-radius: 10px;
+}
+
+.convention-description-container h1 {
+  font-size: 50px;
+  text-shadow: 3px 3px 0px #5676a3;
+  margin-top: -10px;
+}
+
+.convention-description-container p {
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  line-height: 1.7;
+  margin-top: -20px;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.convention-image-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin-left: 30px;
+}
+
+.convention-image-wrapper {
+  height: 350px;
+  width: auto;
+  border: 5px solid white;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.convention-image-wrapper img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.convention-image-description {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.convention-image-wrapper.selected {
+  border-color: #0047ab;
+  transform: scale(1.05);
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+}
+
+.convention-image-wrapper.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 1000;
+  width: auto;
+  height: auto;
+}
+
+.convention-arrow-keys {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0px;
+}
+
+.convention-arrow-keys img {
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.convention-arrow-keys img:hover {
+  transform: scale(1.2);
+}
+
+.convention button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: gold;
+  color: #0047ab;
+  position: absolute;
+  top: 140px;
+  right: 50px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.convention button:hover {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .convention button {
+    margin-top: 120px;
   }
   
   .convention-container {
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 1;
-    overflow-x: hidden;
+    grid-template-columns: 1fr;
+    margin-top: 120px;
+    padding: 10px;
   }
-  
+
   .convention-description-container {
-    display: grid;
-    text-align: justify;
-    color: #0047ab;
-    margin-left: 50px;
-    width: 500px;
-    max-height: 400px; /* Set the max height for the container */
-    overflow-y: auto; /* Enable vertical scrolling */
-    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
-  }
-
-  .convention-description-container::-webkit-scrollbar {
-    width: 8px; /* Adjust the width of the scrollbar */
-    background: transparent; /* Make the scrollbar track (background) invisible */
-  }
-
-  .convention-description-container::-webkit-scrollbar-thumb {
-    background-color: #ecf0f3; /* Make the scrollbar thumb visible */
-    border-radius: 10px; /* Round the edges of the thumb */
-  }
-  
-  .convention-description-container h1 {
-    font-size: 50px;
-    text-shadow: 3px 3px 0px #5676a3;
-    margin-top: -10px;
-  }
-  
-  .convention-description-container p {
-    font-size: 20px;
-    font-weight: 600;
-    display: block;
-    line-height: 1.7;
-    margin-top: -20px;
-    margin-left: 10px;
-    padding: 10px;
-  }
-  
-  .convention-image-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    margin-left: 30px;
-  }
-  
-  .convention-image-wrapper {
-    height: 350px;
-    width: auto;
-    border: 5px solid white;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .convention-image-wrapper img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .convention-image-description {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    text-align: center;
-    padding: 10px;
+    margin-left: 0;
+    max-height: none;
+    padding: 0 10px;
     box-sizing: border-box;
+  }
+
+  .convention-description-container h1 {
+    font-size: 24px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .convention-description-container p {
     font-size: 14px;
+    margin-top: 10px;
+    margin-left: 0;
   }
-  
-  .convention-image-wrapper.selected {
-    border-color: #0047ab;
-    transform: scale(1.05);
-    grid-column: 1 / -1;  /* Make the selected image span full width */
+
+  .convention-image-container {
+    margin-left: 0;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .convention-image-wrapper {
+    height: auto;
     width: 100%;
-    max-width: 560px;
-    justify-self: center;
+    max-width: 300px;
   }
-  
-  .convention-image-wrapper.zoomed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    z-index: 1000;
-    width: auto;
+
+  .convention-image-wrapper img {
+    width: 100%;
     height: auto;
   }
-  
+
+  .convention-image-wrapper.selected {
+    max-width: 100%;
+  }
+
   .convention-arrow-keys {
-    position: fixed;
-    bottom: 10px; /* Adjust the distance from the bottom of the screen */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    gap: 0px; /* Adjust the gap between the arrow keys */
+    bottom: 20px;
   }
-  
+
   .convention-arrow-keys img {
-    height: 80px;
-    width: 80px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .convention-arrow-keys img:hover {
-    transform: scale(1.2);
+    height: 40px;
+    width: 40px;
   }
 
   .convention button {
-    width: 100px;
-    height: 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    background-color: gold;
-    color: #0047ab;
-    position: relative;
-    top: 160px;
-    left: 650px;
-    transition: transform 0.3s ease;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .convention-description-container h1 {
+    font-size: 28px;
+  }
+
+  .convention-description-container p {
+    font-size: 20px;
+  }
+
+  .convention-image-wrapper {
+    max-width: 250px;
+  }
+
+  .convention-arrow-keys img {
+    height: 50px;
+    width: 50px;
   }
   
-  .convention button:hover {
-    transform: scale(1.2);
+  .convention button {
+    top: 10px;
+    right: 20px;
+    height: 30px;
   }
+}

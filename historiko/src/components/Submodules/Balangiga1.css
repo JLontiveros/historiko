@@ -11,14 +11,14 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(230, 242, 255, 0.7); /* #e6f2ff with 70% opacity */
+  background-color: rgba(230, 242, 255, 0.7);
   z-index: -1;
 }
 
 .balangiga1-container {
   margin-top: 150px;
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
+  grid-template-columns: 2fr 1fr;
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -32,18 +32,19 @@ body::before {
   color: #0047ab;
   margin-left: 50px;
   width: 500px;
-  max-height: 400px; /* Set the max height for the container */
-  overflow-y: auto; /* Enable vertical scrolling */
-  -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
 }
 
 .balangiga1-description-container::-webkit-scrollbar {
-  width: 8px; /* Adjust the width of the scrollbar */
-  background: transparent; /* Make the scrollbar track (background) invisible */
+  width: 8px;
+  background: transparent;
 }
+
 .balangiga1-description-container::-webkit-scrollbar-thumb {
-  background-color: #ecf0f3; /* Make the scrollbar thumb visible */
-  border-radius: 10px; /* Round the edges of the thumb */
+  background-color: #ecf0f3;
+  border-radius: 10px;
 }
 
 .balangiga1-description-container h1 {
@@ -71,13 +72,13 @@ body::before {
 
 .balangiga1-image-wrapper {
   height: 350px;
-    width: auto;
-    border: 5px solid white;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+  width: auto;
+  border: 5px solid white;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .balangiga1-image-wrapper img {
@@ -102,7 +103,7 @@ body::before {
 .balangiga1-image-wrapper.selected {
   border-color: #0047ab;
   transform: scale(1.05);
-  grid-column: 1 / -1;  /* Make the selected image span full width */
+  grid-column: 1 / -1;
   width: 100%;
   max-width: 560px;
   justify-self: center;
@@ -110,22 +111,22 @@ body::before {
 
 .balangiga1-image-wrapper.zoomed {
   position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    z-index: 1000;
-    width: auto;
-    height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 1000;
+  width: auto;
+  height: auto;
 }
 
 .balangiga1-arrow-keys {
   position: fixed;
-  bottom: 10px; /* Adjust the distance from the bottom of the screen */
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
-  gap: 0px; /* Adjust the gap between the arrow keys */
+  gap: 0px;
 }
 
 .balangiga1-arrow-keys img {
@@ -151,8 +152,104 @@ body::before {
   top: 160px;
   left: 650px;
   transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
 .balangiga1 button:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  .balangiga1 button {
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  .balangiga1-container {
+    grid-template-columns: 1fr;
+    margin-top: 120px;
+    padding: 10px;
+  }
+
+  .balangiga1-description-container {
+    width: 100%;
+    margin-left: 0;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .balangiga1-description-container h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .balangiga1-description-container p {
+    font-size: 16px;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .balangiga1-image-container {
+    margin-left: 0;
+    padding: 10px;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .balangiga1-image-wrapper {
+    display: none;
+    height: 200px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .balangiga1-image-wrapper.selected {
+    display: block;
+    max-width: 100%;
+  }
+
+  .balangiga1-arrow-keys {
+    bottom: 20px;
+  }
+
+  .balangiga1-arrow-keys img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .balangiga1 button {
+    top: 10px;
+    left: auto;
+    right: 10px;
+    position: fixed;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .balangiga1-description-container h1 {
+    font-size: 26px;
+  }
+
+  .balangiga1-description-container p {
+    font-size: 19px;
+  }
+
+  .balangiga1-image-wrapper {
+    height: 180px;
+  }
+
+  .balangiga1-arrow-keys img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .balangiga1 button {
+    top: 130px;
+    right: 20px;
+    height: 30px;
+  }
 }

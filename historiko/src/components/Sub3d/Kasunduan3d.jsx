@@ -54,23 +54,22 @@ const Kasunduan3d = () => {
   };
 
   
-
   return (
     <>
     <div className="Kasunduan3d">
-  <div className="Kasunduan3d-container">
-    <img src={arrownav2} alt="left" onClick={handleGoBack} />
-    <h1>Kasunduan sa Biak na Bato</h1>
-  </div>
-  <div className="picture3d">
-    <div className="video-container">
-      <Video autoPlay loop onCanPlayThrough={()=>{
-        console.log('video play')
-      }}>
-        <source src={biaknavid} type="video/webm"/>
-      </Video>
+      <div className="Kasunduan3d-container">
+        <img src={arrownav2} alt="left" onClick={handleGoBack} />
+        <h1>Kasunduan sa Biak na Bato</h1>
     </div>
-  </div>
+    <div className="picture3d">
+      <div className="video-container">
+        <Video autoPlay loop onCanPlayThrough={()=>{
+          console.log('video play')
+        }}>
+          <source src={biaknavid} type="video/webm"/>
+        </Video>
+      </div>
+    </div>
   </div>
   </>
   )

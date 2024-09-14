@@ -41,7 +41,7 @@ const PugadLawin3d = () => {
       </div>
       <div className="picture3d">
         <div className="video-container">
-          <Video autoPlay loop onCanPlayThrough={()=>{
+          <Video autoPlay loop onCanPlayThrough={() => {
             console.log('video play')
           }}>
             <source src={pugadvid} type="video/webm"/>

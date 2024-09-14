@@ -5,6 +5,9 @@ import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
 import Historikobg from '../../assets/Historikobg.png';
+import {DefaultPlayer as Video} from 'react-html5video';
+import 'react-html5video/dist/styles.css';
+import biaknavid from '../../assets/biaknavid.mp4';
 
 const Putok3d = () => {
   const navigate = useNavigate();
@@ -36,9 +39,15 @@ const Putok3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Gantimpala para sa pag tatapos ng talaka</h1>
       </div>
-      <div className="picture3d">
-        <img src={Historikobg} className="picture-bg" alt="Background" />
+    <div className="picture3d">
+      <div className="video-container">
+        <Video autoPlay loop onCanPlayThrough={()=>{
+          console.log('video play')
+        }}>
+          <source src={biaknavid} type="video/webm"/>
+        </Video>
       </div>
+    </div>
     </div>
   );
 };
