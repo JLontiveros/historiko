@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  min-height: 100vh;
+  position: relative;
 }
 
 .minigame-bg {
@@ -61,23 +63,13 @@
 
 .virtual-flashcard h2,
 .guess-game h2 {
-  font-size: 45px; /* Increased font size */
+  font-size: 45px;
   position: absolute;
   top: 10px;
   left: 20px;
   margin: 0;
   width: calc(100% - 40px);
   text-align: center;
-}
-
-.virtual-flashcard .flashcard-img,
-.guess-game .game-img {
-  width: 220px;
-  height: auto;
-  position: relative;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .virtual-bg {
@@ -93,18 +85,36 @@
   z-index: 1;
 }
 
-.play-button {
-  background-color: #007bff;
-  color: white;
-  padding: 15px 50px;
-  border-radius: 50px;
-  border: 8px solid white;
-  font-size: 24px;
-  cursor: pointer;
-  margin-top: 40px;
-  transition: background-color 0.3s ease;
+.game-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.play-button:hover {
-  background-color: #0056b3;
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.close-button:hover {
+  background-color: #cc0000;
+}
+
+.back-button{
+  z-index: 1000;
 }

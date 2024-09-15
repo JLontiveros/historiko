@@ -37,7 +37,7 @@ const Balangiga1 = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/Balangiga3d');
+    navigate('/Balangiga3d', { state: { showToast: true } });
   };
 
   useEffect(() => {

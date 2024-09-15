@@ -42,7 +42,7 @@ const Putok = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/Putok3d');
+    navigate('/Putok3d', { state: { showToast: true } });
   };
 
   useEffect(() => {

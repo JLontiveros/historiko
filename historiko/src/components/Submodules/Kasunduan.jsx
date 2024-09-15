@@ -48,7 +48,7 @@ const Kasunduan = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/Kasunduan3d');
+    navigate('/Kasunduan3d', { state: { showToast: true } });
   };
 
   useEffect(() => {

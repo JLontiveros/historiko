@@ -42,7 +42,7 @@ const Convention = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/Convention3d');
+    navigate('/Convention3d', { state: { showToast: true } });
   };
 
   useEffect(() => {

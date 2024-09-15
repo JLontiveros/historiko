@@ -55,7 +55,7 @@ const Tirad = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/Tirad3d');
+    navigate('/Tirad3d', { state: { showToast: true } });
   };
 
   useEffect(() => {

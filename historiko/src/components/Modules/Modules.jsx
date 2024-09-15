@@ -43,9 +43,11 @@ function Modules() {
               Balangiga Massacre
             </li>
           </ul>
-          <Link to="/Unatalakayin">
+
+          <Link to="/Unatalakayin" state={{ showToast: true, fromModules: true }}>
             <button>EXPLORE</button>
           </Link>
+
         </div>
         <div className="module">
           <div className="image-container">
@@ -77,9 +79,11 @@ function Modules() {
               Kasunduan sa Biak-na-Bato
             </li>
           </ul>
-          <Link to="/Dalwatalakayin">
+
+          <Link to="/Dalwatalakayin" state={{ showToast: true, fromModules: true }}>
             <button>EXPLORE</button>
           </Link>
+
         </div>
       </div>
       <img src={characterImage} alt="Character" className="character" />
