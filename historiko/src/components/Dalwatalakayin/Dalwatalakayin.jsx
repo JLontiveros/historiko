@@ -1,15 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Dalwatalakayin.css';
 import Navbar from '../Navbar/Navbar';
 import biaknabato from '../../assets/biaknabato.png';
 import pugadlawin from '../../assets/pugadlawin.png';
 import tejeros2 from '../../assets/tejeros2.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Dalwatalakayin() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.showToast) {
+      toast.info("Welcome to Dalwatalakayin!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      localStorage.setItem('hasShownDalwatalakyinToast', 'true');
+    }
+  }, [location]);
+
   return (
     <div className="dalwatalakayin">
       <Navbar />
+      <ToastContainer />
       <h1>Mga Talakayin</h1>
       <div className="events-container">
         <div className="event">

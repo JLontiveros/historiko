@@ -54,7 +54,7 @@ const PugadLawin = () => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate('/PugadLawin3d');
+    navigate('/PugadLawin3d', { state: { showToast: true } });
   };
 
   useEffect(() => {
