@@ -81,6 +81,7 @@
   width: 80%;
   max-width: 240px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .link-button:hover {

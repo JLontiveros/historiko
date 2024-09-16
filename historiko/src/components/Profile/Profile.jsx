@@ -6,6 +6,7 @@ import './Profile.css';
 import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
+import { PieChart, Pie, Cell } from 'recharts';
 
 const Profile = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -17,10 +18,14 @@ const Profile = () => {
   const navigate = useNavigate();
   const [id, setId] = useState('')
   const [rewards, setRewards] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [userProgress, setUserProgress] = useState({});
 
   useEffect(() => {
     if (isAuthenticated && user) {
       fetchUserProfile();
+      fetchTopics();
+      fetchUserProgress();
     }
   }, [isAuthenticated, user]);
 
@@ -69,6 +74,92 @@ const Profile = () => {
       console.log('Fetched user rewards:', data);
       setRewards(data || []);
     }
+  };
+
+  const fetchTopics = async () => {
+    const { data, error } = await supabase
+      .from('topics')
+      .select('*')
+      .order('id');
+
+    if (error) {
+      console.error('Error fetching topics:', error);
+    } else {
+      setTopics(data || []);
+    }
+  };
+
+  const fetchUserProgress = async () => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from('user_progress')
+      .select('topic_id, progress')
+      .eq('user_id', user.id);
+
+    if (error) {
+      console.error('Error fetching user progress:', error);
+    } else {
+      const progressObj = {};
+      data.forEach(item => {
+        progressObj[item.topic_id] = item.progress;
+      });
+      setUserProgress(progressObj);
+    }
+  };
+
+  const CircularProgressBar = ({ score, total }) => {
+    const percentage = (score / total) * 100;
+    const strokeWidth = 2;
+    const radius = 20;
+    const normalizedRadius = radius - strokeWidth / 2;
+    const circumference = normalizedRadius * 2 * Math.PI;
+    const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+    return (
+      <svg height={radius * 2} width={radius * 2} className="circular-progress">
+        <circle
+          stroke="#E0E0E0"
+          fill="transparent"
+          strokeWidth={strokeWidth}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+        />
+        <circle
+          stroke="#4CAF50"
+          fill="transparent"
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference + ' ' + circumference}
+          style={{ strokeDashoffset }}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+          transform={`rotate(-90 ${radius} ${radius})`}
+        />
+        <circle
+          fill="#8c85d5"
+          r={radius - strokeWidth}
+          cx={radius}
+          cy={radius}
+        />
+        <text
+          x="50%"
+          y="50%"
+          dy=".3em"
+          textAnchor="middle"
+          fill="black"
+          fontSize="9px"
+          fontWeight="bold"
+        >
+          {score}/{total}
+        </text>
+      </svg>
+    );
+  };
+
+  const calculateTotalProgress = () => {
+    return Object.values(userProgress).reduce((sum, current) => sum + current, 0);
   };
 
   const handleEditClick = () => {
@@ -191,23 +282,18 @@ const Profile = () => {
             </div>
           </div>
           <div className="resulta-container">
-            <h1>Resulta</h1>
-            <div className="first">
-              <span>Sigaw ng Pugad-Lawin</span>
+          <h1>Resulta</h1>
+          {topics.map((topic) => (
+            <div key={topic.id} className="topic-item">
+              <CircularProgressBar score={userProgress[topic.id] || 0} total={100} />
+              <span>{topic.topic_name}</span>
             </div>
-            <div className="second">
-              <span>Tejeros Convention</span>
-            </div>
-            <div className="third">
-              <span>Balangiga Massacre</span>
-            </div>
-            <div className="fourth">
-              <span>Kasunduan sa Biak-na-Bato</span>
-            </div>
-            <div className="fifth">
-              <span>Unang Putok sa panukulan ng Silencio at Sociego, Sta Mesa</span>
-            </div>
-          </div>
+          ))}
+          {/* <div className="topic-item">
+            <CircularProgressBar score={calculateTotalProgress()} total={100} />
+            <span>Total Progress</span>
+          </div> */}
+        </div>
         </div>
 
         {isFormVisible && (

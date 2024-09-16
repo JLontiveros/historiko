@@ -109,7 +109,24 @@ const Unangputok = () => {
     setIsLoading(false);
   };
 
-  const handleViewMore = () => {
+  const handleViewMore = async () => {
+    if (user) {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: userUUID, topic_id: topicId, progress: 40 },
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log('Progress updated successfully');
+        }
+      }
+    }
     navigate('/putok');
   }
 

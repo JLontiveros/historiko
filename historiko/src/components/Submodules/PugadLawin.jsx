@@ -12,10 +12,15 @@ import katipunan from '../../assets/katipunan.png';
 import pactodesangre from '../../assets/pactodesangre.png';
 import baldoandfrends from '../../assets/baldoandfrends.png';
 import faction from '../../assets/faction.png';
+import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App';
 
 const PugadLawin = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const topicId = 4;
 
   const images = [
     { src: andresboni, bg: andresboni, description: "Andres Bonifacio" },
@@ -51,9 +56,38 @@ const PugadLawin = () => {
     setIsZoomed(!isZoomed);
   };
 
-  const navigate = useNavigate();
+  const getUserUUID = async (username) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('id')
+      .eq('username', username)
+      .single();
 
-  const handleViewMore = () => {
+    if (error) {
+      console.error('Error fetching user UUID:', error);
+      return null;
+    }
+    return data.id;
+  };
+
+  const handleViewMore = async () => {
+    if (user) {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: userUUID, topic_id: topicId, progress: 70 }, 
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log('Progress updated successfully to 70%');
+        }
+      }
+    }
     navigate('/PugadLawin3d', { state: { showToast: true } });
   };
 

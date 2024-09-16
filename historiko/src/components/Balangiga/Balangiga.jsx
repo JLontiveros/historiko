@@ -13,7 +13,7 @@ const Balangiga = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
   const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
-  const topicId = 6; // Assuming "Balangiga Massacre" is the 6th topic
+  const topicId = 3;
   const topicName = "Balangiga Massacre";
 
   useEffect(() => {
@@ -109,9 +109,26 @@ const Balangiga = () => {
     setIsLoading(false);
   };
 
-  const handleViewMore = () => {
+  const handleViewMore = async () => {
+    if (user) {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: userUUID, topic_id: topicId, progress: 40 },
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log('Progress updated successfully');
+        }
+      }
+    }
     navigate('/balangiga1');
-  };
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;

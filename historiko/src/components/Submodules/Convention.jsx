@@ -8,10 +8,15 @@ import groupphoto from '../../assets/groupphoto.png';
 import lastpage from '../../assets/lastpage.png';
 import groupphoto2 from '../../assets/groupphoto2.png';
 import mtbuntis from '../../assets/mtbuntis.jpg';
+import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App';
 
 const Convention = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const topicId = 5;
 
   const images = [
     { src: groupphoto, bg: groupphoto },
@@ -39,9 +44,38 @@ const Convention = () => {
     setIsZoomed(!isZoomed);
   };
 
-  const navigate = useNavigate();
+  const getUserUUID = async (username) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('id')
+      .eq('username', username)
+      .single();
 
-  const handleViewMore = () => {
+    if (error) {
+      console.error('Error fetching user UUID:', error);
+      return null;
+    }
+    return data.id;
+  };
+
+  const handleViewMore = async () => {
+    if (user) {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: userUUID, topic_id: topicId, progress: 70 }, 
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log('Progress updated successfully to 70%');
+        }
+      }
+    }
     navigate('/Convention3d', { state: { showToast: true } });
   };
 

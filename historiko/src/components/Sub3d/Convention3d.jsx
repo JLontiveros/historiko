@@ -9,6 +9,7 @@ import 'react-html5video/dist/styles.css';
 import tejerosvid from '../../assets/tejerosvid.mp4';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { supabase } from '../../supabaseClient';
 
 const Convention3d = () => {
   const navigate = useNavigate();
@@ -31,10 +32,45 @@ const Convention3d = () => {
     }
   }, [location]);
 
+  const getUserUUID = async (username) => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('id')
+      .eq('username', username)
+      .single();
+
+    if (error) {
+      console.error('Error fetching user UUID:', error);
+      return null;
+    }
+    return data.id;
+  };
+
+  const updateProgress = async () => {
+    if (user) {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: userUUID, topic_id: 5, progress: 100 }, // Assuming topic_id 1 for "Unang Putok"
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log('Progress updated successfully to 100%');
+        }
+      }
+    }
+  };
+
   const handleGoBack = async () => {
-    const rewardId = 5; // Replace with the correct reward ID
+    const rewardId = 1; // Replace with the correct reward ID
     
     if (user) {
+      await updateProgress(); // Update progress to 100%
       const result = await saveReward(rewardId, user.id);
       
       if (result.success) {
