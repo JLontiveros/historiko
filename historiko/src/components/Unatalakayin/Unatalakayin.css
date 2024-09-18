@@ -21,7 +21,7 @@
   margin: 0 auto;
 }
 
-.event {
+.events {
   background-color: #8a7fd5;
   border-radius: 20px;
   padding: 20px;
@@ -29,42 +29,51 @@
   max-width: 300px;
   color: white;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   display: flex;
   flex-direction: column;
+  height: 350px; /* Adjust this value as needed */
   position: relative;
 }
 
 .event-icon {
   width: 180px;
   height: 200px;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
   margin-top: -70px;
   align-self: center;
   border: 3px solid white;
   border-radius: 20px;
 }
 
-.event h2 {
+.events h2 {
   font-size: 1.5em;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: rgb(255, 229, 79);
+  height: 40px; /* Fixed height for title */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .event-content {
   flex-grow: 1;
 }
 
-.event p {
+.events p {
   font-size: 0.9em;
   text-align: justify;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .event-link {
   position: absolute;
-  bottom: -70px;
+  bottom: -40px;
   left: 0;
   right: 0;
 }
