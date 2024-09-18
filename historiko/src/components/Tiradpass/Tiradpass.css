@@ -2,7 +2,7 @@
   background-color: #e6f2ff;
   font-family: Arial, sans-serif;
   display: grid;
-  grid-template-columns: 1.5fr 0.5fr;
+  grid-template-columns: 0.8fr 1.2fr;
   margin-top: 130px;
   margin-left: 100px;
   margin-right: 80px;
@@ -25,7 +25,7 @@
 
 .tiradpass-container-right {
   display: grid;
-  grid-template-columns: 1fr;
+  width: 100%;
 }
 
 .tiradpass-container-right h1 {
@@ -45,7 +45,7 @@
 .tiradpass-description img {
   position: absolute;
   top: -106px; /* Adjust this value to position the heart image as needed */
-  right: 85px; /* Adjust this value to position the heart image as needed */
+  right: 5px; /* Adjust this value to position the heart image as needed */
   width: 30px;
   height: 30px;
   background-color: gold;
@@ -62,16 +62,16 @@
 .tiradpass-blank {
   position: absolute;
   top: -70px; /* Adjust this value to position the blank div as needed */
-  left: 10;
+  left: -8.8%;
   height: 4px;
-  width: 720px;
+  width: 760px;
   margin-left: 90px;
   background-color: gold;
 }
 
 .tiradpass-container-right p {
+  width: 100%;
   background-color: #8c85d5;
-  margin-left: 90px;
   margin-right: 70px;
   margin-top: -70px;
   padding: 5px;
@@ -92,16 +92,15 @@
 }
 
 .tiradpass-container-right button {
+  position: relative;
   width: 120px;
+  height: 50px;
+  left: 40%;
   margin-top: -10px;
-  margin-left: 400px;
-  margin-right: 400px;
   border-radius: 50px;
   background-color: #8a7fd5;
   color: white;
   border: none;
-  padding: 0px 10px;
-  border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
 }
@@ -131,11 +130,11 @@
   }
   .tiradpass-description img {
     top: -50px;
-    right: -5px;
+    right: -10px;
   }
   .tiradpass-blank {
     width: 100%;
-    margin-left: 0;
+    margin-left: 9%;
     margin-top: 60px;
   }
   .tiradpass-container-right p {
@@ -149,10 +148,7 @@
     margin-top: 10px;
   }
   .tiradpass-container-right button {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
     margin-top: 5px;
-    padding: 10px;
+    margin-left: -20px;
   }
 }
