@@ -270,7 +270,7 @@
     transform: translate(-50%, -50%);
     background-color: #27675D;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     max-width: 400px;
     width: 90%;
     padding: 20px;
@@ -285,7 +285,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    margin-top: 30px;
+    font-size: 20px;
 }
 
 .edit-form input {
@@ -323,7 +323,6 @@
 .upload-pic, 
 .user-tag,
 .edit-form button {
-    margin-left: -20px;
     border-radius: 20px;
 }
 
@@ -332,6 +331,7 @@
     font-size: 20px;
 }
 
+.edit-profile,
 .edit-user,
 .edit-pass,
 .edit-bio {
@@ -341,20 +341,69 @@
     padding-left: 20px;
 }
 
+.edit-profile label,
 .edit-user label,
 .edit-pass label,
 .edit-bio label{
     display: flex;
     justify-content: start;
-    align-items: start;
+    align-items: end;
     margin-left: -20px;
 }
 
-.upload-pic img {
-    height: 150px;
-    width: 150px;
+.upload-pic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: -10px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
     cursor: pointer;
-    margin-top: -40px;
+}
+
+.upload-pic img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    margin-left: 20px;
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.upload-pic:hover > img {
+    opacity: 0.5;
+}
+
+.upload-pic:hover .upload-overlay {
+    opacity: 1;
+}
+
+.upload-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.upload-icon img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
 }
 
 /* Responsive styles */
@@ -465,5 +514,13 @@
         font-size: 16px;
         line-height: 1.7;
         margin-top: 0;
+    }
+
+    .edit-form {
+        padding: 10px;
+    }
+
+    .edit-form button {
+        margin-bottom: 3px;
     }
 }
