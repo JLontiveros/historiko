@@ -6,6 +6,7 @@ import './Profile.css';
 import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
+import uploadicon from '../../assets/uploadicon.jpg';
 import { PieChart, Pie, Cell } from 'recharts';
 
 const Profile = () => {
@@ -152,7 +153,7 @@ const Profile = () => {
           fontSize="9px"
           fontWeight="bold"
         >
-          {score}/{total}
+          {score}{total}
         </text>
       </svg>
     );
@@ -285,7 +286,7 @@ const Profile = () => {
           <h1>Resulta</h1>
           {topics.map((topic) => (
             <div key={topic.id} className="topic-item">
-              <CircularProgressBar score={userProgress[topic.id] || 0} total={100} />
+              <CircularProgressBar score={userProgress[topic.id] || 0} total={'%'} />
               <span>{topic.topic_name}</span>
             </div>
           ))}
@@ -299,21 +300,27 @@ const Profile = () => {
         {isFormVisible && (
           <div className="edit-form visible">
             <form onSubmit={handleSave}>
+              <div className="edit-profile">
+                <label htmlFor='profile'>Profile:</label>
               <div className="upload-pic flex-col">
-                <label htmlFor="avatar">
-                  <img src={avatarUrl || uploadarea} alt='Upload avatar' />
-                  <input
-                    type="file"
-                    id="avatar"
-                    accept="image/*"
-                    onChange={handleAvatarUpload}
-                    style={{ display: 'none' }}
-                  />
-                </label>
+              <label for="avatar">
+                <img src={avatarUrl || uploadarea} alt='Upload avatar' />
+                <div class="upload-overlay">
+                  <span class="upload-icon"><img src={uploadicon} alt="Upload icon"/></span>
+                </div>
+                <input
+                  type="file"
+                  id="avatar"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  style={{ display: 'none' }}
+                />
+              </label>
               </div>
-              <div className='user-tag'>
+              </div>
+              {/* <div className='user-tag'>
                 <h1>{name}</h1>
-              </div>
+              </div> */}
               <div className='edit-user'>
                 <label htmlFor="name">Name:</label>
                 <input 
