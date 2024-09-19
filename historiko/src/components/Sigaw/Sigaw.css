@@ -6,6 +6,7 @@
   margin-top: 130px;
   margin-left: 100px;
   margin-right: 80px;
+  padding: 30px;
   }
   
   .sigaw-container-left {
@@ -44,7 +45,7 @@
   .sigaw-description img {
     position: absolute;
     top: -106px;
-    right: 85px;
+    right: 165px;
     width: 30px;
     height: 30px;
     background-color: gold;
@@ -61,17 +62,17 @@
   .sigaw-blank {
     position: absolute;
     top: -70px;
-    left: 10;
+    left: -2.3%;
     height: 4px;
-    width: 720px;
+    width: 680px;
     margin-left: 90px;
     background-color: gold;
   }
   
   .sigaw-container-right p {
     background-color: #8c85d5;
-    margin-left: 90px;
-    margin-right: 70px;
+    margin-left: 50px;
+    margin-right: 150px;
     margin-top: -70px;
     padding: 5px;
     text-align: justify;
@@ -132,7 +133,7 @@
   }
   .sigaw-blank {
     width: 100%;
-    margin-left: 0;
+    margin-left: 2%;
     margin-top: 60px;
   }
   .sigaw-container-right p {
