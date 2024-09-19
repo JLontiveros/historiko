@@ -3,6 +3,8 @@ import './Home.css';
 import SignUp from '../SignUp/SignUp';
 import backgroundVideo from "../../assets/hero.mp4";
 import backgroundVideo2 from "../../assets/underhero.mp4";
+import landingphone1 from "../../assets/landingphone1.mp4";
+import landingphone2 from "../../assets/landingphone2.mp4";
 import { useAuth } from '../../App';
 
 const Home = () => {
@@ -35,8 +37,11 @@ const Home = () => {
   return (
     <div className="home-container">
       <section className="video-section">
-        <video autoPlay loop muted playsInline className='background-video'>
+        <video autoPlay loop muted playsInline className='background-video desktop-video'>
           <source src={backgroundVideo} type='video/mp4'/>
+        </video>
+        <video autoPlay loop muted playsInline className='background-video mobile-video'>
+          <source src={landingphone1} type='video/mp4'/>
         </video>
         <div className='text-overlay'>
           <div className='heading'>
@@ -49,8 +54,11 @@ const Home = () => {
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
-        <video autoPlay loop muted playsInline className='background-video2'>
+        <video autoPlay loop muted playsInline className='background-video2 desktop-video'>
           <source src={backgroundVideo2} type='video/mp4'/>
+        </video>
+        <video autoPlay loop muted playsInline className='background-video2 mobile-video'>
+          <source src={landingphone2} type='video/mp4'/>
         </video>
         <div className='signup-overlay'>
           {isAuthenticated ? (
