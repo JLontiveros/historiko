@@ -100,47 +100,40 @@ const Kasunduan = () => {
   }, [selectedImage]);
 
   return (
-    <>
     <div className="Kasunduan">
-    <button onClick={handleViewMore}>View in 3D</button>
-    <div className="Kasunduan-container">
-      <div className="Kasunduan-description-container">
-        <h1>Description:</h1>
-        <p>{descriptions[selectedImage]}</p>
-      </div>
-      <div className="Kasunduan-image-container">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`Kasunduan-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
-              isZoomed && index === selectedImage ? 'zoomed' : ''
-            }`}
-            onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
-            style={{
-              order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1,
-              display: 
-                index === selectedImage || 
-                index === (selectedImage + 1) % images.length || 
-                index === (selectedImage - 1 + images.length) % images.length 
-                  ? 'block' 
-                  : 'none'
-            }}
-          >
-            <img src={image.src} alt={`Image ${index + 1}`} />
-            <div className="PugadLawin-image-description">{image.description}</div>
-          </div>
-        ))}
-      </div>
-      <div className="Kasunduan-arrow-keys">
-        <img src={arrownav2} alt="left" onClick={handlePrev} />
-        {selectedImage < images.length - 1 && (
+      <button onClick={handleViewMore}>View in 3D</button>
+      <div className="Kasunduan-container">
+        <div className="Kasunduan-description-container">
+          <h1>Description:</h1>
+          <p>{descriptions[selectedImage]}</p>
+        </div>
+        <div className="Kasunduan-image-container">
+          {[...Array(3)].map((_, index) => {
+            const imageIndex = (selectedImage + index) % images.length;
+            return (
+              <div
+                key={imageIndex}
+                className={`Kasunduan-image-wrapper ${index === 0 ? 'selected' : ''} ${
+                  isZoomed && index === 0 ? 'zoomed' : ''
+                }`}
+                onClick={index === 0 ? toggleZoom : () => setSelectedImage(imageIndex)}
+                style={{
+                  order: index,
+                  zIndex: 2 - index
+                }}
+              >
+                <img src={images[imageIndex].src} alt={`Image ${imageIndex + 1}`} />
+                <div className="Kasunduan-image-description">{images[imageIndex].description}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="Kasunduan-arrow-keys">
+          <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
-        )}
+        </div>
       </div>
     </div>
-    </div>
-    </>
   );
 };
 

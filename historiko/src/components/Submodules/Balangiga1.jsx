@@ -89,35 +89,40 @@ const Balangiga1 = () => {
   }, [selectedImage]);
 
   return (
-    <>
     <div className="balangiga1">
-    <button onClick={handleViewMore}>View in 3D</button>
-    <div className="balangiga1-container">
-      <div className="balangiga1-description-container">
-        <h1>Description:</h1>
-        <p>{descriptions[selectedImage]}</p>
-      </div>
-      <div className="balangiga1-image-container">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`balangiga1-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
-              isZoomed && index === selectedImage ? 'zoomed' : ''
-            }`}
-            onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
-          >
-            <img src={image.src} alt={`Image ${index + 1}`} />
-            <div className="balangiga1-image-description">{image.description}</div>
-          </div>
-        ))}
-      </div>
-      <div className="balangiga1-arrow-keys">
-        <img src={arrownav2} alt="left" onClick={handlePrev} />
-        <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+      <button onClick={handleViewMore}>View in 3D</button>
+      <div className="balangiga1-container">
+        <div className="balangiga1-description-container">
+          <h1>Description:</h1>
+          <p>{descriptions[selectedImage]}</p>
+        </div>
+        <div className="balangiga1-image-container">
+          {[...Array(2)].map((_, index) => {
+            const imageIndex = (selectedImage + index) % images.length;
+            return (
+              <div
+                key={imageIndex}
+                className={`balangiga1-image-wrapper ${index === 0 ? 'selected' : ''} ${
+                  isZoomed && index === 0 ? 'zoomed' : ''
+                }`}
+                onClick={index === 0 ? toggleZoom : () => setSelectedImage(imageIndex)}
+                style={{
+                  order: index,
+                  zIndex: 2 - index
+                }}
+              >
+                <img src={images[imageIndex].src} alt={`Image ${imageIndex + 1}`} />
+                <div className="balangiga1-image-description">{images[imageIndex].description}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="balangiga1-arrow-keys">
+          <img src={arrownav2} alt="left" onClick={handlePrev} />
+          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        </div>
       </div>
     </div>
-    </div>
-    </>
   );
 };
 
