@@ -102,22 +102,25 @@ const Putok = () => {
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="putok-image-container">
-        {images.map((image, index) => (
+        {[...Array(3)].map((_, index) => {
+          const imageIndex = (selectedImage + index) % images.length;
+          return (
             <div
-            key={index}
-            className={`putok-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
-              isZoomed && index === selectedImage ? 'zoomed' : ''
-            }`}
-            onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
-            style={{
-              order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1
-            }}
-          >
-            <img src={image.src} alt={`Image ${index + 1}`} />
-            <div className="putok-image-description">{image.description}</div>
-          </div>
-          ))}
+              key={imageIndex}
+              className={`putok-image-wrapper ${index === 0 ? 'selected' : ''} ${
+                isZoomed && index === 0 ? 'zoomed' : ''
+              }`}
+              onClick={index === 0 ? toggleZoom : () => setSelectedImage(imageIndex)}
+              style={{
+                order: index,
+                zIndex: 2 - index
+              }}
+            >
+              <img src={images[imageIndex].src} alt={`Image ${imageIndex + 1}`} />
+              <div className="putok-image-description">{images[imageIndex].description}</div>
+            </div>
+          );
+        })}
         </div>
         <div className="putok-arrow-keys">
           <img src={arrownav2} alt="left" onClick={handlePrev} />

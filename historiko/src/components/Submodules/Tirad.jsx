@@ -107,47 +107,40 @@ const Tirad = () => {
   }, [selectedImage]);
 
   return (
-    <>
     <div className="tirad">
-    <button onClick={handleViewMore}>View in 3D</button>
-    <div className="tirad-container">
-      <div className="tirad-description-container">
-        <h1>Description:</h1>
-        <p>{descriptions[selectedImage]}</p>
-      </div>
-      <div className="tirad-image-container">
-      {images.map((image, index) => (
-            <div
-            key={index}
-            className={`tirad-image-wrapper ${index === selectedImage ? 'selected' : ''} ${
-              isZoomed && index === selectedImage ? 'zoomed' : ''
-            }`}
-            onClick={index === selectedImage ? toggleZoom : () => setSelectedImage(index)}
-            style={{
-              order: index === selectedImage ? -1 : 0,
-              zIndex: index === selectedImage ? 2 : 1,
-              display: 
-                index === selectedImage || 
-                index === (selectedImage + 1) % images.length || 
-                index === (selectedImage - 1 + images.length) % images.length 
-                  ? 'block' 
-                  : 'none'
-            }}
-          >
-            <img src={image.src} alt={`Image ${index + 1}`} />
-            <div className="tirad-image-description">{image.description}</div>
-          </div>
-          ))}
-      </div>
-      <div className="tirad-arrow-keys">
-        <img src={arrownav2} alt="left" onClick={handlePrev} />
-        {selectedImage < images.length - 1 && (
+      <button onClick={handleViewMore}>View in 3D</button>
+      <div className="tirad-container">
+        <div className="tirad-description-container">
+          <h1>Description:</h1>
+          <p>{descriptions[selectedImage]}</p>
+        </div>
+        <div className="tirad-image-container">
+          {[...Array(3)].map((_, index) => {
+            const imageIndex = (selectedImage + index) % images.length;
+            return (
+              <div
+                key={imageIndex}
+                className={`tirad-image-wrapper ${index === 0 ? 'selected' : ''} ${
+                  isZoomed && index === 0 ? 'zoomed' : ''
+                }`}
+                onClick={index === 0 ? toggleZoom : () => setSelectedImage(imageIndex)}
+                style={{
+                  order: index,
+                  zIndex: 2 - index
+                }}
+              >
+                <img src={images[imageIndex].src} alt={`Image ${imageIndex + 1}`} />
+                <div className="tirad-image-description">{images[imageIndex].description}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="tirad-arrow-keys">
+          <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
-        )}
+        </div>
       </div>
     </div>
-    </div>
-    </>
   );
 };
 

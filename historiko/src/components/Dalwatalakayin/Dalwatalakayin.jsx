@@ -18,7 +18,7 @@ function Dalwatalakayin() {
 
   useEffect(() => {
     if (location.state && location.state.showToast) {
-      toast.info("Welcome to Dalwatalakayin!", {
+      toast.info("Halinat talakayin ang Panahon ng Himagsikang Pilipino!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

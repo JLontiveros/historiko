@@ -17,7 +17,7 @@ function Unatalakayin() {
 
   useEffect(() => {
     if (location.state?.showToast && location.state?.fromModules) {
-      toast.info("Welcome to Unatalakayin!", {
+      toast.info("Halinat Talakayin ang Panahon ng Digmaan Pilipino-Amerikano!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
