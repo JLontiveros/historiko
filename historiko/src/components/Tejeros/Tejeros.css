@@ -6,6 +6,7 @@
   margin-top: 130px;
   margin-left: 100px;
   margin-right: 80px;
+  padding: 30px;
 }
 
 .tejeros-container-left {
@@ -15,7 +16,7 @@
 
 .tejeros-container-left img {
   width: 500px;
-    height: 350px;
+  height: 350px;
   margin-top: 65px;
   margin-bottom: 50px;
   border-radius: 20px; /* Adjust this value to change the roundness of the corners */
@@ -32,6 +33,7 @@
   font-size: 30px;
   font-weight: 800;
   margin-top: 30px;
+  margin-left: -100px;
 }
 
 .tejeros-description {
@@ -44,7 +46,7 @@
 .tejeros-description img {
   position: absolute;
   top: -106px; /* Adjust this value to position the heart image as needed */
-  right: 85px; /* Adjust this value to position the heart image as needed */
+  right: 165px; /* Adjust this value to position the heart image as needed */
   width: 30px;
   height: 30px;
   background-color: gold;
@@ -61,17 +63,17 @@
 .tejeros-blank {
   position: absolute;
   top: -70px; /* Adjust this value to position the blank div as needed */
-  left: 10;
+  left: -3.3%;
   height: 4px;
-  width: 720px;
+  width: 690px;
   margin-left: 90px;
   background-color: gold;
 }
 
 .tejeros-container-right p {
   background-color: #8c85d5;
-  margin-left: 90px;
-  margin-right: 70px;
+  margin-left: 40px;
+  margin-right: 150px;
   margin-top: -70px;
   padding: 5px;
   text-align: justify;
@@ -91,6 +93,8 @@
 }
 
 .tejeros-container-right button {
+  position: relative;
+  left: -5%;
   width: 120px;
   margin-top: -10px;
   margin-left: 400px;
