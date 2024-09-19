@@ -4,6 +4,7 @@ import './Convention3d.css';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
+import badge from '../../assets/badge.png';
 import {DefaultPlayer as Video} from 'react-html5video';
 import 'react-html5video/dist/styles.css';
 import tejerosvid from '../../assets/tejerosvid.mp4';
@@ -87,7 +88,15 @@ const Convention3d = () => {
   };
 
   const handleVideoEnd = () => {
-    toast.success("Congratulations! You've completed watching the 3D video.", {
+    toast.success(<div style={{ display: 'flex', alignItems: 'center' }}>
+      <img 
+        src={badge} 
+        alt="Badge" 
+        style={{ width: '50px', height: '50px', marginRight: '10px' }} 
+      />
+      <span>Gantimpala para sa pagtatapos ng talakayin ng Tejeros Convention.</span>
+    </div>, 
+    {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
