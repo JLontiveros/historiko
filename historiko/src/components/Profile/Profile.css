@@ -516,6 +516,10 @@
         margin-top: 0;
     }
 
+    .resulta-container h1 {
+        margin-bottom: 20px;
+    }
+
     .edit-form {
         padding: 10px;
     }
