@@ -3,9 +3,10 @@
   font-family: Arial, sans-serif;
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  margin-top: 130px;
+  margin-top: 120px;
   margin-left: 100px;
   margin-right: 80px;
+  padding: 30px;
 }
 
 .tiradpass-container-left {
@@ -62,9 +63,9 @@
 .tiradpass-blank {
   position: absolute;
   top: -70px; /* Adjust this value to position the blank div as needed */
-  left: -8.8%;
+  left: -9.3%;
   height: 4px;
-  width: 760px;
+  width: 725px;
   margin-left: 90px;
   background-color: gold;
 }
@@ -85,6 +86,7 @@
   color: #4169e1;
   font-size: 24px;
   margin-top: -20px;
+  margin-left: -40px;
 }
 
 .tiradpass-container-right button:hover {
@@ -133,7 +135,7 @@
     right: -10px;
   }
   .tiradpass-blank {
-    width: 100%;
+    width: 325px;
     margin-left: 9%;
     margin-top: 60px;
   }
@@ -146,6 +148,7 @@
   .tiradpass-date {
     font-size: 18px;
     margin-top: 10px;
+    margin-left: 10px;
   }
   .tiradpass-container-right button {
     margin-top: 5px;

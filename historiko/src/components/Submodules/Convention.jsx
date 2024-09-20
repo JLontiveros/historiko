@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Convention.css';
-import kidst from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import groupphoto from '../../assets/groupphoto.png';
@@ -10,6 +10,8 @@ import groupphoto2 from '../../assets/groupphoto2.png';
 import mtbuntis from '../../assets/mtbuntis.jpg';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Convention = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -17,6 +19,7 @@ const Convention = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 5;
+  const location = useLocation();
 
   const images = [
     { src: groupphoto, bg: groupphoto },
@@ -31,6 +34,30 @@ const Convention = () => {
     "Kasunod nito ay bumuo si Andres Bonifacio ng isang hiwalay na pamahalaan sa ilalim ng batas ng ( Kasunduang Militar sa Naic ). Ang pangyayaring ito ay nakarating kay Aguinaldo at agad nyang ipinag-utos kay Koronel Agapito Banzon ang pagdakip kay Bonifacio sa mga kasamahan niya. Nagkaroon ng palitan ng putok ng subukang arestuhin si bonifacio at ang kanyang mga kasamahan na nauwi sa pagdakip kay bonifacio at pagkasawi ng kanyang kapatid na si Ciriaco Bonifacio.",
     "Humarap sa kasong Rebelyon at nahatulan ng kamatayan si Andres Bonafacio, siya ay ipinahuli at ipinapatay ni Aguinaldo sa kanyang mga tauhan. Iniutos kay Mariano Noriel na ibigay ang hatol sa isang selyadong sobre kay Lazaro Makapagal. Iniutos ang pagbaril kay Bonifacio kasama ang kanyang kapatid na lalaking si Procopio Bonifacio noong 10 Mayo 1897 malapit sa Bundok Nagpatong (o Bundok Buntis). Sunod sunod ang mga labanan sa pagitan ng mga Pilipino at espanyol pagkatapos ng unang sigaw sa pugad lawin. Kasabay nito ang sunod sunod din na pagkatalo sa ibat ibang lugar sa bansa kabilang ang grupo ni Emilio Aguinaldo sa cavite, dahil dito ay umatras at nagtungo sa Talisay Batangas. Kalaunan ay nagtungo sa San Miguel, Bulacan upang iwasan ang malaking grupo ng mga espanyol as tumutugis sa kanila."
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -95,6 +122,7 @@ const Convention = () => {
 
   return (
     <div className="convention">
+      <ToastContainer/>
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="convention-container">
         <div className="convention-description-container">

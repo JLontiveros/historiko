@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Putok.css';
-import kidst from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png';
@@ -10,6 +10,8 @@ import genduo from '../../assets/genduo.png';
 import genluna from '../../assets/genluna.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Putok = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -17,6 +19,7 @@ const Putok = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 1;
+  const location = useLocation();
 
   const images = [
     { src: emilio, bg: emilio, description: "Emilio Aguinaldo" },
@@ -31,6 +34,30 @@ const Putok = () => {
     "Hindi pinaunlakan ni Gen Elwell Otis at sinabing “ Fighting, having begun, must go on to the grim end”. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. ANg hindi pagkilala ng Estados Unidos sa republika ng pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga arikano ay sakupin ang pilipinas.",
     "Pebrero 5, 1899, Binomba ng mga amerikano ang san juan, at sinalakay ang Marikina, Guadalupe at caloocan. Buong tapang at gilas na hinadlangan ito ng pinuno ng hukbong Pilipino sa pamumuno ni General Antonio Luna ngunit sila ay natalo at umurong at nagtungo sa Pulo, Bulacan."
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -95,6 +122,7 @@ const Putok = () => {
 
   return (
     <div className="putok">
+      <ToastContainer />
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="putok-container">
         <div className="putok-description-container">

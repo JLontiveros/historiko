@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Balangiga1.css';
-import kidst from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png'; // Add your background images
@@ -9,6 +9,8 @@ import genjacob from '../../assets/genjacob.png';
 import kirambates from '../../assets/kirambates.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Balangiga1 = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -16,6 +18,7 @@ const Balangiga1 = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 3;
+  const location = useLocation();
 
   const images = [
     { src: genjacob, bg: genjacob, description: "Brig. Gen Jacob Smith"  },
@@ -26,6 +29,31 @@ const Balangiga1 = () => {
     "Bilang ganti ay ipinadala ang malaking bilang ng mga sundalong Amerikano sa pangunguna ni Brigadier  Gen Jacob Smith. Malawakang pagpatay at pagsunog sa mga ari-arian ang isingawa nila sa Balangiga. ANg lahat ng kalalakihang may kakayahang humawak ng armas mula 10 taong gulang pataas ay pinagutos na patayin. Sa loob ng anim na buwan ang balangiga ay nagmistulang isang disyerto dahil sinunog ng mga amerikano ang buong baying ito.",
     "Ang mga moro sa Mindanao at Sulu ay nanahimik, at nagmasid lamang upang hindi masangkot sa digmaan. Lumagda ng isang kasunduan si Brigadier General John C. Bates at si Sultan Jamal ul Kiram II kasama ang mga kinatawang datu ng sulu noong Agosto 10, 1899 na nagsasaad na kinikilala ng Sultan ang kapangyarihan ng Estados Unidos sa buong kapuluan ng Sulu, Igagalang ng estados unidos ang mga karapatan at karangalan ng sultan ang kaniyang mga datu; at hindi makikialam ang estados unidos sa relihiyon ng mga moro.  Hindi kinilala ang kasunduang Bates makalipas ang dalawang taon ay pinuksa ng mga amerikano ang mga muslim sa Mindanao matapos nilang matalo ang mga Pilipino sa Luzon.",
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
+
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -90,6 +118,7 @@ const Balangiga1 = () => {
 
   return (
     <div className="balangiga1">
+      <ToastContainer/>
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="balangiga1-container">
         <div className="balangiga1-description-container">

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Tirad.css';
 import kidst from '../../assets/kidst.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
-import bg1 from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import pasongtirad from '../../assets/pasongtirad.png';
 import gregdelpillar from '../../assets/gregdelpillar.png';
 import januario from '../../assets/januario.png';
@@ -15,6 +15,8 @@ import bg8 from '../../assets/kidst.png';
 import bg9 from '../../assets/kidst.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Tirad = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -22,6 +24,7 @@ const Tirad = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 2;
+  const location = useLocation();
 
   const images = [
     { src: pasongtirad, bg: pasongtirad, description: "Pasong Tirad Pass, Ilocos Sur" },
@@ -44,6 +47,30 @@ const Tirad = () => {
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -108,6 +135,7 @@ const Tirad = () => {
 
   return (
     <div className="tirad">
+      <ToastContainer/>
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="tirad-container">
         <div className="tirad-description-container">

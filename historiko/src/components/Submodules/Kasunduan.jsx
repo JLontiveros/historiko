@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Kasunduan.css';
 import kidst from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import groupnabiak from '../../assets/groupnabiak.png';
@@ -12,6 +13,8 @@ import nota from '../../assets/nota.png';
 import classpic from '../../assets/classpic.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Kasunduan = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -19,6 +22,7 @@ const Kasunduan = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 6;
+  const location = useLocation();
 
   const images = [
     { src: republikangbiak, bg: republikangbiak },
@@ -37,6 +41,30 @@ const Kasunduan = () => {
     "Nilagdaan ang isang kasulatan: 1. Pagbabayad ng 800,000 pesos (MEXICAN) sa mga sundalo; A. MXN P400,000 kapalit ng pag-alis ni Aguinaldo patungo sa hongkong; B. 200,000 pesos (MEXICAN) kapalit ng mga armas na lalagpas sa 700 piraso; C. 200,000 pesos (MEXICAN) kapag ang Te Deum (isang tradisyunal na Kristiyanong himno ng papuri at pasasalamat) ay inawit at ang pangkalahatang amnestiya ay iproklama ng Gobernador Heneral; 2.. Pagbibigay ng MXN P900,000 para sa mga sibilyang nadamay sa labanan.",
     "Hindi nagtitiwala sa isa't isa ang mga Pilipino at mga Kastila. Dahil dito, patuloy na nagkaroon ng mga labanan sa pagitan ng dalawang panig kahit na umalis na si Aguinaldo mula sa bansa. Hindi ibinigay ng mga Kastila ang buong napagkasunduang halaga. Ang mga pangyayaring ito ay nagpatuloy sa Digmaang Espanyol-Amerikano."
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -101,6 +129,7 @@ const Kasunduan = () => {
 
   return (
     <div className="Kasunduan">
+      <ToastContainer/>
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="Kasunduan-container">
         <div className="Kasunduan-description-container">
