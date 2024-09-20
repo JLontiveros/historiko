@@ -19,6 +19,7 @@ const Balangiga1 = () => {
   const navigate = useNavigate();
   const topicId = 3;
   const location = useLocation();
+  const [hasShownToast, setHasShownToast] = useState(false);
 
   const images = [
     { src: genjacob, bg: genjacob, description: "Brig. Gen Jacob Smith"  },
@@ -31,7 +32,7 @@ const Balangiga1 = () => {
   ];
 
   useEffect(() => {
-    if (location.state?.showToast) {
+    if (location.state?.showToast && !hasShownToast) {
       toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
         <img 
           src={star} 
@@ -49,21 +50,25 @@ const Balangiga1 = () => {
         draggable: true,
         progress: undefined,
       }, 1500);
+      setHasShownToast(true);
     }
   
     // ... (rest of the useEffect for background image)
   }, [selectedImage, location.state]);
 
 
-  const handlePrev = () => {
-    setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const handlePrev = (e) => {
+    e.preventDefault();
+    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  };
+  
+  const handleNext = (e) => {
+    e.preventDefault();
+    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
-  const handleNext = () => {
-    setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  const toggleZoom = () => {
+  const toggleZoom = (e) => {
+    e.preventDefault();
     setIsZoomed(!isZoomed);
   };
 
@@ -81,7 +86,8 @@ const Balangiga1 = () => {
     return data.id;
   };
 
-  const handleViewMore = async () => {
+  const handleViewMore = async (e) => {
+    e.preventDefault();
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {
@@ -134,7 +140,7 @@ const Balangiga1 = () => {
                 className={`balangiga1-image-wrapper ${index === 0 ? 'selected' : ''} ${
                   isZoomed && index === 0 ? 'zoomed' : ''
                 }`}
-                onClick={index === 0 ? toggleZoom : () => setSelectedImage(imageIndex)}
+                onClick={(e) => index === 0 ? toggleZoom(e) : setSelectedImage(imageIndex)}
                 style={{
                   order: index,
                   zIndex: 2 - index
