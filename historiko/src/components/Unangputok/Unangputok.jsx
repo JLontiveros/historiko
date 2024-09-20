@@ -6,6 +6,8 @@ import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import { useMarkedTopics } from '../context/MarkedTopicsContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Unangputok = () => {
   const navigate = useNavigate();
@@ -22,7 +24,25 @@ const Unangputok = () => {
     } else {
       setIsLoading(false);
     }
+
+    const timer = setTimeout(() => {
+      toast.info("Magpatuloy at alamin ang lahat tungkol sa Unang Putok sa panulukan ng Silencio at Sociego, Sta. Mesa", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }, 1500);
+
+    // Clear the timeout if the component unmounts
+    return () => clearTimeout(timer);
+
   }, [user]);
+
+  
 
   const getUserUUID = async (username) => {
     const { data, error } = await supabase
@@ -127,7 +147,7 @@ const Unangputok = () => {
         }
       }
     }
-    navigate('/putok');
+    navigate('/putok', { state: { showToast: true } });
   }
 
   if (isLoading) {
@@ -136,6 +156,7 @@ const Unangputok = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="unangputok-container">
         <div className="unangputok-container-left">    
           <img 

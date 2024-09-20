@@ -92,7 +92,7 @@ const Putok3d = () => {
       <img 
         src={badge1} 
         alt="Badge" 
-        style={{ width: '50px', height: '50px', marginRight: '10px' }} 
+        style={{ width: '50px', height: '50px', marginRight: '50px' }} 
       />
       <span>Gantimpala para sa pagtatapos ng talakayin ng Unang Putok sa panukulan ng Silencio at Sociego, Sta. Mesa.</span>
     </div>,

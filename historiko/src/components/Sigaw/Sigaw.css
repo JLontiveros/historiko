@@ -33,6 +33,7 @@
     font-size: 30px;
     font-weight: 800;
     margin-top: 30px;
+    margin-left: -100px;
   }
   
   .sigaw-description {
@@ -92,7 +93,9 @@
   }
   
   .sigaw-container-right button {
-    width: 120px;
+    position: relative;
+    left: -5%;
+    width: 115px;
     margin-top: -10px;
     margin-left: 400px;
     margin-right: 400px;

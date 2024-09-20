@@ -6,6 +6,8 @@ import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import { useMarkedTopics } from '../context/MarkedTopicsContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Bato = () => {
   const navigate = useNavigate();
@@ -23,6 +25,22 @@ const Bato = () => {
     } else {
       setIsLoading(false);
     }
+
+    const timer = setTimeout(() => {
+      toast.info("Magpatuloy at alamin ang lahat tungkol sa Kasunduan sa Biak na Bato", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }, 1500);
+
+    // Clear the timeout if the component unmounts
+    return () => clearTimeout(timer);
+
   }, [user]);
 
   const getUserUUID = async (username) => {
@@ -128,7 +146,7 @@ const Bato = () => {
         }
       }
     }
-    navigate('/kasunduan');
+    navigate('/kasunduan', { state: { showToast: true } });
   }
 
   if (isLoading) {
@@ -137,6 +155,7 @@ const Bato = () => {
 
   return ( 
     <>
+    <ToastContainer/>
       <div className="bato-container">
         <div className="bato-container-left">    
           <img 

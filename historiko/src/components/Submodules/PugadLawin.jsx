@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './PugadLawin.css';
 import kidst from '../../assets/kidst.png';
+import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import andresboni from '../../assets/andresboni.png';
@@ -14,6 +15,8 @@ import baldoandfrends from '../../assets/baldoandfrends.png';
 import faction from '../../assets/faction.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PugadLawin = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -21,6 +24,7 @@ const PugadLawin = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const topicId = 4;
+  const location = useLocation();
 
   const images = [
     { src: andresboni, bg: andresboni, description: "Andres Bonifacio" },
@@ -43,6 +47,30 @@ const PugadLawin = () => {
     "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga caviteno at dahil ditto ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Gen. Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Gen. Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
     "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat."
   ];
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }, 1500);
+    }
+  
+    // ... (rest of the useEffect for background image)
+  }, [selectedImage, location.state]);
 
   const handlePrev = () => {
     setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -107,6 +135,7 @@ const PugadLawin = () => {
 
   return (
     <div className="PugadLawin">
+      <ToastContainer/>
       <button onClick={handleViewMore}>View in 3D</button>
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
