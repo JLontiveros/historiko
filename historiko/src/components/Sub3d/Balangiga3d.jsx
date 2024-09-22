@@ -7,7 +7,7 @@ import arrownav2 from '../../assets/arrownav.png';
 import badgge from '../../assets/badgge.png';
 import {DefaultPlayer as Video} from 'react-html5video';
 import 'react-html5video/dist/styles.css';
-import biaknavid from '../../assets/biaknavid.mp4';
+import balangigavid from '../../assets/balangigavid.mp4';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
@@ -121,7 +121,7 @@ const Balangiga3d = () => {
             console.log('video play')
           }}
         >
-            <source src={biaknavid} type="video/webm"/>
+            <source src={balangigavid} type="video/webm"/>
           </Video>
         </div>
       </div>
