@@ -68,7 +68,7 @@ const Convention3d = () => {
   };
 
   const handleGoBack = async () => {
-    const rewardId = 1; // Replace with the correct reward ID
+    const rewardId = 5; // Replace with the correct reward ID
     
     if (user) {
       await updateProgress(); // Update progress to 100%
