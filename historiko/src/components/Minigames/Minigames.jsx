@@ -46,6 +46,10 @@ const Minigame = () => {
           <h2>Guess Game</h2>
           <img src={character} alt="Character" className="character-image" />
         </div>
+        <div className="guess-game" onClick={() => handleGameClick('guessGame')}>
+          <h2>Guess Game</h2>
+          <img src={character} alt="Character" className="character-image" />
+        </div>
       </div>
     </div>
   );

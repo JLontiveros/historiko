@@ -95,7 +95,7 @@ function App() {
                 <Route path="/Sigaw" element={<ProtectedRoute><Sigaw /></ProtectedRoute>} />
                 <Route path="/Tejeros" element={<ProtectedRoute><Tejeros /></ProtectedRoute>} />
                 <Route path="/Bato" element={<ProtectedRoute><Bato /></ProtectedRoute>} />
-                <Route path="/Minigames" element={<ProtectedRoute><Minigames /></ProtectedRoute>} />
+                <Route path="/Quiz" element={<ProtectedRoute><Minigames /></ProtectedRoute>} />
                 <Route path="/TopicMarking" element={<ProtectedRoute><TopicMarking /></ProtectedRoute>} />
                 <Route path="/Putok" element={<ProtectedRoute><Putok /></ProtectedRoute>} />
                 <Route path="/Putok3d" element={<ProtectedRoute><Putok3d /></ProtectedRoute>} />

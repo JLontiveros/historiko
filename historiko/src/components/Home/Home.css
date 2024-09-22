@@ -73,6 +73,7 @@
 .subheading {
   font-size: 1.2em;
   line-height: 1.4;
+  text-align: left;
 }
 
 .subheading h3 {
@@ -101,12 +102,12 @@
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .heading {
-    font-size: 2em;
+    font-size: 1.3em;
     text-align: left;
   }
 
   .subheading {
-    font-size: 1em;
+    font-size: 0.7em;
     text-align: left;
   }
 

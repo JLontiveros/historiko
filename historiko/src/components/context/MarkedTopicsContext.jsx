@@ -70,6 +70,7 @@ export const MarkedTopicsProvider = ({ children }) => {
       setMarkedTopics(prev => [...prev, { id: topicId, topic_name: topicName }]);
     } catch (error) {
       console.error('Error adding marked topic:', error);
+      throw error;
     }
   };
 
@@ -93,6 +94,7 @@ export const MarkedTopicsProvider = ({ children }) => {
       setMarkedTopics(prev => prev.filter(topic => topic.id !== topicId));
     } catch (error) {
       console.error('Error removing marked topic:', error);
+      throw error;
     }
   };
 
