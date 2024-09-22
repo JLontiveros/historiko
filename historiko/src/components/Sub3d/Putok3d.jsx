@@ -7,7 +7,7 @@ import arrownav2 from '../../assets/arrownav.png';
 import badge1 from '../../assets/badge1.png';
 import {DefaultPlayer as Video} from 'react-html5video';
 import 'react-html5video/dist/styles.css';
-import biaknavid from '../../assets/biaknavid.mp4';
+import unangvid from '../../assets/unangvid.mp4';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
@@ -120,7 +120,7 @@ const Putok3d = () => {
             console.log('video play')
           }}
         >
-          <source src={biaknavid} type="video/webm"/>
+          <source src={unangvid} type="video/webm"/>
         </Video>
       </div>
     </div>
