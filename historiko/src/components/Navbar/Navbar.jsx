@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaBars, FaTimes, FaBookOpen, FaBookmark, FaInfoCircle } from 'react-icons/fa';
 import logo from '../../assets/logo.png';
 import './Navbar.css';
 
@@ -50,9 +50,9 @@ function Navbar() {
               <li>
                 <Link to="/Home" onClick={toggleMobileMenu}>Home</Link>
                 <ul className="mobile-submenu">
-                  <li><Link to="/Modules" onClick={toggleMobileMenu}>Modules</Link></li>
-                  <li><Link to="/Topicmarking" onClick={toggleMobileMenu}>Topic Marking</Link></li>
-                  <li><Link to="/Minigames" onClick={toggleMobileMenu}>Mini Games</Link></li>
+                  <Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen />Modules</Link>
+                  <Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark />Topic Marking</Link>
+                  <Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle  />Quiz</Link>
                 </ul>
               </li>
               <li><Link to="/Profile" onClick={toggleMobileMenu}>Profile</Link></li>
@@ -66,9 +66,9 @@ function Navbar() {
             <Link to="/Home">Home</Link>
             {showDropdown && (
               <ul className="dropdown">
-                <li><Link to="/Modules">Modules</Link></li>
-                <li><Link to="/Topicmarking">Topic Marking</Link></li>
-                <li><Link to="/Minigames">Mini Games</Link></li>
+                <Link to="/Modules"><FaBookOpen />Modules</Link>
+                <Link to="/Topicmarking"><FaBookmark />Topic Marking</Link>
+                <Link to="/Quiz"><FaInfoCircle  />Quiz</Link>
               </ul>
             )}
           </li>

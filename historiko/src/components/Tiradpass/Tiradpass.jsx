@@ -18,6 +18,8 @@ const Tiradpass = () => {
   const topicId = 2; // "Labanan sa Tirad Pass"
   const topicName = "Labanan sa Tirad Pass";
 
+  let timer;
+
   useEffect(() => {
     if (user) {
       checkIfMarked();
@@ -40,7 +42,7 @@ const Tiradpass = () => {
     // Clear the timeout if the component unmounts
     return () => clearTimeout(timer);
 
-  }, [user]);
+  }, [user, markedTopics]);
 
   const getUserUUID = async (username) => {
     const { data, error } = await supabase
@@ -56,73 +58,36 @@ const Tiradpass = () => {
     return data.id;
   };
 
-  const checkIfMarked = async () => {
-    setIsLoading(true);
-    const userUUID = await getUserUUID(user.username);
-    if (!userUUID) {
-      setIsLoading(false);
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from('user_topics')
-      .select()
-      .eq('user_id', userUUID)
-      .eq('topic_id', topicId)
-      .single();
-
-    if (error && error.code !== 'PGRST116') {
-      console.error('Error checking if topic is marked:', error);
-    } else {
-      setIsMarked(!!data);
-    }
+  const checkIfMarked = () => {
+    setIsMarked(markedTopics.some(topic => topic.id === topicId));
     setIsLoading(false);
   };
 
-  const handleHeartClick = async () => {
+  const handleHeartClick = async (e) => {
+    e.preventDefault(); // Prevent default behavior
+  
     if (!user) {
-      const confirmed = window.confirm('You need to be logged in to mark topics. Would you like to log in now?');
-      if (confirmed) {
-        navigate('/signup');
-      }
+      toast.info('You need to be logged in to mark topics.', {
+        onClick: () => navigate('/signup')
+      });
       return;
     }
 
-    setIsLoading(true);
-    const userUUID = await getUserUUID(user.username);
-    if (!userUUID) {
-      setIsLoading(false);
-      alert('Error fetching user information. Please try again.');
-      return;
-    }
-
-    if (isMarked) {
-      const { error } = await supabase
-        .from('user_topics')
-        .delete()
-        .match({ user_id: userUUID, topic_id: topicId });
-
-      if (error) console.error('Error removing mark:', error);
-      else {
-        setIsMarked(false);
-        removeMarkedTopic(topicId);
+    // Clear the timer-based toast if user clicks heart
+    clearTimeout(timer);
+  
+    try {
+      if (isMarked) {
+        await removeMarkedTopic(topicId);
+        toast.success('Topic unmarked successfully!');
+      } else {
+        await addMarkedTopic(topicName, topicId);
+        toast.success('Topic marked successfully!');
       }
-    } else {
-      const { error } = await supabase
-        .from('user_topics')
-        .insert({
-          user_id: userUUID,
-          topic_id: topicId,
-          topic_name: topicName,
-          marked_at: new Date().toISOString(),
-          status: 'to_review'
-        });
-
-      if (error) console.error('Error adding mark:', error);
-      else {
-        setIsMarked(true);
-        addMarkedTopic({ id: topicId, topic_name: topicName });
-      }
+      setIsMarked(!isMarked);
+    } catch (error) {
+      console.error('Error toggling mark:', error);
+      toast.error('Error updating topic. Please try again.');
     }
     setIsLoading(false);
   };
@@ -155,6 +120,7 @@ const Tiradpass = () => {
   return (
     <>
     <ToastContainer />
+
     <div className="tiradpass-container"> 
     <div className="tiradpass-container-left">
         <img 

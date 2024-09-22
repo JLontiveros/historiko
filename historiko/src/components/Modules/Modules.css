@@ -79,6 +79,10 @@
   cursor: pointer;
 }
 
+.module button:hover {
+  background-color: rgb(64, 150, 150);
+}
+
 .module h2:hover,
 .module li:hover,
 .module-icon:hover,

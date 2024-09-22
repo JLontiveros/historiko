@@ -14,9 +14,11 @@ const Unangputok = () => {
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
-  const { addMarkedTopic, removeMarkedTopic } = useMarkedTopics();
+  const { addMarkedTopic, removeMarkedTopic, markedTopics } = useMarkedTopics();
   const topicId = 1; // "Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa"
   const topicName = "Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa";
+
+  let timer;
 
   useEffect(() => {
     if (user) {
@@ -25,7 +27,7 @@ const Unangputok = () => {
       setIsLoading(false);
     }
 
-    const timer = setTimeout(() => {
+    timer = setTimeout(() => {
       toast.info("Magpatuloy at alamin ang lahat tungkol sa Unang Putok sa panulukan ng Silencio at Sociego, Sta. Mesa", {
         position: "top-right",
         autoClose: 5000,
@@ -39,10 +41,7 @@ const Unangputok = () => {
 
     // Clear the timeout if the component unmounts
     return () => clearTimeout(timer);
-
-  }, [user]);
-
-  
+  }, [user, markedTopics]);
 
   const getUserUUID = async (username) => {
     const { data, error } = await supabase
@@ -58,76 +57,40 @@ const Unangputok = () => {
     return data.id;
   };
 
-  const checkIfMarked = async () => {
-    setIsLoading(true);
-    const userUUID = await getUserUUID(user.username);
-    if (!userUUID) {
-      setIsLoading(false);
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from('user_topics')
-      .select()
-      .eq('user_id', userUUID)
-      .eq('topic_id', topicId)
-      .single();
-
-    if (error && error.code !== 'PGRST116') {
-      console.error('Error checking if topic is marked:', error);
-    } else {
-      setIsMarked(!!data);
-    }
+  const checkIfMarked = () => {
+    setIsMarked(markedTopics.some(topic => topic.id === topicId));
     setIsLoading(false);
   };
 
-  const handleHeartClick = async () => {
+  const handleHeartClick = async (e) => {
+    e.preventDefault(); // Prevent default behavior
+  
     if (!user) {
-      const confirmed = window.confirm('You need to be logged in to mark topics. Would you like to log in now?');
-      if (confirmed) {
-        navigate('/signup');
-      }
+      toast.info('You need to be logged in to mark topics.', {
+        onClick: () => navigate('/signup')
+      });
       return;
     }
 
-    setIsLoading(true);
-    const userUUID = await getUserUUID(user.username);
-    if (!userUUID) {
-      setIsLoading(false);
-      alert('Error fetching user information. Please try again.');
-      return;
-    }
-
-    if (isMarked) {
-      const { error } = await supabase
-        .from('user_topics')
-        .delete()
-        .match({ user_id: userUUID, topic_id: topicId });
-
-      if (error) console.error('Error removing mark:', error);
-      else {
-        setIsMarked(false);
-        removeMarkedTopic(topicId);
+    // Clear the timer-based toast if user clicks heart
+    clearTimeout(timer);
+  
+    try {
+      if (isMarked) {
+        await removeMarkedTopic(topicId);
+        toast.success('Topic unmarked successfully!');
+      } else {
+        await addMarkedTopic(topicName, topicId);
+        toast.success('Topic marked successfully!');
       }
-    } else {
-      const { error } = await supabase
-        .from('user_topics')
-        .insert({
-          user_id: userUUID,
-          topic_id: topicId,
-          topic_name: topicName,
-          marked_at: new Date().toISOString(),
-          status: 'to_review'
-        });
-
-      if (error) console.error('Error adding mark:', error);
-      else {
-        setIsMarked(true);
-        addMarkedTopic({ id: topicId, topic_name: topicName });
-      }
+      setIsMarked(!isMarked);
+    } catch (error) {
+      console.error('Error toggling mark:', error);
+      toast.error('Error updating topic. Please try again.');
     }
     setIsLoading(false);
   };
+  
 
   const handleViewMore = async () => {
     if (user) {
@@ -157,6 +120,7 @@ const Unangputok = () => {
   return (
     <>
       <ToastContainer />
+
       <div className="unangputok-container">
         <div className="unangputok-container-left">    
           <img 
@@ -190,7 +154,7 @@ const Unangputok = () => {
             Pebrero 4, 1899, Sumiklab ang digmaan sa pagitan ng Pilipinas at Amerika nang paputukan ni Pvt. William Walter Grayson ang tatlong Pilipinong Sundalo na naglalakad sa Calle Silencio at Sociego sa Sta. Mesa Manila. “HALT!! “ na ang ibigsabihin ay pahintuin ang mga sundalong Pilipino at ito ang nagging hudyat ng simula ng digmaang Pilipino – amerikano. Ang isa sa apat na Pilipinong sundalo na nabaril at nasawi ay si Corporal Anastacio Felix ng ikaapat na batalyon sa ilalim ng pamumuno ni Captain Serapio Narvaez.
             </p>
           </div>
-          <button className="btnview"onClick={handleViewMore}>VIEW MORE</button>
+          <button className="btnview" onClick={handleViewMore}>VIEW MORE</button>
         </div>
       </div>
     </>

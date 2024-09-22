@@ -111,6 +111,14 @@
   height: 50px;
 }
 
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  min-height: 64px;
+}
+
 @media screen and (max-width: 768px) {
   .unangputok-container {
     grid-template-columns: 1fr;
