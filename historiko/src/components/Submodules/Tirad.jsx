@@ -26,6 +26,7 @@ const Tirad = () => {
   const topicId = 2;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: pasongtirad, bg: pasongtirad, description: "Pasong Tirad Pass, Ilocos Sur" },
@@ -47,6 +48,17 @@ const Tirad = () => {
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
+  ];
+
+  const headings = [
+    "Unang pangyayari",
+    "Ikalawang pangyayari",
+    "Ikatlong pangyayari",
+    "Ikaapat na pangyayari",
+    "Ikalima na pangyayari",
+    "Ikaanim na pangyayari",
+    "Ikapito na pangyayari",
+    "Ikawalo na pangyayari",
   ];
 
   useEffect(() => {
@@ -76,12 +88,20 @@ const Tirad = () => {
 
   const handlePrev = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setSelectedImage((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
   
   const handleNext = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setSelectedImage((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
 
   const toggleZoom = (e) => {
@@ -146,6 +166,7 @@ const Tirad = () => {
       <div className="tirad-container">
         <div className="tirad-description-container">
           <h1>Description:</h1>
+          <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="tirad-image-container">

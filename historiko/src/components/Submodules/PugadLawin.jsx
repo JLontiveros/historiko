@@ -26,6 +26,7 @@ const PugadLawin = () => {
   const topicId = 4;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: andresboni, bg: andresboni, description: "Andres Bonifacio" },
@@ -36,6 +37,17 @@ const PugadLawin = () => {
     { src: pactodesangre, bg: pactodesangre, description: "Pacto De Sangre" },
     { src: baldoandfrends, bg: baldoandfrends, description: "Gen Mariano Alvarez" },
     { src: faction, bg: faction, description: "Magdalo Faction Magdiwang Faction" },
+  ];
+
+  const headings = [
+    "Unang pangyayari",
+    "Ikalawang pangyayari",
+    "Ikatlong pangyayari",
+    "Ikaapat na pangyayari",
+    "Ikalima na pangyayari",
+    "Ikaanim na pangyayari",
+    "Ikapito na pangyayari",
+    "Ikawalo na pangyayari",
   ];
 
   const descriptions = [
@@ -76,12 +88,20 @@ const PugadLawin = () => {
 
   const handlePrev = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setSelectedImage((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
   
   const handleNext = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setSelectedImage((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
 
   const toggleZoom = (e) => {
@@ -146,6 +166,7 @@ const PugadLawin = () => {
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
           <h1>Description:</h1>
+          <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="PugadLawin-image-container">

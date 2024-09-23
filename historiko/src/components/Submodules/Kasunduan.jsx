@@ -24,6 +24,7 @@ const Kasunduan = () => {
   const topicId = 6;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: republikangbiak, bg: republikangbiak },
@@ -41,6 +42,15 @@ const Kasunduan = () => {
     "Pagkabigo ng Kasunduan ng Biak-na-Bato; Gayunpaman, may ilang mga heneral ng Pilipinas ang hindi naniwala sa sinseridad ng mga Kastila at tumangging isuko ang kanilang mga armas. Sa kabila nito, nagdaos pa rin ng Te Deum noong Enero 23, 1898. Ang Te Deum—isang tradisyunal na Kristiyanong himno ng pasasalamat at papuri sa Katedral ng Maynila at Palacio Real sa Madrid bilang simbolo ng kapayapaan, ang mga pagkukulang at hindi pagtupad sa mga kondisyon ng kasunduan ay nagdulot ng higit pang tensyon at hindi pagkakaintindihan.",
     "Nilagdaan ang isang kasulatan: 1. Pagbabayad ng 800,000 pesos (MEXICAN) sa mga sundalo; A. MXN P400,000 kapalit ng pag-alis ni Aguinaldo patungo sa hongkong; B. 200,000 pesos (MEXICAN) kapalit ng mga armas na lalagpas sa 700 piraso; C. 200,000 pesos (MEXICAN) kapag ang Te Deum (isang tradisyunal na Kristiyanong himno ng papuri at pasasalamat) ay inawit at ang pangkalahatang amnestiya ay iproklama ng Gobernador Heneral; 2.. Pagbibigay ng MXN P900,000 para sa mga sibilyang nadamay sa labanan.",
     "Hindi nagtitiwala sa isa't isa ang mga Pilipino at mga Kastila. Dahil dito, patuloy na nagkaroon ng mga labanan sa pagitan ng dalawang panig kahit na umalis na si Aguinaldo mula sa bansa. Hindi ibinigay ng mga Kastila ang buong napagkasunduang halaga. Ang mga pangyayaring ito ay nagpatuloy sa Digmaang Espanyol-Amerikano."
+  ];
+
+  const headings = [
+    "Unang pangyayari",
+    "Ikalawang pangyayari",
+    "Ikatlong pangyayari",
+    "Ikaapat na pangyayari",
+    "Ikalima na pangyayari",
+    "Ikaanim na pangyayari",
   ];
 
   useEffect(() => {
@@ -70,12 +80,20 @@ const Kasunduan = () => {
 
   const handlePrev = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setSelectedImage((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
   
   const handleNext = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setSelectedImage((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
 
   const toggleZoom = (e) => {
@@ -140,6 +158,7 @@ const Kasunduan = () => {
       <div className="Kasunduan-container">
         <div className="Kasunduan-description-container">
           <h1>Description:</h1>
+          <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="Kasunduan-image-container">

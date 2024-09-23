@@ -53,6 +53,11 @@ body::before {
   margin-top: -10px;
 }
 
+.putok-description-container h2 {
+  font-size: 30px;
+  margin-top: -10px;
+}
+
 .putok-description-container p {
   font-size: 20px;
   font-weight: 600;
