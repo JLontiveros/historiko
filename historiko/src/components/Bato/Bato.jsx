@@ -27,8 +27,9 @@ const Bato = () => {
       setIsLoading(false);
     }
 
-    const timer = setTimeout(() => {
-      toast.info("Magpatuloy at alamin ang lahat tungkol sa Kasunduan sa Biak na Bato", {
+    timer = setTimeout(() => {
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Kasunduan sa Biak na Bato`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

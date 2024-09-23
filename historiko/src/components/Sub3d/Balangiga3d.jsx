@@ -21,7 +21,8 @@ const Balangiga3d = () => {
 
   useEffect(() => {
     if (location.state && location.state.showToast) {
-      toast.info("mag patuloy at panoorin ang 3d 'Balangiga Massacre' ", {
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(`Pagbati, ${userName}! Mag patuloy at panoorin ang 3d 'Balangiga Massacre'`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -31,7 +32,7 @@ const Balangiga3d = () => {
         progress: undefined,
       });
     }
-  }, [location]);
+  }, [location,user]);
 
   const getUserUUID = async (username) => {
     const { data, error } = await supabase

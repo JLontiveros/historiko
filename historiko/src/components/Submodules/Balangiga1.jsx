@@ -39,28 +39,33 @@ const Balangiga1 = () => {
 
   useEffect(() => {
     if (location.state?.showToast && !hasShownToast) {
-      toast.info(<div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
-        <img 
-          src={star} 
-          alt="Star" 
-          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
-        />
-        <span style={{width: '180px'}}>Paunang gantimpala sapagkat ikay nakarating dito!</span>
-      </div>, 
-      {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }, 1500);
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(
+        <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+          <img 
+            src={star} 
+            alt="Star" 
+            style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+          />
+          <span style={{width: '180px'}}>
+            Paunang gantimpala, {userName}! Sapagkat ika'y nakarating dito!
+          </span>
+        </div>, 
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
       setHasShownToast(true);
     }
   
     // ... (rest of the useEffect for background image)
-  }, [selectedImage, location.state]);
+  }, [selectedImage, location.state, user, hasShownToast]);
 
 
   const handlePrev = (e) => {
