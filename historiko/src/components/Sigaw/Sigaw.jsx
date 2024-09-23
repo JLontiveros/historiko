@@ -27,8 +27,9 @@ const Sigaw = () => {
       setIsLoading(false);
     }
 
-    const timer = setTimeout(() => {
-      toast.info("Magpatuloy at alamin ang lahat tungkol sa Sigaw ng Pugad Lawin", {
+    timer = setTimeout(() => {
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Sigaw ng Pugad Lawin`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

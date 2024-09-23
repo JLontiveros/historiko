@@ -17,7 +17,8 @@ function Unatalakayin() {
 
   useEffect(() => {
     if (location.state?.showToast && location.state?.fromModules) {
-      toast.info("Halinat Talakayin ang Panahon ng Digmaan Pilipino-Amerikano!", {
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(`Kumusta, ${userName}! Halinat Talakayin ang Panahon ng Digmaan Pilipino-Amerikano!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -28,7 +29,7 @@ function Unatalakayin() {
       });
       localStorage.setItem('hasShownUnatalakyinToast', 'true');
     }
-  }, [location]);
+  }, [location, user]);
 
   const handleSeeMore = async (topicId, route) => {
     if (user) {

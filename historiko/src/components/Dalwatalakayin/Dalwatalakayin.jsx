@@ -17,8 +17,9 @@ function Dalwatalakayin() {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (location.state && location.state.showToast) {
-      toast.info("Halinat talakayin ang Panahon ng Himagsikang Pilipino!", {
+    if (location.state?.showToast && location.state?.fromModules) {
+      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      toast.info(`Kumusta, ${userName}! Halinat talakayin ang Panahon ng Himagsikang Pilipino!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -29,7 +30,7 @@ function Dalwatalakayin() {
       });
       localStorage.setItem('hasShownDalwatalakyinToast', 'true');
     }
-  }, [location]);
+  }, [location,user]);
 
   const handleSeeMore = async (topicId, route) => {
     if (user) {
