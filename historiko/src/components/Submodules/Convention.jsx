@@ -21,6 +21,7 @@ const Convention = () => {
   const topicId = 5;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: groupphoto, bg: groupphoto },
@@ -34,6 +35,13 @@ const Convention = () => {
     "Matapos umalis ni Andres Bonifacio ay nagtungo siya sa Naic, Cavite kasama ang kanyang matatapat na tauhan at ditto ay kanilang ginawa ang isang petisyon na tinawag na  ( Acta De Tejeros ) na nilagdaan na mahigit 40 kasapi ng katipunan. Sa petisyong ito ay kanilang ipinaliwanag kung bakit hindi katanggap tanggap ang naging resulta ng pagpupulong sa Tejeros",
     "Kasunod nito ay bumuo si Andres Bonifacio ng isang hiwalay na pamahalaan sa ilalim ng batas ng ( Kasunduang Militar sa Naic ). Ang pangyayaring ito ay nakarating kay Aguinaldo at agad nyang ipinag-utos kay Koronel Agapito Banzon ang pagdakip kay Bonifacio sa mga kasamahan niya. Nagkaroon ng palitan ng putok ng subukang arestuhin si bonifacio at ang kanyang mga kasamahan na nauwi sa pagdakip kay bonifacio at pagkasawi ng kanyang kapatid na si Ciriaco Bonifacio.",
     "Humarap sa kasong Rebelyon at nahatulan ng kamatayan si Andres Bonafacio, siya ay ipinahuli at ipinapatay ni Aguinaldo sa kanyang mga tauhan. Iniutos kay Mariano Noriel na ibigay ang hatol sa isang selyadong sobre kay Lazaro Makapagal. Iniutos ang pagbaril kay Bonifacio kasama ang kanyang kapatid na lalaking si Procopio Bonifacio noong 10 Mayo 1897 malapit sa Bundok Nagpatong (o Bundok Buntis). Sunod sunod ang mga labanan sa pagitan ng mga Pilipino at espanyol pagkatapos ng unang sigaw sa pugad lawin. Kasabay nito ang sunod sunod din na pagkatalo sa ibat ibang lugar sa bansa kabilang ang grupo ni Emilio Aguinaldo sa cavite, dahil dito ay umatras at nagtungo sa Talisay Batangas. Kalaunan ay nagtungo sa San Miguel, Bulacan upang iwasan ang malaking grupo ng mga espanyol as tumutugis sa kanila."
+  ];
+
+  const headings = [
+    "Unang pangyayari",
+    "Ikalawang pangyayari",
+    "Ikatlong pangyayari",
+    "Ikaapat na pangyayari"
   ];
 
   useEffect(() => {
@@ -63,12 +71,20 @@ const Convention = () => {
 
   const handlePrev = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setSelectedImage((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
   
   const handleNext = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setSelectedImage((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
 
   const toggleZoom = (e) => {
@@ -133,6 +149,7 @@ const Convention = () => {
       <div className="convention-container">
         <div className="convention-description-container">
           <h1>Description:</h1>
+          <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="convention-image-container">

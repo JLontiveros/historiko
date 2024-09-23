@@ -94,7 +94,7 @@ const Putok3d = () => {
         alt="Badge" 
         style={{ width: '50px', height: '50px', marginRight: '50px' }} 
       />
-      <span>Gantimpala para sa pagtatapos ng talakayin ng Unang Putok sa panukulan ng Silencio at Sociego, Sta. Mesa.</span>
+      <span>Gantimpala para sa pagtatapos ng talakayin ng Unang Putok sa panulukan ng Silencio at Sociego, Sta. Mesa.</span>
     </div>,
      {
       position: "top-center",
@@ -112,7 +112,7 @@ const Putok3d = () => {
       <ToastContainer />
       <div className="Putok3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
-        <h1>Gantimpala para sa pag tatapos ng talaka</h1>
+        <h1>Unang Putok sa panulukan ng Silencio at Sociego</h1>
       </div>
     <div className="picture3d">
       <div className="video-container">

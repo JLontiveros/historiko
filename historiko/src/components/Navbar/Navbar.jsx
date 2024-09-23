@@ -48,11 +48,11 @@ function Navbar() {
           {showMobileMenu && (
             <ul className="mobile-menu">
               <li>
-                <Link to="/Home" onClick={toggleMobileMenu}>Home</Link>
+                <li><Link to="/Home" onClick={toggleMobileMenu}>Home</Link></li>
                 <ul className="mobile-submenu">
-                  <Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen />Modules</Link>
-                  <Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark />Topic Marking</Link>
-                  <Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle  />Quiz</Link>
+                  <li><Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen />Modules</Link></li>
+                  <li><Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark />Topic Marking</Link></li>
+                  <li><Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle  />Quiz</Link></li>
                 </ul>
               </li>
               <li><Link to="/Profile" onClick={toggleMobileMenu}>Profile</Link></li>
@@ -63,12 +63,12 @@ function Navbar() {
       ) : (
         <ul className="desktop-menu">
           <li onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
-            <Link to="/Home">Home</Link>
+            <li><Link to="/Home">Home</Link></li>
             {showDropdown && (
               <ul className="dropdown">
-                <Link to="/Modules"><FaBookOpen />Modules</Link>
-                <Link to="/Topicmarking"><FaBookmark />Topic Marking</Link>
-                <Link to="/Quiz"><FaInfoCircle  />Quiz</Link>
+                <li><Link to="/Modules"><FaBookOpen />Modules</Link></li>
+                <li><Link to="/Topicmarking"><FaBookmark />Topic Marking</Link></li>
+                <li><Link to="/Quiz"><FaInfoCircle  />Quiz</Link></li>
               </ul>
             )}
           </li>

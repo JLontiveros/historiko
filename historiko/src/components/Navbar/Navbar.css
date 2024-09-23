@@ -49,7 +49,7 @@ nav img {
 }
 
 .desktop-menu li a {
-  color: white;
+  color: navy;
   text-decoration: none;
   font-size: 1.5rem;
   padding: 0.5rem;
@@ -76,7 +76,7 @@ nav img {
 }
 
 .desktop-menu li a:hover {
-  color: navy;
+  color: white;
 }
 
 .dropdown li {
@@ -93,7 +93,6 @@ nav img {
 .dropdown li a {
   color: navy;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
   text-decoration: none;
   display: block;
 }
@@ -115,10 +114,6 @@ nav ul li {
 
 nav ul li svg {
   margin-right: 8px;
-}
-
-.mobile-menu li, .desktop-menu li {
-  margin-bottom: 10px;
 }
 
 .mobile-submenu li, .dropdown li {

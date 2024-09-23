@@ -113,7 +113,7 @@ const Balangiga3d = () => {
     <ToastContainer/>
       <div className="balangiga3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
-        <h1>Battle of Balangiga Monument</h1>
+        <h1>Balangiga Massacre</h1>
       </div>
       <div className="picture3d">
         <div className="video-container">

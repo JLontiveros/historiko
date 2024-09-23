@@ -21,6 +21,7 @@ const Putok = () => {
   const topicId = 1;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: emilio, bg: emilio, description: "Emilio Aguinaldo" },
@@ -34,6 +35,13 @@ const Putok = () => {
     "Hindi pinaunlakan ni Gen Elwell Otis at sinabing “ Fighting, having begun, must go on to the grim end”. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. ANg hindi pagkilala ng Estados Unidos sa republika ng pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga arikano ay sakupin ang pilipinas.",
     "Hindi pinaunlakan ni Gen Elwell Otis at sinabing “ Fighting, having begun, must go on to the grim end”. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. ANg hindi pagkilala ng Estados Unidos sa republika ng pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga arikano ay sakupin ang pilipinas.",
     "Pebrero 5, 1899, Binomba ng mga amerikano ang san juan, at sinalakay ang Marikina, Guadalupe at caloocan. Buong tapang at gilas na hinadlangan ito ng pinuno ng hukbong Pilipino sa pamumuno ni General Antonio Luna ngunit sila ay natalo at umurong at nagtungo sa Pulo, Bulacan."
+  ];
+
+  const headings = [
+    "Unang pangyayari",
+    "Ikalawang pangyayari",
+    "Ikatlong pangyayari",
+    "Ikaapat na pangyayari"
   ];
 
   useEffect(() => {
@@ -63,12 +71,20 @@ const Putok = () => {
 
   const handlePrev = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setSelectedImage((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
   
   const handleNext = (e) => {
     e.preventDefault();
-    setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setSelectedImage((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setCurrentHeading(headings[newIndex]);
+      return newIndex;
+    });
   };
 
   const toggleZoom = (e) => {
@@ -133,6 +149,7 @@ const Putok = () => {
       <div className="putok-container">
         <div className="putok-description-container">
           <h1>Description:</h1>
+          <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
         <div className="putok-image-container">
