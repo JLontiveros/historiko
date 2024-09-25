@@ -26,7 +26,7 @@ const GuessGame = () => {
     if (error) {
       console.error('Error fetching questions:', error);
     } else {
-      setUserScores(data);
+      setQuestions(data);
     }
   }, []);
 
@@ -175,11 +175,23 @@ const GuessGame = () => {
   return (
     <div className="guess-game-container">
       <div className="image-grid">
-        {currentQuestion.image_urls?.map((url, index) => (
-          <div key={index} className="image-item">
-            <img src={url} alt={`Image ${index + 1}`} />
-          </div>
-        ))}
+        {currentQuestion && currentQuestion.image_urls && (
+          Array.isArray(currentQuestion.image_urls)
+            ? currentQuestion.image_urls.map((url, index) => (
+                <div key={index} className="image-item">
+                  <img src={url.trim()} alt={`Question ${index + 1}`} />
+                </div>
+              ))
+            : typeof currentQuestion.image_urls === 'string'
+              ? currentQuestion.image_urls.split(',').map((url, index) => (
+                  <div key={index} className="image-item">
+                    <img src={url.trim()} alt={`Question ${index + 1}`} />
+                  </div>
+                ))
+              : <div className="image-item">
+                  <img src={currentQuestion.image_urls} alt="Question" />
+                </div>
+        )}
       </div>
       {feedback && <div className="feedback">{feedback}</div>}
       <div className="question-container">
