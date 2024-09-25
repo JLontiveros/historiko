@@ -24,19 +24,22 @@
 }
 
 .image-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
-  width: 100%;
 }
 
 .image-item {
-  background-color: #FFD700;
-  height: 250px;
   width: 230px;
+  height: 250px;
+  background-color: #FFD700;  /* Yellow color */
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1 / 1;
 }
 

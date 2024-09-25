@@ -24,25 +24,31 @@
 }
 
 .image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .image-item {
-  background-color: #FFD700;
-  height: 250px;
   width: 230px;
+  height: 250px;
+  background-color: #FFD700;  /* Yellow color */
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1 / 1;
 }
 
 .image-item img {
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .question-container {
