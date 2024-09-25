@@ -12,6 +12,8 @@ const GuessGame = () => {
   const [feedback, setFeedback] = useState('');
   const [score, setScore] = useState(0);
   const [gameCompleted, setGameCompleted] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [userScores, setUserScores] = useState([]);
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
 
@@ -27,6 +29,24 @@ const GuessGame = () => {
       setQuestions(data);
     }
   }, []);
+
+  const fetchUserScores = async () => {
+    const { data, error } = await supabase
+      .from('user_scores')
+      .select(`
+        user_id,
+        guess_game_score,
+        updated_at,
+        users (username)
+      `)
+      .order('guess_game_score', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching user scores:', error);
+    } else {
+      setUserScores(data);
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -45,6 +65,8 @@ const GuessGame = () => {
     } else {
       setFeedback(`Mali! Ang tamang sagot ay ${currentQuestion.correct_answer}`);
     }
+    
+    // Set a timeout to remove the 'wrong' class after the feedback duration
     setTimeout(() => {
       setSelectedAnswer(null);
       setFeedback('');
@@ -88,6 +110,38 @@ const GuessGame = () => {
     setGameCompleted(false);
   };
 
+  const toggleDashboard = () => {
+    if (!showDashboard) {
+      fetchUserScores();
+    }
+    setShowDashboard(!showDashboard);
+  };
+
+  const Dashboard = () => (
+    <div className="dashboard">
+      <h2>User Scores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Date Taken</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userScores.map((userScore, index) => (
+            <tr key={index}>
+              <td>{userScore.users.username}</td>
+              <td>{userScore.guess_game_score}</td>
+              <td>{new Date(userScore.updated_at).toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={toggleDashboard}>Close Dashboard</button>
+    </div>
+  );
+
   if (!isAuthenticated) {
     return (
       <div className="login-prompt">
@@ -97,7 +151,11 @@ const GuessGame = () => {
     );
   }
 
-  if (questions.length === 0) {
+  if (showDashboard) {
+    return <Dashboard />;
+  }
+
+  if (!questions.length || currentQuestionIndex >= questions.length) {
     return <div>Loading...</div>;
   }
 
@@ -107,6 +165,7 @@ const GuessGame = () => {
         <h2>Quiz Completed!</h2>
         <p>Your Score: {score} out of {questions.length}</p>
         <button className="restart-button" onClick={restartGame}>Play Again</button>
+        <button className="dashboard-button" onClick={toggleDashboard}>View Dashboard</button>
       </div>
     );
   }
@@ -116,12 +175,13 @@ const GuessGame = () => {
   return (
     <div className="guess-game-container">
       <div className="image-grid">
-        {currentQuestion.image_urls?.map((url, index) => (
-          <div key={index} className="image-item">
-            <img src={url} alt={`Image ${index + 1}`} />
+        {currentQuestion.image_urls && (
+          <div className="image-item">
+            <img src={currentQuestion.image_urls} alt="Question" />
           </div>
-        ))}
+        )}
       </div>
+      {feedback && <div className="feedback">{feedback}</div>}
       <div className="question-container">
         <p className="question">{currentQuestion.question}</p>
       </div>
@@ -129,7 +189,13 @@ const GuessGame = () => {
         {['a', 'b', 'c', 'd'].map((letter) => (
           <button
             key={letter}
-            className={`answer-button ${selectedAnswer === currentQuestion[`option_${letter}`] ? 'selected' : ''}`}
+            className={`answer-button ${
+              selectedAnswer === currentQuestion[`option_${letter}`]
+                ? selectedAnswer === currentQuestion.correct_answer
+                  ? 'selected'
+                  : 'wrong'
+                : ''
+            }`}
             onClick={() => handleAnswerSelect(currentQuestion[`option_${letter}`])}
           >
             <span className="answer-letter">{letter.toUpperCase()}</span>
@@ -137,7 +203,6 @@ const GuessGame = () => {
           </button>
         ))}
       </div>
-      {feedback && <div className="feedback">{feedback}</div>}
       <div className="progress">
         Question {currentQuestionIndex + 1} of {questions.length}
       </div>
