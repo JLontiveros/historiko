@@ -105,6 +105,7 @@
   background-color: white;
   color: #4682B4;
   border-radius: 50%;
+  min-width: 30px; /* Ensure minimum width */
   width: 30px;
   height: 30px;
   display: flex;
@@ -112,11 +113,20 @@
   align-items: center;
   margin-right: 10px;
   font-weight: bold;
+  flex-shrink: 0; /* Prevent letter from shrinking */
 }
 
 .answer-text {
   flex-grow: 1;
   text-align: left;
+  overflow-wrap: break-word; /* Allow long words to break */
+  word-wrap: break-word; /* For older browsers */
+  hyphens: auto; /* Enable hyphenation */
+  max-width: calc(100% - 40px); /* Ensure text doesn't overlap with the letter */
+}
+
+.answer-button.wrong .answer-letter {
+  color: #FF4136;
 }
 
 .progress {
