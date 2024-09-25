@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './GuessGame.css';
+import './GuessGame2.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
 import gamebg from '../../assets/historikobg.png'
 
-const GuessGame = () => {
+const GuessGame2 = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -17,7 +17,7 @@ const GuessGame = () => {
 
   const fetchQuestions = useCallback(async () => {
     const { data, error } = await supabase
-      .from('guess_game_questions')
+      .from('guess_game_question2')
       .select('*')
       .order('id', { ascending: true });
     
@@ -116,12 +116,22 @@ const GuessGame = () => {
   return (
     <div className="guess-game-container">
       <div className="image-grid">
-        {currentQuestion.image_urls?.map((url, index) => (
-          <div key={index} className="image-item">
-            <img src={url} alt={`Image ${index + 1}`} />
-          </div>
-        ))}
+  {currentQuestion.image_urls && currentQuestion.image_urls
+    .replace(/[{}]/g, '') // Remove curly braces
+    .split(',')
+    .map((url, index) => (
+      <div key={index} className="image-item">
+        <img 
+          src={url.trim()} 
+          alt={`Image ${index + 1}`} 
+          onError={(e) => {
+            console.error(`Error loading image: ${url}`);
+            e.target.src = 'path/to/fallback/image.png'; // Replace with a path to a default image
+          }}
+        />
       </div>
+    ))}
+</div>
       <div className="question-container">
         <p className="question">{currentQuestion.question}</p>
       </div>
@@ -145,4 +155,4 @@ const GuessGame = () => {
   );
 };
 
-export default GuessGame;
+export default GuessGame2;
