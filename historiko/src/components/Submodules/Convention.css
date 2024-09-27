@@ -122,7 +122,6 @@ body::before {
   transform: translate(-50%, -50%) scale(2);
   z-index: 1000;
   width: auto;
-  height: auto;
 }
 
 .convention-arrow-keys {
