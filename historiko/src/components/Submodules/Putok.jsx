@@ -6,7 +6,8 @@ import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import bg1 from '../../assets/kidst.png';
 import emilio from '../../assets/emilio.png';
-import genduo from '../../assets/genduo.png';
+import genelwell from '../../assets/genelwell.png';
+import genhenry from '../../assets/genhenry.png';
 import genluna from '../../assets/genluna.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -25,8 +26,8 @@ const Putok = () => {
 
   const images = [
     { src: emilio, bg: emilio, description: "Emilio Aguinaldo" },
-    { src: genduo, bg: genduo, description: "General Elwell Otis" },
-    { src: genduo, bg: genduo, description: "General Henry Lawton" },
+    { src: genelwell, bg: genelwell, description: "General Elwell Otis" },
+    { src: genhenry, bg: genhenry, description: "General Henry Lawton" },
     { src: genluna, bg: genluna, description: "General Antonio Luna" },
   ];
 
@@ -39,9 +40,9 @@ const Putok = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ikalawang pangyayari",
-    "Ikatlong pangyayari",
-    "Ikaapat na pangyayari"
+    "Ika dalawang pangyayari",
+    "Ika tatlong pangyayari",
+    "Ika apat na pangyayari"
   ];
 
   useEffect(() => {

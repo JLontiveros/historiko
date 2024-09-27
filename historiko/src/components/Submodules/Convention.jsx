@@ -39,9 +39,9 @@ const Convention = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ikalawang pangyayari",
-    "Ikatlong pangyayari",
-    "Ikaapat na pangyayari"
+    "Ika dalawang pangyayari",
+    "Ika tatlong pangyayari",
+    "Ika apat na pangyayari"
   ];
 
   useEffect(() => {

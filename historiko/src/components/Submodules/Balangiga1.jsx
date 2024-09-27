@@ -34,7 +34,7 @@ const Balangiga1 = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ikalawang pangyayari",
+    "Ika dalawang pangyayari",
   ];
 
   useEffect(() => {

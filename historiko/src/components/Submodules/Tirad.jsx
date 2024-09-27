@@ -9,10 +9,10 @@ import pasongtirad from '../../assets/pasongtirad.png';
 import gregdelpillar from '../../assets/gregdelpillar.png';
 import januario from '../../assets/januario.png';
 import genfriedrich from '../../assets/genfriedrich.png';
-import bg6 from '../../assets/kidst.png';
-import bg7 from '../../assets/kidst.png';
-import bg8 from '../../assets/kidst.png';
-import bg9 from '../../assets/kidst.png';
+import macario from '../../assets/macario.png';
+import malvar from '../../assets/malvar.png';
+import lukban from '../../assets/lukban.png';
+import ola from '../../assets/ola.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
@@ -33,10 +33,10 @@ const Tirad = () => {
     { src: gregdelpillar, bg: gregdelpillar, description: "Gregorio Del Pilar" },
     { src: januario, bg: januario, description: "Januario Galut" },
     { src: genfriedrich, bg: genfriedrich, description: "General Friedrich Funston" },
-    { src: kidst, bg: bg6, description: "Macario Sakay" },
-    { src: kidst, bg: bg7, description: "Miguel Malvar" },
-    { src: kidst, bg: bg8, description: "Vicente Lukban" },
-    { src: kidst, bg: bg9, description: "Simeon Ola" },
+    { src: macario, bg: macario, description: "Macario Sakay" },
+    { src: malvar, bg: malvar, description: "Miguel Malvar" },
+    { src: lukban, bg: lukban, description: "Vicente Lukban" },
+    { src: ola, bg: ola, description: "Simeon Ola" },
   ];
 
   const descriptions = [
@@ -52,13 +52,13 @@ const Tirad = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ikalawang pangyayari",
-    "Ikatlong pangyayari",
-    "Ikaapat na pangyayari",
-    "Ikalima na pangyayari",
-    "Ikaanim na pangyayari",
-    "Ikapito na pangyayari",
-    "Ikawalo na pangyayari",
+    "Ika dalawang pangyayari",
+    "Ika tatlong pangyayari",
+    "Ika apat na pangyayari",
+    "Ika lima na pangyayari",
+    "Ika anim na pangyayari",
+    "Ika pito na pangyayari",
+    "Ika walo na pangyayari",
   ];
 
   useEffect(() => {
