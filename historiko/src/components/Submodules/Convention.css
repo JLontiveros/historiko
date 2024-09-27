@@ -108,11 +108,11 @@ body::before {
 
 .convention-image-wrapper.selected {
   border-color: #0047ab;
-  transform: scale(1.05);
+  transform: scale(1.22);
   grid-column: 1 / -1;
-  width: 100%;
   max-width: 560px;
   justify-self: center;
+  margin: 0px 50px 0px 20px;
 }
 
 .convention-image-wrapper.zoomed {
