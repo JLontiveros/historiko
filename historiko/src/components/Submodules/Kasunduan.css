@@ -183,12 +183,11 @@ body::before {
     width: 100%;
     margin-left: 0;
     max-height: none;
-    padding: 0 10px;
-    box-sizing: border-box;
+    overflow-y: visible;
   }
 
   .Kasunduan-description-container h1 {
-    font-size: 24px;
+    font-size: 30px;
     margin-top: 0;
     text-align: center;
   }
@@ -196,27 +195,25 @@ body::before {
   .Kasunduan-description-container p {
     font-size: 14px;
     margin-top: 10px;
-    margin-left: 0;
+    margin-left: 10px;
   }
 
   .Kasunduan-image-container {
     margin-left: 0;
     padding: 10px;
     justify-content: center;
+    overflow: hidden;
   }
 
   .Kasunduan-image-wrapper {
-    height: auto;
+    display: none;
+    height: 200px;
     width: 100%;
     max-width: 300px;
   }
 
-  .Kasunduan-image-wrapper img {
-    width: 100%;
-    height: auto;
-  }
-
   .Kasunduan-image-wrapper.selected {
+    display: block;
     max-width: 100%;
   }
 
@@ -245,6 +242,10 @@ body::before {
 
   .Kasunduan-description-container p {
     font-size: 19px;
+  }
+
+  .Kasunduan-image-container {
+    padding: 30px;
   }
 
   .Kasunduan-image-wrapper {

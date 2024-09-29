@@ -243,6 +243,10 @@ body::before {
     font-size: 19px;
   }
 
+  .tirad-image-container {
+    padding: 30px;
+  }
+
   .tirad-image-wrapper {
     height: 180px;
   }

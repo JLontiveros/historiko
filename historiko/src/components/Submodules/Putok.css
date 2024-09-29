@@ -242,6 +242,10 @@ body::before {
     font-size: 19px;
   }
 
+  .putok-image-container {
+    padding: 30px;
+  }
+
   .putok-image-wrapper {
     height: 180px;
   }

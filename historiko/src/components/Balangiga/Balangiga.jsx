@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Balangiga.css';
-import capthomas from '../../assets/capthomas.png';
+import lukban from '../../assets/lukban.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -124,7 +124,7 @@ const Balangiga = () => {
       <div className="balangiga-container">
         <div className="balangiga-container-left">
           <img 
-            src={capthomas} 
+            src={lukban} 
             alt="balangiga massacre illustration" 
             className="balangiga-image"
           />
@@ -151,7 +151,7 @@ const Balangiga = () => {
               &nbsp;
             </div>
             <p>
-              Agosto 11, 1901 Nang makarating sa lugar ang Company C of the 9th Infantry Regiment ng Amerika sa pamumuno ni Capt. Thomas Connell sa Balangiga, Samar. Layunin nila na sugpuin ang mga Pilipinong patuloy na nakikipaglaban sa pamumuno ni Vicente Lukban sa pamamagitan ng pagsira sa mga pananim at ari-arian na siyang pinagkukunan ng suplay ng mga gerilya. Setyembre  28, 1901, isinagawa ang planong pagpatay sa buong pangkat ng amerikanong sundalo sa tulong ng mga mamamayan ng Balangiga. Sa 74 na miyembro ng Company C ay 36 ang nasawi kasama si Capt. Thomas Connell, 22 ang sugatan at 4 ang nawala.
+              Agosto 11, 1901 Nang makarating sa lugar ang Company C of the 9th Infantry Regiment ng Amerika sa pamumuno ni Capt. Thomas Connell sa Balangiga, Samar. Layunin nila na sugpuin ang mga Pilipinong patuloy na nakikipaglaban sa pamumuno ni Vicente Lukban sa pamamagitan ng pagsira sa mga pananim at ari-arian na siyang pinagkukunan ng suplay ng mga gerilya.
             </p>
           </div>
           <button className="balangiga-view-button" onClick={handleViewMore}>VIEW MORE</button>

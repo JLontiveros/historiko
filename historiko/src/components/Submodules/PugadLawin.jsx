@@ -6,9 +6,9 @@ import star from '../../assets/star.jfif';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import andresboni from '../../assets/andresboni.png';
-import diwa from '../../assets/diwa.png';
-import plata from '../../assets/plata.png';
-import diaz from '../../assets/diaz.png';
+import melchora from '../../assets/melchora.png';
+import mariano from '../../assets/mariano.png';
+import taxreceipt from '../../assets/taxreceipt.jpg';
 import deodato from '../../assets/deodato.png';
 import watawat from '../../assets/watawat.png';
 import trianggulo from '../../assets/trianggulo.png';
@@ -34,14 +34,13 @@ const PugadLawin = () => {
 
   const images = [
     { src: andresboni, bg: andresboni, description: "Andres Bonifacio" },
-    { src: diwa, bg: diwa, description: "Ladislao Diwa" },
-    { src: plata, bg: plata, description: "Teodoro Plata" },
-    { src: diaz, bg: diaz, description: "Valentin Diaz" },
-    { src: deodato, bg: deodato, description: "Deodato Arellano" },
-    { src: watawat, bg: watawat, description: "" },
+    { src: melchora, bg: melchora, description: "Melchora Aquino" },
     { src: trianggulo, bg: trianggulo, description: "Trianggulong Sistema" },
     { src: katipunan, bg: katipunan, description: "Mga kasapi ng katipunan" },
     { src: pactodesangre, bg: pactodesangre, description: "Pacto De Sangre" },
+    { src: mariano, bg: mariano, description: "Pacto Mariano Gil" },
+    { src: taxreceipt, bg: taxreceipt, description: "Tax Receipt Torn by Members of the Katipunan" },
+    { src: watawat, bg: watawat, description: "" },
     { src: baldoandfrends, bg: baldoandfrends, description: "Gen Mariano Alvarez" },
     { src: magdalo, bg: magdalo, description: "Magdalo Faction Magdiwang Faction" },
     { src: magdiwang, bg: magdiwang, description: "Magdalo Faction Magdiwang Faction" },
@@ -50,29 +49,27 @@ const PugadLawin = () => {
   const headings = [
     "Unang pangyayari",
     "Ika dalawang pangyayari",
-    "Ika dalawang pangyayari",
-    "Ika dalawang pangyayari",
-    "Ika dalawang pangyayari",
     "Ika tatlong pangyayari",
     "Ika apat na pangyayari",
     "Ika lima na pangyayari",
     "Ika anim na pangyayari",
     "Ika pito na pangyayari",
     "Ika walo na pangyayari",
-    "Ika walo na pangyayari",
+    "Ika siyam na pangyayari",
+    "Ika sampu na pangyayari",
+    "Ika sampu na pangyayari",
   ];
 
   const descriptions = [
     "Maraming sumuporta kay Andres Bonifacio dahil mahusay siyang lider. Nagkasundo sila na ipagpatuloy ang paghihimagsik. Siya ay binansagang (Ama ng Katipunan). Siya ang nagtatag at lumaon naging Supremo ng kilusang Katipunan na naglayong makamtan ang kasarinlan ng Pilipinas mula sa Espanya at nagpasimula ng Himagsikang Pilipino.",
-    "Inisip ng mga Pilipino na hndi na nila makakamit ang hinihinging pagbabago sa mapayapang paraan, at ang tanging paraan na lamang upang mabago ang pamumuhay ng mga Pilipino ay ang pagpapaalis ng mga espanyol sa pamamagitan ng rebolusyon. Hulyo 7, 1892, itinatag nina Andres Bonifacio, Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano sa isang bahay sa Azcarraga. Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.",
-    "Inisip ng mga Pilipino na hndi na nila makakamit ang hinihinging pagbabago sa mapayapang paraan, at ang tanging paraan na lamang upang mabago ang pamumuhay ng mga Pilipino ay ang pagpapaalis ng mga espanyol sa pamamagitan ng rebolusyon. Hulyo 7, 1892, itinatag nina Andres Bonifacio, Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano sa isang bahay sa Azcarraga. Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.",
-    "Inisip ng mga Pilipino na hndi na nila makakamit ang hinihinging pagbabago sa mapayapang paraan, at ang tanging paraan na lamang upang mabago ang pamumuhay ng mga Pilipino ay ang pagpapaalis ng mga espanyol sa pamamagitan ng rebolusyon. Hulyo 7, 1892, itinatag nina Andres Bonifacio, Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano sa isang bahay sa Azcarraga. Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.",
-    "Inisip ng mga Pilipino na hndi na nila makakamit ang hinihinging pagbabago sa mapayapang paraan, at ang tanging paraan na lamang upang mabago ang pamumuhay ng mga Pilipino ay ang pagpapaalis ng mga espanyol sa pamamagitan ng rebolusyon. Hulyo 7, 1892, itinatag nina Andres Bonifacio, Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano sa isang bahay sa Azcarraga. Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.",
-    "Sunod sunod ang mga labanang nangyari pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng cavite, batangas, bulacan, tarlac, pampanga, laguna at nueva ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat.",
+    "Dahil sa patagong pagpupulong at pag-iwas sa mga Espanyol, ang mga katipunero ay tumutungo sa bahay ni Melchora Aquino, tinaguriang si “Tandang Sora”, “Ina ng Balintawak”, “Ina ng Katipunan” at tinawag din siya sa na “Ina ng Rebolusyon”. Hanggang sa sumiklab ang himagsikan, siya ang nanggamot sa mga sugatang katipunero.",
     "Ang trianggulong Sistema ay ginagamit sa pagkuha ng mga kasaping katipunero. Ang dating miyembro ay maghahanap ng dalawang bagong miyembro na hindi magkakilala. Sa maikling panahon, lumaki ang samahan ng katpunan.",
     "Ang Katipun ay unang antas ng Katipunero; Password: Anak ng Bayan; Nagsusuot ng itim na may nakasulat na titik Z,B,L, Nangangahulugang Anak ng Bayan. Ang kawal ay ang ikalawang antas ng Katipunero.; Password: GOMBURZA; Nagsusuot ng berdeng pandong sa mga pagpupulong na may titik na Z,B,L nangangahulugang Anak ng Bayan; Ang bayani naman ang ikatatlong antas ng Katipunero; Password: Rizal; Nagsusuot ng pulang hood sa mga pagpupulong. Binubuo ng mga pinuno ng Katipunan.",
     "Ang Ritwal na ginagawa sa mga taong nais na maging kasapi ng Katipunan ay Pacto De Sangre. Ito ay ginagawa sa isang lihim na silid na kung tawagin ay Camara Negra (DARK CHAMBER). Ito ay nagsisimula sa isang pagsubok at nagtatapos sa paglagda sa kasunduan gamit ang sarili nilang dugo.",
-    "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga caviteno at dahil ditto ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Gen. Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Gen. Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
+    "Gabi ng August 19, 1896, habang abala ang mga katipunero sa paghahanda ng rebolusyon, isiniwalat ni Teodoro Patino, isang katipunero, kay Padre Mariano Gil ang lihim ng Katipunan. Nagawa niya iyon dahil sa payo ng isang madre at kapatid niyang nakatira sa tahanan ng mga ulila sa Mandaluyong. Itinuro ni Patino ang mga imprenta ng mga katipunero. Natuklasan ditto ang ilang polyeto at dokumento ng Katipunan. Hinuli at ikinulong sa Fort Santiago ang mga pinaghihinalaang Pilipino na kasapi ng Katipunan.",
+    "Ang pagkatuklas ng Katipunan ay nagbunsod kay Bonifacio na tumawag ng pulong sa Balintawak, Caloocan kasama sina Jacinto, Procopio Bonifacio, at iba pang katipunero. Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki at katapangan. At isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!” at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa pugad lawin.",
+    "Sunod sunod ang mga labanang nangyari pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng cavite, batangas, bulacan, tarlac, pampanga, laguna at nueva ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat. Lalo itong nagpalubha ng labanan ng Espanyol at mga Pilipino. Sa gitna nito ay may namuong alitan laban sa pinuno ng Katipunan na si Andres Bonifacio at Heneral Emilio Aguinaldo, dahil sa alitangito, nagpatawag ng pulong ang mga rebolusyunaryo upang palitan ang Katipunan ng Rebolusyonaryong Pamahalaan.",
+    "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga caviteno at dahil dito ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Gen. Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Gen. Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
     "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat.",
     "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat."
   ];
