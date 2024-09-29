@@ -179,12 +179,11 @@ body::before {
     width: 100%;
     margin-left: 0;
     max-height: none;
-    padding: 0 10px;
-    box-sizing: border-box;
+    overflow-y: visible;
   }
 
   .convention-description-container h1 {
-    font-size: 24px;
+    font-size: 30px;
     margin-top: 0;
     text-align: center;
   }
@@ -192,27 +191,25 @@ body::before {
   .convention-description-container p {
     font-size: 14px;
     margin-top: 10px;
-    margin-left: 0;
+    margin-left: 10px;
   }
 
   .convention-image-container {
     margin-left: 0;
     padding: 10px;
     justify-content: center;
+    overflow: hidden;
   }
 
   .convention-image-wrapper {
-    height: auto;
+    display: none;
+    height: 200px;
     width: 100%;
     max-width: 300px;
   }
 
-  .convention-image-wrapper img {
-    width: 100%;
-    height: auto;
-  }
-
   .convention-image-wrapper.selected {
+    display: block;
     max-width: 100%;
   }
 
@@ -243,8 +240,12 @@ body::before {
     font-size: 20px;
   }
 
+  .convention-image-container {
+    padding: 30px;
+  }
+
   .convention-image-wrapper {
-    max-width: 250px;
+    max-width: 180px;
   }
 
   .convention-arrow-keys img {

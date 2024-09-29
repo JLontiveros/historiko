@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Bato.css';
-import groupnabiak from '../../assets/groupnabiak.png';
+import Picture20 from '../../assets/Picture20.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -124,11 +124,11 @@ const Bato = () => {
       <div className="bato-container">
         <div className="bato-container-left">    
           <img 
-            src={groupnabiak}
+            src={Picture20}
             alt="Kasunduan sa Biak-na-Bato illustration" 
             className="bato-image"
           />
-          <h2 className="bato-date">Lorem ipsum dolor sit amet.</h2>
+          <h2 className="bato-date">Aguinaldo and Companions leave for Hong Kong</h2>
         </div>
 
         <div className="bato-container-right">
@@ -151,7 +151,16 @@ const Bato = () => {
               &nbsp;
             </div>
             <p>
-            Pinulong ni Emilio Aguinaldo ang mga pinuno ng hukbo upang bumuo ng Saligang Batas. Noong Nobyembre 1, 1897 ay nabuo ang konstitusyon ng Biak na Bato na isinulat nila Isabelo Artacho, At Feliz Ferrer na inisulat sa Biak na Bato sa bulacan na sinasabing ibinase sa SAligang batas ng bansang Cuba sa Jimaguayú. ANg biak na bato ay nagbigay para sa paglikha ng kataastaasang konseho pati narin ang karapatang pangtao kasama ang kalayaan, relihiyon, at edukasyon. Nagwakas ang katipunan at napalitan ng isang pamahalaan na may konstitusyong sinusunod. Nawala man ang samahang KKK ngunit ang mga kasapi nito ay patuloy pa ring nakipaglaban sa mga Espanyol.
+            Ilan sa mga probinsyon ng Kasunduan sa Biak-na-Bato:
+            <br/>
+            1.	Pagtigil ng mga pinunong rebolusyonaryo sa labanan at maninirahan sila sa Hongkong.<br/>
+            2.	Lubusang kapatawaran sa lahat ng rebolusyonaryo at pagsuko ng kanilang mga sandata.<br/>
+            3.	Pagkakaloob sa Espanya ng halagang P1,700,000 bilang kabayaran sa mga rebolusyonaryo at mga pamilya nito
+            <br/>
+            Pansamantalang umiral ang kapayapaan dulot ng
+            Kasunduan sa Biak na Bato. Nagtungo sa Hong Kong si Emilio Aguinaldo at ang ilang pinuno ng kilusan. Ngunit ipinagpatuloy nya parin ang pamahalaang rebulsyonaryo. <br/>
+            Hindi tinupad ng Espanya ang pangakong pagbabayad sa mga Pilipino at tanging P600,000 lamang ang binayad nito, P400,000 kay Aguinaldo at P200,000 sa mga kawal. Nasa pagtatapos ang mas detalyeng kasunduan.
+
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>

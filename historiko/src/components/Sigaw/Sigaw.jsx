@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Sigaw.css';
-import taxreceipt from '../../assets/taxreceipt.jpg';
+import angkatipunan from '../../assets/angkatipunan.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -124,11 +124,11 @@ const Sigaw = () => {
       <div className="sigaw-container">
         <div className="sigaw-container-left">    
           <img 
-            src={taxreceipt}
+            src={angkatipunan}
             alt="Sigaw ng Pugad Lawin illustration" 
             className="sigaw-image"
           />
-          <h2 className="sigaw-date">Tax Receipt Torn by Members of the Katipunan</h2>
+          <h2 className="sigaw-date">Ang Katipunan</h2>
         </div>
 
         <div className="sigaw-container-right">
@@ -151,8 +151,7 @@ const Sigaw = () => {
               &nbsp;
             </div>
             <p>
-            Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki at katapangan. <br /> At isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!”   at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa pugad lawin.
-
+            Itinatatag ni Andres Bonifacio ang isang lihim na samahang KKK, Kataastaasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan o Katipun noong July 7, 1892 sa isang bahay sa 72 Kalye Azcarraga (Claro M. Recto ngayon) kasama sina Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano, at Jose Dizon. Ang kasapi sa samahang ito ay tinawag na Katipunero. Pangunahing Layunin ng samahan na mapagsama-sama ang lahat ng mga Pilipino at makipaglaban sa mga Espanol upang makamit ang kalayaan at ang Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.
             </p>
           </div>
           <button onClick={handleViewMore}>VIEW MORE</button>

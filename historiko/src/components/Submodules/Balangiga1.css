@@ -18,7 +18,7 @@ body::before {
 .balangiga1-container {
   margin-top: 150px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 0.5fr 1fr;
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -241,6 +241,10 @@ body::before {
 
   .balangiga1-description-container p {
     font-size: 19px;
+  }
+
+  .balangiga1-image-container {
+    padding: 30px;
   }
 
   .balangiga1-image-wrapper {

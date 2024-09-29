@@ -57,7 +57,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={pugadlawin} alt="firstshot" className="event-icon" />
           <h2>Sigaw ng Pugad-Lawin</h2>
-          <p>Ang mga kasapi ng katastaasan kagalanggalangang katipunan ng mga anak ng Bayan (KKK) o Katipunan ay sabay-sabay pinunit ang kani kanilang sedula bilang tanda ng kanilang pagtutol sa pamamahala ng mga espanyol.</p>
+          <p>Ang sigaw sa Pugad Lawin ay isa sa mga patunay ng matinding pagnanais ng mga Pilipino na makamit ang kalayaan mula sa mga Espanyol. Hindi lamang pagpunit ng Cedula ang dapat bigyaang diin sa Unang Sigaw gayundin ang mga pagpupulong at pagpaplano ng mga Katipuneor upang itaguyod ang rebolusyon.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(4, 'sigaw')} className="link-button">See more</button>
             </div>
@@ -65,7 +65,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={tejeros2} alt="sword" className="event-icon" />
           <h2>Tejeros Convention</h2>
-          <p>Ang kumbensiyon sa Tejeros na naganap noong Marso 22, 1897 ay isang pagpupulong sa Casa Hacienda de Tejeros, San Francisco de Malabon sa Cavvite na may layuning pagkasunduin ang dalwang paksiyon sa cavite.</p>
+          <p>Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang rebolusyunaryong pamahalaan. Ngunit sa halip na magkaisa, lalo pang tumindo ang hidwaan na humantong sa pagkamatay ni Andres Bonifacio.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(5, 'tejeros')} className="link-button">See more</button>
             </div>
@@ -73,7 +73,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={biaknabato} alt="Bell" className="event-icon" />
           <h2>Kasunduan sa Biak-na-Bato</h2>
-          <p>Biak na bato lugar na matatagpuan sa Miguel de mayumo, bulacan na nagsisilbing kuta nina Aguinaldo sa panahon ng pakikidigma nila sa mga espanyol</p>
+          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang nagging dahilan upang mabigo at mling sumiklab ang digmaan</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">See more</button>
             </div>

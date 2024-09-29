@@ -33,7 +33,7 @@
     color: #0047ab;
     font-size: 30px;
     font-weight: 800;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: -100px;
   }
   
@@ -46,7 +46,7 @@
   
   .bato-description img {
     position: absolute;
-    top: -106px; /* Adjust this value to position the heart image as needed */
+    top: -86px; /* Adjust this value to position the heart image as needed */
     right: 195px; /* Adjust this value to position the heart image as needed */
     width: 30px;
     height: 30px;
@@ -63,7 +63,7 @@
   
   .bato-blank {
     position: absolute;
-    top: -70px; /* Adjust this value to position the blank div as needed */
+    top: -50px; /* Adjust this value to position the blank div as needed */
     left: -3.3%;
     height: 4px;
     width: 660px;
@@ -75,10 +75,10 @@
     background-color: #8c85d5;
     margin-left: 40px;
     margin-right: 180px;
-    margin-top: -70px;
+    margin-top: -50px;
     padding: 5px;
     text-align: justify;
-    font-size: 20px;
+    font-size: 18px;
     display: block;
     line-height: 1.7;
   }
@@ -104,7 +104,7 @@
     background-color: #8a7fd5;
     color: white;
     border: none;
-    padding: 0px 10px;
+    padding: 10px 10px;
     cursor: pointer;
     font-size: 16px;
   }
@@ -127,6 +127,7 @@
     .bato-container-right h1 {
       font-size: 24px;
       margin-top: 20px;
+      margin-left: 10px;
       margin-bottom: 30px;
     }
   
@@ -143,8 +144,8 @@
   
     .bato-blank {
       width: 100%;
-      margin-left: 0;
-      margin-top: 60px;
+      margin-left: 10px;
+      margin-top: 38px;
     }
   
     .bato-container-right p {
@@ -160,7 +161,7 @@
     }
   
     .bato-container-right button {
-      margin-left: auto;
+      margin-left: 100px;
       margin-right: auto;
       display: block;
       margin-top: 5px;
