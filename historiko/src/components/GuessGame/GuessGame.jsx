@@ -66,7 +66,6 @@ const GuessGame = () => {
       setFeedback(`Mali! Ang tamang sagot ay ${currentQuestion.correct_answer}`);
     }
     
-    // Set a timeout to remove the 'wrong' class after the feedback duration
     setTimeout(() => {
       setSelectedAnswer(null);
       setFeedback('');
@@ -74,7 +73,7 @@ const GuessGame = () => {
         setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       } else {
         setGameCompleted(true);
-        saveScore();
+        saveScore();  // Call saveScore when the game is completed
       }
     }, 2000);
   };
@@ -86,7 +85,7 @@ const GuessGame = () => {
     }
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('user_scores')
         .upsert({ 
           user_id: user.id, 
@@ -94,10 +93,11 @@ const GuessGame = () => {
         }, { 
           onConflict: 'user_id',
           update: ['guess_game_score', 'updated_at']
-        });
+        })
+        .select();;
 
       if (error) throw error;
-      console.log('Score saved successfully');
+      console.log('Score saved successfully', data);
     } catch (error) {
       console.error('Error saving score:', error);
       alert('Error saving score: ' + error.message);

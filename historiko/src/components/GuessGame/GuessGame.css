@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: -50px;
 }
 
 .guess-game-container::before {
@@ -230,3 +231,13 @@
   background-color: #36648B;
 }
 
+@media (max-width: 480px) {
+  .image-item {
+    width: 100%;
+    max-width: none;
+  }
+
+  .answers-container {
+    margin-left: -50px;
+  }
+}
