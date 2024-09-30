@@ -132,3 +132,72 @@ p {
 .pagtatapos-button:hover {
   background-color: #45a049;
 }
+
+/* @media (max-width: 768px) {
+  .flashcard-reviewer {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    margin-top: 0;
+    box-sizing: border-box;
+  }
+
+  .flashcard {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .flashcard-front, .flashcard-back {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .flashcard-content {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .flashcard-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .controls {
+    position: static;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .controls button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .flashcard-reviewer > button:first-of-type {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    width: auto;
+  }
+}
+
+.flashcard-reviewer {
+  position: relative;
+  z-index: 1;
+}
+
+.flashcard-reviewer > img:first-of-type {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.flashcard-reviewer > div:first-of-type {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+} */
