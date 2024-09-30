@@ -49,6 +49,24 @@
   cursor: pointer;
 }
 
+.guess-game {
+  position: relative;
+}
+
+.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.lock-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  z-index: 10;
+}
+
 .virtual-flashcard:hover, .guess-game:hover {
   transform: scale(1.05);
 }
