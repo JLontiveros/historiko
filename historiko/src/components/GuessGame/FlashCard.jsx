@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../supabaseClient';
-import { useAuth } from '../../App'; // Import the custom useAuth hook
+import { useAuth } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './FlashCard.css';
 
 const FlashCard = ({ onComplete }) => {
@@ -85,11 +87,29 @@ const FlashCard = ({ onComplete }) => {
       }
   
       console.log('Flashcard completion updated successfully', data);
+      toast.success("Pagpupugay sa pagtatapos ng Virtual Flashcard!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       if (onComplete) {
         onComplete();
       }
     } catch (error) {
       console.error('Error updating flashcard completion:', error);
+      toast.error("May error sa pag-update ng flashcard completion", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -102,6 +122,7 @@ const FlashCard = ({ onComplete }) => {
 
   return (
     <div className="flashcard-reviewer">
+      <ToastContainer />
       <h2>Flashcard Reviewer</h2>
       <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
         <div className="flashcard-inner">

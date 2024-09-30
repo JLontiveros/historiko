@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App'; // Import the useAuth hook
 import './Minigames.css';
 import character from '../../assets/question.png';
 import gamebg from '../../assets/gamebg.jpg';
@@ -11,35 +12,39 @@ import FlashCard from '../GuessGame/FlashCard';
 const Minigame = () => {
   const [selectedGame, setSelectedGame] = useState(null);
   const [isFlashcardCompleted, setIsFlashcardCompleted] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, user } = useAuth(); // Use the authentication context
 
   useEffect(() => {
-    const fetchUserAndProgress = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      if (user) {
-        await checkFlashcardCompletion(user.id);
+    const checkFlashcardCompletion = async () => {
+      if (isAuthenticated && user) {
+        setIsLoading(true);
+        try {
+          console.log('Checking flashcard completion for user:', user.id);
+          const { data, error } = await supabase
+            .from('gameuser_progress')
+            .select('flashcard_completed')
+            .eq('user_id', user.id)
+            .single();
+
+          if (error) throw error;
+
+          console.log('Flashcard completion data:', data);
+          setIsFlashcardCompleted(data?.flashcard_completed || false);
+          console.log('Updated isFlashcardCompleted:', data?.flashcard_completed || false);
+        } catch (error) {
+          console.error('Error checking flashcard completion:', error);
+          setIsFlashcardCompleted(false);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setIsLoading(false);
       }
     };
-    fetchUserAndProgress();
-  }, []);
 
-  // Update to check the new `gameuser_progress` table
-  const checkFlashcardCompletion = async (userId) => {
-    try {
-      const { data, error } = await supabase
-        .from('gameuser_progress') // Update to new table name
-        .select('flashcard_completed')
-        .eq('user_id', userId)
-        .single();
-
-      if (error) throw error;
-
-      setIsFlashcardCompleted(data?.flashcard_completed || false);
-    } catch (error) {
-      console.error('Error checking flashcard completion:', error);
-    }
-  };
+    checkFlashcardCompletion();
+  }, [isAuthenticated, user]);
 
   const handleGameClick = (game) => {
     if (game === 'flashcard' || isFlashcardCompleted) {
@@ -55,11 +60,18 @@ const Minigame = () => {
 
   const handleFlashcardComplete = async () => {
     if (user) {
-      await checkFlashcardCompletion(user.id);
-      setIsFlashcardCompleted(true); // Ensure the state is updated
+      await checkFlashcardCompletion();
       backToSelection();
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <div>Please log in to access the minigames.</div>;
+  }
 
   if (selectedGame === 'guessGame') {
     return (
