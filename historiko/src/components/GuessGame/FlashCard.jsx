@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App'; // Import the custom useAuth hook
 import './FlashCard.css';
 
 const FlashCard = ({ onComplete }) => {
@@ -8,15 +9,7 @@ const FlashCard = ({ onComplete }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    fetchUser();
-  }, []);
+  const { isAuthenticated, user } = useAuth();
 
   const fetchFlashcards = useCallback(async () => {
     try {
@@ -39,8 +32,10 @@ const FlashCard = ({ onComplete }) => {
   }, []);
 
   useEffect(() => {
-    fetchFlashcards();
-  }, [fetchFlashcards]);
+    if (isAuthenticated && user) {
+      fetchFlashcards();
+    }
+  }, [fetchFlashcards, isAuthenticated, user]);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -60,25 +55,36 @@ const FlashCard = ({ onComplete }) => {
     }
   };
 
-  // Update to use the new `gameuser_progress` table
   const handleComplete = async () => {
-    if (!user) {
-      console.error('No user found.');
+    console.log('handleComplete called');
+    console.log('Current user:', user);
+
+    if (!isAuthenticated || !user) {
+      console.error('No user found. Please ensure you are logged in.');
       return;
     }
-
+  
     try {
-      const { error } = await supabase
+      console.log('Attempting to update gameuser_progress for user ID:', user.id);
+      const { data, error } = await supabase
         .from('gameuser_progress')
-        .upsert({
-          user_id: user.id, // Use user.id
-          flashcard_completed: true,
-          progress: 100, // Set progress to 100%
-        }, { onConflict: 'user_id' });
-
-      if (error) throw error;
-
-      console.log('Flashcard completion updated successfully');
+        .upsert(
+          {
+            user_id: user.id,
+            flashcard_completed: true,
+            progress: 100,
+          },
+          { 
+            onConflict: 'user_id'
+          }
+        );
+  
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
+  
+      console.log('Flashcard completion updated successfully', data);
       if (onComplete) {
         onComplete();
       }
