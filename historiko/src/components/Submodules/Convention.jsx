@@ -50,7 +50,7 @@ const Convention = () => {
 
   useEffect(() => {
     if (location.state?.showToast && !hasShownToast) {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
           <img 
@@ -74,8 +74,18 @@ const Convention = () => {
       );
       setHasShownToast(true);
     }
-  
-    // ... (rest of the useEffect for background image)
+
+    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundAttachment = 'fixed';
+    
+    return () => {
+      document.body.style.backgroundImage = '';
+      document.body.style.backgroundSize = '';
+      document.body.style.backgroundPosition = '';
+      document.body.style.backgroundAttachment = '';
+    };
   }, [selectedImage, location.state, user, hasShownToast]);
 
   const handlePrev = (e) => {
@@ -137,19 +147,10 @@ const Convention = () => {
     navigate('/Convention3d', { state: { showToast: true } });
   };
 
-  useEffect(() => {
-    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundAttachment = 'fixed';
-    
-    return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundPosition = '';
-      document.body.style.backgroundAttachment = '';
-    };
-  }, [selectedImage]);
+  const handleHeadingClick = (index) => {
+    setSelectedImage(index);
+    setCurrentHeading(headings[index]);
+  };
 
   return (
     <div className="convention">
@@ -181,6 +182,17 @@ const Convention = () => {
               </div>
             );
           })}
+        </div>
+        <div className="convention-headings">
+          {headings.map((heading, index) => (
+            <button
+              key={index}
+              className={`heading-button ${index === selectedImage ? 'active' : ''}`}
+              onClick={() => handleHeadingClick(index)}
+            >
+              {heading}
+            </button>
+          ))}
         </div>
         <div className="convention-arrow-keys">
           <img src={arrownav2} alt="left" onClick={handlePrev} />

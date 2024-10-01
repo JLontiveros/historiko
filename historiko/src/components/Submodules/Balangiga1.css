@@ -164,6 +164,47 @@ body::before {
   transform: scale(1.2);
 }
 
+.balangiga1-headings {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.heading-button {
+  background-color: #0047ab;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-weight: bold;
+}
+
+.heading-button:hover {
+  background-color: #003380;
+  transform: scale(1.05);
+}
+
+.heading-button.active {
+  background-color: #002255;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .balangiga1-headings {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .heading-button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .balangiga1 button {
     top: 10px;

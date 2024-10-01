@@ -195,6 +195,11 @@ const Tirad = () => {
     };
   }, [selectedImage]);
 
+  const handleHeadingClick = (index) => {
+    setSelectedImage(index);
+    setCurrentHeading(headings[index]);
+  };
+
   return (
     <div className="tirad">
       <ToastContainer/>
@@ -230,6 +235,17 @@ const Tirad = () => {
           <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
         </div>
+      </div>
+      <div className="tirad-headings">
+        {headings.map((heading, index) => (
+          <button
+            key={index}
+            className={`heading-button ${index === selectedImage ? 'active' : ''}`}
+            onClick={() => handleHeadingClick(index)}
+          >
+            {heading}
+          </button>
+        ))}
       </div>
     </div>
   );
