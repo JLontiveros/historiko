@@ -35,9 +35,9 @@ const Balangiga1 = () => {
   ];
 
   const headings = [
-    "UNANG PANGYAYARI",
-    "IKA DALAWANG PANGYAYARI",
-    "IKA TATLONG PANGYAYARI",
+    "Unang Pangyayari",
+    "ika dalawang Pangyayari",
+    "ika tatlong Pangyayari",
   ];
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const Balangiga1 = () => {
   return (
     <div className="balangiga1">
       <ToastContainer/>
-      <button onClick={handleViewMore}>View in 3D</button>
+      <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="balangiga1-container">
         <div className="balangiga1-description-container">
           <h1>Description:</h1>

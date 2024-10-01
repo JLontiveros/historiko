@@ -155,7 +155,7 @@ const Convention = () => {
   return (
     <div className="convention">
       <ToastContainer/>
-      <button onClick={handleViewMore}>View in 3D</button>
+      <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="convention-container">
         <div className="convention-description-container">
           <h1>Description:</h1>
@@ -183,7 +183,12 @@ const Convention = () => {
             );
           })}
         </div>
-        <div className="convention-headings">
+        <div className="convention-arrow-keys">
+          <img src={arrownav2} alt="left" onClick={handlePrev} />
+          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
+        </div>
+      </div>
+      <div className="convention-headings">
           {headings.map((heading, index) => (
             <button
               key={index}
@@ -194,11 +199,6 @@ const Convention = () => {
             </button>
           ))}
         </div>
-        <div className="convention-arrow-keys">
-          <img src={arrownav2} alt="left" onClick={handlePrev} />
-          <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
-        </div>
-      </div>
     </div>
   );
 };

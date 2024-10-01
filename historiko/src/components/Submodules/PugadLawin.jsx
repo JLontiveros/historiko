@@ -185,7 +185,7 @@ const PugadLawin = () => {
   return (
     <div className="PugadLawin">
       <ToastContainer/>
-      <button onClick={handleViewMore}>View in 3D</button>
+      <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
           <h1>Description:</h1>
@@ -224,9 +224,7 @@ const PugadLawin = () => {
             key={index}
             className={`heading-button ${index === selectedImage ? 'active' : ''}`}
             onClick={() => handleHeadingClick(index)}
-          >
-            {heading}
-          </button>
+          ></button>
         ))}
       </div>
     </div>
