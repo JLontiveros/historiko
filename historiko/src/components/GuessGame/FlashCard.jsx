@@ -67,19 +67,11 @@ const FlashCard = ({ onComplete }) => {
     }
   
     try {
-      console.log('Attempting to update gameuser_progress for user ID:', user.id);
+      console.log('Attempting to update flashcard_completed for user ID:', user.id);
       const { data, error } = await supabase
-        .from('gameuser_progress')
-        .upsert(
-          {
-            user_id: user.id,
-            flashcard_completed: true,
-            progress: 100,
-          },
-          { 
-            onConflict: 'user_id'
-          }
-        );
+        .from('users')
+        .update({ flashcard_completed: true })
+        .eq('id', user.id);
   
       if (error) {
         console.error('Supabase error:', error);
@@ -122,7 +114,17 @@ const FlashCard = ({ onComplete }) => {
 
   return (
     <div className="flashcard-reviewer">
-      <ToastContainer />
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h2>Flashcard Reviewer</h2>
       <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
         <div className="flashcard-inner">

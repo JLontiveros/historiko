@@ -15,34 +15,34 @@ const Minigame = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated, user } = useAuth(); // Use the authentication context
 
-  useEffect(() => {
-    const checkFlashcardCompletion = async () => {
-      if (isAuthenticated && user) {
-        setIsLoading(true);
-        try {
-          console.log('Checking flashcard completion for user:', user.id);
-          const { data, error } = await supabase
-            .from('gameuser_progress')
-            .select('flashcard_completed')
-            .eq('user_id', user.id)
-            .single();
+  const checkFlashcardCompletion = async () => {
+    if (isAuthenticated && user) {
+      setIsLoading(true);
+      try {
+        console.log('Checking flashcard completion for user:', user.id);
+        const { data, error } = await supabase
+          .from('users')
+          .select('flashcard_completed')
+          .eq('id', user.id)
+          .single();
 
-          if (error) throw error;
+        if (error) throw error;
 
-          console.log('Flashcard completion data:', data);
-          setIsFlashcardCompleted(data?.flashcard_completed || false);
-          console.log('Updated isFlashcardCompleted:', data?.flashcard_completed || false);
-        } catch (error) {
-          console.error('Error checking flashcard completion:', error);
-          setIsFlashcardCompleted(false);
-        } finally {
-          setIsLoading(false);
-        }
-      } else {
+        console.log('Flashcard completion data:', data);
+        setIsFlashcardCompleted(data?.flashcard_completed || false);
+        console.log('Updated isFlashcardCompleted:', data?.flashcard_completed || false);
+      } catch (error) {
+        console.error('Error checking flashcard completion:', error);
+        setIsFlashcardCompleted(false);
+      } finally {
         setIsLoading(false);
       }
-    };
+    } else {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     checkFlashcardCompletion();
   }, [isAuthenticated, user]);
 
