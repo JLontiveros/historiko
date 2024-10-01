@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Modules.css';
 import flagsImage from '../../assets/flag.png';
+import Historiko2_1 from '../../assets/Historiko2_1.mp4';
 import axesImage from '../../assets/axe.png';
 import characterImage from '../../assets/boyinverted.png';
 import questionMark from '../../assets/mark.png';
@@ -9,9 +10,25 @@ import questionMark from '../../assets/mark.png';
 function Modules() {
   const [hoverText1, setHoverText1] = useState(false);
   const [hoverText2, setHoverText2] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+    }
+  }, []);
 
   return (
     <div className="modules">
+      <video 
+        ref={videoRef}
+        autoPlay  
+        playsInline 
+        className="module-bg"
+      >
+        <source src={Historiko2_1} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="module-container">
         <div className="module">
           <div className="image-container">
@@ -86,7 +103,7 @@ function Modules() {
 
         </div>
       </div>
-      <img src={characterImage} alt="Character" className="character" />
+      {/* <img src={characterImage} alt="Character" className="character" /> */}
     </div>
   );
 }
