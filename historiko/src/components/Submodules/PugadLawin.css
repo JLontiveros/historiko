@@ -145,8 +145,8 @@ body::before {
   transform: scale(1.2);
 }
 
-.PugadLawin button {
-  width: 100px;
+.view {
+  width: 130px;
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
@@ -154,7 +154,7 @@ body::before {
   background-color: gold;
   color: #0047ab;
   position: relative;
-  top: 160px;
+  top: 140px;
   left: 650px;
   transition: transform 0.3s ease;
   z-index: 1000;
@@ -162,6 +162,49 @@ body::before {
 
 .PugadLawin button:hover {
   transform: scale(1.2);
+}
+
+.PugadLawin-headings {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 100px; /* Adjust this value to position above the arrow keys */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.PugadLawin-headings .heading-button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #0047ab;
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 0;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PugadLawin-headings .heading-button:hover {
+  background-color: #003380;
+  transform: scale(1.1);
+}
+
+.PugadLawin-headings .heading-button.active {
+  background-color: #ffd700;
+  color: #0047ab;
+  font-weight: bold;
+}
+
+/* Adjust arrow keys position if needed */
+.PugadLawin-arrow-keys {
+  bottom: 20px; /* Adjust this value to leave space for the circular buttons */
 }
 
 @media screen and (max-width: 768px) {

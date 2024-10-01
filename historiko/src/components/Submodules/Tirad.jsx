@@ -203,7 +203,7 @@ const Tirad = () => {
   return (
     <div className="tirad">
       <ToastContainer/>
-      <button onClick={handleViewMore}>View in 3D</button>
+      <button onClick={handleViewMore} className='view'>View in 3D</button>
       <div className="tirad-container">
         <div className="tirad-description-container">
           <h1>Description:</h1>
@@ -237,15 +237,13 @@ const Tirad = () => {
         </div>
       </div>
       <div className="tirad-headings">
-        {headings.map((heading, index) => (
-          <button
-            key={index}
-            className={`heading-button ${index === selectedImage ? 'active' : ''}`}
-            onClick={() => handleHeadingClick(index)}
-          >
-            {heading}
-          </button>
-        ))}
+      {headings.map((heading, index) => (
+        <button
+          key={index}
+          className={`heading-button ${index === selectedImage ? 'active' : ''}`}
+          onClick={() => handleHeadingClick(index)}
+        ></button>
+      ))}
       </div>
     </div>
   );
