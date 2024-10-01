@@ -162,6 +162,11 @@ const Kasunduan = () => {
     };
   }, [selectedImage]);
 
+  const handleHeadingClick = (index) => {
+    setSelectedImage(index);
+    setCurrentHeading(headings[index]);
+  };
+
   return (
     <div className="Kasunduan">
       <ToastContainer/>
@@ -197,6 +202,17 @@ const Kasunduan = () => {
           <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
         </div>
+      </div>
+      <div className="Kasunduan-headings">
+        {headings.map((heading, index) => (
+          <button
+            key={index}
+            className={`heading-button ${index === selectedImage ? 'active' : ''}`}
+            onClick={() => handleHeadingClick(index)}
+          >
+            {heading}
+          </button>
+        ))}
       </div>
     </div>
   );

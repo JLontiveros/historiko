@@ -151,6 +151,11 @@ const Putok = () => {
     };
   }, [selectedImage]);
 
+  const handleHeadingClick = (index) => {
+    setSelectedImage(index);
+    setCurrentHeading(headings[index]);
+  };
+
   return (
     <div className="putok">
       <ToastContainer />
@@ -186,6 +191,17 @@ const Putok = () => {
           <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
         </div>
+      </div>
+      <div className="putok-headings">
+        {headings.map((heading, index) => (
+          <button
+            key={index}
+            className={`heading-button ${index === selectedImage ? 'active' : ''}`}
+            onClick={() => handleHeadingClick(index)}
+          >
+            {heading}
+          </button>
+        ))}
       </div>
     </div>
   );
