@@ -13,10 +13,16 @@ body::before {
   bottom: 0;
   background-color: rgba(230, 242, 255, 0.7);
   z-index: -1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .putok-container {
-  margin-top: 130px;
+  margin-top: 110px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 20px;
@@ -24,6 +30,12 @@ body::before {
   position: relative;
   z-index: 1;
   overflow-x: hidden;
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .putok-description-container {
@@ -35,6 +47,12 @@ body::before {
   max-height: 400px;
   overflow-y: auto;
   -ms-overflow-style: none;
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 .putok-description-container::-webkit-scrollbar {
@@ -43,7 +61,7 @@ body::before {
 }
 
 .putok-description-container::-webkit-scrollbar-thumb {
-  background-color: #ecf0f3;
+  background-color: #0047ab;
   border-radius: 10px;
 }
 
@@ -51,11 +69,23 @@ body::before {
   font-size: 50px;
   text-shadow: 3px 3px 0px #5676a3;
   margin-top: -10px;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .putok-description-container h2 {
   font-size: 30px;
   margin-top: -10px;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 .putok-description-container p {
@@ -66,6 +96,7 @@ body::before {
   margin-top: -20px;
   margin-left: 10px;
   padding: 10px;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .putok-image-container {
@@ -73,6 +104,12 @@ body::before {
   gap: 20px;
   padding: 20px;
   margin-left: 30px;
+  animation: fadeInRight 0.5s ease-out;
+}
+
+@keyframes fadeInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 .putok-image-wrapper {
@@ -93,6 +130,10 @@ body::before {
   transition: transform 0.3s ease;
 }
 
+.putok-image-wrapper:hover img {
+  transform: scale(1.1);
+}
+
 .putok-image-description {
   position: absolute;
   bottom: 0;
@@ -103,6 +144,11 @@ body::before {
   padding: 10px;
   box-sizing: border-box;
   font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.putok-image-wrapper:hover .putok-image-description {
+  transform: translateY(-5px);
 }
 
 .putok-image-wrapper.selected {
@@ -112,6 +158,12 @@ body::before {
   max-width: 560px;
   justify-self: center;
   margin: 0px 50px 0px 20px;
+  animation: selectImage 0.3s ease-out;
+}
+
+@keyframes selectImage {
+  from { transform: scale(1); }
+  to { transform: scale(1.22); }
 }
 
 .putok-image-wrapper.zoomed {
@@ -121,6 +173,12 @@ body::before {
   transform: translate(-50%, -50%) scale(2);
   z-index: 1000;
   width: auto;
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(2); }
 }
 
 .putok-arrow-keys {
@@ -131,6 +189,11 @@ body::before {
   z-index: 10;
   display: flex;
   gap: 0px;
+}
+
+@keyframes fadeInUp {
+  from { transform: translate(-50%, 50px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
 }
 
 .putok-arrow-keys img {
@@ -155,21 +218,23 @@ body::before {
   position: relative;
   top: 140px;
   left: 650px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
+  animation: fadeIn 0.5s ease-out;
 }
 
-.putok button:hover {
+.view:hover {
   transform: scale(1.2);
+  background-color: #ffd700;
 }
 
 .putok-headings {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   margin-top: 20px;
-  padding: 0 20px;
+  padding: 20px 20px;
 }
 
 .putok-headings .heading-button {
@@ -195,6 +260,13 @@ body::before {
   background-color: #ffd700;
   color: #0047ab;
   font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 @media screen and (max-width: 768px) {

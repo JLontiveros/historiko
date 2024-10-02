@@ -5,10 +5,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .minigame-bg {
@@ -20,6 +26,12 @@
   height: 100%;
   z-index: -1;
   opacity: 0.7;
+  animation: zoomIn 20s infinite alternate;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
 }
 
 .game-area {
@@ -31,6 +43,12 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .virtual-flashcard, .guess-game {
@@ -38,7 +56,7 @@
   height: auto;
   width: 100%;
   border-radius: 30px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +65,12 @@
   aspect-ratio: 4 / 3;
   max-width: 400px;
   cursor: pointer;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .guess-game {
@@ -65,10 +89,18 @@
   transform: translate(-50%, -50%);
   font-size: 48px;
   z-index: 10;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 .virtual-flashcard:hover, .guess-game:hover {
   transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .virtual-flashcard {
@@ -91,6 +123,12 @@
   right: 10px;
   margin: 0;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.virtual-flashcard:hover h2,
+.guess-game:hover h2 {
+  transform: translateY(-5px);
 }
 
 .virtual-bg {
@@ -98,6 +136,11 @@
   height: auto;
   object-fit: contain;
   margin-top: 210px;
+  transition: transform 0.3s ease;
+}
+
+.virtual-flashcard:hover .virtual-bg {
+  transform: scale(1.1);
 }
 
 .character-image {
@@ -107,6 +150,11 @@
   object-fit: contain;
   margin-top: 30px;
   margin-bottom: -100px;
+  transition: transform 0.3s ease;
+}
+
+.guess-game:hover .character-image {
+  transform: translateY(-10px);
 }
 
 .game-overlay {
@@ -120,6 +168,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .close-button {
@@ -133,10 +182,12 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .close-button:hover {
   background-color: #cc0000;
+  transform: scale(1.05);
 }
 
 .back-button {
@@ -149,10 +200,18 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .back-button:hover {
   background-color: #45a049;
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

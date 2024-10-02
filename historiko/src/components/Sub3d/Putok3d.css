@@ -1,5 +1,11 @@
 .Putok3d {
     margin-top: -50px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .Putok3d-container {
@@ -7,6 +13,12 @@
     grid-template-columns: 0.5fr 2fr;
     margin-top: 130px;
     margin-left: 50px;
+    animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .Putok3d-container img {
@@ -17,10 +29,17 @@
     position: relative;
     top: 50px;
     left: 150px;
+    animation: rotateIn 0.5s ease-out;
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-180deg); opacity: 0; }
+    to { transform: rotate(0); opacity: 1; }
 }
 
 .Putok3d-container img:hover {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(360deg);
+    transition: transform 0.5s ease;
 }
 
 .Putok3d-container h1 {
@@ -29,6 +48,12 @@
     font-size: 45px;
     color: #0047ab;
     margin-left: 30px;
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .picture3d img {
@@ -40,7 +65,15 @@
     border: 10px solid white;
     border-radius: 20px;
     margin-top: -20px;
+    animation: zoomIn 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 
 @media screen and (max-width: 1024px) {
     .Putok3d-container {

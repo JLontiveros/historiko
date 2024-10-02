@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import './TopicMarking.css';
-import heartIcon from '../../assets/heart.png';
+import heartIcontopic from '../../assets/heart.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import { useMarkedTopics } from '../context/MarkedTopicsContext';
@@ -17,6 +17,12 @@ const TopicMarking = () => {
     const { isAuthenticated } = useAuth();
 
     useEffect(() => {
+      if (userId) {
+          fetchTopics();
+      }
+  }, [userId]);
+
+    useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             try {
@@ -29,12 +35,6 @@ const TopicMarking = () => {
             }
         }
     }, []);
-
-    useEffect(() => {
-        if (userId) {
-            fetchTopics();
-        }
-    }, [userId]);
 
     const fetchTopics = async () => {
         if (!userId) {
@@ -83,7 +83,7 @@ const TopicMarking = () => {
         }
       } catch (error) {
         console.error('Error marking/unmarking topic:', error);
-        setError('Failed to mark/unmark topic. Please try again.');
+        setError();
       }
     };
     
@@ -123,7 +123,7 @@ const TopicMarking = () => {
           </div>
         ) : displayedTopics.length === 0 ? (
           <div className="no-topics-message">
-            No topics available. Please check back later.
+            No topics available.
           </div>
         ) : (
           <div className="topic-container">
@@ -144,7 +144,7 @@ const TopicMarking = () => {
                 <div key={topic.id} className="topic-card">
                   <div className="bookmark" onClick={() => handleMarkTopic(topic)}>
                     <img 
-                      src={heartIcon} 
+                      src={heartIcontopic} 
                       alt="heart" 
                       className={`heart ${markedTopics.some(markedTopic => markedTopic.id === topic.id) ? 'marked' : ''}`}
                     />

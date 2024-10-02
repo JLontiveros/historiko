@@ -3,6 +3,12 @@
   background-color: #cbe1ec;
   min-height: 94.5vh;
   padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .dalwatalakayin h1 {
@@ -11,6 +17,12 @@
   font-size: 40px;
   margin-top: 110px;
   margin-bottom: 70px;
+  animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .events-container {
@@ -32,8 +44,20 @@
   margin-bottom: 80px;
   display: flex;
   flex-direction: column;
-  height: 350px; /* Adjust this value as needed */
+  height: 350px;
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.event:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .event-icon {
@@ -44,27 +68,42 @@
   align-self: center;
   border: 3px solid white;
   border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.event:hover .event-icon {
+  transform: scale(1.05);
 }
 
 .event h2 {
   font-size: 1.5em;
   margin-bottom: 15px;
   color: rgb(255, 229, 79);
-  height: 40px; /* Fixed height for title */
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.event:hover h2 {
+  color: #ffffff;
 }
 
 .event p {
-  font-size: 0.9em;
+  font-size: 0.8em;
   text-align: justify;
-  margin: -10px 0 0; /* Negative top margin to move it higher */
+  margin: -10px 0 0;
   padding: 10px;
   flex-grow: 1;
   display: flex;
-  align-items: flex-start; /* Align to the top */
+  align-items: flex-start;
   overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.event:hover p {
+  opacity: 0.8;
 }
 
 .event-link {
@@ -82,7 +121,7 @@
   padding: 15px 50px;
   border-radius: 25px;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   width: 80%;
   max-width: 240px;
   box-sizing: border-box;
@@ -92,6 +131,7 @@
 .link-button:hover {
   background-color: #669999;
   color: white;
+  transform: scale(1.05);
 }
 
 .eventbtns2 {
@@ -106,7 +146,7 @@
   color: white;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   text-decoration: none;
   margin: 10px 0;
   padding: 10px 20px;
@@ -116,6 +156,7 @@
 
 .eventbtns2 button:hover {
   background-color: #669999;
+  transform: scale(1.05);
 }
 
 /* Desktop Layout (3 columns) */
