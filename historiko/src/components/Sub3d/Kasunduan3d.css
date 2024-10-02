@@ -1,9 +1,14 @@
-
 .Kasunduan3d-container {
     display: grid;
     grid-template-columns: 0.5fr 2fr;
     margin-top: 100px;
     margin-left: 50px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .Kasunduan3d-container img {
@@ -14,6 +19,12 @@
     position: relative;
     top: 50px;
     left: 150px;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .Kasunduan3d-container img:hover {
@@ -26,6 +37,12 @@
     font-size: 45px;
     color: #0047ab;
     margin-left: 30px;
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 .picture3d {
@@ -37,6 +54,13 @@
     border: 10px solid white;
     border-radius: 20px;
     margin-top: -20px;
+    animation: popIn 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 @media screen and (max-width: 1024px) {
@@ -50,6 +74,7 @@
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
+        animation: fadeIn 0.5s ease-out;
     }
 
     .Kasunduan3d-container h1 {
@@ -57,6 +82,7 @@
         font-size: 36px;
         margin-left: 0;
         text-align: center;
+        animation: fadeIn 0.5s ease-out;
     }
 
     .picture3d img {
@@ -66,6 +92,7 @@
         max-width: 600px;
         margin: 20px auto;
         display: block;
+        animation: fadeIn 0.5s ease-out;
     }
 }
 
@@ -117,4 +144,3 @@
         max-width: 380px;
     }
 }
-

@@ -7,7 +7,6 @@ import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
 import uploadicon from '../../assets/uploadicon.jpg';
-import { PieChart, Pie, Cell } from 'recharts';
 
 const Profile = () => {
   const [isFormVisible, setFormVisible] = useState(false);

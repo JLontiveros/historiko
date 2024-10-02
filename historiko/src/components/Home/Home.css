@@ -50,6 +50,16 @@
   padding: 20px;
   box-sizing: border-box;
   z-index: 2;
+  animation: mymovehome 5s ;
+}
+
+.text-overlay h1 h3 {
+  animation-timing-function: ease-in;
+}
+
+@keyframes mymovehome {
+  from {left: -400px;}
+  to {left: 30px;}
 }
 
 .heading,

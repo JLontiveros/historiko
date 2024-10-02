@@ -7,6 +7,12 @@
   margin-left: 100px;
   margin-right: 80px;
   padding: 30px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .tejeros-container-left {
@@ -19,13 +25,31 @@
   height: 350px;
   margin-top: 65px;
   margin-bottom: 50px;
-  border-radius: 20px; /* Adjust this value to change the roundness of the corners */
-  box-shadow: 10px 10px #8c85d5; /* Adds the box shadow */
+  border-radius: 20px;
+  box-shadow: 10px 10px #8c85d5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.tejeros-container-left img:hover {
+  transform: scale(1.05);
+  box-shadow: 15px 15px #8c85d5;
 }
 
 .tejeros-container-right {
   display: grid;
   grid-template-columns: 1fr;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 .tejeros-container-right h1 {
@@ -34,6 +58,11 @@
   font-weight: 800;
   margin-top: 30px;
   margin-left: -100px;
+  transition: color 0.3s ease;
+}
+
+.tejeros-container-right h1:hover {
+  color: #0056d6;
 }
 
 .tejeros-description {
@@ -45,29 +74,31 @@
 
 .tejeros-description img {
   position: absolute;
-  top: -106px; /* Adjust this value to position the heart image as needed */
-  right: 165px; /* Adjust this value to position the heart image as needed */
+  top: -106px;
+  right: 165px;
   width: 30px;
   height: 30px;
   background-color: gold;
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .tejeros-description img:hover {
   transform: scale(1.2);
+  background-color: #ffd700;
 }
 
 .tejeros-blank {
   position: absolute;
-  top: -70px; /* Adjust this value to position the blank div as needed */
+  top: -70px;
   left: -3.3%;
   height: 4px;
   width: 690px;
   margin-left: 90px;
   background-color: gold;
+  transition: width 0.3s ease;
 }
 
 .tejeros-container-right p {
@@ -80,16 +111,22 @@
   font-size: 20px;
   display: block;
   line-height: 1.7;
+  transition: background-color 0.3s ease;
+}
+
+.tejeros-container-right p:hover {
+  background-color: #9f99e0;
 }
 
 .tejeros-date {
   color: #4169e1;
   font-size: 24px;
   margin-top: -20px;
+  transition: color 0.3s ease;
 }
 
-.tejeros-container-right button:hover {
-  background-color: #3255b2;
+.tejeros-date:hover {
+  color: #5a7de1;
 }
 
 .tejeros-container-right button {
@@ -104,9 +141,21 @@
   color: white;
   border: none;
   padding: 0px 10px;
-  border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.tejeros-container-right button:hover {
+  background-color: #3255b2;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 768px) {

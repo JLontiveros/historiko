@@ -1,8 +1,13 @@
-/* src/components/Unatalakayin/Unatalakayin.css */
 .unatalakayin {
   background-color: #cbe1ec;
   min-height: 94.5vh;
   padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .unatalakayin h1 {
@@ -11,6 +16,12 @@
   font-size: 40px;
   margin-top: 110px;
   margin-bottom: 70px;
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .events-container {
@@ -32,8 +43,20 @@
   margin-bottom: 80px;
   display: flex;
   flex-direction: column;
-  height: 350px; /* Adjust this value as needed */
+  height: 350px;
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.events:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .event-icon {
@@ -44,16 +67,26 @@
   align-self: center;
   border: 3px solid white;
   border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.events:hover .event-icon {
+  transform: scale(1.05);
 }
 
 .events h2 {
   font-size: 1.5em;
   margin-bottom: 15px;
   color: rgb(255, 229, 79);
-  height: 40px; /* Fixed height for title */
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.events:hover h2 {
+  color: #ffffff;
 }
 
 .event-content {
@@ -69,6 +102,11 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.events:hover p {
+  opacity: 0.8;
 }
 
 .event-link {
@@ -86,7 +124,7 @@
   padding: 15px 50px;
   border-radius: 25px;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   width: 80%;
   max-width: 240px;
   box-sizing: border-box;
@@ -96,6 +134,7 @@
 .link-button:hover {
   background-color: #669999;
   color: white;
+  transform: scale(1.05);
 }
 
 .eventbtns2 {
@@ -183,4 +222,14 @@
     padding: 10px 20px;
     font-size: 0.9em;
   }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.events:hover .link-button {
+  animation: pulse 1s infinite;
 }
