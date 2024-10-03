@@ -1,164 +1,139 @@
 .about-bg {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.about{
+  margin-top: 120px;  
+
+}
+
+.box {
+   border: 10px solid rgb(79, 79, 165);
+   border-radius: 30px;
+   margin: 20px 20px;
+   background-color: #cde3eb;
+   animation: fadeIn 2s;
+   
+}
+
+.about h1, .about p{
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   margin-left: 40px;
+   color: rgb(21, 21, 173);
+}
+
+.one, .two{
+   margin-left: 60px;
+}
+
+.bullet, .bullet2 {
+   margin-left: 50px;
+}
+
+.box h2 {
+   display: flex;
+   justify-content: start;
+   align-items: start;
+   margin-left: 40px;
+   margin-bottom: -5px;
+   color: rgb(21, 21, 173);
+}
+
+.layunin {
+   display: flex;
+   justify-content: start;
+   margin-left: 30px;
+   color: rgb(21, 21, 173);
+   text-align: start;
+}
+
+.about-video {
    position: absolute;
+   top: 70%;
+   right: 30px;
+   transform: translateY(-50%);
+   width: 350px;
+   height: 400px;
    object-fit: cover;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   z-index: -1;
-   opacity: 0.5;
- }
- 
- .about{
-   margin-top: 110px;  
- }
+   border-radius: 15px;
+   animation: fadeIn 2s;
+}
 
- .box {
-    border: 10px solid rgb(79, 79, 165);
-    border-radius: 30px;
-    margin: 20px 20px;
-    background-color: #e6f2ff;
-    animation: fadeIn 2s;
- }
- 
- .about h1, .about p{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-left: 40px;
-    color: rgb(21, 21, 173);
- }
-
- .one, .two{
-    margin-left: 60px;
- }
-
- .bullet, .bullet2 {
-    margin-left: 50px;
- }
-
- .box h2 {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    margin-left: 40px;
-    margin-bottom: -5px;
-    color: rgb(21, 21, 173);
- }
-
- .layunin {
-    display: flex;
-    justify-content: start;
-    margin-left: 30px;
-    color: rgb(21, 21, 173);
-    text-align: start;
- }
-
- .man{
-    width: 370px;
-    height: 400px;
-    margin-left: 1140px;
-    margin-top: -470px;
-    animation: fadeIn 2s;
- }
-
- @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(-12px); }
+@keyframes fadeIn {
+ from { opacity: 0; transform: translateY(30px); }
+ to { opacity: 1; transform: translateY(0); }
 }
 
 /* Add responsive styles */
+
 @media screen and (max-width: 768px) {
-  .about {
-    margin-top: 100px;
-  }
+ .about {
+   margin-top: 100px;
+ }
 
-  .box {
-    border-width: 5px;
-    margin: 10px;
-  }
+ .box {
+   border-width: 5px;
+   margin: 10px;
+ }
 
-  .about h1, .about p {
-    margin-left: 20px;
-  }
+ .about h1, .about p {
+   margin-left: 20px;
+ }
 
-  .one, .two {
-    margin-left: 30px;
-  }
+ .one, .two {
+   margin-left: 30px;
+ }
 
-  .bullet, .bullet2 {
-    margin-left: 25px;
-  }
+ .bullet, .bullet2 {
+   margin-left: 25px;
+ }
 
-  .box h2 {
-    margin-left: 20px;
-  }
+ .box h2 {
+   margin-left: 20px;
+ }
 
-  .layunin {
-    margin-left: 15px;
-  }
-
-  .box {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .layunin-man-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-
-  .layunin {
-    flex: 1;
-    margin-right: 10px;
-  }
-
-  .man {
-    width: 40%;
-    height: auto;
-    margin: 0;
-  }
+ .layunin {
+   margin-left: 15px;
+ }
 }
 
 @media screen and (max-width: 480px) {
-  .about {
-    margin-top: 150px;
-  }
+ .about {
+   margin-top: 150px;
+ }
 
-  .about h1 {
-    font-size: 24px;
-  }
+ .about h1 {
+   font-size: 24px;
+ }
 
-  .box {
-    border-width: 3px;
-  }
+ .box {
+   border-width: 3px;
+ }
 
-  .about p, .one, .two, .bullet, .bullet2 {
-    font-size: 16px;
-  }
+ .about p, .one, .two, .bullet, .bullet2 {
+   font-size: 16px;
+ }
 
-  .box h2 {
-    font-size: 18px;
-  }
+ .box h2 {
+   font-size: 18px;
+ }
 
-  .layunin-man-container {
-    flex-direction: column;
-  }
+ .layunin {
+   width: 100%;
+   margin-right: 0;
+   margin-bottom: 20px;
+ }
 
-  .layunin {
-   width: 60%;
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .man {
-    width: 50%;
-    margin: 0 auto;
-    position: relative;
-    bottom: 285px;
-    left: 90px;
-  }
+ .about-video {
+   height: 300px;
+ }
 }

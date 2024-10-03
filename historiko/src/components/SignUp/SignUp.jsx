@@ -64,22 +64,33 @@ const SignUp = () => {
     try {
       const { data, error } = await supabase
         .from('users')
-        .select('*')
+        .select('id, username, name')  // Select id, username, and name
         .eq('username', username)
         .eq('password', password)
         .single();
-
+  
       if (error) throw error;
-
+  
       if (data) {
-        console.log(data.id)
+        console.log(data.id);  // This should now correctly log the user's ID
         const newToken = generateToken();
-        localStorage.setItem('id', data.id);
+        localStorage.setItem('id', data.id);  // Store the correct ID
         localStorage.setItem('token', newToken);
-        localStorage.setItem('username', username);
+        localStorage.setItem('username', data.username);
+        localStorage.setItem('user', JSON.stringify({
+          id: data.id,
+          username: data.username,
+          name: data.name,
+          token: newToken
+        }));
         setToken(newToken);
         alert('Sign in successful!');
-        login({ username, token: newToken, id: data.id });
+        login({ 
+          id: data.id, 
+          username: data.username, 
+          name: data.name, 
+          token: newToken 
+        });
       } else {
         alert('Invalid username or password');
       }
@@ -97,18 +108,19 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      setToken(userData.token);
     }
   }, []);
 
   if (token) {
-    const storedUsername = localStorage.getItem('username');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     return (
       <div>
-        <h1>Welcome, {storedUsername}!</h1>
-        <button onClick={handleLogout}>Logout</button>
+        <h1>Welcome, {storedUser.name || storedUser.username}!</h1>
+        {/* <button onClick={handleLogout}>Logout</button> */}
       </div>
     );
   }

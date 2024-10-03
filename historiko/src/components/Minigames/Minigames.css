@@ -26,7 +26,7 @@
   height: 100%;
   z-index: -1;
   opacity: 0.7;
-  animation: zoomIn 20s infinite alternate;
+  animation: zoomIn 1s;
 }
 
 @keyframes zoomIn {

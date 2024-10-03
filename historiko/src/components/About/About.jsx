@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './About.css';
-import characterImage from '../../assets/boycropped.png';
+import Historiko2_2 from '../../assets/Historiko2_2.mp4';
 import roombg from '../../assets/roombg.png';
 
 const About = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+    }
+  }, []);
+  
   return (
     <div className='about'>
       <img src={roombg} alt='background' className='about-bg'/>
@@ -32,8 +40,11 @@ const About = () => {
             </ul>
           </div>
         </div>
-        <img src={characterImage} alt="Character" className="man" />
       </div>
+      <video ref={videoRef} autoPlay playsInline className="about-video">
+        <source src={Historiko2_2} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   )
 }
