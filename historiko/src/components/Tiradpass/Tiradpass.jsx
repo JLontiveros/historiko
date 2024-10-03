@@ -17,18 +17,28 @@ const Tiradpass = () => {
   const { addMarkedTopic, removeMarkedTopic, markedTopics } = useMarkedTopics();
   const topicId = 2; // "Labanan sa Tirad Pass"
   const topicName = "Labanan sa Tirad Pass";
+  const [userId, setUserId] = useState(null);
 
   let timer;
 
   useEffect(() => {
-    if (user) {
-      checkIfMarked();
-    } else {
-      setIsLoading(false);
-    }
+    const fetchUserData = async () => {
+      if (user && user.id) {
+        setUserId(user.id);
+        checkIfMarked();
+      } else if (user && user.username) {
+        const id = await getUserUUID(user.username);
+        setUserId(id);
+        checkIfMarked();
+      } else {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
 
     timer = setTimeout(() => {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Labanan sa Tirad Pass`, {
         position: "top-right",
         autoClose: 5000,
@@ -40,9 +50,7 @@ const Tiradpass = () => {
       });
     }, 1500);
 
-    // Clear the timeout if the component unmounts
     return () => clearTimeout(timer);
-
   }, [user, markedTopics]);
 
   const getUserUUID = async (username) => {
@@ -65,16 +73,15 @@ const Tiradpass = () => {
   };
 
   const handleHeartClick = async (e) => {
-    e.preventDefault(); // Prevent default behavior
+    e.preventDefault();
   
-    if (!user) {
+    if (!userId) {
       toast.info('You need to be logged in to mark topics.', {
         onClick: () => navigate('/signup')
       });
       return;
     }
 
-    // Clear the timer-based toast if user clicks heart
     clearTimeout(timer);
   
     try {
@@ -82,7 +89,7 @@ const Tiradpass = () => {
         await removeMarkedTopic(topicId);
         toast.success('Topic unmarked successfully!');
       } else {
-        await addMarkedTopic(topicName, topicId);
+        await addMarkedTopic(topicName, topicId, userId);
         toast.success('Topic marked successfully!');
       }
       setIsMarked(!isMarked);
@@ -94,21 +101,18 @@ const Tiradpass = () => {
   };
 
   const handleViewMore = async () => {
-    if (user) {
-      const userUUID = await getUserUUID(user.username);
-      if (userUUID) {
-        const { data, error } = await supabase
-          .from('user_progress')
-          .upsert(
-            { user_id: userUUID, topic_id: topicId, progress: 40 },
-            { onConflict: ['user_id', 'topic_id'] }
-          );
+    if (userId) {
+      const { data, error } = await supabase
+        .from('user_progress')
+        .upsert(
+          { user_id: userId, topic_id: topicId, progress: 40 },
+          { onConflict: ['user_id', 'topic_id'] }
+        );
 
-        if (error) {
-          console.error('Error updating progress:', error);
-        } else {
-          console.log('Progress updated successfully');
-        }
+      if (error) {
+        console.error('Error updating progress:', error);
+      } else {
+        console.log('Progress updated successfully');
       }
     }
     navigate('/tirad', { state: { showToast: true } });

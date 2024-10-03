@@ -29,7 +29,7 @@ export const MarkedTopicsProvider = ({ children }) => {
       const { data, error } = await supabase
         .from('user_topics')
         .select('topic_id, topic_name')
-        .eq('user_id', userId);
+        .eq('user_id', user.id);
 
       if (error) throw error;
 
