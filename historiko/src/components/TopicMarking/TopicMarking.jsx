@@ -12,30 +12,21 @@ const TopicMarking = () => {
     const [topics, setTopics] = useState([]);
     const [error, setError] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const { markedTopics, isLoading } = useMarkedTopics();
+    const { markedTopics, isLoading: isMarkedTopicsLoading, fetchMarkedTopics } = useMarkedTopics();
     const [isTopicsLoading, setIsTopicsLoading] = useState(true);
-    const [userId, setUserId] = useState(null);
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, user, loading: authLoading } = useAuth();
     const navigate = useNavigate();
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            try {
-                const userData = JSON.parse(storedUser);
-                setUserId(userData.id);
-            } catch (error) {
-                console.error('Error parsing user data:', error);
-                setError('Error retrieving user data. Please log in again.');
-            }
-        }
-    }, []);
-
-    useEffect(() => {
-        if (userId) {
+        console.log("Authentication state:", { isAuthenticated, user, authLoading });
+        if (!authLoading && isAuthenticated && user) {
             fetchTopics();
+            fetchMarkedTopics(user.id);
+        } else if (!authLoading) {
+            setIsTopicsLoading(false);
         }
-    }, [userId]);
+    }, [isAuthenticated, user, authLoading, fetchMarkedTopics]);
 
     const fetchTopics = async () => {
         if (!userId) {
@@ -60,6 +51,7 @@ const TopicMarking = () => {
         } finally {
             setIsTopicsLoading(false);
         }
+
     };
 
     const handleTopicClick = (topic) => {
@@ -92,18 +84,20 @@ const TopicMarking = () => {
         );
     };
     
-    if (isLoading || isTopicsLoading) {
+    if (authLoading || isMarkedTopicsLoading || isTopicsLoading) {
         return <div>Loading...</div>;
     }
 
     if (error) {
         return <div>Error: {error}</div>;
     }
-    
+
     const displayedTopics = [
         ...markedTopics,
-        ...topics.filter(topic => !markedTopics.some(markedTopic => markedTopic.topic_name === topic.topic_name))
+        ...topics.filter(topic => !markedTopics.some(markedTopic => markedTopic.id === topic.id))
     ];
+
+    console.log("Displayed topics:", displayedTopics);
     
     return (
         <>
@@ -134,7 +128,7 @@ const TopicMarking = () => {
                             }}
                         >
                             {displayedTopics.map((topic) => (
-                                <div key={topic.id} className="topic-card" onClick={() => handleTopicClick(topic)}>
+                                <div key={topic.topic_id} className="topic-card" onClick={() => handleTopicClick(topic)}>
                                     <div className="bookmark">
                                         <img onClick={() => handleTopicClick(topic)}
                                             src={heartIcontopic} 

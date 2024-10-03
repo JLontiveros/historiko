@@ -16,7 +16,7 @@ const Profile = () => {
   const [avatarUrl, setAvatarUrl] = useState('');
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
-  const [id, setId] = useState('')
+  const [userId, setUserId] = useState('');
   const [rewards, setRewards] = useState([]);
   const [topics, setTopics] = useState([]);
   const [userProgress, setUserProgress] = useState({});
@@ -24,33 +24,37 @@ const Profile = () => {
   useEffect(() => {
     if (isAuthenticated && user) {
       fetchUserProfile();
-      fetchTopics();
-      fetchUserProgress();
     }
   }, [isAuthenticated, user]);
 
   useEffect(() => {
-    if (id) {
+    if (userId) {
       fetchUserRewards();
+      fetchTopics();
+      fetchUserProgress();
     }
-  }, [id]);
+  }, [userId]);
+  
+  useEffect(() => {
+    console.log('User Progress:', userProgress);
+  }, [userProgress]);
 
   const fetchUserProfile = async () => {
     if (!user) return;
 
     const { data, error } = await supabase
       .from('users')
-      .select('name, bio, avatar_url, id')
+      .select('id, name, bio, avatar_url')
       .eq('username', user.username)
       .single();
 
     if (error) {
       console.error('Error fetching user profile:', error);
     } else if (data) {
+      setUserId(data.id);
       setName(data.name || user.username);
       setBio(data.bio || 'Ako ay estudyante');
       setAvatarUrl(data.avatar_url || '');
-      setId(data.id || '');
     }
   };
 
@@ -66,7 +70,7 @@ const Profile = () => {
           image_url
         )
       `)
-      .eq('user_id', id);
+      .eq('user_id', userId);
   
     if (error) {
       console.error('Error fetching user rewards:', error);
@@ -90,12 +94,10 @@ const Profile = () => {
   };
 
   const fetchUserProgress = async () => {
-    if (!user) return;
-
     const { data, error } = await supabase
       .from('user_progress')
       .select('topic_id, progress')
-      .eq('user_id', user.id);
+      .eq('user_id', userId);
 
     if (error) {
       console.error('Error fetching user progress:', error);
@@ -109,7 +111,10 @@ const Profile = () => {
   };
 
   const CircularProgressBar = ({ score, total }) => {
-    const percentage = (score / total) * 100;
+    const numericScore = Number(score) || 0;
+    const numericTotal = Number(total) || 100; // Default to 100 if not provided
+  
+    const percentage = (numericScore / numericTotal) * 100;
     const strokeWidth = 2;
     const radius = 20;
     const normalizedRadius = radius - strokeWidth / 2;
@@ -131,7 +136,7 @@ const Profile = () => {
           fill="transparent"
           strokeWidth={strokeWidth}
           strokeDasharray={circumference + ' ' + circumference}
-          style={{ strokeDashoffset }}
+          style={{ strokeDashoffset: isNaN(strokeDashoffset) ? 0 : strokeDashoffset  }}
           r={normalizedRadius}
           cx={radius}
           cy={radius}
@@ -199,7 +204,7 @@ const Profile = () => {
       const { error: userError } = await supabase
         .from('users')
         .update({ name, bio, avatar_url: avatarUrlToSave })
-        .eq('username', user.username);
+        .eq('id', userId);
   
       if (userError) throw userError;
   
@@ -207,7 +212,7 @@ const Profile = () => {
         const { error: passwordError } = await supabase
           .from('users')
           .update({ password: newPassword })
-          .eq('username', user.username);
+          .eq('id', userId);
         if (passwordError) throw passwordError;
       }
   

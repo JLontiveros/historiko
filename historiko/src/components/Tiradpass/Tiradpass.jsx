@@ -88,11 +88,12 @@ const Tiradpass = () => {
       if (isMarked) {
         await removeMarkedTopic(topicId);
         toast.success('Topic unmarked successfully!');
+        setIsMarked(false);
       } else {
         await addMarkedTopic(topicName, topicId, userId);
         toast.success('Topic marked successfully!');
+        setIsMarked(true);
       }
-      setIsMarked(!isMarked);
     } catch (error) {
       console.error('Error toggling mark:', error);
       toast.error('Error updating topic. Please try again.');
