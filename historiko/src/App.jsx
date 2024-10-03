@@ -39,6 +39,7 @@ export const useAuth = () => useContext(AuthContext);
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -49,11 +50,29 @@ function App() {
     }
   }, []);
 
-  const login = (userData) => {
-    setIsAuthenticated(true);
-    setUser(userData);
-    localStorage.setItem('token', userData.token);
-    localStorage.setItem('user', JSON.stringify(userData));
+  const login = async (username, password) => {
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('id, username, name')
+        .eq('username', username)
+        .eq('password', password)
+        .single();
+  
+      if (error) throw error;
+  
+      if (data) {
+        setIsAuthenticated(true);
+        setUser(data);
+        localStorage.setItem('user', JSON.stringify(data));
+        return { user: data };
+      } else {
+        throw new Error('Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      throw error;
+    }
   };
 
   const logout = () => {
