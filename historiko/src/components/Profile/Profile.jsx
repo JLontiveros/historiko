@@ -71,7 +71,6 @@ const Profile = () => {
     }
   };
 
-
   const fetchUserRewards = async () => {
     const { data, error } = await supabase
       .from('user_reward')
@@ -84,13 +83,25 @@ const Profile = () => {
           image_url
         )
       `)
-      .eq('user_id', userId);
+      .eq('user_id', userId)
+      .order('created_at', { ascending: true });
   
     if (error) {
       console.error('Error fetching user rewards:', error);
     } else {
       console.log('Fetched user rewards:', data);
-      setRewards(data || []);
+      
+      // Group rewards by their type and keep only the earliest instance
+      const uniqueRewards = data.reduce((acc, current) => {
+        const x = acc.find(item => item.rewards.id === current.rewards.id);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      }, []);
+
+      setRewards(uniqueRewards || []);
     }
   };
 

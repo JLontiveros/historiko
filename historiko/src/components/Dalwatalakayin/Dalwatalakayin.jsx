@@ -34,15 +34,37 @@ function Dalwatalakayin() {
 
   const handleSeeMore = async (topicId, route) => {
     if (user) {
-      const { data, error } = await supabase
+      // First, fetch the current progress
+      const { data: currentProgressData, error: fetchError } = await supabase
         .from('user_progress')
-        .upsert(
-          { user_id: user.id, topic_id: topicId, progress: 20 },
-          { onConflict: ['user_id', 'topic_id'] }
-        );
+        .select('progress')
+        .eq('user_id', user.id)
+        .eq('topic_id', topicId)
+        .single();
 
-      if (error) {
-        console.error('Error updating progress:', error);
+      if (fetchError) {
+        console.error('Error fetching current progress:', fetchError);
+      } else {
+        const currentProgress = currentProgressData ? currentProgressData.progress : 0;
+
+        // Only update if current progress is less than 100
+        if (currentProgress < 100) {
+          const newProgress = Math.max(currentProgress, 20); // Ensure progress doesn't decrease
+          const { data, error } = await supabase
+            .from('user_progress')
+            .upsert(
+              { user_id: user.id, topic_id: topicId, progress: newProgress },
+              { onConflict: ['user_id', 'topic_id'] }
+            );
+
+          if (error) {
+            console.error('Error updating progress:', error);
+          } else {
+            console.log(`Progress updated to ${newProgress}%`);
+          }
+        } else {
+          console.log('Progress already at 100%, no update needed');
+        }
       }
     }
     navigate(`/${route}`, { state: { showToast: true } });
