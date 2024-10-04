@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
+import { supabase } from './supabaseClient';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { MarkedTopicsProvider, useMarkedTopics } from './components/context/MarkedTopicsContext';
 import { RewardProvider } from './components/context/RewardContext';
@@ -42,37 +43,24 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    if (token && storedUser) {
-      setIsAuthenticated(true);
-      setUser(JSON.parse(storedUser));
-    }
+    const checkAuth = async () => {
+      const token = localStorage.getItem('token');
+      const storedUser = localStorage.getItem('user');
+      if (token && storedUser) {
+        setIsAuthenticated(true);
+        setUser(JSON.parse(storedUser));
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
   }, []);
 
-  const login = async (username, password) => {
-    try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('id, username, name')
-        .eq('username', username)
-        .eq('password', password)
-        .single();
-  
-      if (error) throw error;
-  
-      if (data) {
-        setIsAuthenticated(true);
-        setUser(data);
-        localStorage.setItem('user', JSON.stringify(data));
-        return { user: data };
-      } else {
-        throw new Error('Invalid username or password');
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      throw error;
-    }
+  const login = (userData) => {
+    setIsAuthenticated(true);
+    setUser(userData);
+    localStorage.setItem('token', userData.token);
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
@@ -82,14 +70,16 @@ function App() {
     localStorage.removeItem('user');
   };
 
-  // Modified ProtectedRoute
   const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem('token');
-    if (!token && !isAuthenticated) {
-      return <Navigate to="/" replace />;
+    if (loading) {
+      return <div>Loading...</div>;
     }
     return children;
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>

@@ -20,43 +20,57 @@ const Profile = () => {
   const [rewards, setRewards] = useState([]);
   const [topics, setTopics] = useState([]);
   const [userProgress, setUserProgress] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      fetchUserProfile();
-    }
+    const fetchData = async () => {
+      setIsLoading(true);
+      if (isAuthenticated && user) {
+        await fetchUserProfile();
+      } else {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
   }, [isAuthenticated, user]);
 
   useEffect(() => {
-    if (userId) {
-      fetchUserRewards();
-      fetchTopics();
-      fetchUserProgress();
-    }
+    const fetchAdditionalData = async () => {
+      if (userId) {
+        await Promise.all([
+          fetchUserRewards(),
+          fetchTopics(),
+          fetchUserProgress()
+        ]);
+        setIsLoading(false);
+      }
+    };
+
+    fetchAdditionalData();
   }, [userId]);
-  
-  useEffect(() => {
-    console.log('User Progress:', userProgress);
-  }, [userProgress]);
 
   const fetchUserProfile = async () => {
     if (!user) return;
 
-    const { data, error } = await supabase
-      .from('users')
-      .select('id, name, bio, avatar_url')
-      .eq('username', user.username)
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('id, name, bio, avatar_url')
+        .eq('username', user.username)
+        .single();
 
-    if (error) {
-      console.error('Error fetching user profile:', error);
-    } else if (data) {
+      if (error) throw error;
+
       setUserId(data.id);
       setName(data.name || user.username);
       setBio(data.bio || 'Ako ay estudyante');
       setAvatarUrl(data.avatar_url || '');
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
     }
   };
+
 
   const fetchUserRewards = async () => {
     const { data, error } = await supabase
@@ -109,6 +123,10 @@ const Profile = () => {
       setUserProgress(progressObj);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const CircularProgressBar = ({ score, total }) => {
     const numericScore = Number(score) || 0;
@@ -236,15 +254,6 @@ const Profile = () => {
       alert('Error handling avatar upload: ' + error.message);
     }
   };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="login-prompt">
-        <h2>Please log in to view your profile</h2>
-        <button onClick={() => navigate('/')}>Go to Login</button>
-      </div>
-    );
-  }
 
   return (
     <>
