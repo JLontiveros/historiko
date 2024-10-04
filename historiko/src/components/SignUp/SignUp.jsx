@@ -11,9 +11,11 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const { login, logout } = useAuth();
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
+    setSignUpSuccess(false);
   };
 
   const generateToken = () => {
@@ -48,12 +50,18 @@ const SignUp = () => {
 
       if (error) throw error;
 
-      const newToken = generateToken();
-      localStorage.setItem('token', newToken);
-      localStorage.setItem('username', username);
-      setToken(newToken);
-      alert('Sign up successful!');
-      login({ username, token: newToken });
+      // Clear the form
+      setUsername('');
+      setPassword('');
+      setConfirmPassword('');
+      setName('');
+
+      // Set sign-up success state
+      setSignUpSuccess(true);
+
+      // Switch to sign-in form
+      setIsSignUp(false);
+
     } catch (error) {
       alert(error.message);
     }
@@ -64,7 +72,7 @@ const SignUp = () => {
     try {
       const { data, error } = await supabase
         .from('users')
-        .select('id, username, name')  // Select id, username, and name
+        .select('id, username, name')
         .eq('username', username)
         .eq('password', password)
         .single();
@@ -72,9 +80,9 @@ const SignUp = () => {
       if (error) throw error;
   
       if (data) {
-        console.log(data.id);  // This should now correctly log the user's ID
+        console.log(data.id);
         const newToken = generateToken();
-        localStorage.setItem('id', data.id);  // Store the correct ID
+        localStorage.setItem('id', data.id);
         localStorage.setItem('token', newToken);
         localStorage.setItem('username', data.username);
         localStorage.setItem('user', JSON.stringify({
@@ -103,6 +111,7 @@ const SignUp = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('user');
     setToken(null);
     logout();
   };
@@ -119,8 +128,8 @@ const SignUp = () => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     return (
       <div>
-        {/* <h1>Welcome, {storedUser.name || storedUser.username}!</h1> */}
-        {/* <button onClick={handleLogout}>Logout</button> */}
+        <h1>Welcome, {storedUser.name || storedUser.username}!</h1>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     );
   }
@@ -165,6 +174,9 @@ const SignUp = () => {
         <div className="form-container sign-in-container">
           <form onSubmit={handleSignIn}>
             <h1 className="title">Sign in</h1>
+            {signUpSuccess && (
+              <p className="success-message">Account created successfully! Please sign in.</p>
+            )}
             <input
               type="text"
               placeholder="Username"
