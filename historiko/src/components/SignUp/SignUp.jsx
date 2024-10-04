@@ -119,7 +119,7 @@ const SignUp = () => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     return (
       <div>
-        <h1>Welcome, {storedUser.name || storedUser.username}!</h1>
+        {/* <h1>Welcome, {storedUser.name || storedUser.username}!</h1> */}
         {/* <button onClick={handleLogout}>Logout</button> */}
       </div>
     );

@@ -45,10 +45,10 @@ export const MarkedTopicsProvider = ({ children }) => {
     }
   }, [isAuthenticated, user, fetchMarkedTopics]);
 
-  const addMarkedTopic = async (topicName, topicId, userId) => {
-    console.log('Adding marked topic:', { topicName, topicId, userId });
-    if (!userId) {
-      console.error('No user ID provided for adding marked topic');
+  const addMarkedTopic = async (topicName, topicId) => {
+    console.log('Adding marked topic:', { topicName, topicId, userId: user?.id });
+    if (!user || !user.id) {
+      console.error('No authenticated user found for adding marked topic');
       return;
     }
   
@@ -56,7 +56,7 @@ export const MarkedTopicsProvider = ({ children }) => {
       const { data, error } = await supabase
         .from('user_topics')
         .insert({ 
-          user_id: userId, 
+          user_id: user.id, 
           topic_id: topicId, 
           topic_name: topicName,
           marked_at: new Date().toISOString(),

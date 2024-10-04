@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
+import { useAuth } from '../../App';
+import { useMarkedTopics } from '../context/MarkedTopicsContext';
 import './TopicMarking.css';
 import heartIcontopic from '../../assets/heart.png';
 import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
-import { useMarkedTopics } from '../context/MarkedTopicsContext';
-import { useAuth } from '../../App';
 
 const TopicMarking = () => {
     const [topics, setTopics] = useState([]);
@@ -14,21 +14,35 @@ const TopicMarking = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const { markedTopics, isLoading: isMarkedTopicsLoading, fetchMarkedTopics } = useMarkedTopics();
     const [isTopicsLoading, setIsTopicsLoading] = useState(true);
-    const { isAuthenticated, user, loading: authLoading } = useAuth();
+    const { isAuthenticated, user } = useAuth();
     const navigate = useNavigate();
-    const [userId, setUserId] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log("Authentication state:", { isAuthenticated, user, authLoading });
-        if (!authLoading && isAuthenticated && user) {
-            fetchTopics();
-            fetchMarkedTopics(user.id);
-        } else if (!authLoading) {
-            setIsTopicsLoading(false);
-        }
-    }, [isAuthenticated, user, authLoading, fetchMarkedTopics]);
+        const loadTopics = async () => {
+          if (isAuthenticated && user) {
+            setIsLoading(true);
+            try {
+              await Promise.all([
+                fetchTopics(user.id),
+                fetchMarkedTopics(user.id)
+              ]);
+            } catch (error) {
+              console.error('Error loading topics:', error);
+              setError('Failed to load topics. Please try again later.');
+            } finally {
+              setIsLoading(false);
+            }
+          } else {
+            setIsLoading(false);
+            setTopics([]);
+          }
+        };
+    
+        loadTopics();
+      }, [isAuthenticated, user, fetchMarkedTopics]);
 
-    const fetchTopics = async () => {
+    const fetchTopics = async (userId) => {
         if (!userId) {
             console.log('No user ID available, skipping fetch');
             setIsTopicsLoading(false);
@@ -51,7 +65,6 @@ const TopicMarking = () => {
         } finally {
             setIsTopicsLoading(false);
         }
-
     };
 
     const handleTopicClick = (topic) => {
@@ -84,18 +97,16 @@ const TopicMarking = () => {
         );
     };
     
-    if (authLoading || isMarkedTopicsLoading || isTopicsLoading) {
-        return <div>Loading...</div>;
-    }
+    if (isLoading) {
+        return <div>Loading topics...</div>;
+      }
 
-    if (error) {
-        return <div>Error: {error}</div>;
+    const displayedTopics = [...markedTopics];
+    topics.forEach(topic => {
+        if (!displayedTopics.some(displayedTopic => displayedTopic.topic_id === topic.topic_id)) {
+            displayedTopics.push(topic);
     }
-
-    const displayedTopics = [
-        ...markedTopics,
-        ...topics.filter(topic => !markedTopics.some(markedTopic => markedTopic.id === topic.id))
-    ];
+});
 
     console.log("Displayed topics:", displayedTopics);
     
@@ -128,12 +139,12 @@ const TopicMarking = () => {
                             }}
                         >
                             {displayedTopics.map((topic) => (
-                                <div key={topic.topic_id} className="topic-card" onClick={() => handleTopicClick(topic)}>
+                                <div key={topic.id} className="topic-card" onClick={() => handleTopicClick(topic)}>
                                     <div className="bookmark">
                                         <img onClick={() => handleTopicClick(topic)}
                                             src={heartIcontopic} 
                                             alt="heart" 
-                                            className={`heart ${markedTopics.some(markedTopic => markedTopic.id === topic.id) ? 'marked' : ''}`}
+                                            className={`heart ${markedTopics.some(markedTopic => markedTopic.topic_id === topic.topic_id) ? 'marked' : ''}`}
                                         />
                                     </div>
                                     <h2>{topic.topic_name}</h2>

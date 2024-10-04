@@ -64,7 +64,7 @@ const Unangputok = () => {
   };
 
   const handleHeartClick = async (e) => {
-    e.preventDefault(); // Prevent default behavior
+    e.preventDefault();
   
     if (!user) {
       toast.info('You need to be logged in to mark topics.', {
@@ -73,7 +73,6 @@ const Unangputok = () => {
       return;
     }
 
-    // Clear the timer-based toast if user clicks heart
     clearTimeout(timer);
   
     try {
