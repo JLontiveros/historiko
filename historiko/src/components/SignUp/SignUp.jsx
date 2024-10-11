@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
-import './Signup.css';
+import './SignUp.css';
 
 const SignUp = () => {
   const [isSignUp, setIsSignUp] = useState(false);
