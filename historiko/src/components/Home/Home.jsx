@@ -44,7 +44,7 @@ const Home = () => {
     <div className="home-container">
       <section className="video-section">
         <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src={backgroundVideo} type='video/mp4'/>
+          <source src='/hero.mp4' type='video/mp4'/>
         </video>
         <video autoPlay loop muted playsInline className='background-video mobile-video'>
           <source src={landingphone1} type='video/mp4'/>
