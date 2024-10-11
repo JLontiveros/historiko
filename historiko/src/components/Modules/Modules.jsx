@@ -4,7 +4,6 @@ import './Modules.css';
 import flagsImage from '../../assets/flag.png';
 import Historiko2_1 from '../../assets/Historiko2_1.mp4';
 import axesImage from '../../assets/axe.png';
-import characterImage from '../../assets/boyinverted.png';
 import questionMark from '../../assets/mark.png';
 
 function Modules() {
