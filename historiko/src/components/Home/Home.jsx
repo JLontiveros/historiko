@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Home.css';
 import SignUp from '../SignUp/SignUp';
-import backgroundVideo from "../../assets/hero.mp4";
-import backgroundVideo2 from "../../assets/underhero.mp4";
-import landingphone1 from "../../assets/landingphone1.mp4";
-import landingphone2 from "../../assets/landingphone2.mp4";
+import hero from "/videos/hero.mp4";
+import underhero from "/videos/underhero.mp4";
+import landingphone1 from "/videos/landingphone1.mp4";
+import landingphone2 from "/videos/landingphone2.mp4";
 import { useAuth } from '../../App';
 import homebg from '../../assets/homebg.png';
 import homebg2 from '../../assets/homebg2.png';
@@ -44,7 +44,7 @@ const Home = () => {
     <div className="home-container">
       <section className="video-section">
         <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src='/hero.mp4' type='video/mp4'/>
+          <source src={hero} type='video/mp4'/>
         </video>
         <video autoPlay loop muted playsInline className='background-video mobile-video'>
           <source src={landingphone1} type='video/mp4'/>
@@ -61,7 +61,7 @@ const Home = () => {
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
         <video autoPlay loop muted playsInline className='background-video2 desktop-video'>
-          <source src={backgroundVideo2} type='video/mp4'/>
+          <source src={underhero} type='video/mp4'/>
         </video>
         <video autoPlay loop muted playsInline className='background-video2 mobile-video'>
           <source src={landingphone2} type='video/mp4'/>
