@@ -9,7 +9,7 @@ import { useMarkedTopics } from '../context/MarkedTopicsContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Tiradpass = () => {
+export default function Tiradpass() {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -190,4 +190,3 @@ const Tiradpass = () => {
   );
 };
 
-export default Tiradpass;
