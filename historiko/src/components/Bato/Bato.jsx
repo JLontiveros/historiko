@@ -183,7 +183,7 @@ const Bato = () => {
 
             </p>
           </div>
-          <button onClick={handleViewMore}>VIEW MORE</button>
+          <button onClick={handleViewMore}>Mag-patuloy</button>
         </div>
       </div>
     </>

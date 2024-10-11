@@ -1,3 +1,5 @@
+
+
 .flashcard-reviewer {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,8 @@
   max-width: 800px;
   margin: 0 auto;
   margin-top: -50px;
+  position: relative;
+  z-index: 10;
 }
 
 .flashcard {
@@ -78,7 +82,7 @@
 
 .controls {
   position: absolute;
-  bottom: 70px;
+  bottom: -80px;
   left: 0;
   right: 0;
   display: flex;

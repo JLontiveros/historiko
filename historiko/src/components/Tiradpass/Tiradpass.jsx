@@ -183,7 +183,7 @@ const Tiradpass = () => {
           Si Gen Arthur McArthur ang namuno sa pagsalakay sa Malolos, Bulacan ang himpilan ni Emilio Aguinaldo.  Dahil sa malakas na puwersang military ng amerika, tumakas si Emilio Aguinaldo kasama ang kanyang gabinete, kagawa at sundalo upang maiwasan ang pagtugis ng mga amerikano at sila ay dumaan sa pasong Tirad. 
           </p>
         </div>
-        <button onClick={handleViewMore}>VIEW MORE</button>
+        <button onClick={handleViewMore}>Mag-patuloy</button>
       </div>
     </div>
     </>

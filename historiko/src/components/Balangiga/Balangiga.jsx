@@ -174,7 +174,7 @@ const Balangiga = () => {
               Agosto 11, 1901 Nang makarating sa lugar ang Company C of the 9th Infantry Regiment ng Amerika sa pamumuno ni Capt. Thomas Connell sa Balangiga, Samar. Layunin nila na sugpuin ang mga Pilipinong patuloy na nakikipaglaban sa pamumuno ni Vicente Lukban sa pamamagitan ng pagsira sa mga pananim at ari-arian na siyang pinagkukunan ng suplay ng mga gerilya.
             </p>
           </div>
-          <button className="balangiga-view-button" onClick={handleViewMore}>VIEW MORE</button>
+          <button className="balangiga-view-button" onClick={handleViewMore}>Mag-patuloy</button>
         </div>
       </div>
     </>

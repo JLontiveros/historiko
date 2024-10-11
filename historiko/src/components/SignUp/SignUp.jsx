@@ -139,7 +139,7 @@ const SignUp = () => {
       <div className={`container ${isSignUp ? 'right-panel-active' : ''}`}>
         <div className="form-container sign-up-container">
           <form onSubmit={handleSignUp}>
-            <h1 className="title">Create Account</h1>
+            <h1 className="title">Gumawa ng Account</h1>
             <input
               type="text"
               placeholder="Name"
@@ -168,12 +168,12 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button className="btn" type="submit">SIGN UP</button>
+            <button className="btn" type="submit">Mag-sign up</button>
           </form>
         </div>
         <div className="form-container sign-in-container">
           <form onSubmit={handleSignIn}>
-            <h1 className="title">Sign in</h1>
+            <h1 className="title">Mag-sign in</h1>
             {signUpSuccess && (
               <p className="success-message">Account created successfully! Please sign in.</p>
             )}
@@ -191,8 +191,7 @@ const SignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <p className="forgot-password">Forgot password</p>
-            <button className="btn" type="submit">SIGN IN</button>
+            <button className="btn" type="submit">Mag patuloy</button>
           </form>
         </div>
         <div className="overlay-container">

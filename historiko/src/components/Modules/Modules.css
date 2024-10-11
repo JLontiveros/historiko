@@ -188,6 +188,10 @@
     margin-top: 20px;
   }
 
+  .module-bg {
+    display: none;
+  }
+
   .module-container {
     margin-top: 60px;
   }
@@ -196,6 +200,10 @@
 @media screen and (max-width: 992px) {
   .module {
     width: calc(50% - 20px);
+  }
+ 
+  .module-bg {
+    display: none;
   }
 
   .character {
@@ -210,6 +218,10 @@
     align-items: center;
     margin-top: 80px;
   }
+
+    .module-bg {
+      display: none;
+    }
 
   .module {
     width: 100%;

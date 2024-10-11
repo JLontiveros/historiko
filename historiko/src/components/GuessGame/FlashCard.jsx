@@ -4,6 +4,10 @@ import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './FlashCard.css';
+import bg6 from '../../assets/6.png'
+import bg5 from '../../assets/5.png'
+import bg4 from '../../assets/4.png'
+import bg3 from '../../assets/3.png'
 
 const FlashCard = ({ onComplete }) => {
   const [flashcards, setFlashcards] = useState([]);
@@ -113,42 +117,50 @@ const FlashCard = ({ onComplete }) => {
   const isLastCard = currentCardIndex === flashcards.length - 1;
 
   return (
-    <div className="flashcard-reviewer">
-      <ToastContainer 
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <h2>Flashcard Reviewer</h2>
-      <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
-        <div className="flashcard-inner">
-          <div className="flashcard-front">
-            <p>{currentCard.description}</p>
-            {currentCard.img_url && (
-              <img src={currentCard.img_url} alt="Flashcard" className="flashcard-image" />
-            )}
-          </div>
-          <div className="flashcard-back">
-            <p>{currentCard.answer}</p>
+    <>
+    <div className="flash-bg">
+      {/* <img src={bg6} className="bg1" alt='main backgroud'/>
+      <img src={bg5} className="bg2" alt='table backgroud'/>
+      <img src={bg4} className="bg3" alt='paperplane backgroud'/>
+      <img src={bg3} className="bg4" alt='character backgroud'/> */}
+      <div className="flashcard-reviewer">
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <h2>Pindutin ang litrato para makita ang sagot</h2>
+        <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+          <div className="flashcard-inner">
+            <div className="flashcard-front">
+              <p>{currentCard.description}</p>
+              {currentCard.img_url && (
+                <img src={currentCard.img_url} alt="Flashcard" className="flashcard-image" />
+              )}
+            </div>
+            <div className="flashcard-back">
+              <p>{currentCard.answer}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="controls">
-        <button onClick={handlePrevCard} disabled={currentCardIndex === 0}>Previous</button>
-        {!isLastCard && (
-          <button onClick={handleNextCard}>Next</button>
-        )}
-        {isLastCard && (
-          <button onClick={handleComplete} className="pagtatapos-button">Pagtatapos</button>
-        )}
+        <div className="controls">
+          <button onClick={handlePrevCard} disabled={currentCardIndex === 0}>Ibalik</button>
+          {!isLastCard && (
+            <button onClick={handleNextCard}>Susunod</button>
+          )}
+          {isLastCard && (
+            <button onClick={handleComplete} className="pagtatapos-button">Pagtatapos</button>
+          )}
+        </div>
       </div>
     </div>
+    </>
   );
 };
 

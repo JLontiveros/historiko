@@ -174,7 +174,7 @@ const Sigaw = () => {
             Itinatatag ni Andres Bonifacio ang isang lihim na samahang KKK, Kataastaasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan o Katipun noong July 7, 1892 sa isang bahay sa 72 Kalye Azcarraga (Claro M. Recto ngayon) kasama sina Valentin Diaz, Teodoro Plata, Ladislao Diwa, Deodato Arellano, at Jose Dizon. Ang kasapi sa samahang ito ay tinawag na Katipunero. Pangunahing Layunin ng samahan na mapagsama-sama ang lahat ng mga Pilipino at makipaglaban sa mga Espanol upang makamit ang kalayaan at ang Layunin ng Katipunan ay ang Politikal, Moral, Sibiko na may tatlong sanggunian ng KKK na Kataastaasang Sangunian, Sangguniang Bayan at Sangguniang Balangay.
             </p>
           </div>
-          <button onClick={handleViewMore}>VIEW MORE</button>
+          <button onClick={handleViewMore}>Mag-patuloy</button>
         </div>
       </div>
     </>

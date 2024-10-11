@@ -1,0 +1,34 @@
+.slideshow-container {
+    width: 100%;
+    height: 100%;
+    border: 3px solid white;
+    border-radius: 25px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 20%;
+    right: 5%;
+    overflow: hidden;
+  }
+  
+  .slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .slideshow-image.active {
+    opacity: 1;
+  }
+  
+  .home-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
