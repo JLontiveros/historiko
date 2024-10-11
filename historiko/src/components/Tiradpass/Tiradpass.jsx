@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './TiradPass.css';
+import './Tiradpass.css';
 import genmcarthur from '../../assets/genmcarthur.png';
 import heart from '../../assets/heart.png';
 import { supabase } from '../../supabaseClient';
@@ -9,7 +9,7 @@ import { useMarkedTopics } from '../context/MarkedTopicsContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TiradPass = () => {
+const Tiradpass = () => {
   const navigate = useNavigate();
   const [isMarked, setIsMarked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -190,4 +190,4 @@ const TiradPass = () => {
   );
 };
 
-export default TiradPass;
+export default Tiradpass;
