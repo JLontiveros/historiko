@@ -6,11 +6,17 @@ import backgroundVideo2 from "../../assets/underhero.mp4";
 import landingphone1 from "../../assets/landingphone1.mp4";
 import landingphone2 from "../../assets/landingphone2.mp4";
 import { useAuth } from '../../App';
+import homebg from '../../assets/homebg.png';
+import homebg2 from '../../assets/homebg2.png';
+import homebg3 from '../../assets/homebg3.png';
+import homebg4 from '../../assets/homebg4.png';
+import ImageSlideshow from './ImageSlideshow';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const { isAuthenticated, user } = useAuth();
+  const slideImages = [homebg, homebg2, homebg3, homebg4];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,9 +68,8 @@ const Home = () => {
         </video>
         <div className='signup-overlay'>
           {isAuthenticated ? (
-            <div className="welcome-message">
-              {/* <h2>Welcome to Historiko, {user.username}!</h2>
-              <p>You're now logged in. Explore our modules and learn about Philippine history!</p> */}
+            <div className="home-slide">
+              <ImageSlideshow images={slideImages} />
             </div>
           ) : (
             <SignUp />

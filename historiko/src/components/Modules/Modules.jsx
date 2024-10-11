@@ -62,7 +62,7 @@ function Modules() {
           </ul>
 
           <Link to="/Unatalakayin" state={{ showToast: true, fromModules: true }}>
-            <button>EXPLORE</button>
+            <button>Magsaliksik</button>
           </Link>
 
         </div>
@@ -98,7 +98,7 @@ function Modules() {
           </ul>
 
           <Link to="/Dalwatalakayin" state={{ showToast: true, fromModules: true }}>
-            <button>EXPLORE</button>
+            <button>Magsaliksik</button>
           </Link>
 
         </div>

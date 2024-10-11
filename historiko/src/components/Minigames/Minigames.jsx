@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App'; // Import the useAuth hook
 import './Minigames.css';
-import character from '../../assets/question.png';
+import gg from '../../assets/gg.png';
+import gg2 from '../../assets/gg2.png';
 import gamebg from '../../assets/gamebg.jpg';
-import back1 from '../../assets/back1.png';
+import vf from '../../assets/vf.png';
 import GuessGame from '../GuessGame/GuessGame';
 import GuessGame2 from '../GuessGame/GuessGame2';
 import FlashCard from '../GuessGame/FlashCard';
+import bg6 from '../../assets/6.png'
+import bg5 from '../../assets/5.png'
+import bg4 from '../../assets/4.png'
+import bg3 from '../../assets/3.png'
 
 const Minigame = () => {
   const [selectedGame, setSelectedGame] = useState(null);
@@ -76,7 +81,6 @@ const Minigame = () => {
   if (selectedGame === 'guessGame') {
     return (
       <div className="minigame-container">
-        <button className="back-button" onClick={backToSelection}>Back to Minigames</button>
         <GuessGame />
       </div>
     );
@@ -85,7 +89,6 @@ const Minigame = () => {
   if (selectedGame === 'guessGame2') {
     return (
       <div className="minigame-container">
-        <button className="back-button" onClick={backToSelection}>Back to Minigames</button>
         <GuessGame2 />
       </div>
     );
@@ -94,30 +97,35 @@ const Minigame = () => {
   if (selectedGame === 'flashcard') {
     return (
       <div className="minigame-container">
-        <button className="back-button" onClick={backToSelection}>Back to Minigames</button>
+        <img src={bg6} className="bg1" alt='main backgroud'/>
+        <img src={bg5} className="bg2" alt='table backgroud'/>
+        <img src={bg4} className="bg3" alt='paperplane backgroud'/>
+        <img src={bg3} className="bg4" alt='character backgroud'/>
         <FlashCard onComplete={handleFlashcardComplete} />
       </div>
     );
   }
 
   return (
-    <div className="minigame-container">
+    <div className="minigame-wrapper">
+      <div className="minigame-container">
       <img src={gamebg} alt='minigame-bg' className='minigame-bg' />
       <div className="game-area">
         <div className="virtual-flashcard" onClick={() => handleGameClick('flashcard')}>
-          <h2>Virtual Flashcard</h2>
-          <img src={back1} alt='background' className='virtual-bg'/>
+          <h2>Magbalik aral gamit ang FlashCard</h2>
+          <img src={vf} alt='background' className='virtual-bg'/>
         </div>
         <div className={`guess-game ${!isFlashcardCompleted ? 'locked' : ''}`} onClick={() => handleGameClick('guessGame')}>
-          <h2>Pag susulit sa Panahon ng himagsikang Pilipino</h2>
-          <img src={character} alt="Character" className="character-image" />
+          <h2>Pag susulit sa Panahon ng Himagsikang Pilipino</h2>
+          <img src={gg} alt="Character" className="character-image" />
           {!isFlashcardCompleted && <div className="lock-overlay">🔒</div>}
         </div>
         <div className={`guess-game ${!isFlashcardCompleted ? 'locked' : ''}`} onClick={() => handleGameClick('guessGame2')}>
           <h2>Pag susulit sa Panahon ng Digmaang Pilipino-Amerikano</h2>
-          <img src={character} alt="Character" className="character-image" />
+          <img src={gg2} alt="Character" className="character-image" />
           {!isFlashcardCompleted && <div className="lock-overlay">🔒</div>}
         </div>
+      </div>
       </div>
     </div>
   );

@@ -81,7 +81,7 @@ function Dalwatalakayin() {
           <h2>Sigaw ng Pugad-Lawin</h2>
           <p>Ang sigaw sa Pugad Lawin ay isa sa mga patunay ng matinding pagnanais ng mga Pilipino na makamit ang kalayaan mula sa mga Espanyol. Hindi lamang pagpunit ng Cedula ang dapat bigyaang diin sa Unang Sigaw gayundin ang mga pagpupulong at pagpaplano ng mga Katipuneor upang itaguyod ang rebolusyon.</p>
             <div className="event-link">
-              <button onClick={() => handleSeeMore(4, 'sigaw')} className="link-button">See more</button>
+              <button onClick={() => handleSeeMore(4, 'sigaw')} className="link-button">Talakayin natin</button>
             </div>
         </div>
         <div className="event">
@@ -89,7 +89,7 @@ function Dalwatalakayin() {
           <h2>Tejeros Convention</h2>
           <p>Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang rebolusyunaryong pamahalaan. Ngunit sa halip na magkaisa, lalo pang tumindo ang hidwaan na humantong sa pagkamatay ni Andres Bonifacio.</p>
             <div className="event-link">
-              <button onClick={() => handleSeeMore(5, 'tejeros')} className="link-button">See more</button>
+              <button onClick={() => handleSeeMore(5, 'tejeros')} className="link-button">Talakayin natin</button>
             </div>
         </div>
         <div className="event">
@@ -97,7 +97,7 @@ function Dalwatalakayin() {
           <h2>Kasunduan sa Biak-na-Bato</h2>
           <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang nagging dahilan upang mabigo at mling sumiklab ang digmaan</p>
             <div className="event-link">
-              <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">See more</button>
+              <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">Talakayin natin</button>
             </div>
         </div>
       </div>

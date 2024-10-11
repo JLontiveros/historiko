@@ -174,7 +174,7 @@ const Tejeros = () => {
             Nagkaroon muli ng isa pang pagpupulong noong Marso 22, 1897 sa Casa Hacienda De Tejeros sa San Francisco Malabon (CAVITE) na naglalayong pagkasunduin ang dalwang pangkat na dinaluhan ni Andres Bonifacio. <br />Sa pagpupulong na ito ay nagkaroon ng isang halalan, nanalo si Emilio Aguinaldo bilang Pangulo, si Mariano Trias bilang pangalawang pangulo, si Artemio Ricarte bilang Kapitan Heneral, si Emilianio Riego De Dios bilang Kalihim ng Digmaan at si Andres Bonfacio bilang Direktor ng interyor at ang pagkapanalo ni Andres ay mahigpit itong tinutulan ni Daniel Tirona sa kadahilanang hindi ito abogado at walang sapat na kaalaman sa mga batas.
             </p>
           </div>
-          <button onClick={handleViewMore}>VIEW MORE</button>
+          <button onClick={handleViewMore}>Mag-patuloy</button>
         </div>
       </div>
     </>
