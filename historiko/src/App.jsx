@@ -16,7 +16,7 @@ import Tejeros from './components/Tejeros/Tejeros';
 import Bato from './components/Bato/Bato';
 import Minigames from './components/Minigames/Minigames';
 import UnangPutok from './components/Unangputok/Unangputok';
-import TiradPass from './components/TiradPass/TiradPass';
+import Tiradpass from './components/TiradPass/Tiradpass';
 import Balangiga from './components/Balangiga/Balangiga';
 import TopicMarking from './components/TopicMarking/TopicMarking';
 import Putok from './components/Submodules/Putok';
@@ -98,7 +98,7 @@ function App() {
                 <Route path="/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
                 <Route path="/Unatalakayin" element={<ProtectedRoute><Unatalakayin /></ProtectedRoute>} />
                 <Route path="/Unangputok" element={<ProtectedRoute><UnangPutok /></ProtectedRoute>} />
-                <Route path="/TiradPass" element={<ProtectedRoute><TiradPass /></ProtectedRoute>} />
+                <Route path="/Tiradpass" element={<ProtectedRoute><Tiradpass /></ProtectedRoute>} />
                 <Route path="/balangiga" element={<ProtectedRoute><Balangiga /></ProtectedRoute>} />
                 <Route path="/Dalwatalakayin" element={<ProtectedRoute><Dalwatalakayin /></ProtectedRoute>} />
                 <Route path="/Sigaw" element={<ProtectedRoute><Sigaw /></ProtectedRoute>} />
