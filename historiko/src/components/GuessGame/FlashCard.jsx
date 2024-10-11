@@ -4,10 +4,6 @@ import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './FlashCard.css';
-import bg6 from '../../assets/6.png'
-import bg5 from '../../assets/5.png'
-import bg4 from '../../assets/4.png'
-import bg3 from '../../assets/3.png'
 
 const FlashCard = ({ onComplete }) => {
   const [flashcards, setFlashcards] = useState([]);
@@ -119,10 +115,6 @@ const FlashCard = ({ onComplete }) => {
   return (
     <>
     <div className="flash-bg">
-      {/* <img src={bg6} className="bg1" alt='main backgroud'/>
-      <img src={bg5} className="bg2" alt='table backgroud'/>
-      <img src={bg4} className="bg3" alt='paperplane backgroud'/>
-      <img src={bg3} className="bg4" alt='character backgroud'/> */}
       <div className="flashcard-reviewer">
         <ToastContainer 
           position="top-right"

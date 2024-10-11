@@ -3,7 +3,6 @@ import './GuessGame.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
-import gamebg from '../../assets/historikobg.png'
 
 const GuessGame = () => {
   const [questions, setQuestions] = useState([]);
