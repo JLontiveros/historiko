@@ -98,7 +98,7 @@ function App() {
                 <Route path="/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
                 <Route path="/Unatalakayin" element={<ProtectedRoute><Unatalakayin /></ProtectedRoute>} />
                 <Route path="/Unangputok" element={<ProtectedRoute><UnangPutok /></ProtectedRoute>} />
-                <Route path="/Tiradpass" element={<ProtectedRoute><TiradPass /></ProtectedRoute>} />
+                <Route path="/TiradPass" element={<ProtectedRoute><TiradPass /></ProtectedRoute>} />
                 <Route path="/balangiga" element={<ProtectedRoute><Balangiga /></ProtectedRoute>} />
                 <Route path="/Dalwatalakayin" element={<ProtectedRoute><Dalwatalakayin /></ProtectedRoute>} />
                 <Route path="/Sigaw" element={<ProtectedRoute><Sigaw /></ProtectedRoute>} />
