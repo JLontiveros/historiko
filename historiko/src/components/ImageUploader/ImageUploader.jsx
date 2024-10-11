@@ -3,7 +3,7 @@ const handleUpload = async (file) => {
       // Upload the image to Supabase Storage
       const { data, error } = await supabase.storage
         .from('product-images')
-        .upload(public/${file.name}, file);
+        .upload(`public/${file.name}`, file);
   
       if (error) throw error;
   
