@@ -16,7 +16,7 @@ import Tejeros from './components/Tejeros/Tejeros';
 import Bato from './components/Bato/Bato';
 import Minigames from './components/Minigames/Minigames';
 import UnangPutok from './components/Unangputok/Unangputok';
-import Tiradpass from './components/TiradPass/Tiradpass';
+import Tiradpass from './components/Tiradpass/Tiradpass';
 import Balangiga from './components/Balangiga/Balangiga';
 import TopicMarking from './components/TopicMarking/TopicMarking';
 import Putok from './components/Submodules/Putok';
