@@ -1,10 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Home.css';
 import SignUp from '../SignUp/SignUp';
-import hero from "/videos/hero.mp4";
-import underhero from "/videos/underhero.mp4";
-import landingphone1 from "/videos/landingphone1.mp4";
-import landingphone2 from "/videos/landingphone2.mp4";
 import { useAuth } from '../../App';
 import homebg from '../../assets/homebg.png';
 import homebg2 from '../../assets/homebg2.png';
@@ -43,12 +39,16 @@ const Home = () => {
   return (
     <div className="home-container">
       <section className="video-section">
+        {/* Desktop video */}
         <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src={hero} type='video/mp4'/>
+          <source src='/videos/hero.mp4' type='video/mp4'/>
         </video>
+
+        {/* Mobile video */}
         <video autoPlay loop muted playsInline className='background-video mobile-video'>
-          <source src={landingphone1} type='video/mp4'/>
+          <source src='/videos/landingphone1.mp4' type='video/mp4'/>
         </video>
+        
         <div className='text-overlay'>
           <div className='heading'>
             <h1>"Sa Historiko, Buhay ang <br className="desktop-break"/> Pagmamahal sa Bayan!"</h1>
@@ -60,12 +60,16 @@ const Home = () => {
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
+        {/* Desktop video */}
         <video autoPlay loop muted playsInline className='background-video2 desktop-video'>
-          <source src={underhero} type='video/mp4'/>
+          <source src='/videos/underhero.mp4' type='video/mp4'/>
         </video>
+
+        {/* Mobile video */}
         <video autoPlay loop muted playsInline className='background-video2 mobile-video'>
-          <source src={landingphone2} type='video/mp4'/>
+          <source src='/videos/landingphone2.mp4' type='video/mp4'/>
         </video>
+        
         <div className='signup-overlay'>
           {isAuthenticated ? (
             <div className="home-slide">
