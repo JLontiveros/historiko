@@ -41,12 +41,12 @@ const Home = () => {
       <section className="video-section">
         {/* Desktop video */}
         <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src='/videos/hero.mp4' type='video/mp4'/>
+          <source src='https://testing-web-puce.vercel.app'/>
         </video>
 
         {/* Mobile video */}
         <video autoPlay loop muted playsInline className='background-video mobile-video'>
-          <source src='/videos/landingphone1.mp4' type='video/mp4'/>
+          <source src='https://testing-web-puce.vercel.app'/>
         </video>
         
         <div className='text-overlay'>
@@ -62,12 +62,12 @@ const Home = () => {
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
         {/* Desktop video */}
         <video autoPlay loop muted playsInline className='background-video2 desktop-video'>
-          <source src='/videos/underhero.mp4' type='video/mp4'/>
+          <source src='https://testing-web-puce.vercel.app'/>
         </video>
 
         {/* Mobile video */}
         <video autoPlay loop muted playsInline className='background-video2 mobile-video'>
-          <source src='/videos/landingphone2.mp4' type='video/mp4'/>
+          <source src='https://testing-web-puce.vercel.app'/>
         </video>
         
         <div className='signup-overlay'>
