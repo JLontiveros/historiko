@@ -13,6 +13,7 @@ const Home = () => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const { isAuthenticated, user } = useAuth();
   const slideImages = [homebg, homebg2, homebg3, homebg4];
+  const iframeRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,6 +30,23 @@ const Home = () => {
       observer.observe(secondSectionRef.current);
     }
 
+    // YouTube iframe API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player('youtube-player', {
+        events: {
+          'onReady': (event) => {
+            event.target.mute();
+            event.target.playVideo();
+          }
+        }
+      });
+    };
+
     return () => {
       if (secondSectionRef.current) {
         observer.unobserve(secondSectionRef.current);
@@ -40,9 +58,19 @@ const Home = () => {
     <div className="home-container">
       <section className="video-section">
         {/* Desktop video */}
-        <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src='https://testing-web-puce.vercel.app'/>
-        </video>
+        
+        <div className="video-background">
+          <iframe 
+            id="youtube-player"
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/81rDsHT5Tkg?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=81rDsHT5Tkg&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+            title="YouTube video player" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+        </div>
+        
 
         {/* Mobile video */}
         <video autoPlay loop muted playsInline className='background-video mobile-video'>
