@@ -117,12 +117,12 @@ const Putok3d = () => {
       </div>
     <div className="picture3d">
       <div className="video-container">
-        <Video autoPlay loop={false} onEnded={handleVideoEnd} ref={videoRef} onCanPlayThrough={() => {
+        {/* <Video autoPlay loop={false} onEnded={handleVideoEnd} ref={videoRef} onCanPlayThrough={() => {
             console.log('video play')
           }}
         >
           <source src={unangvid} type="video/webm"/>
-        </Video>
+        </Video> */}
       </div>
     </div>
     </div>
