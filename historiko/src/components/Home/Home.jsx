@@ -41,7 +41,7 @@ const Home = () => {
       <section className="video-section">
         {/* Desktop video */}
         <video autoPlay loop muted playsInline className='background-video desktop-video'>
-          <source src='https://testing-web-puce.vercel.app'/>
+          <source src='https://testing-web-puce.vercel.app/static/media/underhero.6315023ea9d2eec5255e.mp4'/>
         </video>
 
         {/* Mobile video */}
