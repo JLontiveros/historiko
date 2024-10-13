@@ -23,6 +23,33 @@
   pointer-events: none;
 }
 
+.video2-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.video21-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.video22-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .video-background iframe {
   position: absolute;
   top: 50%;
@@ -30,6 +57,42 @@
   width: 100vw;
   height: 100vh;
   transform: translate(-50%, -50%);
+}
+
+.video2-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+}
+
+.video21-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 Aspect Ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 Aspect Ratio */
+  transform: translate(-50%, -50%);
+}
+
+.video22-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 38%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 Aspect Ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 Aspect Ratio */
+  transform: translate(-50%, -50%);
+}
+
+
+.mobile-only {
+  display: none;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -168,6 +231,33 @@
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .video21-background iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .video22-background iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  /* Adjust text overlay for mobile */
+  .text-overlay {
+    top: 10%;
+    left: 15px;
+    width: calc(100% - 30px);
+  }
+
   .heading {
     font-size: 1.3em;
     text-align: left;

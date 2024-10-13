@@ -44,6 +44,14 @@ const Home = () => {
           }
         }
       });
+      
+      new window.YT.Player('youtube-player-mobile', {
+        events: {
+          'onReady': (event) => {
+            event.target.playVideo();
+          }
+        }
+      });
     };
 
     return () => {
@@ -57,7 +65,6 @@ const Home = () => {
     <div className="home-container">
       <section className="video-section">
         {/* Desktop video */}
-        
         <div className="video-background">
         <iframe 
             id="youtube-player"
@@ -72,9 +79,16 @@ const Home = () => {
         
 
         {/* Mobile video */}
-        <video autoPlay loop muted playsInline className='background-video mobile-video'>
-          <source src='https://testing-web-puce.vercel.app'/>
-        </video>
+        <div className="video21-background mobile-only">
+          <iframe
+            id="youtube-player-mobile"
+            src="https://www.youtube.com/embed/xK63TMCJQOI?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=xK63TMCJQOI&enablejsapi=1&origin=http://localhost:3000&modestbranding=1&playsinline=1" 
+            title="Mobile landing background"
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
         
         <div className='text-overlay'>
           <div className='heading'>
@@ -87,15 +101,29 @@ const Home = () => {
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
-        {/* Desktop video */}
-        <video autoPlay loop muted playsInline className='background-video2 desktop-video'>
-          <source src='https://testing-web-puce.vercel.app'/>
-        </video>
+      <div className="video2-background">
+        <iframe 
+            id="youtube-player"
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/2N8iS65Ipl8?si=5zXvW9A_LxlH2qKz?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2N8iS65Ipl8&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+            title="YouTube video player" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+        </div>
 
         {/* Mobile video */}
-        <video autoPlay loop muted playsInline className='background-video2 mobile-video'>
-          <source src='https://testing-web-puce.vercel.app'/>
-        </video>
+        <div className="video22-background mobile-only">
+          <iframe
+            id="youtube-player-mobile"
+            src="https://www.youtube.com/embed/Kr2pcTHP3R0?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=Kr2pcTHP3R0&enablejsapi=1&origin=http://localhost:3000&modestbranding=1&playsinline=1" 
+            title="Mobile landing background"
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
         
         <div className='signup-overlay'>
           {isAuthenticated ? (
