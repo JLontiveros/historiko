@@ -17,7 +17,8 @@ const Tirad3d = () => {
   const location = useLocation();
   const { saveReward } = useReward();
   const { user } = useAuth();
-  const videoRef = useRef(null);
+  const secondSectionRef = useRef(null);
+  const iframeRef = useRef(null);
 
   useEffect(() => {
     if (location.state && location.state.showToast) {
@@ -108,6 +109,49 @@ const Tirad3d = () => {
     });
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (secondSectionRef.current) {
+      observer.observe(secondSectionRef.current);
+    }
+
+    // YouTube iframe API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player('youtube-player', {
+        events: {
+          'onReady': (event) => {
+            event.target.playVideo();
+          },
+          'onStateChange': (event) => {
+            if (event.data === window.YT.PlayerState.ENDED) {
+              handleVideoEnd();
+            }
+          }
+        }
+      });
+    };
+
+    return () => {
+      if (secondSectionRef.current) {
+        observer.unobserve(secondSectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
     <div className="Tirad3d">
@@ -118,12 +162,15 @@ const Tirad3d = () => {
       </div>
       <div className="picture3d">
         <div className="video-container">
-        {/* <Video autoPlay loop={false} onEnded={handleVideoEnd} ref={videoRef} onCanPlayThrough={() => {
-            console.log('video play')
-          }}
-        >
-            <source src={tiradvid} type="video/webm"/>
-          </Video> */}
+        <iframe 
+          id="youtube-player"
+          ref={iframeRef}
+          src="https://www.youtube.com/embed/3BKnS10E2Jc?si=iw8KAiELNhjuB271?si=SiZACwtsueR9u3uP?autoplay=1&unmute=1&controls=1&showinfo=0&rel=0&loop=0&playlist=3BKnS10E2Jc&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowFullScreen
+        ></iframe>
         </div>
       </div>
     </div>

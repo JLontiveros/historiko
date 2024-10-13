@@ -11,7 +11,7 @@
   overflow-x: hidden;
 }
 
-.module-bg {
+.video-background {
   position: absolute;
   object-fit: cover;
   top: 0;
@@ -19,6 +19,7 @@
   width: 100%;
   height: 100%;
   z-index: -1;
+  overflow-x: hidden;
   animation: fadeInbg 3s;
 }
 

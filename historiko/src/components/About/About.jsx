@@ -1,15 +1,34 @@
 import React, { useRef, useEffect } from 'react';
 import './About.css';
-import Historiko2_2 from '../../assets/Historiko2_2.mp4';
 import roombg from '../../assets/roombg.png';
 
 const About = () => {
   const videoRef = useRef(null);
+  const iframeRef = useRef(null);
+  const secondSectionRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = false;
     }
+  }, []);
+
+  useEffect(() => {
+    // YouTube iframe API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player('youtube-player', {
+        events: {
+          'onReady': (event) => {
+            event.target.playVideo();
+          }
+        }
+      });
+    };
   }, []);
   
   return (
@@ -41,10 +60,17 @@ const About = () => {
           </div>
         </div>
       </div>
-      <video ref={videoRef} autoPlay playsInline className="about-video">
-        <source src={Historiko2_2} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="video-iframe">
+        <iframe 
+          id="youtube-player"
+          ref={iframeRef}
+          src="https://www.youtube.com/embed/nMNHSJ-y8JY?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=nMNHSJ-y8JY&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowFullScreen
+        ></iframe>
+      </div>
     </div>
   )
 }
