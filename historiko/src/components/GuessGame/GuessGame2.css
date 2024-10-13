@@ -231,14 +231,56 @@
   background-color: #36648B;
 }
 
+@media (max-width: 768px) {
+  .question {
+    font-size: 16px;
+  }
+
+  .answer-button {
+    font-size: 14px;
+  }
+
+  .feedback {
+    font-size: 16px;
+  }
+
+  .progress {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 480px) {
+  .image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 50px;
+  }
+
   .image-item {
-    width: 100%;
-    max-width: none;
+    height: 190px;
+    width: 190px;
+  }
+
+  .question {
+    font-size: 14px;
+  }
+
+  .answer-button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .feedback {
+    font-size: 14px;
+  }
+
+  .progress {
+    font-size: 12px;
   }
 
   .answers-container {
-    margin-left: -50px;
+    grid-template-columns: 1fr;
   }
 }
 
