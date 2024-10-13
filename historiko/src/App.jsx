@@ -71,8 +71,8 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (loading) {
-      return <div>Loading...</div>;
+    if (!user || !user.id) {
+      return <Navigate to="/" replace />;
     }
     return children;
   };

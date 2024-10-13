@@ -52,11 +52,11 @@ const Kasunduan = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ika dalawang pangyayari",
-    "Ika tatlong pangyayari",
-    "Ika apat na pangyayari",
-    "Ika lima na pangyayari",
-    "Ika anim na pangyayari",
+    "Ika-pangalawang pangyayari",
+    "Ika-tatlong pangyayari",
+    "Ika-apat na pangyayari",
+    "Ika-limang pangyayari",
+    "Ika-anim na pangyayari",
   ];
 
   useEffect(() => {
