@@ -40,7 +40,6 @@ const Home = () => {
       new window.YT.Player('youtube-player', {
         events: {
           'onReady': (event) => {
-            event.target.mute();
             event.target.playVideo();
           }
         }
@@ -60,10 +59,10 @@ const Home = () => {
         {/* Desktop video */}
         
         <div className="video-background">
-          <iframe 
+        <iframe 
             id="youtube-player"
             ref={iframeRef}
-            src="https://www.youtube.com/embed/81rDsHT5Tkg?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=81rDsHT5Tkg&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+            src="https://www.youtube.com/embed/Jort5tRzNrc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=Jort5tRzNrc&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

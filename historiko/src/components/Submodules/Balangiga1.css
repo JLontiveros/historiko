@@ -215,9 +215,9 @@ body::before {
   border: none;
   background-color: gold;
   color: #0047ab;
-  position: relative;
-  top: 140px;
-  left: 650px;
+  position: fixed; /* Changed from relative to fixed */
+  top: 120px; /* Adjusted top position */
+  right: 20px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
@@ -343,16 +343,10 @@ body::before {
     height: 60px;
     width: 60px;
   }
-
-  .balangiga1 button {
-    top: 10px;
-    left: auto;
-    right: 10px;
-    position: fixed;
-  }
 }
 
 @media screen and (max-width: 480px) {
+
   .balangiga1-description-container h1 {
     font-size: 26px;
   }
@@ -375,8 +369,12 @@ body::before {
   }
 
   .balangiga1 button {
-    top: 130px;
+    top: 0px;
     right: 20px;
-    height: 30px;
+    height: 43px;
+  }
+
+  .balangiga1-headings {
+    display: none;
   }
 }

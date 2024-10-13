@@ -56,7 +56,7 @@
    text-align: start;
 }
 
-.about-video {
+.about iframe {
    position: absolute;
    top: 69%;
    right: 30px;

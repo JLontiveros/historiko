@@ -216,9 +216,9 @@ body::before {
   border: none;
   background-color: gold;
   color: #0047ab;
-  position: relative;
-  top: 140px;
-  left: 650px;
+  position: fixed; /* Changed from relative to fixed */
+  top: 120px; /* Adjusted top position */
+  right: 20px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
@@ -274,6 +274,11 @@ body::before {
 @media screen and (max-width: 768px) {
   .view {
     margin-top: 120px;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 50px;
+    font-size: 12px;
   }
   
   .convention-container {
@@ -333,7 +338,7 @@ body::before {
     top: 10px;
     right: 10px;
     width: 80px;
-    height: 25px;
+    height: 50px;
     font-size: 12px;
   }
 }
@@ -360,9 +365,13 @@ body::before {
     width: 50px;
   }
   
-  .view {
+  .convention button {
     top: 10px;
     right: 20px;
-    height: 30px;
+    height: 50px;
+  }
+
+  .convention-headings {
+    display: none;
   }
 }

@@ -2,14 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Modules.css';
 import flagsImage from '../../assets/flag.png';
-import Historiko2_1 from '../../assets/Historiko2_1.mp4';
 import axesImage from '../../assets/axe.png';
 import questionMark from '../../assets/mark.png';
 
 function Modules() {
+  const secondSectionRef = useRef(null);
   const [hoverText1, setHoverText1] = useState(false);
   const [hoverText2, setHoverText2] = useState(false);
   const videoRef = useRef(null);
+  const iframeRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -17,17 +18,57 @@ function Modules() {
     }
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (secondSectionRef.current) {
+      observer.observe(secondSectionRef.current);
+    }
+
+    // YouTube iframe API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      new window.YT.Player('youtube-player', {
+        events: {
+          'onReady': (event) => {
+            event.target.playVideo();
+          }
+        }
+      });
+    };
+
+    return () => {
+      if (secondSectionRef.current) {
+        observer.unobserve(secondSectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="modules">
-      <video 
-        ref={videoRef}
-        autoPlay  
-        playsInline 
-        className="module-bg"
-      >
-        <source src={Historiko2_1} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="video-background">
+      <iframe 
+          id="youtube-player"
+          ref={iframeRef}
+          src="https://www.youtube.com/embed/CU7gZ4Wz9Mk?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=CU7gZ4Wz9Mk&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowFullScreen
+        ></iframe>
+      </div>
       <div className="module-container">
         <div className="module">
           <div className="image-container">

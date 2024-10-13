@@ -50,6 +50,16 @@
     animation: slideInRight 0.5s ease-out;
 }
 
+.video-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 799px;
+    height: 450px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+  }
+
 @keyframes slideInRight {
     from { transform: translateX(50px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
