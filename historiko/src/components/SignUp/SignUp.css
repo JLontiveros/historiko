@@ -190,6 +190,11 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .signup-overlay {
+    margin-left: -40px;
+    padding: 10px;
+  }
+
   .container {
     min-height: auto;
   }
@@ -219,7 +224,7 @@
   }
 
   .form-container form {
-    padding: 0 20px;
+    padding: 20px 20px;
   }
 
   .title {
