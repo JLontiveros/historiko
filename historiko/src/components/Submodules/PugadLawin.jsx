@@ -48,16 +48,16 @@ const PugadLawin = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ika dalawang pangyayari",
-    "Ika tatlong pangyayari",
-    "Ika apat na pangyayari",
-    "Ika lima na pangyayari",
-    "Ika anim na pangyayari",
-    "Ika pito na pangyayari",
-    "Ika walo na pangyayari",
-    "Ika siyam na pangyayari",
-    "Ika sampu na pangyayari",
-    "Ika sampu na pangyayari",
+    "Ika-pangalawang pangyayari",
+    "Ika-tatlong pangyayari",
+    "Ika-apat na pangyayari",
+    "Ika-limang pangyayari",
+    "Ika-anim na pangyayari",
+    "Ika-pitong pangyayari",
+    "Ika-walong pangyayari",
+    "Ika-siyam na pangyayari",
+    "Ika-sampung pangyayari",
+    "Ika-sampung pangyayari",
   ];
 
   const descriptions = [
