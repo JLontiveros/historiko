@@ -11,7 +11,6 @@
 
 .about{
   margin-top: 120px;  
-
 }
 
 .box {
@@ -58,7 +57,7 @@
 
 .about iframe {
    position: absolute;
-   top: 69%;
+   top: 63%;
    right: 30px;
    transform: translateY(-50%);
    width: 350px;
