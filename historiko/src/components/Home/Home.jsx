@@ -7,6 +7,8 @@ import homebg2 from '../../assets/homebg2.png';
 import homebg3 from '../../assets/homebg3.png';
 import homebg4 from '../../assets/homebg4.png';
 import ImageSlideshow from './ImageSlideshow';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase.js';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
@@ -14,8 +16,25 @@ const Home = () => {
   const { isAuthenticated, user } = useAuth();
   const slideImages = [homebg, homebg2, homebg3, homebg4];
   const iframeRef = useRef(null);
-
+  const [heroVideoUrl, setHeroVideoUrl] = useState('');
+  const [underHeroVideoUrl, setUnderHeroVideoUrl] = useState('');
+  
   useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const heroRef = ref(storage, 'hero.mp4');
+        const underHeroRef = ref(storage, 'underhero.mp4');
+        const heroUrl = await getDownloadURL(heroRef);
+        const underHeroUrl = await getDownloadURL(underHeroRef);
+        setHeroVideoUrl(heroUrl);
+        setUnderHeroVideoUrl(underHeroUrl);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
+    };
+
+    fetchVideos();
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,30 +49,6 @@ const Home = () => {
       observer.observe(secondSectionRef.current);
     }
 
-    // YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('youtube-player', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          }
-        }
-      });
-      
-      new window.YT.Player('youtube-player-mobile', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          }
-        }
-      });
-    };
-
     return () => {
       if (secondSectionRef.current) {
         observer.unobserve(secondSectionRef.current);
@@ -66,28 +61,22 @@ const Home = () => {
       <section className="video-section">
         {/* Desktop video */}
         <div className="video-background">
-        <iframe 
-            id="youtube-player"
-            ref={iframeRef}
-            src="https://www.youtube.com/embed/Jort5tRzNrc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=Jort5tRzNrc&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-            title="YouTube video player" 
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowFullScreen
-          ></iframe>
+          {heroVideoUrl && (
+            <video autoPlay loop muted playsInline>
+              <source src={heroVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
-        
 
         {/* Mobile video */}
         <div className="video21-background mobile-only">
-          <iframe
-            id="youtube-player-mobile"
-            src="https://www.youtube.com/embed/xK63TMCJQOI?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=xK63TMCJQOI&enablejsapi=1&origin=http://localhost:3000&modestbranding=1&playsinline=1" 
-            title="Mobile landing background"
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+          {heroVideoUrl && (
+            <video autoPlay loop muted playsInline>
+              <source src={heroVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
         
         <div className='text-overlay'>
@@ -101,28 +90,23 @@ const Home = () => {
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
-      <div className="video2-background">
-        <iframe 
-            id="youtube-player"
-            ref={iframeRef}
-            src="https://www.youtube.com/embed/2N8iS65Ipl8?si=5zXvW9A_LxlH2qKz?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=2N8iS65Ipl8&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-            title="YouTube video player" 
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowFullScreen
-          ></iframe>
+        <div className="video2-background">
+          {underHeroVideoUrl && (
+            <video autoPlay loop muted playsInline>
+              <source src={underHeroVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
 
         {/* Mobile video */}
         <div className="video22-background mobile-only">
-          <iframe
-            id="youtube-player-mobile"
-            src="https://www.youtube.com/embed/Kr2pcTHP3R0?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=Kr2pcTHP3R0&enablejsapi=1&origin=http://localhost:3000&modestbranding=1&playsinline=1" 
-            title="Mobile landing background"
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+          {underHeroVideoUrl && (
+            <video autoPlay loop muted playsInline>
+              <source src={underHeroVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
         
         <div className='signup-overlay'>
