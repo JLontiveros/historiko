@@ -58,15 +58,15 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="video-container">
+      <div className="video-container-about">
         {videoUrl && (
           <video 
+          className='about-video'
             ref={videoRef}
             src={videoUrl}
             autoPlay
             loop
             playsInline
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           >
             Your browser does not support the video tag.
           </video>

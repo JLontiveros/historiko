@@ -14,57 +14,66 @@
 }
 
 .box {
-   border: 10px solid rgb(79, 79, 165);
-   border-radius: 30px;
-   margin: 20px 20px;
-   background-color: #cde3eb;
-   animation: fadeIn 2s;
-   
+  border: 10px solid rgb(79, 79, 165);
+  border-radius: 30px;
+  margin: 20px 20px;
+  background-color: #cde3eb;
+  animation: fadeIn 2s;
 }
 
 .about h1, .about p{
-   display: flex;
-   justify-content: start;
-   align-items: center;
-   margin-left: 40px;
-   color: rgb(21, 21, 173);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 40px;
+  color: rgb(21, 21, 173);
 }
 
 .one, .two{
-   margin-left: 60px;
+  margin-left: 60px;
 }
 
 .bullet, .bullet2 {
-   margin-left: 50px;
+  margin-left: 50px;
 }
 
 .box h2 {
-   display: flex;
-   justify-content: start;
-   align-items: start;
-   margin-left: 40px;
-   margin-bottom: -5px;
-   color: rgb(21, 21, 173);
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-left: 40px;
+  margin-bottom: -5px;
+  color: rgb(21, 21, 173);
 }
 
 .layunin {
-   display: flex;
-   justify-content: start;
-   margin-left: 30px;
-   color: rgb(21, 21, 173);
-   text-align: start;
+  display: flex;
+  justify-content: start;
+  margin-left: 30px;
+  color: rgb(21, 21, 173);
+  text-align: start;
 }
 
-.about iframe {
-   position: absolute;
-   top: 63%;
-   right: 30px;
-   transform: translateY(-50%);
-   width: 350px;
-   height: 400px;
-   object-fit: cover;
-   border-radius: 15px;
-   animation: fadeIn 2s;
+.video-container-about {
+  position: absolute;
+  top: 63%;
+  right: 30px;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  animation: fadeIn 2s;
+}
+
+.about-video {
+  width: 200%;
+  height: 200%;
+  position: relative;
+  right: 100%;
+  bottom: 49%;
+  border-radius: 60%;
+  margin-bottom: -500px;
 }
 
 @keyframes fadeIn {
@@ -75,64 +84,88 @@
 /* Add responsive styles */
 
 @media screen and (max-width: 768px) {
- .about {
-   margin-top: 100px;
- }
+  .about {
+    margin-top: 100px;
+  }
 
- .box {
-   border-width: 5px;
-   margin: 10px;
- }
+  .box {
+    border-width: 5px;
+    margin: 10px;
+  }
 
- .about h1, .about p {
-   margin-left: 20px;
- }
+  .about h1, .about p {
+    margin-left: 20px;
+  }
 
- .one, .two {
-   margin-left: 30px;
- }
+  .one, .two {
+    margin-left: 30px;
+  }
 
- .bullet, .bullet2 {
-   margin-left: 25px;
- }
+  .bullet, .bullet2 {
+    margin-left: 25px;
+  }
 
- .box h2 {
-   margin-left: 20px;
- }
+  .box h2 {
+    margin-left: 20px;
+  }
 
- .layunin {
-   margin-left: 15px;
- }
+  .layunin {
+    margin-left: 15px;
+  }
+
+  .video-container-about {
+    position: static;
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    transform: none;
+  }
+
+  .about-video {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-radius: 15px;
+  }
 }
 
 @media screen and (max-width: 480px) {
- .about {
-   margin-top: 150px;
- }
+  .about {
+    margin-top: 80px;
+  }
+  
+  .about-bg {
+    position: absolute;
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+  }
 
- .about h1 {
-   font-size: 24px;
- }
+  .about h1 {
+    font-size: 24px;
+  }
 
- .box {
-   border-width: 3px;
- }
+  .box {
+    border-width: 3px;
+  }
 
- .about p, .one, .two, .bullet, .bullet2 {
-   font-size: 16px;
- }
+  .about p, .one, .two, .bullet, .bullet2 {
+    font-size: 14px;
+  }
 
- .box h2 {
-   font-size: 18px;
- }
+  .box h2 {
+    font-size: 18px;
+  }
 
- .layunin {
-   width: 100%;
-   margin-right: 0;
-   margin-bottom: 20px;
- }
+  .layunin {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 
- .about-video {
-   height: 300px;
- }
+  .video-container-about {
+    width: 95%;
+  }
 }

@@ -191,7 +191,7 @@ const Kasunduan = () => {
   return (
     <div className="Kasunduan">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="view">View in 3D</button>
+      <button onClick={handleViewMore} className="viewkasunduan">View in 3D</button>
       <div className="Kasunduan-container">
         <div className="Kasunduan-description-container">
           <h1>Description:</h1>
