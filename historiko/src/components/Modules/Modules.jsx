@@ -4,25 +4,51 @@ import './Modules.css';
 import flagsImage from '../../assets/flag.png';
 import axesImage from '../../assets/axe.png';
 import questionMark from '../../assets/mark.png';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 function Modules() {
   const secondSectionRef = useRef(null);
   const [hoverText1, setHoverText1] = useState(false);
   const [hoverText2, setHoverText2] = useState(false);
   const videoRef = useRef(null);
-  const iframeRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const videoRef = ref(storage, 'Historiko2_1.mp4');
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    };
+
+    fetchVideo();
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.muted = false;
+      const handleVisibilityChange = () => {
+        if (!document.hidden && videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play();
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
     }
-  }, []);
+  }, [videoUrl]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsIntersecting(true);
           secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
       },
@@ -32,22 +58,6 @@ function Modules() {
     if (secondSectionRef.current) {
       observer.observe(secondSectionRef.current);
     }
-
-    // YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('youtube-player', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          }
-        }
-      });
-    };
 
     return () => {
       if (secondSectionRef.current) {
@@ -59,15 +69,18 @@ function Modules() {
   return (
     <div className="modules">
       <div className="video-background">
-      <iframe 
-          id="youtube-player"
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/CU7gZ4Wz9Mk?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=CU7gZ4Wz9Mk&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-          title="YouTube video player" 
-          frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowFullScreen
-        ></iframe>
+        {videoUrl && (
+          <video 
+            ref={videoRef}
+            src={videoUrl}
+            autoPlay
+            loop
+            playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          >
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
       <div className="module-container">
         <div className="module">
@@ -143,7 +156,6 @@ function Modules() {
 
         </div>
       </div>
-      {/* <img src={characterImage} alt="Character" className="character" /> */}
     </div>
   );
 }

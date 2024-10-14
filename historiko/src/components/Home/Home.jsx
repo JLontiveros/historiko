@@ -18,22 +18,42 @@ const Home = () => {
   const iframeRef = useRef(null);
   const [heroVideoUrl, setHeroVideoUrl] = useState('');
   const [underHeroVideoUrl, setUnderHeroVideoUrl] = useState('');
+  const [mobileTopVideoUrl, setMobileTopVideoUrl] = useState('');
+  const [mobileBottomVideoUrl, setMobileBottomVideoUrl] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const heroRef = ref(storage, 'hero.mp4');
         const underHeroRef = ref(storage, 'underhero.mp4');
-        const heroUrl = await getDownloadURL(heroRef);
-        const underHeroUrl = await getDownloadURL(underHeroRef);
+        const mobileTopRef = ref(storage, 'landingphone1.mp4');
+        const mobileBottomRef = ref(storage, 'landingphone2.mp4');
+        
+        const [heroUrl, underHeroUrl, mobileTopUrl, mobileBottomUrl] = await Promise.all([
+          getDownloadURL(heroRef),
+          getDownloadURL(underHeroRef),
+          getDownloadURL(mobileTopRef),
+          getDownloadURL(mobileBottomRef)
+        ]);
+
         setHeroVideoUrl(heroUrl);
         setUnderHeroVideoUrl(underHeroUrl);
+        setMobileTopVideoUrl(mobileTopUrl);
+        setMobileBottomVideoUrl(mobileBottomUrl);
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
     };
 
     fetchVideos();
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust this breakpoint as needed
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -53,6 +73,7 @@ const Home = () => {
       if (secondSectionRef.current) {
         observer.unobserve(secondSectionRef.current);
       }
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -60,24 +81,28 @@ const Home = () => {
     <div className="home-container">
       <section className="video-section">
         {/* Desktop video */}
-        <div className="video-background">
-          {heroVideoUrl && (
-            <video autoPlay loop muted playsInline>
-              <source src={heroVideoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
+        {!isMobile && (
+          <div className="video-background">
+            {heroVideoUrl && (
+              <video autoPlay loop muted playsInline>
+                <source src={heroVideoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        )}
 
         {/* Mobile video */}
-        <div className="video21-background mobile-only">
-          {heroVideoUrl && (
-            <video autoPlay loop muted playsInline>
-              <source src={heroVideoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
+        {isMobile && (
+          <div className="video-background mobile-only">
+            {mobileTopVideoUrl && (
+              <video autoPlay loop muted playsInline>
+                <source src={mobileTopVideoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        )}
         
         <div className='text-overlay'>
           <div className='heading'>
@@ -90,24 +115,29 @@ const Home = () => {
       </section>
       
       <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
-        <div className="video2-background">
-          {underHeroVideoUrl && (
-            <video autoPlay loop muted playsInline>
-              <source src={underHeroVideoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
+        {/* Desktop video */}
+        {!isMobile && (
+          <div className="video2-background">
+            {underHeroVideoUrl && (
+              <video autoPlay loop muted playsInline>
+                <source src={underHeroVideoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        )}
 
         {/* Mobile video */}
-        <div className="video22-background mobile-only">
-          {underHeroVideoUrl && (
-            <video autoPlay loop muted playsInline>
-              <source src={underHeroVideoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
+        {isMobile && (
+          <div className="video2-background mobile-only">
+            {mobileBottomVideoUrl && (
+              <video autoPlay loop muted playsInline>
+                <source src={mobileBottomVideoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        )}
         
         <div className='signup-overlay'>
           {isAuthenticated ? (
