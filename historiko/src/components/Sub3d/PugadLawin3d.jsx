@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './PugadLawin3d.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
 import badge1 from '../../assets/badge1.png';
-import {DefaultPlayer as Video} from 'react-html5video';
-import 'react-html5video/dist/styles.css';
-import pugadvid from '../../assets/pugadvid.mp4';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 const PugadLawin3d = () => {
   const navigate = useNavigate();
@@ -18,11 +17,25 @@ const PugadLawin3d = () => {
   const { saveReward } = useReward();
   const { user } = useAuth();
   const secondSectionRef = useRef(null);
-  const iframeRef = useRef(null);
+  const videoRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const videoRef = ref(storage, 'pugadvid.mp4');
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+        toast.error("Error loading video. Please try again later.");
+      }
+    };
+
+    fetchVideo();
+
     if (location.state && location.state.showToast) {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(`Pagbati, ${userName}! Mag patuloy at panoorin ang 3d 'Sigaw ng Pugad-Lawin'`, {
         position: "top-right",
         autoClose: 5000,
@@ -33,7 +46,7 @@ const PugadLawin3d = () => {
         progress: undefined,
       });
     }
-  }, [location,user]);
+  }, [location, user]);
 
   const getUserUUID = async (username) => {
     const { data, error } = await supabase
@@ -56,7 +69,7 @@ const PugadLawin3d = () => {
         const { data, error } = await supabase
           .from('user_progress')
           .upsert(
-            { user_id: userUUID, topic_id: 4, progress: 100 }, // Assuming topic_id 1 for "Unang Putok"
+            { user_id: userUUID, topic_id: 4, progress: 100 },
             { onConflict: ['user_id', 'topic_id'] }
           );
 
@@ -70,7 +83,7 @@ const PugadLawin3d = () => {
   };
 
   const handleGoBack = async () => {
-    const rewardId = 4; // Replace with the correct reward ID
+    const rewardId = 4; // Reward ID for Sigaw ng Pugad-Lawin
     
     if (user) {
       await updateProgress(); // Update progress to 100%
@@ -98,7 +111,7 @@ const PugadLawin3d = () => {
       />
       <span>Gantimpala para sa pagtatapos ng talakayin ng Sigaw ng Pugad Lawin.</span>
     </div>,
-     {
+    {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -109,51 +122,7 @@ const PugadLawin3d = () => {
     });
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (secondSectionRef.current) {
-      observer.observe(secondSectionRef.current);
-    }
-
-    // YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('youtube-player', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          },
-          'onStateChange': (event) => {
-            if (event.data === window.YT.PlayerState.ENDED) {
-              handleVideoEnd();
-            }
-          }
-        }
-      });
-    };
-
-    return () => {
-      if (secondSectionRef.current) {
-        observer.unobserve(secondSectionRef.current);
-      }
-    };
-  }, []);
-  
   return (
-    <>
     <div className="PugadLawin3d">
       <ToastContainer/>
       <div className="PugadLawin3d-container">
@@ -162,20 +131,22 @@ const PugadLawin3d = () => {
       </div>
       <div className="picture3d">
         <div className="video-container">
-        <iframe 
-          id="youtube-player"
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/Pp-zln5LG38?si=F4lhrx275NhhsQH7?autoplay=1&unmute=1&controls=1&showinfo=0&rel=0&loop=0&playlist=Pp-zln5LG38&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-          title="YouTube video player" 
-          frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowFullScreen
-        ></iframe>
+          {videoUrl && (
+            <video 
+              ref={videoRef}
+              src={videoUrl}
+              controls
+              autoPlay
+              onEnded={handleVideoEnd}
+              style={{ width: '100%', height: '100%' }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
       </div>
     </div>
-    </>
-  )
+  );
 }
 
-export default PugadLawin3d
+export default PugadLawin3d;

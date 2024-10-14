@@ -1,36 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './About.css';
 import roombg from '../../assets/roombg.png';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 const About = () => {
   const videoRef = useRef(null);
-  const iframeRef = useRef(null);
   const secondSectionRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const videoRef = ref(storage, 'Historiko2_2.mp4');
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    };
+
+    fetchVideo();
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = false;
     }
-  }, []);
+  }, [videoUrl]);
 
-  useEffect(() => {
-    // YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('youtube-player', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          }
-        }
-      });
-    };
-  }, []);
-  
   return (
     <div className='about'>
       <img src={roombg} alt='background' className='about-bg'/>
@@ -60,16 +58,19 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="video-iframe">
-        <iframe 
-          id="youtube-player"
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/nMNHSJ-y8JY?autoplay=1&unmute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=nMNHSJ-y8JY&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-          title="YouTube video player" 
-          frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowFullScreen
-        ></iframe>
+      <div className="video-container">
+        {videoUrl && (
+          <video 
+            ref={videoRef}
+            src={videoUrl}
+            autoPlay
+            loop
+            playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          >
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
     </div>
   )
