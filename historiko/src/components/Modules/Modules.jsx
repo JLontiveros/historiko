@@ -68,7 +68,7 @@ function Modules() {
 
   return (
     <div className="modules">
-      <div className="video-background">
+      <div className="video-background-modules">
         {videoUrl && (
           <video 
             ref={videoRef}
@@ -76,7 +76,6 @@ function Modules() {
             autoPlay
             loop
             playsInline
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           >
             Your browser does not support the video tag.
           </video>
