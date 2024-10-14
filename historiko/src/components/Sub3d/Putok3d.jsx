@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Putok3d.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
 import badge1 from '../../assets/badge1.png';
-import {DefaultPlayer as Video} from 'react-html5video';
-import 'react-html5video/dist/styles.css';
-import unangvid from '../../assets/unangvid.mp4';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 const Putok3d = () => {
   const navigate = useNavigate();
@@ -18,11 +17,25 @@ const Putok3d = () => {
   const { saveReward } = useReward();
   const { user } = useAuth();
   const secondSectionRef = useRef(null);
-  const iframeRef = useRef(null);
+  const videoRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const videoRef = ref(storage, 'unangvid.mp4');
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error("Error fetching video:", error);
+        toast.error("Error loading video. Please try again later.");
+      }
+    };
+
+    fetchVideo();
+
     if (location.state && location.state.showToast) {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(`Pagbati, ${userName}! Magpatuloy at panoorin ang 3d 'Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa'`, {
         position: "top-right",
         autoClose: 5000,
@@ -92,7 +105,7 @@ const Putok3d = () => {
   const handleVideoEnd = () => {
     toast.success(<div style={{ display: 'flex', alignItems: 'center' }}>
       <img 
-        src={badge} 
+        src={badge1} 
         alt="Badge" 
         style={{ width: '50px', height: '50px', marginRight: '10px' }} 
       />
@@ -109,49 +122,6 @@ const Putok3d = () => {
     });
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (secondSectionRef.current) {
-      observer.observe(secondSectionRef.current);
-    }
-
-    // YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player('youtube-player', {
-        events: {
-          'onReady': (event) => {
-            event.target.playVideo();
-          },
-          'onStateChange': (event) => {
-            if (event.data === window.YT.PlayerState.ENDED) {
-              handleVideoEnd();
-            }
-          }
-        }
-      });
-    };
-
-    return () => {
-      if (secondSectionRef.current) {
-        observer.unobserve(secondSectionRef.current);
-      }
-    };
-  }, []);
-  
   return (
     <div className="Putok3d">
       <ToastContainer />
@@ -159,19 +129,22 @@ const Putok3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Unang Putok sa panulukan ng Silencio at Sociego</h1>
       </div>
-    <div className="picture3d">
-      <div className="video-container">
-        <iframe 
-          id="youtube-player"
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/pgH1YzS8l3I?si=Ci7XvnltiY2pv1N2?si=SiZACwtsueR9u3uP?autoplay=1&unmute=1&controls=1&showinfo=0&rel=0&loop=0&playlist=pgH1YzS8l3I&enablejsapi=1&origin=http://localhost:3000&modestbranding=1" 
-          title="YouTube video player" 
-          frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowFullScreen
-        ></iframe>
+      <div className="picture3d">
+        <div className="video-container">
+          {videoUrl && (
+            <video 
+              ref={videoRef}
+              src={videoUrl}
+              controls
+              autoPlay
+              onEnded={handleVideoEnd}
+              style={{ width: '100%', height: '100%' }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
