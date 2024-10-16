@@ -146,32 +146,37 @@ nav ul li svg {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: 60px; /* Adjust this value to position the top of the menu correctly */
+    right: 10px; /* Position it on the right side */
+    width: 60%; /* Adjust the width as needed */
+    max-height: 70vh; /* Limit the height to approximately match the drawn area */
     background-color: #a0a7ed;
-    padding: 1rem;
+    padding: 0.5rem;
+    overflow-y: auto;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   }
 
   .mobile-menu li {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
   }
 
   .mobile-menu a {
     color: navy;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.9rem; /* Slightly reduce font size */
+    padding: 0.25rem 0;
   }
 
   .mobile-submenu {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
 
   .mobile-submenu li {
-    margin: 0.25rem 0;
+    margin: 0.1rem 0;
   }
 
   .mobile-submenu a {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
