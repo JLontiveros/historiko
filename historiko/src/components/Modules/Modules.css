@@ -10,7 +10,7 @@
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  z-index: -1;
+  z-index: 1;
 }
 
 .video-background-modules {
@@ -20,7 +20,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -1000;
   overflow-x: hidden;
   animation: fadeInbg 3s;
 }
@@ -28,6 +28,7 @@
 .video-background-modules video {
   width: 100%;
   height: 100%;
+  z-index: -1000;
 }
 
 @keyframes fadeInbg {
@@ -43,6 +44,8 @@
   padding-top: 50px;
   margin-top: 120px;
   animation: fadeInmodule 3s;
+  position: relative;
+  z-index: 10;
 }
 
 @keyframes fadeInmodule {
@@ -57,6 +60,8 @@
   width: 300px;
   color: white;
   text-align: center;
+  position: relative;
+  z-index: 20;
 }
 
 .module-icon {
@@ -123,6 +128,7 @@
 .module-icon:hover,
 .question-mark:hover {
   transform: scale(1.4);
+  transition: transform 0.3s ease;
 }
 
 .title-container {
@@ -183,6 +189,7 @@
 
   .title-container:active .hover-text {
     display: block;
+    z-index: 30;
   }
 }
 
@@ -225,16 +232,22 @@
     flex-direction: column;
     align-items: center;
     margin-top: 80px;
+    z-index: 10;
   }
 
-    .module-bg {
-      display: none;
-    }
+  .module-bg {
+    display: none;
+  }
 
   .module {
     width: 100%;
     max-width: 400px;
     padding: 30px;
+    z-index: 20;
+  }
+
+  .module button {
+    z-index: 25;
   }
 
   .module-icon {
@@ -275,11 +288,13 @@
   .module-container {
     margin-top: 130px;
     margin-right: 40px;
+    z-index: 10;
   }
 
   .module {
     padding: 20px;
     margin-bottom: 30px;
+    z-index: 20;
   }
 
   .module-icon {
@@ -300,6 +315,7 @@
   .module button {
     padding: 10px 30px;
     font-size: 0.9em;
+    z-index: 25;
   }
 
   .hover-text {

@@ -374,4 +374,23 @@ body::before {
   .convention-headings {
     display: none;
   }
+
+  .balangiga1-headings {
+    display: none;
+  }
+
+  .convention-image-wrapper.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%) scale(2);
+    z-index: 1000;
+    width: auto;
+    animation: zoomIn 0.3s ease-out;
+  }
+  
+  @keyframes zoomIn {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(2); }
+  }
 }
