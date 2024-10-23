@@ -191,7 +191,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    right: -400px;  /* Move container 20px from the right */
+    width: calc(100% - 70px);  /* Adjust width to account for right space */
+}
 
   .home-slide {
     margin-top: 20px;

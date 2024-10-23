@@ -70,6 +70,12 @@ const SignUp = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
+      // First check if fields are empty
+      if (!username || !password) {
+        alert("Gumawa ng account kung ikaw ay wala pang account");
+        return;
+      }
+  
       const { data, error } = await supabase
         .from('users')
         .select('id, username, name')
@@ -77,7 +83,11 @@ const SignUp = () => {
         .eq('password', password)
         .single();
   
-      if (error) throw error;
+      if (error) {
+        // If no matching user found or wrong password
+        alert("Mali ang iyong binigay na password");
+        return;
+      }
   
       if (data) {
         console.log(data.id);
@@ -99,11 +109,9 @@ const SignUp = () => {
           name: data.name, 
           token: newToken 
         });
-      } else {
-        alert('Invalid username or password');
       }
     } catch (error) {
-      alert(error.message);
+      alert("Mali ang iyong binigay na password");
     }
   };
 
