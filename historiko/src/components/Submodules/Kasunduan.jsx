@@ -57,6 +57,8 @@ const Kasunduan = () => {
     "Ika-apat na pangyayari",
     "Ika-limang pangyayari",
     "Ika-anim na pangyayari",
+    "Ika-pito na pangyayari",
+    "Ika-walo na pangyayari",
   ];
 
   useEffect(() => {
@@ -194,7 +196,7 @@ const Kasunduan = () => {
       <button onClick={handleViewMore} className="viewkasunduan">View in 3D</button>
       <div className="Kasunduan-container">
         <div className="Kasunduan-description-container">
-          <h1>Description:</h1>
+          <h1>Deskripsyon:</h1>
           <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>

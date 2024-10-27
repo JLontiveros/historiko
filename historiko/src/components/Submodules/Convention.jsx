@@ -179,7 +179,7 @@ const Convention = () => {
       <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="convention-container">
         <div className="convention-description-container">
-          <h1>Description:</h1>
+          <h1>Deskripsyon:</h1>
           <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>

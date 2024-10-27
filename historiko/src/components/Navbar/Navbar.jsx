@@ -35,9 +35,9 @@ function Navbar() {
   return (
     <nav>
       <div className="nav-left">
-        {!isStartingPage && (
+        {/* {!isStartingPage && (
           <FaArrowLeft className="back-icon" onClick={handleGoBack} />
-        )}
+        )} */}
         <img src={logo} className="img" alt="Logo" />
       </div>
       {isMobile ? (
@@ -56,7 +56,7 @@ function Navbar() {
                 </ul>
               </li>
               <li><Link to="/Profile" onClick={toggleMobileMenu}>Profile</Link></li>
-              <li><Link to="/About" onClick={toggleMobileMenu}>About</Link></li>
+              <li><Link to="/About" onClick={toggleMobileMenu}>Patungkol</Link></li>
             </ul>
           )}
         </>
@@ -73,7 +73,7 @@ function Navbar() {
             )}
           </li>
           <li><Link to="/Profile">Profile</Link></li>
-          <li><Link to="/About">About</Link></li>
+          <li><Link to="/About">Patungkol</Link></li>
         </ul>
       )}
     </nav>

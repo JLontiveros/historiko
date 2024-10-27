@@ -20,7 +20,7 @@ const Balangiga1 = () => {
   const topicId = 3;
   const location = useLocation();
   const [hasShownToast, setHasShownToast] = useState(false);
-  const [currentHeading, setCurrentHeading] = useState("UNANG PANGYAYARI");
+  const [currentHeading, setCurrentHeading] = useState("Unang pangyayari");
 
   const images = [
     { src: capthomas, bg: capthomas, description: "Capt. Thomas Connell" },
@@ -29,15 +29,15 @@ const Balangiga1 = () => {
   ];
 
   const descriptions = [
-    "Sa simula ay nagging maganda ang pakikisalamuha ng mamamayan ng Balangiga sa mga sundalong Amerikano. Ngunit lingid sa kaalaman ng mga Amerikano ay mayroong ugnayan ang mga mamamayan sa pangat ni Vicente Lukban. Setyembre 28, 1901, isinagawa ang planong pagpatay sa buong pangkat ng amerikanong sundalo sa tulong ng mga mamamayan ng Balangiga. Sa 74 na miyembro ng Company C ay 36 ang nasawi kasama si Capt. Thomas Connell, 22 ang sugatan at 4 ang nawala. Dalawa lamang ang sinasabing hindi nasugatan.",
+    "Sa simula ay naging maganda ang pakikisalamuha ng mamamayan ng Balangiga sa mga sundalong Amerikano. Ngunit lingid sa kaalaman ng mga Amerikano ay mayroong ugnayan ang mga mamamayan sa pangat ni Vicente Lukban. Setyembre 28, 1901, isinagawa ang planong pagpatay sa buong pangkat ng amerikanong sundalo sa tulong ng mga mamamayan ng Balangiga. Sa 74 na miyembro ng Company C ay 36 ang nasawi kasama si Capt. Thomas Connell, 22 ang sugatan at 4 ang nawala. Dalawa lamang ang sinasabing hindi nasugatan.",
     "Bilang ganti ay ipinadala ang malaking bilang ng mga sundalong Amerikano sa pangunguna ni Brigadier Gen Jacob Smith. Malawakang pagpatay at pagsunog sa mga ari-arian ang isingawa nila sa Balangiga. ANg lahat ng kalalakihang may kakayahang humawak ng armas mula 10 taong gulang pataas ay pinagutos na patayin. Sa loob ng anim na buwan ang balangiga ay nagmistulang isang disyerto dahil sinunog ng mga amerikano ang buong baying ito.",
     "Bahagi ng pananakop sa isang bansa ay ang pagkontrol nito sa ekonomiya. Kung tutuusin, ito ang pangunahing dahilan ng Amerika sa pananakop sa Pilipinas sa pagnanais nitong makihati sa malaking kinikita ng bansang Kanluranin sa China. Kaya naman, pinilit ng huli na makuha ang Pilipinas upang magsilbing base militar nito sa Asya. Ngunit isa sa mga humamon sa kagustuhang ito ng mga Amerikano ay ang Mindanao. Panahon pa lamang ng mga Espanyol ay mailap na ang Mindanao dahil sa lakas ng Islam na syang pangunahing elementong nagbibigkis dito. Ang mga moro sa Mindanao at Sulu ay nanahimik, at nagmasid lamang upang hindi masangkot sa digmaan. Lumagda ng isang kasunduan si Brigadier General John C. Bates at ang sultan ng Jolo na si Sultan Jamal ul Kiram II kasama ang mga kinatawang datu ng sulu noong Agosto 10, 1899 at tinawag ito na Kasunduang Bates na nagsasaad na kinikilala ng Sultan ang kapangyarihan ng Estados Unidos sa buong kapuluan ng Sulu, Igagalang ng estados unidos ang mga karapatan at karangalan ng sultan ang kaniyang mga datu; at hindi makikialam ang estados unidos sa relihiyon ng mga moro. Hindi kinilala ang kasunduang Bates makalipas ang dalawang taon ay pinuksa ng mga amerikano ang mga muslim sa Mindanao matapos nilang matalo ang mga Pilipino sa Luzon.",
   ];
 
   const headings = [
     "Unang Pangyayari",
-    "ika-pangalawang Pangyayari",
-    "ika-tatlong Pangyayari",
+    "Ika-pangalawang Pangyayari",
+    "Ika-tatlong Pangyayari",
   ];
 
   useEffect(() => {
@@ -171,7 +171,7 @@ const Balangiga1 = () => {
       <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="balangiga1-container">
         <div className="balangiga1-description-container">
-          <h1>Description:</h1>
+          <h1>Deskripsyon:</h1>
           <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
