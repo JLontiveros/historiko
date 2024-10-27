@@ -61,7 +61,7 @@ const PugadLawin = () => {
   ];
 
   const descriptions = [
-    "Maraming sumuporta kay Andres Bonifacio dahil mahusay siyang lider. Nagkasundo sila na ipagpatuloy ang paghihimagsik. Siya ay binansagang (Ama ng Katipunan). Siya ang nagtatag at lumaon naging Supremo ng kilusang Katipunan na naglayong makamtan ang kasarinlan ng Pilipinas mula sa Espanya at nagpasimula ng Himagsikang Pilipino.",
+    "Maraming sumuporta kay Andres Bonifacio dahil mahusay siyang lider. Nagkasundo sila na ipagpatuloy ang paghihimagsik. Siya ay binansagang Ama ng Katipunan. Siya ang nagtatag at lumaon naging Supremo ng kilusang Katipunan na naglayong makamtan ang kasarinlan ng Pilipinas mula sa Espanya at nagpasimula ng Himagsikang Pilipino.",
     "Dahil sa patagong pagpupulong at pag-iwas sa mga Espanyol, ang mga katipunero ay tumutungo sa bahay ni Melchora Aquino, tinaguriang si “Tandang Sora”, “Ina ng Balintawak”, “Ina ng Katipunan” at tinawag din siya sa na “Ina ng Rebolusyon”. Hanggang sa sumiklab ang himagsikan, siya ang nanggamot sa mga sugatang katipunero.",
     "Ang trianggulong Sistema ay ginagamit sa pagkuha ng mga kasaping katipunero. Ang dating miyembro ay maghahanap ng dalawang bagong miyembro na hindi magkakilala. Sa maikling panahon, lumaki ang samahan ng katpunan.",
     "Ang Katipun ay unang antas ng Katipunero; Password: Anak ng Bayan; Nagsusuot ng itim na may nakasulat na titik Z,B,L, Nangangahulugang Anak ng Bayan. Ang kawal ay ang ikalawang antas ng Katipunero.; Password: GOMBURZA; Nagsusuot ng berdeng pandong sa mga pagpupulong na may titik na Z,B,L nangangahulugang Anak ng Bayan; Ang bayani naman ang ikatatlong antas ng Katipunero; Password: Rizal; Nagsusuot ng pulang hood sa mga pagpupulong. Binubuo ng mga pinuno ng Katipunan.",
@@ -209,7 +209,7 @@ const PugadLawin = () => {
       <button onClick={handleViewMore} className="view">View in 3D</button>
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
-          <h1>Description:</h1>
+          <h1>Deskripsyon:</h1>
           <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>

@@ -78,7 +78,7 @@ function Unatalakayin() {
         <div className="events">
           <img src={plaquetteImage} alt="firstshot" className="event-icon" />
           <h2>Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa</h2>
-          <p>Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino</p>
+          <p>Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(1, 'unangputok')} className="link-button">Talakayin natin</button>
             </div>
@@ -94,7 +94,7 @@ function Unatalakayin() {
         <div className="events">
           <img src={balangiga} alt="Bell" className="event-icon" />
           <h2>Balangiga Massacre</h2>
-          <p>Pinakatanyag na labanan sa pagitan ng mga amerikano at mga Pilipino ay ang labanan sa balangiga na nangyari sa pamumuno ni Heneral Vicente Lukban sa Isla ng Samar.</p>
+          <p>Pinakatanyag na labanan sa pagitan ng mga Amerikano at mga Pilipino ay ang labanan sa Balangiga na nangyari sa pamumuno ni Heneral Vicente Lukban sa Isla ng Samar.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(3, 'balangiga')} className="link-button">Talakayin natin</button>
             </div>

@@ -121,7 +121,7 @@ const TopicMarking = () => {
                 </div>
             ) : displayedTopics.length === 0 ? (
                 <div className="no-topics-message">
-                    No topics available.
+                    Wala pang namamarkahan.
                 </div>
             ) : (
                 <div className="topic-container">

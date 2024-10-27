@@ -35,7 +35,7 @@ const About = () => {
       <div className='content'>
         <h1>Patungkol sa Historiko</h1>
         <div className='box'>
-          <p>Maligayang pagdating sa Historiko! Kami ay isang pangkat na naglalayong palakasin ang diwa ng History sa pamamagitan ng pag-aaral ng kasaysayan ng Pilipinas, partikular sa:</p>
+          <p>Maligayang pagdating sa Historiko! Kami ay isang pangkat na naglalayong palakasin ang diwa ng Kasaysayan sa pamamagitan ng pag-aaral ng kasaysayan ng Pilipinas, partikular sa:</p>
           <p className='one'>1. <b>Digmaang Pilipino-Amerikano</b></p>
           <div className='bullet'>
             <p>-Unang Putok sa panukulan ng Silencio at Sociego, Sta Mesa</p>

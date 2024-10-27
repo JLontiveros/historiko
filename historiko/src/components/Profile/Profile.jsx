@@ -245,7 +245,7 @@ const Profile = () => {
         if (passwordError) throw passwordError;
       }
   
-      alert('Profile updated successfully!');
+      alert('Matagumpay na nakapagpalit!');
       setFormVisible(false);
       fetchUserProfile();
     } catch (error) {

@@ -102,7 +102,7 @@ const SignUp = () => {
           token: newToken
         }));
         setToken(newToken);
-        alert('Sign in successful!');
+        alert('Matagumpay na nakapag-Sign in!');
         login({ 
           id: data.id, 
           username: data.username, 
@@ -150,7 +150,7 @@ const SignUp = () => {
             <h1 className="title">Gumawa ng Account</h1>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Pangalan"
               className="input-field"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -171,7 +171,7 @@ const SignUp = () => {
             />
             <input
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Kumpirmahin"
               className="input-field"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -183,7 +183,7 @@ const SignUp = () => {
           <form onSubmit={handleSignIn}>
             <h1 className="title">Mag-sign in</h1>
             {signUpSuccess && (
-              <p className="success-message">Account created successfully! Please sign in.</p>
+              <p className="success-message">Matagumpay na nagawa ang account. Mag-Sign In</p>
             )}
             <input
               type="text"
@@ -207,12 +207,12 @@ const SignUp = () => {
             <div className="overlay-panel overlay-left">
               <h1>Maligayang pagbabalik!</h1>
               <p>Para manatili kang konektado, mangyaring mag-login gamit ang iyong personal na impormasyon.</p>
-              <button className="btn transparent" onClick={toggleForm}>SIGN IN</button>
+              <button className="btn transparent" onClick={toggleForm}>MAG-SIGN IN</button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Halina't Matuto!</h1>
               <p>Ipasok ang iyong mga personal na detalye at simulan ang paglalakbay.</p>
-              <button className="btn transparent" onClick={toggleForm}>SIGN UP</button>
+              <button className="btn transparent" onClick={toggleForm}>MAG-SIGN UP</button>
             </div>
           </div>
         </div>
