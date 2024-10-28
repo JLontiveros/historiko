@@ -36,11 +36,13 @@ import Kasunduan3d from './components/Sub3d/Kasunduan3d';
 const AuthContext = createContext(null);
 
 export const useAuth = () => useContext(AuthContext);
+export const ScrollContext = createContext(null);
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [shouldScrollToSignup, setShouldScrollToSignup] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -72,6 +74,7 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     if (!user || !user.id) {
+      setShouldScrollToSignup(true);
       return <Navigate to="/" replace />;
     }
     return children;
@@ -83,6 +86,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+      <ScrollContext.Provider value={{ shouldScrollToSignup, setShouldScrollToSignup }}>
       <MarkedTopicsProvider> {/* Wrap the entire app with MarkedTopicsProvider */}
       <RewardProvider>
       <Router>
@@ -125,6 +129,7 @@ function App() {
       </Router>
       </RewardProvider>
       </MarkedTopicsProvider>
+      </ScrollContext.Provider>
     </AuthContext.Provider>
   );
 }

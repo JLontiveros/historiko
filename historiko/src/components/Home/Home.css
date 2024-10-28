@@ -2,7 +2,7 @@
   height: auto;
   min-height: 200vh; /* Accommodate two full-height sections */
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
   padding: 0;
