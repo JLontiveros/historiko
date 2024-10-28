@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useContext  } from 'react';
 import './Home.css';
 import SignUp from '../SignUp/SignUp';
 import { useAuth } from '../../App';
@@ -9,13 +9,14 @@ import homebg4 from '../../assets/homebg4.png';
 import ImageSlideshow from './ImageSlideshow';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase.js';
+import { ScrollContext } from '../../App';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const { isAuthenticated, user } = useAuth();
   const slideImages = [homebg, homebg2, homebg3, homebg4];
-  const iframeRef = useRef(null);
+  const { shouldScrollToSignup, setShouldScrollToSignup } = useContext(ScrollContext);
   const [heroVideoUrl, setHeroVideoUrl] = useState('');
   const [underHeroVideoUrl, setUnderHeroVideoUrl] = useState('');
   const [mobileTopVideoUrl, setMobileTopVideoUrl] = useState('');
@@ -59,7 +60,6 @@ const Home = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsIntersecting(true);
-          secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
       },
       { threshold: 0.1 }
@@ -69,13 +69,18 @@ const Home = () => {
       observer.observe(secondSectionRef.current);
     }
 
+    if (shouldScrollToSignup && secondSectionRef.current) {
+      secondSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+      setShouldScrollToSignup(false); // Reset the flag after scrolling
+    }
+
     return () => {
       if (secondSectionRef.current) {
         observer.unobserve(secondSectionRef.current);
       }
       window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [shouldScrollToSignup, setShouldScrollToSignup]);
 
   return (
     <div className="home-container">
@@ -114,7 +119,7 @@ const Home = () => {
         </div>
       </section>
       
-      <section ref={secondSectionRef} className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
+      <section ref={secondSectionRef} id="sign-up" className={`video-section ${isIntersecting ? 'snap-in' : ''}`}>
         {/* Desktop video */}
         {!isMobile && (
           <div className="video2-background">
