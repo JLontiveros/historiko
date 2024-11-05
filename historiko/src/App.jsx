@@ -122,6 +122,7 @@ function App() {
                 <Route path="/Convention3d" element={<ProtectedRoute><Convention3d /></ProtectedRoute>} />
                 <Route path="/Kasunduan" element={<ProtectedRoute><Kasunduan /></ProtectedRoute>} />
                 <Route path="/Kasunduan3d" element={<ProtectedRoute><Kasunduan3d /></ProtectedRoute>} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </div>
           </div>        

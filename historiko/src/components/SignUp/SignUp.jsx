@@ -12,10 +12,26 @@ const SignUp = () => {
   const { login, logout } = useAuth();
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Add window resize listener
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
     setSignUpSuccess(false);
+    // Reset form fields when toggling
+    setUsername('');
+    setPassword('');
+    setConfirmPassword('');
+    setName('');
   };
 
   const generateToken = () => {
@@ -70,7 +86,6 @@ const SignUp = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      // First check if fields are empty
       if (!username || !password) {
         alert("Gumawa ng account kung ikaw ay wala pang account");
         return;
@@ -84,13 +99,11 @@ const SignUp = () => {
         .single();
   
       if (error) {
-        // If no matching user found or wrong password
         alert("Mali ang iyong binigay na password");
         return;
       }
   
       if (data) {
-        console.log(data.id);
         const newToken = generateToken();
         localStorage.setItem('id', data.id);
         localStorage.setItem('token', newToken);
@@ -135,89 +148,111 @@ const SignUp = () => {
   if (token) {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     return (
-      <div>
+      <div className="logged-in-container">
         <h1>Welcome, {storedUser.name || storedUser.username}!</h1>
-        <button onClick={handleLogout}>Logout</button>
+        <button className="btn" onClick={handleLogout}>Logout</button>
       </div>
     );
   }
 
   return (
-    <div className="auth-container">
-      <div className={`container ${isSignUp ? 'right-panel-active' : ''}`}>
-        <div className="form-container sign-up-container">
-          <form onSubmit={handleSignUp}>
-            <h1 className="title">Gumawa ng Account</h1>
-            <input
-              type="text"
-              placeholder="Pangalan"
-              className="input-field"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Username"
-              className="input-field"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Kumpirmahin"
-              className="input-field"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button className="btn" type="submit">Mag-sign up</button>
-          </form>
-        </div>
-        <div className="form-container sign-in-container">
-          <form onSubmit={handleSignIn}>
-            <h1 className="title">Mag-sign in</h1>
-            {signUpSuccess && (
-              <p className="success-message">Matagumpay na nagawa ang account. Mag-Sign In</p>
-            )}
-            <input
-              type="text"
-              placeholder="Username"
-              className="input-field"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button className="btn" type="submit">Mag patuloy</button>
-          </form>
-        </div>
-        <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-left">
-              <h1>Maligayang pagbabalik!</h1>
-              <p>Para manatili kang konektado, mangyaring mag-login gamit ang iyong personal na impormasyon.</p>
-              <button className="btn transparent" onClick={toggleForm}>MAG-SIGN IN</button>
-            </div>
-            <div className="overlay-panel overlay-right">
-              <h1>Halina't Matuto!</h1>
-              <p>Ipasok ang iyong mga personal na detalye at simulan ang paglalakbay.</p>
-              <button className="btn transparent" onClick={toggleForm}>MAG-SIGN UP</button>
+    <>
+      <div className="auth-container">
+        <div className={`container ${isSignUp ? 'right-panel-active' : ''}`}>
+          <div className="form-container sign-up-container">
+            <form onSubmit={handleSignUp}>
+              <h1 className="title">Gumawa ng Account</h1>
+              <input
+                type="text"
+                placeholder="Pangalan"
+                className="input-field"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Username"
+                className="input-field"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="input-field"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Kumpirmahin"
+                className="input-field"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <button className="btn" type="submit">Mag-sign up</button>
+            </form>
+          </div>
+          <div className="form-container sign-in-container">
+            <form onSubmit={handleSignIn}>
+              <h1 className="title">Mag-sign in</h1>
+              {signUpSuccess && (
+                <p className="success-message">Matagumpay na nagawa ang account. Mag-Sign In</p>
+              )}
+              <input
+                type="text"
+                placeholder="Username"
+                className="input-field"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="input-field"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button className="btn" type="submit">Mag patuloy</button>
+            </form>
+          </div>
+          
+          {/* Overlay container for desktop view */}
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-panel overlay-left">
+                <h1>Maligayang pagbabalik!</h1>
+                <p>Para manatili kang konektado, mangyaring mag-login gamit ang iyong personal na impormasyon.</p>
+                <button className="btn transparent" onClick={toggleForm}>MAG-SIGN IN</button>
+              </div>
+              <div className="overlay-panel overlay-right">
+                <h1>Halina't Matuto!</h1>
+                <p>Ipasok ang iyong mga personal na detalye at simulan ang paglalakbay.</p>
+                <button className="btn transparent" onClick={toggleForm}>MAG-SIGN UP</button>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Mobile navigation */}
+        {windowWidth <= 768 && (
+          <div className="mobile-nav">
+            <button 
+              className="btn mobile-toggle" 
+              onClick={toggleForm}
+            >
+              {isSignUp ? 'Mag-Sign In' : 'Mag-Sign Up'}
+            </button>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
