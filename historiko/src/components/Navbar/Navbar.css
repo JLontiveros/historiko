@@ -169,14 +169,16 @@ nav ul li svg {
   }
 
   .mobile-submenu {
-    margin-left: 0.5rem;
+    margin-left: 1rem; /* Adjust as needed */
   }
-
+  
   .mobile-submenu li {
     margin: 0.1rem 0;
   }
-
+  
   .mobile-submenu a {
     font-size: 0.8rem;
+    color: navy;
   }
+  
 }
