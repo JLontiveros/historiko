@@ -40,10 +40,10 @@ const PugadLawin = () => {
     { src: pactodesangre, bg: pactodesangre, description: "Pacto De Sangre" },
     { src: mariano, bg: mariano, description: "Pacto Mariano Gil" },
     { src: taxreceipt, bg: taxreceipt, description: "Tax Receipt Torn by Members of the Katipunan" },
-    { src: watawat, bg: watawat, description: "" },
+    { src: watawat, bg: watawat, description: "Watawat" },
     { src: baldoandfrends, bg: baldoandfrends, description: "Gen Mariano Alvarez" },
-    { src: magdalo, bg: magdalo, description: "Magdalo Faction Magdiwang Faction" },
-    { src: magdiwang, bg: magdiwang, description: "Magdalo Faction Magdiwang Faction" },
+    { src: magdalo, bg: magdalo, description: "Magdalo Faction" },
+    { src: magdiwang, bg: magdiwang, description: "Magdiwang Faction" },
   ];
 
   const headings = [
