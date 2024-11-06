@@ -8,6 +8,7 @@ function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileSubmenu, setShowMobileSubmenu] = useState(false); // New state for mobile submenu visibility
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,14 +31,16 @@ function Navbar() {
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
+    setShowMobileSubmenu(false); // Close submenu when closing main mobile menu
+  };
+
+  const toggleMobileSubmenu = () => {
+    setShowMobileSubmenu(!showMobileSubmenu); // Toggle the submenu visibility
   };
 
   return (
     <nav>
       <div className="nav-left">
-        {/* {!isStartingPage && (
-          <FaArrowLeft className="back-icon" onClick={handleGoBack} />
-        )} */}
         <img src={logo} className="img" alt="Logo" />
       </div>
       {isMobile ? (
@@ -48,12 +51,14 @@ function Navbar() {
           {showMobileMenu && (
             <ul className="mobile-menu">
               <li>
-                <li><Link to="/Home" onClick={toggleMobileMenu}>Home</Link></li>
-                <ul className="mobile-submenu">
-                  <li><Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen />Modules</Link></li>
-                  <li><Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark />Topic Marking</Link></li>
-                  <li><Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle  />Quiz</Link></li>
-                </ul>
+                <span onClick={toggleMobileSubmenu}>Home</span> {/* Make Home clickable to toggle submenu */}
+                {showMobileSubmenu && (
+                  <ul className="mobile-submenu">
+                    <li><Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen /> Modules</Link></li>
+                    <li><Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark /> Topic Marking</Link></li>
+                    <li><Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle /> Quiz</Link></li>
+                  </ul>
+                )}
               </li>
               <li><Link to="/Profile" onClick={toggleMobileMenu}>Profile</Link></li>
               <li><Link to="/About" onClick={toggleMobileMenu}>Patungkol</Link></li>
@@ -66,9 +71,9 @@ function Navbar() {
             <li><Link to="/Home">Home</Link></li>
             {showDropdown && (
               <ul className="dropdown">
-                <li><Link to="/Modules"><FaBookOpen />Modules</Link></li>
-                <li><Link to="/Topicmarking"><FaBookmark />Topic Marking</Link></li>
-                <li><Link to="/Quiz"><FaInfoCircle  />Quiz</Link></li>
+                <li><Link to="/Modules"><FaBookOpen /> Modules</Link></li>
+                <li><Link to="/Topicmarking"><FaBookmark /> Topic Marking</Link></li>
+                <li><Link to="/Quiz"><FaInfoCircle /> Quiz</Link></li>
               </ul>
             )}
           </li>
