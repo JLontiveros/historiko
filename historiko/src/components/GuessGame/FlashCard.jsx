@@ -7,7 +7,11 @@ import './FlashCard.css';
 
 const FlashCard = ({ onComplete }) => {
   const [flashcards, setFlashcards] = useState([]);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [currentCardIndex, setCurrentCardIndex] = useState(() => {
+    // Initialize from localStorage if available, otherwise start at 0
+    const savedIndex = localStorage.getItem('lastFlashcardIndex');
+    return savedIndex ? parseInt(savedIndex, 10) : 0;
+  });
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,6 +29,12 @@ const FlashCard = ({ onComplete }) => {
 
       setFlashcards(data);
       setError(null);
+
+      // Validate saved index against actual data length
+      const savedIndex = parseInt(localStorage.getItem('lastFlashcardIndex'), 10);
+      if (savedIndex && savedIndex >= 0 && savedIndex < data.length) {
+        setCurrentCardIndex(savedIndex);
+      }
     } catch (error) {
       console.error('Error fetching flashcards:', error);
       setError('Failed to load flashcards. Please try again later.');
@@ -38,6 +48,11 @@ const FlashCard = ({ onComplete }) => {
       fetchFlashcards();
     }
   }, [fetchFlashcards, isAuthenticated, user]);
+
+  // Save current index to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('lastFlashcardIndex', currentCardIndex.toString());
+  }, [currentCardIndex]);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -58,27 +73,22 @@ const FlashCard = ({ onComplete }) => {
   };
 
   const handleComplete = async () => {
-    console.log('handleComplete called');
-    console.log('Current user:', user);
-
     if (!isAuthenticated || !user) {
       console.error('No user found. Please ensure you are logged in.');
       return;
     }
   
     try {
-      console.log('Attempting to update flashcard_completed for user ID:', user.id);
       const { data, error } = await supabase
         .from('users')
         .update({ flashcard_completed: true })
         .eq('id', user.id);
   
-      if (error) {
-        console.error('Supabase error:', error);
-        throw error;
-      }
+      if (error) throw error;
   
-      console.log('Flashcard completion updated successfully', data);
+      // Clear the saved index when completing the flashcards
+      localStorage.removeItem('lastFlashcardIndex');
+      
       toast.success("Pagpupugay sa pagtatapos ng Virtual Flashcard!", {
         position: "top-right",
         autoClose: 5000,
@@ -88,6 +98,7 @@ const FlashCard = ({ onComplete }) => {
         draggable: true,
         progress: undefined,
       });
+      
       if (onComplete) {
         onComplete();
       }
@@ -113,7 +124,6 @@ const FlashCard = ({ onComplete }) => {
   const isLastCard = currentCardIndex === flashcards.length - 1;
 
   return (
-    <>
     <div className="flash-bg">
       <div className="flashcard-reviewer">
         <ToastContainer 
@@ -152,7 +162,6 @@ const FlashCard = ({ onComplete }) => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 
