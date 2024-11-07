@@ -48,6 +48,11 @@ const PugadLawin3d = () => {
     }
   }, [location, user]);
 
+  // Disable right-click on the video
+  const handleRightClick = (e) => {
+    e.preventDefault();
+  };
+  
   const getUserUUID = async (username) => {
     const { data, error } = await supabase
       .from('users')
@@ -138,6 +143,7 @@ const PugadLawin3d = () => {
               controls
               autoPlay
               onEnded={handleVideoEnd}
+              onContextMenu={handleRightClick} // Disable right-click on the video
               style={{ width: '100%', height: '100%' }}
             >
               Your browser does not support the video tag.

@@ -29,6 +29,11 @@ const About = () => {
     }
   }, [videoUrl]);
 
+  // Disable right-click on the video
+  const handleRightClick = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className='about'>
       <img src={roombg} alt='background' className='about-bg'/>
@@ -61,12 +66,13 @@ const About = () => {
       <div className="video-container-about">
         {videoUrl && (
           <video 
-          className='about-video'
+            className='about-video'
             ref={videoRef}
             src={videoUrl}
             autoPlay
             loop
             playsInline
+            onContextMenu={handleRightClick} // Disable right-click on the video
           >
             Your browser does not support the video tag.
           </video>
