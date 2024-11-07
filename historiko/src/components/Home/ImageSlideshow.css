@@ -35,11 +35,11 @@
 
   @media (max-width: 768px) {
     .home-slide {
-      margin-top: 20px;
-      margin-left: 45px;
+      margin-top: 50px;
+      margin-left: 40px;
       max-height: none;
-      width: 200%;
-      max-width: 400px;
+      width: 120%;
+      max-width: 500px;
       position: relative;
       display: flex;
       justify-content: center;
