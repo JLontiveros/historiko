@@ -28,8 +28,8 @@ const Home = () => {
       try {
         const heroRef = ref(storage, 'hero.mp4');
         const underHeroRef = ref(storage, 'underhero.mp4');
-        const mobileTopRef = ref(storage, 'landingphone1.mp4');
-        const mobileBottomRef = ref(storage, 'landingphone2.mp4');
+        const mobileTopRef = ref(storage, '800x1000first.mp4');
+        const mobileBottomRef = ref(storage, '100x1000sec0001-0250.mp4');
         
         const [heroUrl, underHeroUrl, mobileTopUrl, mobileBottomUrl] = await Promise.all([
           getDownloadURL(heroRef),
