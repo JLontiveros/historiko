@@ -5,6 +5,7 @@ import { MarkedTopicsProvider, useMarkedTopics } from './components/context/Mark
 import { RewardProvider } from './components/context/RewardContext';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
+import NotFound from './components/Home/NotFound';
 import Profile from './components/Profile/Profile';
 import About from './components/About/About';
 import './App.css';
@@ -122,7 +123,7 @@ function App() {
                 <Route path="/Convention3d" element={<ProtectedRoute><Convention3d /></ProtectedRoute>} />
                 <Route path="/Kasunduan" element={<ProtectedRoute><Kasunduan /></ProtectedRoute>} />
                 <Route path="/Kasunduan3d" element={<ProtectedRoute><Kasunduan3d /></ProtectedRoute>} />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </div>        
