@@ -82,6 +82,18 @@
 }
 
 /* Add responsive styles */
+/* @media screen and (max-width: 1500px) {
+  .video-container-about {
+    position: relative;
+    left: 73%;
+    top: 50%;
+  }
+
+  .about-video {
+    position: relative;
+    top: -107%;
+  }
+} */
 
 @media screen and (max-width: 768px) {
   .about {
