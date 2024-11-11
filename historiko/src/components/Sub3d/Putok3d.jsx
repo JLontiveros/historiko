@@ -21,32 +21,44 @@ const Putok3d = () => {
   const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
+    // Set a default value of 'false' in localStorage if it doesn't exist
+    if (localStorage.getItem('putok3dToastShown') === null) {
+      localStorage.setItem('putok3dToastShown', 'false');
+    }
+  
     const fetchVideo = async () => {
       try {
         const videoRef = ref(storage, 'unangvid.mp4');
         const url = await getDownloadURL(videoRef);
         setVideoUrl(url);
+  
+        // After fetching the video, update localStorage and show the toast if not previously shown
+        if (localStorage.getItem('putok3dToastShown') === 'false') {
+          const userName = user ? user.name || user.username : 'Kaibigan';
+          toast.info(
+            `Pagbati, ${userName}! Magpatuloy at panoorin ang 3d 'Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa'`, 
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+          // Update localStorage to prevent the toast from showing again
+          localStorage.setItem('putok3dToastShown', 'true');
+        }
       } catch (error) {
         console.error("Error fetching video:", error);
         toast.error("Error loading video. Please try again later.");
       }
     };
-
+  
     fetchVideo();
-
-    if (location.state && location.state.showToast) {
-      const userName = user ? user.name || user.username : 'Kaibigan';
-      toast.info(`Pagbati, ${userName}! Magpatuloy at panoorin ang 3d 'Unang Putok sa panulukan ng Silencio at Sociego, Sta.Mesa'`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
   }, [location, user]);
+  
 
   // Disable right-click on the video
   const handleRightClick = (e) => {

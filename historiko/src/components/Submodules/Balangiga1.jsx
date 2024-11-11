@@ -41,7 +41,13 @@ const Balangiga1 = () => {
   ];
 
   useEffect(() => {
-    if (location.state?.showToast && !hasShownToast) {
+    if (!localStorage.getItem('hasViewedbalangiga3D') === null) {
+      localStorage.setItem('hasViewedbalangiga3D', 'false');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && localStorage.getItem('hasViewedbalangiga3D') === 'false') {
       const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -64,7 +70,6 @@ const Balangiga1 = () => {
           progress: undefined,
         }
       );
-      setHasShownToast(true);
     }
   
     document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
@@ -119,6 +124,7 @@ const Balangiga1 = () => {
 
   const handleViewMore = async (e) => {
     e.preventDefault();
+    localStorage.setItem('hasViewedbalangiga3D', 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {

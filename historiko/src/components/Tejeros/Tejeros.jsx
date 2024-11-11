@@ -17,32 +17,40 @@ const Tejeros = () => {
   const { addMarkedTopic, removeMarkedTopic, markedTopics } = useMarkedTopics();
   const topicId = 5; // "Tejeros Convention"
   const topicName = "Tejeros Convention";
+  const toastKey = "hasShownTejerosToast";
 
   let timer;
 
   useEffect(() => {
+    // Set default value in localStorage if not present
+    if (!localStorage.getItem(toastKey) === null) {
+      localStorage.setItem(toastKey, 'false');
+    }
+
+    // Display toast message if not shown yet
+    if (user && localStorage.getItem(toastKey) === 'false') {
+      timer = setTimeout(() => {
+        const userName = user ? user.name || user.username : 'Kaibigan';
+        toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Tejeros Convention`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }, 1500);
+    }
+
     if (user) {
       checkIfMarked();
     } else {
       setIsLoading(false);
     }
 
-    timer = setTimeout(() => {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
-      toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Tejeros Convention`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }, 1500);
-
     // Clear the timeout if the component unmounts
     return () => clearTimeout(timer);
-
   }, [user, markedTopics]);
 
   const getUserUUID = async (username) => {
@@ -94,6 +102,7 @@ const Tejeros = () => {
   };
 
   const handleViewMore = async () => {
+    localStorage.setItem(toastKey, 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {

@@ -49,7 +49,13 @@ const Convention = () => {
   ];
 
   useEffect(() => {
-    if (location.state?.showToast && !hasShownToast) {
+    if (!localStorage.getItem('hasViewedconvention3D') === null) {
+      localStorage.setItem('hasViewedconvention3D', 'false');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && localStorage.getItem('hasViewedconvention3D') === 'false') {
       const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -72,7 +78,6 @@ const Convention = () => {
           progress: undefined,
         }
       );
-      setHasShownToast(true);
     }
 
     document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
@@ -127,6 +132,7 @@ const Convention = () => {
 
   const handleViewMore = async (e) => {
     e.preventDefault();
+    localStorage.setItem('hasViewedconvention3D', 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {

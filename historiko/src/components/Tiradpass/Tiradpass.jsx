@@ -18,38 +18,39 @@ const Tiradpass = () => {
   const topicId = 2; // "Labanan sa Tirad Pass"
   const topicName = "Labanan sa Tirad Pass";
   const [userId, setUserId] = useState(null);
+  const toastKey = "hasShownTiradpassToast";
 
   let timer;
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (user && user.id) {
-        setUserId(user.id);
-        checkIfMarked();
-      } else if (user && user.username) {
-        const id = await getUserUUID(user.username);
-        setUserId(id);
-        checkIfMarked();
-      } else {
-        setIsLoading(false);
-      }
-    };
+    // Set default value in localStorage if not present
+    if (!localStorage.getItem(toastKey) === null) {
+      localStorage.setItem(toastKey, 'false');
+    }
 
-    fetchUserData();
+    // Display toast message if not shown yet
+    if (user && localStorage.getItem(toastKey) === 'false') {
+      timer = setTimeout(() => {
+        const userName = user ? user.name || user.username : 'Kaibigan';
+        toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Labanan sa Tirad Pass`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }, 1500);
+    }
 
-    timer = setTimeout(() => {
-      const userName = user ? user.name || user.username : 'Kaibigan';
-      toast.info(`Pagbati, ${userName}! Magpatuloy at alamin ang lahat tungkol sa Labanan sa Tirad Pass`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }, 1500);
+    if (user) {
+      checkIfMarked();
+    } else {
+      setIsLoading(false);
+    }
 
+    // Clear the timeout if the component unmounts
     return () => clearTimeout(timer);
   }, [user, markedTopics]);
 
@@ -102,6 +103,7 @@ const Tiradpass = () => {
   };
 
   const handleViewMore = async () => {
+    localStorage.setItem(toastKey, 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {

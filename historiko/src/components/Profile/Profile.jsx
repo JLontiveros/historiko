@@ -201,6 +201,29 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
+    localStorage.setItem('hasShownUnatalakyinToast', 'false');
+    localStorage.setItem('hasShownDalwatalakyinToast', 'false');
+    //MODULES
+    localStorage.setItem('hasShownUnangputokToast', 'false');
+    localStorage.setItem('hasShownTiradpassToast', 'false');
+    localStorage.setItem('hasShownBalangigaToast', 'false');
+    localStorage.setItem('hasShownSigawToast', 'false');
+    localStorage.setItem('hasShownTejerosToast', 'false');
+    localStorage.setItem('hasShownBatoToast', 'false');
+    // SUBMODULES
+    localStorage.setItem('hasViewedputok3D', 'false');
+    localStorage.setItem('hasViewedtirad3D', 'false');
+    localStorage.setItem('hasViewedbalangiga3D', 'false');
+    localStorage.setItem('hasViewedpugadlawin3D', 'false');
+    localStorage.setItem('hasViewedconvention3D', 'false');
+    localStorage.setItem('hasViewedkasunduan3D', 'false');
+    // 3D
+    localStorage.setItem('putok3dToastShown', 'false');
+    localStorage.setItem('tirad3dToastShown', 'false');
+    localStorage.setItem('balangiga3dToastShown', 'false');
+    localStorage.setItem('pugad3dToastShown', 'false');
+    localStorage.setItem('convention3dToastShown', 'false');
+    localStorage.setItem('kasunduan3dToastShown', 'false');
     logout();
     navigate('/');
   };

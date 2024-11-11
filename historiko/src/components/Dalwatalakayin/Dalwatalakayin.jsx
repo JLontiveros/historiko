@@ -17,22 +17,32 @@ function Dalwatalakayin() {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (location.state?.showToast && location.state?.fromModules) {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
-      toast.info(`Kumusta, ${userName}! Halinat talakayin ang Panahon ng Himagsikang Pilipino!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      localStorage.setItem('hasShownDalwatalakyinToast', 'true');
+    if (user) {
+      // Set default values for toast flags if they don't already exist
+      if (localStorage.getItem('hasShownUnatalakyinToast') === null) {
+        localStorage.setItem('hasShownUnatalakyinToast', 'false');
+      }
+      if (localStorage.getItem('hasShownDalwatalakyinToast') === null) {
+        localStorage.setItem('hasShownDalwatalakyinToast', 'false');
+      }
+
+      if (localStorage.getItem('hasShownDalwatalakyinToast') === 'false') {
+        // Adjust this toast message as needed
+        toast.info(`Maligayang Pagdating sa Dalwatalakayin!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
-  }, [location,user]);
+  }, [user]);
 
   const handleSeeMore = async (topicId, route) => {
+    localStorage.setItem('hasShownDalwatalakyinToast', 'true');
     if (user) {
       // First, try to fetch the current progress
       const { data: currentProgressData, error: fetchError } = await supabase

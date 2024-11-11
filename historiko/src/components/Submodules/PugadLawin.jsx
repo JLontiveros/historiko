@@ -75,7 +75,13 @@ const PugadLawin = () => {
   ];
 
   useEffect(() => {
-    if (location.state?.showToast && !hasShownToast) {
+    if (!localStorage.getItem('hasViewedpugadlawin3D') === null) {
+      localStorage.setItem('hasViewedpugadlawin3D', 'false');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && localStorage.getItem('hasViewedpugadlawin3D') === 'false') {
       const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -98,7 +104,6 @@ const PugadLawin = () => {
           progress: undefined,
         }
       );
-      setHasShownToast(true);
     }
   
     // ... (rest of the useEffect for background image)
@@ -143,6 +148,7 @@ const PugadLawin = () => {
 
   const handleViewMore = async (e) => {
     e.preventDefault();
+    localStorage.setItem('hasViewedpugadlawin3D', 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {
