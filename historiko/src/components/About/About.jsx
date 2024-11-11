@@ -6,7 +6,6 @@ import { storage } from '../../firebase';
 
 const About = () => {
   const videoRef = useRef(null);
-  const secondSectionRef = useRef(null);
   const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const About = () => {
     }
   }, [videoUrl]);
 
-  // Disable right-click on the video
   const handleRightClick = (e) => {
     e.preventDefault();
   };
@@ -40,30 +38,49 @@ const About = () => {
       <div className='content'>
         <h1>Patungkol sa Historiko</h1>
         <div className='box'>
-          <p>Maligayang pagdating sa Historiko! Kami ay isang pangkat na naglalayong palakasin ang diwa ng Kasaysayan sa pamamagitan ng pag-aaral ng kasaysayan ng Pilipinas, partikular sa:</p>
-          <p className='one'>1. <b>Digmaang Pilipino-Amerikano</b></p>
-          <div className='bullet'>
-            <p>-Unang Putok sa panukulan ng Silencio at Sociego, Sta Mesa</p>
-            <p>-Labanan sa Tirad Pass </p> 
-            <p>-Balangiga Massacre</p>
+          <div className='text-content'>
+            <p>Maligayang pagdating sa Historiko! Kami ay isang pangkat na naglalayong palakasin ang diwa ng Kasaysayan sa pamamagitan ng pag-aaral ng kasaysayan ng Pilipinas, partikular sa:</p>
+            <p className='one'>1. <b>Digmaang Pilipino-Amerikano</b></p>
+            <div className='bullet'>
+              <p>-Unang Putok sa panukulan ng Silencio at Sociego, Sta Mesa</p>
+              <p>-Labanan sa Tirad Pass </p> 
+              <p>-Balangiga Massacre</p>
+            </div>
+            <p className='two'>2. <b>Himagsikang Pilipino</b></p>
+            <div className='bullet2'>
+              <p>-Sigaw ng Pugad-Lawin</p>
+              <p>-Tejeros Convention</p>
+              <p>-Kasunduan sa Biak-na-Bato</p>
+            </div>
+            <h2><b>Layunin:</b></h2>
+            <div className='layunin'>
+              <ul>
+                <li>Edukasyon: Magbigay ng makabuluhan at kawili-wiling impormasyon.</li>
+                <li>Inspirasyon: Hikayatin ang pagmamalaki sa ating pinagmulan.</li>
+                <li>Pagkakaisa: Palakasin ang pagmamahal sa bayan.</li>
+              </ul>
+            </div>
           </div>
-          <p className='two'>2. <b>Himagsikang Pilipino</b></p>
-          <div className='bullet2'>
-            <p>-Sigaw ng Pugad-Lawin</p>
-            <p>-Tejeros Convention</p>
-            <p>-Kasunduan sa Biak-na-Bato</p>
-          </div>
-          <h2><b>Layunin:</b></h2>
-          <div className='layunin'>
-            <ul>
-              <li>Edukasyon: Magbigay ng makabuluhan at kawili-wiling impormasyon.</li>
-              <li>Inspirasyon: Hikayatin ang pagmamalaki sa ating pinagmulan.</li>
-              <li>Pagkakaisa: Palakasin ang pagmamahal sa bayan.</li>
-            </ul>
+          <div className="video-position-wrapper">
+          <div className="video-container-about desktop-only">
+            {videoUrl && (
+              <video 
+                className='about-video'
+                ref={videoRef}
+                src={videoUrl}
+                autoPlay
+                loop
+                playsInline
+                onContextMenu={handleRightClick}
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="video-container-about">
+      <div className="video-container-about mobile-only">
         {videoUrl && (
           <video 
             className='about-video'
@@ -72,14 +89,14 @@ const About = () => {
             autoPlay
             loop
             playsInline
-            onContextMenu={handleRightClick} // Disable right-click on the video
+            onContextMenu={handleRightClick}
           >
             Your browser does not support the video tag.
           </video>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default About;
