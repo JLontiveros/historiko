@@ -5,9 +5,27 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
 
 const About = () => {
-  const videoRef = useRef(null);
   const [videoUrl, setVideoUrl] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
+  const videoRef = useRef(null);
 
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const mobileDevices = /iphone|ipad|ipod|android|blackberry|windows phone/g;
+      setIsMobile(mobileDevices.test(userAgent));
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
+
+  // Fetch video URL
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -22,15 +40,25 @@ const About = () => {
     fetchVideo();
   }, []);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = false;
-    }
-  }, [videoUrl]);
-
   const handleRightClick = (e) => {
     e.preventDefault();
   };
+
+  // Video component with device-specific props
+  const VideoPlayer = ({ className, isMobileView }) => (
+    <video 
+      ref={videoRef}
+      className={className}
+      src={videoUrl}
+      autoPlay
+      loop
+      playsInline
+      muted={isMobileView}
+      onContextMenu={handleRightClick}
+    >
+      Your browser does not support the video tag.
+    </video>
+  );
 
   return (
     <div className='about'>
@@ -61,38 +89,26 @@ const About = () => {
               </ul>
             </div>
           </div>
+          {/* Desktop video */}
           <div className="video-position-wrapper">
-          <div className="video-container-about desktop-only">
-            {videoUrl && (
-              <video 
-                className='about-video'
-                ref={videoRef}
-                src={videoUrl}
-                autoPlay
-                loop
-                playsInline
-                onContextMenu={handleRightClick}
-              >
-                Your browser does not support the video tag.
-              </video>
-            )}
+            <div className="video-container-about desktop-only">
+              {videoUrl && !isMobile && (
+                <VideoPlayer 
+                  className='about-video'
+                  isMobileView={false}
+                />
+              )}
             </div>
           </div>
         </div>
       </div>
+      {/* Mobile video */}
       <div className="video-container-about mobile-only">
-        {videoUrl && (
-          <video 
+        {videoUrl && isMobile && (
+          <VideoPlayer 
             className='about-video'
-            ref={videoRef}
-            src={videoUrl}
-            autoPlay
-            loop
-            playsInline
-            onContextMenu={handleRightClick}
-          >
-            Your browser does not support the video tag.
-          </video>
+            isMobileView={true}
+          />
         )}
       </div>
     </div>

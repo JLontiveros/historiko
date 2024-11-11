@@ -75,21 +75,21 @@ const Tirad = () => {
 
   const headings = [
     "Unang pangyayari",
-    "Ika dalawang pangyayari",
-    "Ika tatlong pangyayari",
-    "Ika apat na pangyayari",
-    "Ika lima na pangyayari",
-    "Ika anim na pangyayari",
-    "Ika pito na pangyayari",
-    "Ika walo na pangyayari",
-    "Ika siyam na pangyayari",
-    "Ika sampu na pangyayari",
-    "Ika labing isa na pangyayari",
-    "Ika labing dalawa na pangyayari",
-    "Ika labing tatlo na pangyayari",
-    "Ika labing apat na pangyayari",
-    "Ika labing lima na pangyayari",
-    "Ika labing anim na pangyayari",
+    "Ika-pangalawang pangyayari",
+    "Ika-tatlong pangyayari",
+    "Ika-apat na pangyayari",
+    "Ika-lima na pangyayari",
+    "Ika-anim na pangyayari",
+    "Ika-pito na pangyayari",
+    "Ika-walo na pangyayari",
+    "Ika-siyam na pangyayari",
+    "Ika-sampu na pangyayari",
+    "Ika-labing isa na pangyayari",
+    "Ika-labing dalawa na pangyayari",
+    "Ika-labing tatlo na pangyayari",
+    "Ika-labing apat na pangyayari",
+    "Ika-labing lima na pangyayari",
+    "Ika-labing anim na pangyayari",
   ];
 
   useEffect(() => {
@@ -206,7 +206,7 @@ const Tirad = () => {
       <button onClick={handleViewMore} className='view'>View in 3D</button>
       <div className="tirad-container">
         <div className="tirad-description-container">
-          <h1>Description:</h1>
+          <h1>Deskripsyon:</h1>
           <h2>{currentHeading}</h2>
           <p>{descriptions[selectedImage]}</p>
         </div>
