@@ -41,16 +41,15 @@ const About = () => {
   // Video player component to handle different views
   const VideoPlayer = ({ className, isMobileView }) => (
     <video
-      className={className}
-      src={videoUrl}
-      autoPlay
-      loop
-      playsInline
-      muted={!isDesktop && isMobileView} // Play audio only if it's mobile view
-      onContextMenu={handleRightClick}
-    >
-      Your browser does not support the video tag.
-    </video>
+    className={className}
+    src={videoUrl}
+    autoPlay
+    loop
+    playsInline
+    onContextMenu={handleRightClick}
+  >
+    Your browser does not support the video tag.
+  </video>
   );
 
   return (
