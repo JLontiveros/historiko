@@ -93,7 +93,13 @@ const Tirad = () => {
   ];
 
   useEffect(() => {
-    if (location.state?.showToast && !hasShownToast) {
+    if (!localStorage.getItem('hasViewedtirad3D') === null) {
+      localStorage.setItem('hasViewedtirad3D', 'false');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && localStorage.getItem('hasViewedtirad3D') === 'false') {
       const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -116,7 +122,6 @@ const Tirad = () => {
           progress: undefined,
         }
       );
-      setHasShownToast(true);
     }
   
     // ... (rest of the useEffect for background image)
@@ -161,6 +166,7 @@ const Tirad = () => {
 
   const handleViewMore = async (e) => {
     e.preventDefault();
+    localStorage.setItem('hasViewedtirad3D', 'true');
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {
