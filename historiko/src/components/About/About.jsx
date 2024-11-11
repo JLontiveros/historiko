@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './About.css';
 import roombg from '../../assets/roombg.png';
 import { ref, getDownloadURL } from 'firebase/storage';
@@ -6,26 +6,9 @@ import { storage } from '../../firebase';
 
 const About = () => {
   const [videoUrl, setVideoUrl] = useState('');
-  const [isMobile, setIsMobile] = useState(false);
-  const videoRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 
-  // Check if device is mobile
-  useEffect(() => {
-    const checkIfMobile = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const mobileDevices = /iphone|ipad|ipod|android|blackberry|windows phone/g;
-      setIsMobile(mobileDevices.test(userAgent));
-    };
-
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkIfMobile);
-    };
-  }, []);
-
-  // Fetch video URL
+  // Fetch video URL from Firebase
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -40,20 +23,30 @@ const About = () => {
     fetchVideo();
   }, []);
 
+  // Update screen size (desktop vs mobile) based on window width
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Prevent right-click on videos
   const handleRightClick = (e) => {
     e.preventDefault();
   };
 
-  // Video component with device-specific props
+  // Video player component to handle different views
   const VideoPlayer = ({ className, isMobileView }) => (
-    <video 
-      ref={videoRef}
+    <video
       className={className}
       src={videoUrl}
       autoPlay
       loop
       playsInline
-      muted={isMobileView}
+      muted={!isDesktop && isMobileView} // Play audio only if it's mobile view
       onContextMenu={handleRightClick}
     >
       Your browser does not support the video tag.
@@ -89,10 +82,9 @@ const About = () => {
               </ul>
             </div>
           </div>
-          {/* Desktop video */}
           <div className="video-position-wrapper">
             <div className="video-container-about desktop-only">
-              {videoUrl && !isMobile && (
+              {videoUrl && isDesktop && (
                 <VideoPlayer 
                   className='about-video'
                   isMobileView={false}
@@ -104,7 +96,7 @@ const About = () => {
       </div>
       {/* Mobile video */}
       <div className="video-container-about mobile-only">
-        {videoUrl && isMobile && (
+        {videoUrl && !isDesktop && (
           <VideoPlayer 
             className='about-video'
             isMobileView={true}
