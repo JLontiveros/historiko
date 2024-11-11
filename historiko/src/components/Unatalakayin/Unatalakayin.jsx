@@ -33,41 +33,51 @@ function Unatalakayin() {
 
   const handleSeeMore = async (topicId, route) => {
     if (user) {
-      // First, fetch the current progress
+      // First, try to fetch the current progress
       const { data: currentProgressData, error: fetchError } = await supabase
         .from('user_progress')
         .select('progress')
         .eq('user_id', user.id)
         .eq('topic_id', topicId)
-        .single();
-
+        .single(); // This will fail if no row exists
+  
       if (fetchError) {
-        console.error('Error fetching current progress:', fetchError);
-      } else {
-        const currentProgress = currentProgressData ? currentProgressData.progress : 0;
-
-        // Only update if current progress is less than 100
-        if (currentProgress < 100) {
-          const newProgress = Math.max(currentProgress, 20); // Ensure progress doesn't decrease
-          const { data, error } = await supabase
-            .from('user_progress')
-            .upsert(
-              { user_id: user.id, topic_id: topicId, progress: newProgress },
-              { onConflict: ['user_id', 'topic_id'] }
-            );
-
-          if (error) {
-            console.error('Error updating progress:', error);
-          } else {
-            console.log(`Progress updated to ${newProgress}%`);
-          }
+        // If no row exists, fetchError will indicate that, so handle it gracefully.
+        if (fetchError.code === 'PGRST116') {
+          console.log('No existing progress, creating a new record');
         } else {
-          console.log('Progress already at 100%, no update needed');
+          console.error('Error fetching current progress:', fetchError);
+          return;
         }
       }
+  
+      // If no error fetching, proceed to handle the data
+      const currentProgress = currentProgressData ? currentProgressData.progress : 0;
+  
+      // Only update if current progress is less than 100
+      if (currentProgress < 100) {
+        const newProgress = Math.max(currentProgress, 20); // Ensure progress doesn't decrease
+        const { data, error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { user_id: user.id, topic_id: topicId, progress: newProgress },
+            { onConflict: ['user_id', 'topic_id'] }
+          ); // Use upsert instead of insert to handle existing or new rows
+  
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log(`Progress updated to ${newProgress}%`);
+        }
+      } else {
+        console.log('Progress already at 100%, no update needed');
+      }
     }
+  
+    // After handling progress update, navigate
     navigate(`/${route}`, { state: { showToast: true } });
   };
+  
 
   return (
     <div className="unatalakayin">

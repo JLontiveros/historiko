@@ -188,6 +188,12 @@
   margin-bottom: 15px;
 }
 
+.forgot-password {
+  text-align: left;
+  margin-left: -30px;
+  font-size: 13px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
