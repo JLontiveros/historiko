@@ -47,9 +47,8 @@
 .image-item img {
   width: 200px;
   height: 200px;
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 10px;
-  margin-top: 10px;
 }
 
 .question-container {
@@ -164,6 +163,7 @@
   width: 80%;
   max-width: 800px;
   margin: 20px auto;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
