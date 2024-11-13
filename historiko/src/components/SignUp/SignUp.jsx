@@ -44,6 +44,8 @@ const SignUp = () => {
     return Math.random().toString(36).substr(2) + Date.now().toString(36);
   };
 
+  
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -97,6 +99,19 @@ const SignUp = () => {
         return;
       }
   
+      // First check if the username exists
+      const { data: userCheck, error: userCheckError } = await supabase
+        .from('users')
+        .select('username')
+        .eq('username', username)
+        .single();
+
+      if (userCheckError || !userCheck) {
+        alert("Mali ang iyong username"); // "No username found"
+        return;
+      }
+
+      // If username exists, check password
       const { data, error } = await supabase
         .from('users')
         .select('id, username, name')
@@ -130,7 +145,7 @@ const SignUp = () => {
         });
       }
     } catch (error) {
-      alert("Mali ang iyong binigay na password");
+      alert("May error sa pag-sign in. Subukang muli.");
     }
   };
 
