@@ -9,7 +9,7 @@ nav {
   width: 90%;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .nav-left {

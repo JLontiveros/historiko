@@ -10,6 +10,8 @@ import ImageSlideshow from './ImageSlideshow';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase.js';
 import { ScrollContext } from '../../App';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
@@ -22,6 +24,8 @@ const Home = () => {
   const [mobileTopVideoUrl, setMobileTopVideoUrl] = useState('');
   const [mobileBottomVideoUrl, setMobileBottomVideoUrl] = useState('');
   const [isMobile, setIsMobile] = useState(false);
+  const [hasLoggedIn, setHasLoggedIn] = useState(false);
+  const [isSlideshowRendered, setIsSlideshowRendered] = useState(false);
   
   useEffect(() => {
     const fetchVideos = async () => {
@@ -42,6 +46,7 @@ const Home = () => {
         setUnderHeroVideoUrl(underHeroUrl);
         setMobileTopVideoUrl(mobileTopUrl);
         setMobileBottomVideoUrl(mobileBottomUrl);
+
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
@@ -80,7 +85,32 @@ const Home = () => {
       }
       window.removeEventListener('resize', checkMobile);
     };
-  }, [shouldScrollToSignup, setShouldScrollToSignup]);
+  }, [shouldScrollToSignup, setShouldScrollToSignup, user]);
+
+  useEffect(() => {
+    if (user) {
+      if (localStorage.getItem('hasLoggedIn') === true) {
+        localStorage.setItem('hasLoggedIn', 'false');
+      }
+      if (localStorage.getItem('hasShownToast') !== 'true' && isSlideshowRendered) {
+        toast.success('Matagumpay na nakapag sign in!', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        localStorage.setItem('hasShownToast', 'true');
+      }
+    }
+  }, [user, isSlideshowRendered]);
+
+  const handleSlideshowRendered = () => {
+    setIsSlideshowRendered(true); // Mark slideshow as rendered
+  };
 
   return (
     <div className="home-container">
@@ -147,7 +177,8 @@ const Home = () => {
         <div className='signup-overlay'>
           {isAuthenticated ? (
             <div className="home-slide">
-              <ImageSlideshow images={slideImages} />
+              <ToastContainer />
+              <ImageSlideshow images={slideImages} onRendered={handleSlideshowRendered}/>
             </div>
           ) : (
             <SignUp />

@@ -95,7 +95,7 @@
 
 .events p {
   font-size: 0.9em;
-  text-align: left;
+  text-align: justify;
   margin: 0;
   padding: 10px;
   flex-grow: 1;

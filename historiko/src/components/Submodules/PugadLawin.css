@@ -93,6 +93,7 @@ body::before {
   font-weight: 600;
   display: block;
   line-height: 1.7;
+  text-align: justify;
   margin-top: -20px;
   margin-left: 10px;
   padding: 10px;
