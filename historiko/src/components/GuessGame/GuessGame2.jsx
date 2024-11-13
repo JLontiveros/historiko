@@ -161,9 +161,9 @@ const GuessGame2 = () => {
   if (gameCompleted) {
     return (
       <div className="guess-game-container results-screen">
-        <h2>Congrats!</h2>
+        <h2>Pagbati saiyo</h2>
         <p>Ang iyong Score: {score} out of {questions.length}</p>
-        <button className="restart-button" onClick={restartGame}>Mag sagot ulit</button>
+        <button className="restart-button" onClick={restartGame}>Ulitin ang pag susulit</button>
         <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang score</button>
       </div>
     );

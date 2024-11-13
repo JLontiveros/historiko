@@ -55,43 +55,32 @@ const Convention = () => {
   }, []);
 
   useEffect(() => {
-    if (user && localStorage.getItem('hasViewedconvention3D') === 'false') {
-      const userName = user ? user.name || user.username : 'Kaibigan';
-      toast.info(
-        <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
-          <img 
-            src={star} 
-            alt="Star" 
-            style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
-          />
-          <span style={{width: '180px'}}>
-            Paunang gantimpala, {userName}! Sapagkat ika'y nakarating dito!
-          </span>
-        </div>, 
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    }
-
-    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundAttachment = 'fixed';
-    
-    return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundPosition = '';
-      document.body.style.backgroundAttachment = '';
-    };
-  }, [selectedImage, location.state, user, hasShownToast]);
+    if (user && localStorage.getItem('hasViewedconvention3D') === 'false' && !hasShownToast) {
+    const userName = user ? user.name || user.username : 'Kaibigan';
+    toast.info(
+      <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>
+          Paunang gantimpala, {userName}! Sapagkat ika'y nakarating dito!
+        </span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setHasShownToast(true);
+  }
+}, [user, hasShownToast]);
 
   const handlePrev = (e) => {
     e.preventDefault();
