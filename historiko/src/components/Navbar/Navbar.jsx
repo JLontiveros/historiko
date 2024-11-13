@@ -34,8 +34,9 @@ function Navbar() {
     setShowMobileSubmenu(false); // Close submenu when closing main mobile menu
   };
 
-  const toggleMobileSubmenu = () => {
+  const toggleNavbar = () => {
     setShowMobileSubmenu(!showMobileSubmenu); // Toggle the submenu visibility
+    localStorage.setItem('hasLoggedIn', 'true');
   };
 
   return (
@@ -51,7 +52,7 @@ function Navbar() {
           {showMobileMenu && (
             <ul className="mobile-menu">
               <li>
-                <span onClick={toggleMobileSubmenu}>Home</span> {/* Make Home clickable to toggle submenu */}
+                <span onClick={toggleNavbar}>Home</span> {/* Make Home clickable to toggle submenu */}
                 {showMobileSubmenu && (
                   <ul className="mobile-submenu">
                     <li><Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen /> Modules</Link></li>
@@ -77,8 +78,8 @@ function Navbar() {
               </ul>
             )}
           </li>
-          <li><Link to="/Profile">Profile</Link></li>
-          <li><Link to="/About">Patungkol</Link></li>
+          <li><Link to="/Profile" onClick={toggleNavbar}>Profile</Link></li>
+          <li><Link to="/About" onClick={toggleNavbar}>Patungkol</Link></li>
         </ul>
       )}
     </nav>

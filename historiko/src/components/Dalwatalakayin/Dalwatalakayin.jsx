@@ -27,8 +27,8 @@ function Dalwatalakayin() {
       }
 
       if (localStorage.getItem('hasShownDalwatalakyinToast') === 'false') {
-        // Adjust this toast message as needed
-        toast.info(`Maligayang Pagdating sa Dalwatalakayin!`, {
+        const userName = user.name || user.username || 'Kaibigan';
+        toast.info(`Kumusta, ${userName}! Halinat Talakayin ang Panahon ng Himagsikang Pilipino!`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

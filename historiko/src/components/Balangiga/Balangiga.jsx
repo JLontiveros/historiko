@@ -74,6 +74,7 @@ const Balangiga = () => {
 
   const handleHeartClick = async (e) => {
     e.preventDefault(); // Prevent default behavior
+    localStorage.setItem(toastKey, 'true');
   
     if (!user) {
       toast.info('You need to be logged in to mark topics.', {

@@ -61,7 +61,7 @@
 
 .topic-card {
     flex: 0 0 calc(25% - 20px);
-    max-width: calc(25% - 20px);
+    max-width: calc(25% - 23px);
     height: 350px;
     background-color: #0047ab;
     border-radius: 20px;

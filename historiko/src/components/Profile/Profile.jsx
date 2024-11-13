@@ -7,6 +7,8 @@ import girlicon from '../../assets/girlicon.png';
 import pen2 from '../../assets/pen2.png';
 import uploadarea from '../../assets/uploadareacropped.png';
 import uploadicon from '../../assets/uploadicon.jpg';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -201,6 +203,9 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
+    localStorage.setItem('hasLoggedIn', 'false');
+    localStorage.setItem('hasShownToast', 'false');
+
     localStorage.setItem('hasShownUnatalakyinToast', 'false');
     localStorage.setItem('hasShownDalwatalakyinToast', 'false');
     //MODULES
@@ -224,6 +229,7 @@ const Profile = () => {
     localStorage.setItem('pugad3dToastShown', 'false');
     localStorage.setItem('convention3dToastShown', 'false');
     localStorage.setItem('kasunduan3dToastShown', 'false');
+
     logout();
     navigate('/');
   };
@@ -291,6 +297,7 @@ const Profile = () => {
 
   return (
     <>
+    <ToastContainer />
       <div className="profile">
         <div className="profile-container">
           <div className="user">

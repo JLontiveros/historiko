@@ -73,6 +73,7 @@ const Unangputok = () => {
   };
 
   const handleHeartClick = async (e) => {
+    localStorage.setItem(toastKey, 'true');
     e.preventDefault();
   
     if (!user) {

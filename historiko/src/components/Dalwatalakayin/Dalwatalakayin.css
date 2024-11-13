@@ -92,7 +92,7 @@
 
 .event p {
   font-size: 0.8em;
-  text-align: left;
+  text-align: justify;
   margin: -10px 0 0;
   padding: 10px;
   flex-grow: 1;

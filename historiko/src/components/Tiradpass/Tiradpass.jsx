@@ -74,9 +74,10 @@ const Tiradpass = () => {
   };
 
   const handleHeartClick = async (e) => {
+    localStorage.setItem(toastKey, 'true');
     e.preventDefault();
   
-    if (!userId) {
+    if (!user) {
       toast.info('You need to be logged in to mark topics.', {
         onClick: () => navigate('/signup')
       });

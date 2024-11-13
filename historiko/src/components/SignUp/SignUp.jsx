@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import './SignUp.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,6 +16,7 @@ const SignUp = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [userFound, setUserFound] = useState(false);
+  const { user } = useAuth();
   const { login, logout } = useAuth();
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [signUpSuccess, setSignUpSuccess] = useState(false);
@@ -44,12 +47,18 @@ const SignUp = () => {
     return Math.random().toString(36).substr(2) + Date.now().toString(36);
   };
 
-  
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
+      toast.error('Ang password ay hindi magkatugma.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
       return;
     }
     try {
@@ -64,7 +73,7 @@ const SignUp = () => {
       }
 
       if (existingUser) {
-        alert('Username already exists');
+        toast.error('Ang username na ito ay nagamit na.')
         return;
       }
 
@@ -79,6 +88,16 @@ const SignUp = () => {
       setPassword('');
       setConfirmPassword('');
       setName('');
+
+      toast.success('Matagumpay na nakapag-gawa ng account! Mangyari na mag-sign in upang makapasok.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
 
       // Set sign-up success state
       setSignUpSuccess(true);
@@ -99,19 +118,25 @@ const SignUp = () => {
         return;
       }
   
-      // First check if the username exists
       const { data: userCheck, error: userCheckError } = await supabase
         .from('users')
         .select('username')
         .eq('username', username)
         .single();
-
+  
       if (userCheckError || !userCheck) {
-        alert("Mali ang iyong username"); // "No username found"
+        toast.error('Mali ang iyong username', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         return;
       }
-
-      // If username exists, check password
+  
       const { data, error } = await supabase
         .from('users')
         .select('id, username, name')
@@ -120,7 +145,15 @@ const SignUp = () => {
         .single();
   
       if (error) {
-        alert("Mali ang iyong binigay na password");
+        toast.error('Mali ang iyong ibinigay na password', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         return;
       }
   
@@ -133,19 +166,27 @@ const SignUp = () => {
           id: data.id,
           username: data.username,
           name: data.name,
-          token: newToken
+          token: newToken,
         }));
         setToken(newToken);
-        alert('Matagumpay na nakapag-Sign in!');
-        login({ 
-          id: data.id, 
-          username: data.username, 
-          name: data.name, 
-          token: newToken 
+        login({
+          id: data.id,
+          username: data.username,
+          name: data.name,
+          token: newToken,
         });
+
       }
     } catch (error) {
-      alert("May error sa pag-sign in. Subukang muli.");
+      toast.error('May error sa pag-sign in. Subukang muli.',{
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -156,6 +197,7 @@ const SignUp = () => {
     localStorage.removeItem('user');
     setToken(null);
     logout();
+    showLogout();
   };
 
   const handleForgotPasswordSubmit = async (e) => {
@@ -169,13 +211,29 @@ const SignUp = () => {
         .single();
 
       if (error || !data) {
-        alert('Walang nahanap na account sa username na ito.');
+        toast.error('Walang nahanap na account sa username na ito.',{
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return;
       }
 
       setUserFound(true);
     } catch (error) {
-      alert('May error sa paghahanap ng account. Subukang muli.');
+      toast.error('May error sa paghahanap ng account. Subukang muli.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -183,7 +241,15 @@ const SignUp = () => {
     e.preventDefault();
     
     if (newPassword !== confirmNewPassword) {
-      alert('Hindi magkatugma ang mga password.');
+      toast.error('Hindi magkatugma ang mga password.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
 
@@ -194,18 +260,43 @@ const SignUp = () => {
         .eq('username', resetUsername);
 
       if (error) {
-        alert('Hindi matagumpay ang pagbabago ng password. Subukang muli.');
+        toast.error('Hindi matagumpay ang pagbabago ng password. Subukang muli.', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return;
       }
 
-      alert('Matagumpay na nabago ang password. Maaari ka nang mag-sign in.');
+      toast.success('Matagumpay na nabago ang password. Maaari ka nang mag-sign in.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       setForgotPassword(false);
       setUserFound(false);
       setResetUsername('');
       setNewPassword('');
       setConfirmNewPassword('');
     } catch (error) {
-      alert('May error sa pagbabago ng password. Subukang muli.');
+      toast.error('May error sa pagbabago ng password. Subukang muli.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -227,8 +318,35 @@ const SignUp = () => {
     );
   }
 
+  // const showLogin = () => {
+  //   console.log("Displaying login toast");
+  //   toast.success('Matagumpay na nakapag sign in!', {
+  //     position: "top-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
+
+  // const showLogout = () => {
+  //   console.log("Displaying logout toast");
+  //   toast.success('Matagumpay na nakapag log out!', {
+  //     position: "top-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
+
   return (
     <>
+      <ToastContainer />
       <div className="auth-container">
         <div className={`container ${isSignUp ? 'right-panel-active' : ''}`}>
           <div className="form-container sign-up-container">

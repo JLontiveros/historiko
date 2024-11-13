@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './ImageSlideshow.css';
 
-const ImageSlideshow = ({ images }) => {
+const ImageSlideshow = ({ images, onRendered }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    onRendered();
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000); // Change image every 3 seconds
