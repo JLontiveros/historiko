@@ -21,7 +21,7 @@
   animation: fadeIn 2s;
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 60px;
 }
 
 .text-content {
@@ -84,6 +84,7 @@
   position: relative;
   margin-top: 120px; /* Adjust as necessary */
   object-fit: cover;
+  margin-bottom: 10px;
 }
 
 .mobile-only {
