@@ -107,7 +107,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={tejeros2} alt="sword" className="event-icon" />
           <h2>Tejeros Convention</h2>
-          <p>Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang rebolusyunaryong pamahalaan. Ngunit sa halip na magkaisa, lalo pang tumindo ang hidwaan na humantong sa pagkamatay ni Andres Bonifacio.</p>
+          <p>Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang rebolusyunaryong pamahalaan. Ngunit sa halip na magkaisa, lalo pang tumindi ang hidwaan na humantong sa pagkamatay ni Andres Bonifacio.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(5, 'tejeros')} className="link-button">Talakayin natin</button>
             </div>
@@ -115,7 +115,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={biaknabato} alt="Bell" className="event-icon" />
           <h2>Kasunduan sa Biak-na-Bato</h2>
-          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang naging dahilan upang mabigo at muling sumiklab ang digmaan</p>
+          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang naging dahilan upang mabigo at muling sumiklab ang digmaan.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">Talakayin natin</button>
             </div>

@@ -113,7 +113,7 @@ const TopicMarking = () => {
     return (
         <>
         <div className="topic-marking">
-            <h1>Mga Namarkahan na Topic</h1>
+            <h1>Mga Namarkahan na Paksa</h1>
             {error && <div className="error-message">{error}</div>}
             {!isAuthenticated ? (
                 <div className="login-message">
