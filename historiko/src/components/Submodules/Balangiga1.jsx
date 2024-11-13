@@ -47,7 +47,7 @@ const Balangiga1 = () => {
   }, []);
 
   useEffect(() => {
-    if (user && localStorage.getItem('hasViewedbalangiga3D') === 'false') {
+    if (user && localStorage.getItem('hasViewedbalangiga3D') === 'false' && !hasShownToast) {
       const userName = user ? user.name || user.username : 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -70,20 +70,9 @@ const Balangiga1 = () => {
           progress: undefined,
         }
       );
+      setHasShownToast(true);
     }
-  
-    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundAttachment = 'fixed';
-    
-    return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundPosition = '';
-      document.body.style.backgroundAttachment = '';
-    };
-  }, [selectedImage, location.state, user, hasShownToast]);
+  }, [user, hasShownToast]);
 
   const handlePrev = (e) => {
     e.preventDefault();

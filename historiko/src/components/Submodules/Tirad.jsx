@@ -100,7 +100,8 @@ const Tirad = () => {
 
   useEffect(() => {
     if (user && localStorage.getItem('hasViewedtirad3D') === 'false') {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+      // Display the toast
+      const userName = user.name || user.username || 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
           <img 
@@ -122,10 +123,11 @@ const Tirad = () => {
           progress: undefined,
         }
       );
-    }
   
-    // ... (rest of the useEffect for background image)
-  }, [selectedImage, location.state, user, hasShownToast]);
+      // Update local storage to avoid showing the toast again
+      localStorage.setItem('hasViewedtirad3D', 'true');
+    }
+  }, [user]); // Only runs once when 'user' changes
 
   const handlePrev = (e) => {
     e.preventDefault();

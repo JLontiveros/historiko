@@ -42,8 +42,7 @@ const PugadLawin = () => {
     { src: taxreceipt, bg: taxreceipt, description: "Tax Receipt Torn by Members of the Katipunan" },
     { src: watawat, bg: watawat, description: "Watawat" },
     { src: baldoandfrends, bg: baldoandfrends, description: "Gen Mariano Alvarez" },
-    { src: magdalo, bg: magdalo, description: "Magdalo Faction" },
-    { src: magdiwang, bg: magdiwang, description: "Magdiwang Faction" },
+    { src: magdalo, bg: magdalo, description: "Magdalo at Magdiwang Faction" },
   ];
 
   const headings = [
@@ -57,7 +56,7 @@ const PugadLawin = () => {
     "Ika-walong pangyayari",
     "Ika-siyam na pangyayari",
     "Ika-sampung pangyayari",
-    "Ika-sampung pangyayari",
+
   ];
 
   const descriptions = [
@@ -70,7 +69,6 @@ const PugadLawin = () => {
     "Ang pagkatuklas ng Katipunan ay nagbunsod kay Bonifacio na tumawag ng pulong sa Balintawak, Caloocan kasama sina Jacinto, Procopio Bonifacio, at iba pang katipunero. Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki at katapangan. At isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!” at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa pugad lawin.",
     "Sunod sunod ang mga labanang nangyari pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng cavite, batangas, bulacan, tarlac, pampanga, laguna at nueva ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat. Lalo itong nagpalubha ng labanan ng Espanyol at mga Pilipino. Sa gitna nito ay may namuong alitan laban sa pinuno ng Katipunan na si Andres Bonifacio at Heneral Emilio Aguinaldo, dahil sa alitangito, nagpatawag ng pulong ang mga rebolusyunaryo upang palitan ang Katipunan ng Rebolusyonaryong Pamahalaan.",
     "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga caviteno at dahil dito ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Gen. Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Gen. Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
-    "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat.",
     "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat."
   ];
 
@@ -81,33 +79,32 @@ const PugadLawin = () => {
   }, []);
 
   useEffect(() => {
-    if (user && localStorage.getItem('hasViewedpugadlawin3D') === 'false') {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
-      toast.info(
-        <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
-          <img 
-            src={star} 
-            alt="Star" 
-            style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
-          />
-          <span style={{width: '180px'}}>
-            Paunang gantimpala, {userName}! Sapagkat ika'y nakarating dito!
-          </span>
-        </div>, 
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    }
-  
-    // ... (rest of the useEffect for background image)
-  }, [selectedImage, location.state, user, hasShownToast]);
+    if (user && localStorage.getItem('hasViewedpugadlawin3D') === 'false' && !hasShownToast) {
+    const userName = user ? user.name || user.username : 'Kaibigan';
+    toast.info(
+      <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+        <img 
+          src={star} 
+          alt="Star" 
+          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '20px'}} 
+        />
+        <span style={{width: '180px'}}>
+          Paunang gantimpala, {userName}! Sapagkat ika'y nakarating dito!
+        </span>
+      </div>, 
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setHasShownToast(true);
+  }
+}, [user, hasShownToast]);
 
   const handlePrev = (e) => {
     e.preventDefault();

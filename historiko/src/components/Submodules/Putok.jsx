@@ -34,10 +34,10 @@ const Putok = () => {
 
   const descriptions = [
     "Bagamat pormal na pinagkaloob ng Espana ang Pilipinas sa Estados Unidos, ipinagpatuloy ni Aguinaldo ang pagtatatag ng pamahalaan. Noong Enero 23, 1899, pinasinayaan ang Unang Republika sa Malolos, Bulacan. Hindi kinilala ng mga Amerikano at iba pang dayuhang bansa ang pamahalaang ito. Subalit kinilala ito ng mga mamamayang Pilipino at itinaguyod ang kapangyarihan ng Republika ng Pilipinas sa pamununo ni Aguinaldo bilang Pangulo. Buong magdamag na sinalakay ng mga Amerikano ang Maynila. Nagpadala si Emilio ng kinatawan kay Gen. Elwell Otis upang hingin ang pagtigil ng labanan upang hindi magdulot ng pinsala sa magkabilang panig.",
-    "Hindi pinaunlakan ni Gen Elwell Otis at sinabing “ Fighting, having begun, must go on to the grim end”. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga Amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
-    "Hindi pinaunlakan ni Gen Elwell Otis at sinabing “ Fighting, having begun, must go on to the grim end”. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
+    "Hindi pinaunlakan ni Gen Elwell Otis at sinabing 'Fighting, has begun, must go on to the grim end'. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga Amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
+    "Hindi pinaunlakan ni Gen Elwell Otis at sinabing 'Fighting, has begun, must go on to the grim end'. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
     "Pebrero 5, 1899, Binomba ng mga Amerikano ang San Juan, at sinalakay ang Marikina, Guadalupe at Caloocan. Buong tapang at gilas na hinadlangan ito ng pinuno ng hukbong Pilipino sa pamumuno ni General Antonio Luna ngunit sila ay natalo at umurong at nagtungo sa Pulo, Bulacan.",
-    "Upang hindi pakinabangan ng mga Amerikano ang tahanan, doon iniutos ni General Antonio Luna na sunugin ito habang umuurong sila sa laban. Nakarating sina Antonio Luna sa Daang Azcarraga (ngayo’y Claro M. Recto) ngunit sila ay natalo. Sunod-sunod na ring nabihag ng mga Amerikano ang ibang lugar sa paligid ng Maynila dahil sa galing ng sandatahang lakas nito.",
+    "Upang hindi pakinabangan ng mga Amerikano ang tahanan, doon iniutos ni General Antonio Luna na sunugin ito habang umuurong sila sa laban. Nakarating sina Antonio Luna sa Daang Azcarraga (ngayo'y Claro M. Recto) ngunit sila ay natalo. Sunod-sunod na ring nabihag ng mga Amerikano ang ibang lugar sa paligid ng Maynila dahil sa galing ng sandatahang lakas nito.",
   ];
 
   const headings = [
@@ -48,15 +48,17 @@ const Putok = () => {
     "Ika-limang pangyayari",
   ];
 
+  // Initialize localStorage on component mount
   useEffect(() => {
-    if (!localStorage.getItem('hasViewedputok3D') === null) {
+    if (!localStorage.getItem('hasViewedputok3D')) {
       localStorage.setItem('hasViewedputok3D', 'false');
     }
   }, []);
 
+  // Show toast only once when component mounts
   useEffect(() => {
-    if (user && localStorage.getItem('hasViewedputok3D') === 'false') {
-      const userName = user ? user.name || user.username : 'Kaibigan'; // Use 'name' if available, fallback to 'username', or use 'Kaibigan' if user is not logged in
+    if (user && localStorage.getItem('hasViewedputok3D') === 'false' && !hasShownToast) {
+      const userName = user.name || user.username || 'Kaibigan';
       toast.info(
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
           <img 
@@ -78,10 +80,24 @@ const Putok = () => {
           progress: undefined,
         }
       );
+      setHasShownToast(true);
     }
-  
-    // ... (rest of the useEffect for background image)
-  }, [selectedImage, location.state, user, hasShownToast]);
+  }, [user, hasShownToast]); // Only depend on user and hasShownToast
+
+  // Update background image
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundAttachment = 'fixed';
+    
+    return () => {
+      document.body.style.backgroundImage = '';
+      document.body.style.backgroundSize = '';
+      document.body.style.backgroundPosition = '';
+      document.body.style.backgroundAttachment = '';
+    };
+  }, [selectedImage]);
 
   const handlePrev = (e) => {
     e.preventDefault();
@@ -126,7 +142,6 @@ const Putok = () => {
     if (user) {
       const userUUID = await getUserUUID(user.username);
       if (userUUID) {
-        // First, fetch the current progress
         const { data: currentProgressData, error: fetchError } = await supabase
           .from('user_progress')
           .select('progress')
@@ -139,10 +154,9 @@ const Putok = () => {
         } else {
           const currentProgress = currentProgressData ? currentProgressData.progress : 0;
 
-          // Only update if current progress is less than 100
           if (currentProgress < 100) {
-            const newProgress = Math.max(currentProgress, 70); // Ensure progress doesn't decrease
-            const { data, error } = await supabase
+            const newProgress = Math.max(currentProgress, 70);
+            const { error } = await supabase
               .from('user_progress')
               .upsert(
                 { user_id: userUUID, topic_id: topicId, progress: newProgress },
@@ -160,23 +174,8 @@ const Putok = () => {
         }
       }
     }
-    // Navigate regardless of whether the progress was updated or not
     navigate('/Putok3d', { state: { showToast: true } });
   };
-
-  useEffect(() => {
-    document.body.style.backgroundImage = `url(${images[selectedImage].bg})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundAttachment = 'fixed';
-    
-    return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundPosition = '';
-      document.body.style.backgroundAttachment = '';
-    };
-  }, [selectedImage]);
 
   const handleHeadingClick = (index) => {
     setSelectedImage(index);

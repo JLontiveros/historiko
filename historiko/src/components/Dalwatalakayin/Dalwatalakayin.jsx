@@ -99,7 +99,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={pugadlawin} alt="firstshot" className="event-icon" />
           <h2>Sigaw ng Pugad-Lawin</h2>
-          <p>Ang sigaw sa Pugad Lawin ay isa sa mga patunay ng matinding pagnanais ng mga Pilipino na makamit ang kalayaan mula sa mga Espanyol. Hindi lamang pagpunit ng Cedula ang dapat bigyaang diin sa Unang Sigaw gayundin ang mga pagpupulong at pagpaplano ng mga Katipuneor upang itaguyod ang rebolusyon.</p>
+          <p>Ang sigaw sa Pugad Lawin ay isa sa mga patunay ng matinding pagnanais ng mga Pilipino na makamit ang kalayaan mula sa mga Espanyol. Hindi lamang pagpunit ng Cedula ang dapat bigyaang diin sa Unang Sigaw gayundin ang mga pagpupulong at pagpaplano ng mga Katipunero upang itaguyod ang rebolusyon.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(4, 'sigaw')} className="link-button">Talakayin natin</button>
             </div>
@@ -115,7 +115,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={biaknabato} alt="Bell" className="event-icon" />
           <h2>Kasunduan sa Biak-na-Bato</h2>
-          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang nagging dahilan upang mabigo at mling sumiklab ang digmaan</p>
+          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang naging dahilan upang mabigo at muling sumiklab ang digmaan</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">Talakayin natin</button>
             </div>
