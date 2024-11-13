@@ -9,11 +9,11 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const [email, setEmail] = useState(''); // New state for forgot password
-  const [forgotPassword, setForgotPassword] = useState(false); // Toggle Forgot Password Form
-  const [resetCode, setResetCode] = useState('');
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [resetUsername, setResetUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [codeSent, setCodeSent] = useState(false);
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [userFound, setUserFound] = useState(false);
   const { login, logout } = useAuth();
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [signUpSuccess, setSignUpSuccess] = useState(false);
@@ -37,7 +37,7 @@ const SignUp = () => {
     setPassword('');
     setConfirmPassword('');
     setName('');
-    setForgotPassword(false); // Reset forgot password form when toggling
+    setForgotPassword(false);
   };
 
   const generateToken = () => {
@@ -143,63 +143,56 @@ const SignUp = () => {
     logout();
   };
 
-  // const handleForgotPassword = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (!email) {
-  //       alert('Mangyaring ilagay ang iyong email.');
-  //       return;
-  //     }
-
-  //     const resetCode = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit code
-  //     // Save reset code in the database
-  //     const { data, error } = await supabase
-  //       .from('users')
-  //       .update({ reset_code: resetCode })
-  //       .eq('email', email);
-
-  //     if (error) {
-  //       alert('Walang account na nauugnay sa email na ito.');
-  //       return;
-  //     }
-
-  //     setCodeSent(true);
-  //     alert(`Reset code sent to ${email}.`);
-  //   } catch (error) {
-  //     alert('Error sending reset code. Subukang muli.');
-  //   }
-  // };
-
-  const handleGoBack = async (e) => {
+  const handleForgotPasswordSubmit = async (e) => {
     e.preventDefault();
-    setForgotPassword(false);
+    try {
+      // Check if username exists
+      const { data, error } = await supabase
+        .from('users')
+        .select('username')
+        .eq('username', resetUsername)
+        .single();
+
+      if (error || !data) {
+        alert('Walang nahanap na account sa username na ito.');
+        return;
+      }
+
+      setUserFound(true);
+    } catch (error) {
+      alert('May error sa paghahanap ng account. Subukang muli.');
+    }
   };
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
+    
+    if (newPassword !== confirmNewPassword) {
+      alert('Hindi magkatugma ang mga password.');
+      return;
+    }
+
     try {
-      if (!resetCode || !newPassword) {
-        alert('Mangyaring punan ang lahat ng patlang.');
-        return;
-      }
-
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('users')
-        .update({ password: newPassword, reset_code: null })
-        .eq('reset_code', resetCode);
+        .update({ password: newPassword })
+        .eq('username', resetUsername);
 
-      if (error || !data.length) {
-        alert('Maling reset code.');
+      if (error) {
+        alert('Hindi matagumpay ang pagbabago ng password. Subukang muli.');
         return;
       }
 
-      alert('Password successfully reset. Please sign in.');
+      alert('Matagumpay na nabago ang password. Maaari ka nang mag-sign in.');
       setForgotPassword(false);
+      setUserFound(false);
+      setResetUsername('');
+      setNewPassword('');
+      setConfirmNewPassword('');
     } catch (error) {
-      alert('Error resetting password. Subukang muli.');
+      alert('May error sa pagbabago ng password. Subukang muli.');
     }
   };
-
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -262,42 +255,56 @@ const SignUp = () => {
             </form>
           </div>
           <div className="form-container sign-in-container">
-          <form onSubmit={forgotPassword ? handleResetPassword : handleSignIn}>
+            <form onSubmit={forgotPassword ? (userFound ? handleResetPassword : handleForgotPasswordSubmit) : handleSignIn}>
               <h1 className="title">{forgotPassword ? 'Nakalimutan ang Password?' : 'Mag-sign in'}</h1>
               {forgotPassword ? (
-                <>
-                  {!codeSent ? (
-                    <>
-                      <p>Mangyaring makipag ugnay sa iyong guro hinggil sa pagbabago ng password</p>
-                      {/* <button className="btn" type="button" onClick={handleForgotPassword}>
-                        Send Reset Code
-                      </button> */}
-                      <button className="btn" type="button" onClick={handleGoBack}>
-                        Bumalik
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        type="text"
-                        placeholder="Reset Code"
-                        className="input-field"
-                        value={resetCode}
-                        onChange={(e) => setResetCode(e.target.value)}
-                        required
-                      />
-                      <input
-                        type="password"
-                        placeholder="New Password"
-                        className="input-field"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                      />
-                      <button className="btn" type="submit">Reset Password</button>
-                    </>
-                  )}
-                </>
+                !userFound ? (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      className="input-field"
+                      value={resetUsername}
+                      onChange={(e) => setResetUsername(e.target.value)}
+                      required
+                    />
+                    <button className="btn" type="submit">Magpatuloy</button>
+                    <button className="btn" type="button" onClick={() => {
+                      setForgotPassword(false);
+                      setUserFound(false);
+                      setResetUsername('');
+                    }}>
+                      Bumalik
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="password"
+                      placeholder="Bagong Password"
+                      className="input-field"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="password"
+                      placeholder="Kumpirmahin ang Bagong Password"
+                      className="input-field"
+                      value={confirmNewPassword}
+                      onChange={(e) => setConfirmNewPassword(e.target.value)}
+                      required
+                    />
+                    <button className="btn" type="submit">Baguhin ang Password</button>
+                    <button className="btn" type="button" onClick={() => {
+                      setUserFound(false);
+                      setNewPassword('');
+                      setConfirmNewPassword('');
+                    }}>
+                      Bumalik
+                    </button>
+                  </>
+                )
               ) : (
                 <>
                   <input
@@ -325,7 +332,6 @@ const SignUp = () => {
             </form>
           </div>
           
-          {/* Overlay container for desktop view */}
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
