@@ -21,6 +21,10 @@ body::before {
   to { opacity: 1; }
 }
 
+.balangiga1 {
+  margin-top: 150px !important;
+}
+
 .balangiga1-container {
   margin-top: 120px;
   display: grid;
@@ -217,8 +221,8 @@ body::before {
   background-color: gold;
   color: #0047ab;
   position: fixed; /* Changed from relative to fixed */
-  top: 120px; /* Adjusted top position */
-  right: 20px; /* Changed from left to right */
+  top: 145px; /* Adjusted top position */
+  right: 40px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
