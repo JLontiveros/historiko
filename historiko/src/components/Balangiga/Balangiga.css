@@ -73,8 +73,8 @@
 
 .balangiga-description img {
   position: absolute;
-  top: -96px;
-  right: 115px;
+  top: -89px;
+  right: 88px;
   width: 30px;
   height: 30px;
   background-color: gold;
@@ -89,7 +89,7 @@
   background-color: #ffd700;
 }
 
-.balangiga-blank {
+/* .balangiga-blank {
   position: absolute;
   top: -60px;
   left: 30px;
@@ -98,14 +98,15 @@
   margin-left: 90px;
   background-color: gold;
   transition: width 0.3s ease;
-}
+} */
 
 .balangiga-description p {
+  border-top: 5px solid gold;
   background-color: #8c85d5;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: -60px;
-  padding: 5px;
+  margin-left: 90px;
+  margin-right: 70px;
+  margin-top: -70px;
+  padding: 10px 5px;
   text-align: justify;
   font-size: 20px;
   display: block;
@@ -121,7 +122,7 @@
   color: #4169e1;
   font-size: 24px;
   margin-top: 0px;
-  margin-left: 60px;
+  margin-left: 20px;
   transition: color 0.3s ease;
 }
 
@@ -130,8 +131,8 @@
 }
 
 .balangiga-view-button {
-  width: 200px;
-  margin-top: 0px;
+  width: 120px;
+  margin-top: -10px;
   margin-left: 400px;
   margin-right: 400px;
   margin-bottom: 20px;
@@ -139,6 +140,7 @@
   background-color: #8a7fd5;
   color: white;
   border: none;
+  padding: 0px 10px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -180,8 +182,8 @@
     padding-right: 0;
   }
   .balangiga-description img {
-    top: -50px;
-    right: -5px;
+    top: -60px;
+    right: -3px;
   }
   .balangiga-blank {
     width: 100%;
@@ -191,7 +193,7 @@
   .balangiga-container-right p {
     margin-left: 0;
     margin-right: 0;
-    margin-top: -10px;
+    margin-top: -90px;
     font-size: 16px;
   }
   .balangiga-date {

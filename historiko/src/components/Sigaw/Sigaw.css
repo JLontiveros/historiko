@@ -74,8 +74,8 @@
 
 .sigaw-description img {
   position: absolute;
-  top: -106px;
-  right: 165px;
+  top: -88px;
+  right: 138px;
   width: 30px;
   height: 30px;
   background-color: gold;
@@ -90,7 +90,7 @@
   background-color: #ffd700;
 }
 
-.sigaw-blank {
+/* .sigaw-blank {
   position: absolute;
   top: -70px;
   left: -2.3%;
@@ -99,14 +99,15 @@
   margin-left: 90px;
   background-color: gold;
   transition: width 0.3s ease;
-}
+} */
 
 .sigaw-container-right p {
+  border-top: 5px solid gold;
   background-color: #8c85d5;
   margin-left: 50px;
-  margin-right: 150px;
+  margin-right: 120px;
   margin-top: -70px;
-  padding: 5px;
+  padding: 10px 5px;
   text-align: justify;
   font-size: 20px;
   display: block;
@@ -131,16 +132,16 @@
 
 .sigaw-container-right button {
   position: relative;
-  left: -5%;
-  width: 115px;
-  margin-top: -10px;
-  margin-left: 400px;
+  left: -3%;
+  width: 120px;
+  margin-top: 0px;
+  margin-left: 380px;
   margin-right: 400px;
   border-radius: 50px;
   background-color: #8a7fd5;
   color: white;
   border: none;
-  padding: 0px 10px;
+  padding: 10px 10px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -193,7 +194,7 @@
   .sigaw-container-right p {
     margin-left: 0;
     margin-right: 0;
-    margin-top: -10px;
+    margin-top: -90px;
     font-size: 16px;
   }
   .sigaw-date {

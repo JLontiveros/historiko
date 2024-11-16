@@ -75,7 +75,7 @@
 
 .bato-description img {
   position: absolute;
-  top: -86px;
+  top: -69px;
   right: 195px;
   width: 30px;
   height: 30px;
@@ -91,7 +91,7 @@
   background-color: #ffd700;
 }
 
-.bato-blank {
+/* .bato-blank {
   position: absolute;
   top: -50px;
   left: -3.3%;
@@ -100,18 +100,20 @@
   margin-left: 90px;
   background-color: gold;
   transition: width 0.3s ease;
-}
+} */
 
 .bato-container-right p {
+  border-top: 5px solid gold;
   background-color: #8c85d5;
   margin-left: 40px;
   margin-right: 180px;
   margin-top: -50px;
-  padding: 5px;
+  padding: 10px 5px;
   text-align: justify;
-  font-size: 18px;
+  font-size: 20px;
   display: block;
   line-height: 1.7;
+  font-size: 18px;
   transition: background-color 0.3s ease;
 }
 
@@ -132,10 +134,10 @@
 
 .bato-container-right button {
   position: relative;
-  left: -5%;
+  left: -3%;
   width: 120px;
-  margin-top: -10px;
-  margin-left: 400px;
+  margin-top: 0px;
+  margin-left: 380px;
   margin-right: 400px;
   border-radius: 50px;
   background-color: #8a7fd5;
@@ -188,7 +190,7 @@
   }
 
   .bato-description img {
-      top: -50px;
+      top: -70px;
       right: -5px;
   }
 
@@ -201,7 +203,7 @@
   .bato-container-right p {
       margin-left: 0;
       margin-right: 0;
-      margin-top: -10px;
+      margin-top: -90px;
       font-size: 16px;
   }
 
