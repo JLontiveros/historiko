@@ -6,8 +6,7 @@ import arrownav from '../../assets/arrownav (2).png';
 import arrownav2 from '../../assets/arrownav.png';
 import azcarraga from '../../assets/azcarraga.png';
 import emilio from '../../assets/emilio.png';
-import genelwell from '../../assets/genelwell.png';
-import genhenry from '../../assets/genhenry.png';
+import genelwell from '../../assets/genduo.png';
 import genluna from '../../assets/genluna.png';
 import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
@@ -26,8 +25,8 @@ const Putok = () => {
 
   const images = [
     { src: emilio, bg: emilio, description: "Emilio Aguinaldo" },
-    { src: genelwell, bg: genelwell, description: "General Elwell Otis" },
-    { src: genhenry, bg: genhenry, description: "General Henry Lawton" },
+    { src: genelwell, bg: genelwell, description: "General Elwell Otis at Henry Lawton" },
+
     { src: genluna, bg: genluna, description: "General Antonio Luna" },
     { src: azcarraga, bg: azcarraga, description: "Azcarraga" },
   ];
@@ -35,7 +34,6 @@ const Putok = () => {
   const descriptions = [
     "Bagamat pormal na pinagkaloob ng Espana ang Pilipinas sa Estados Unidos, ipinagpatuloy ni Aguinaldo ang pagtatatag ng pamahalaan. Noong Enero 23, 1899, pinasinayaan ang Unang Republika sa Malolos, Bulacan. Hindi kinilala ng mga Amerikano at iba pang dayuhang bansa ang pamahalaang ito. Subalit kinilala ito ng mga mamamayang Pilipino at itinaguyod ang kapangyarihan ng Republika ng Pilipinas sa pamununo ni Aguinaldo bilang Pangulo. Buong magdamag na sinalakay ng mga Amerikano ang Maynila. Nagpadala si Emilio ng kinatawan kay Gen. Elwell Otis upang hingin ang pagtigil ng labanan upang hindi magdulot ng pinsala sa magkabilang panig.",
     "Hindi pinaunlakan ni Gen Elwell Otis at sinabing 'Fighting, has begun, must go on to the grim end'. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga Amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
-    "Hindi pinaunlakan ni Gen Elwell Otis at sinabing 'Fighting, has begun, must go on to the grim end'. Si General Elwell Otis ang namuno sa pagsalakay sa hilagang Maynila at Si Gen. Henry Lawton ang namuno sa pagsalakay sa timog Maynila. Walang nagawa si Aguinaldo kundi ang magdeklara ng pakikidigma at makipagpalitan ng putok laban sa mga amerikano. Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino at napatunayan ng mga Pilipino na ang tunay na hangarin ng mga Amerikano ay sakupin ang Pilipinas.",
     "Pebrero 5, 1899, Binomba ng mga Amerikano ang San Juan, at sinalakay ang Marikina, Guadalupe at Caloocan. Buong tapang at gilas na hinadlangan ito ng pinuno ng hukbong Pilipino sa pamumuno ni General Antonio Luna ngunit sila ay natalo at umurong at nagtungo sa Pulo, Bulacan.",
     "Upang hindi pakinabangan ng mga Amerikano ang tahanan, doon iniutos ni General Antonio Luna na sunugin ito habang umuurong sila sa laban. Nakarating sina Antonio Luna sa Daang Azcarraga (ngayo'y Claro M. Recto) ngunit sila ay natalo. Sunod-sunod na ring nabihag ng mga Amerikano ang ibang lugar sa paligid ng Maynila dahil sa galing ng sandatahang lakas nito.",
   ];
@@ -45,7 +43,6 @@ const Putok = () => {
     "Ika-pangalawang pangyayari",
     "Ika-tatlong pangyayari",
     "Ika-apat na pangyayari",
-    "Ika-limang pangyayari",
   ];
 
   // Initialize localStorage on component mount
