@@ -74,7 +74,7 @@
 
 .tejeros-description img {
   position: absolute;
-  top: -106px;
+  top: -88px;
   right: 165px;
   width: 30px;
   height: 30px;
@@ -90,7 +90,7 @@
   background-color: #ffd700;
 }
 
-.tejeros-blank {
+/* .tejeros-blank {
   position: absolute;
   top: -70px;
   left: -3.3%;
@@ -99,14 +99,15 @@
   margin-left: 90px;
   background-color: gold;
   transition: width 0.3s ease;
-}
+} */
 
 .tejeros-container-right p {
+  border-top: 5px solid gold;
   background-color: #8c85d5;
   margin-left: 40px;
   margin-right: 150px;
   margin-top: -70px;
-  padding: 5px;
+  padding: 10px 5px;
   text-align: justify;
   font-size: 20px;
   display: block;
@@ -199,7 +200,7 @@
   .tejeros-container-right p {
     margin-left: 0;
     margin-right: 0;
-    margin-top: -10px;
+    margin-top: -90px;
     font-size: 16px;
   }
 

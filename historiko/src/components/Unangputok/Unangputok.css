@@ -73,7 +73,7 @@
 
 .unangputok-description img {
   position: absolute;
-  top: -106px;
+  top: -88px;
   right: 85px;
   width: 30px;
   height: 30px;
@@ -89,7 +89,7 @@
   background-color: #ffd700;
 }
 
-.unangputok-blank {
+/* .unangputok-blank {
   position: absolute;
   top: -70px;
   left: 10;
@@ -98,15 +98,16 @@
   margin-left: 90px;
   background-color: gold;
   transition: width 0.3s ease;
-}
+} */
 
 
 .unangputok-container-right p {
+  border-top: 5px solid gold;
   background-color: #8c85d5;
   margin-left: 90px;
   margin-right: 70px;
   margin-top: -70px;
-  padding: 5px;
+  padding: 10px 5px;
   text-align: justify;
   font-size: 20px;
   display: block;
@@ -143,6 +144,13 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .unangputok-container-right button:hover {
@@ -209,7 +217,7 @@
   .unangputok-container-right p {
     margin-left: 0;
     margin-right: 0;
-    margin-top: -10px;
+    margin-top: -90px;
     font-size: 16px;
   }
   .unangputok-date {
