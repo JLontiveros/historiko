@@ -42,7 +42,9 @@ function Navbar() {
   return (
     <nav>
       <div className="nav-left">
-        <img src={logo} className="img" alt="Logo" />
+        <Link to="/">
+          <img src={logo} className="img" alt="Logo" /> {/* Wrap logo in Link */}
+        </Link>
       </div>
       {isMobile ? (
         <>
