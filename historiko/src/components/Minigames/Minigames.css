@@ -261,6 +261,11 @@
   width: 70%;
 }
 
+.game-butt {
+  position: relative;
+  left: 35%;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);

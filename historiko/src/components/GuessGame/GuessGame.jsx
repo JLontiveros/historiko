@@ -3,6 +3,7 @@ import './GuessGame.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
+import Dashboard from '../Minigames/Dashboard'; // Import the new Dashboard component
 
 const GuessGame = () => {
   const [questions, setQuestions] = useState([]);
@@ -107,7 +108,6 @@ const GuessGame = () => {
     }
   };
   
-
   const restartGame = () => {
     setCurrentQuestionIndex(0);
     setScore(0);
@@ -115,36 +115,8 @@ const GuessGame = () => {
   };
 
   const toggleDashboard = () => {
-    if (!showDashboard) {
-      fetchUserScores();
-    }
     setShowDashboard(!showDashboard);
   };
-
-  const Dashboard = () => (
-    <div className="dashboard">
-      <h2>User Scores</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Score</th>
-            <th>Date Taken</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userScores.map((userScore, index) => (
-            <tr key={index}>
-              <td>{userScore.users.username}</td>
-              <td>{userScore.guess_game_score}</td>
-              <td>{new Date(userScore.updated_at).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={toggleDashboard}>Close Dashboard</button>
-    </div>
-  );
 
   if (!isAuthenticated) {
     return (
@@ -156,7 +128,7 @@ const GuessGame = () => {
   }
 
   if (showDashboard) {
-    return <Dashboard />;
+    return <Dashboard onClose={toggleDashboard} />;
   }
 
   if (!questions.length || currentQuestionIndex >= questions.length) {

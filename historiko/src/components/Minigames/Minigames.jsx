@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App'; // Import the useAuth hook
 import './Minigames.css';
 import gg from '../../assets/gg.png';
@@ -17,8 +18,31 @@ import bg3 from '../../assets/3.png'
 const Minigame = () => {
   const [selectedGame, setSelectedGame] = useState(null);
   const [isFlashcardCompleted, setIsFlashcardCompleted] = useState(false);
+  const [isDashboardVisible, setIsDashboardVisible] = useState(false);
+  const [userScores, setUserScores] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated, user } = useAuth(); // Use the authentication context
+  const navigate = useNavigate();
+
+  const fetchUserScores = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('user_scores')
+        .select(`
+          user_id,
+          guess_game_score,
+          updated_at,
+          users (username)
+        `)
+        .order('guess_game_score', { ascending: false });
+
+      if (error) throw error;
+
+      setUserScores(data);
+    } catch (error) {
+      console.error('Error fetching user scores:', error);
+    }
+  };
 
   const checkFlashcardCompletion = async () => {
     if (isAuthenticated && user) {
@@ -50,6 +74,10 @@ const Minigame = () => {
   useEffect(() => {
     checkFlashcardCompletion();
   }, [isAuthenticated, user]);
+
+  const toggleDashboard = async () => {
+    navigate('/StudentDashboard');
+  };
 
   const handleGameClick = (game) => {
     if (game === 'flashcard' || isFlashcardCompleted) {
@@ -109,6 +137,9 @@ const Minigame = () => {
   return (
     <div className="minigame-wrapper">
       <div className="minigame-container">
+        <button className="game-butt" onClick={toggleDashboard}>
+          Student Dashboard
+        </button>
       <img src={gamebg} alt='minigame-bg' className='minigame-bg' />
       <div className="game-area">
         <div className="virtual-flashcard" onClick={() => handleGameClick('flashcard')}>

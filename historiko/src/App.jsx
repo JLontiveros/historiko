@@ -32,6 +32,7 @@ import Convention from './components/Submodules/Convention';
 import Convention3d from './components/Sub3d/Convention3d';
 import Kasunduan from './components/Submodules/Kasunduan';
 import Kasunduan3d from './components/Sub3d/Kasunduan3d';
+import Dashboard from './components/Minigames/Dashboard';
 
 // Create Authentication Context
 const AuthContext = createContext(null);
@@ -110,6 +111,7 @@ function App() {
                 <Route path="/Tejeros" element={<ProtectedRoute><Tejeros /></ProtectedRoute>} />
                 <Route path="/Bato" element={<ProtectedRoute><Bato /></ProtectedRoute>} />
                 <Route path="/Quiz" element={<ProtectedRoute><Minigames /></ProtectedRoute>} />
+                <Route path="/StudentDashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                 <Route path="/TopicMarking" element={<ProtectedRoute><TopicMarking /></ProtectedRoute>} />
                 <Route path="/Putok" element={<ProtectedRoute><Putok /></ProtectedRoute>} />
                 <Route path="/Putok3d" element={<ProtectedRoute><Putok3d /></ProtectedRoute>} />
