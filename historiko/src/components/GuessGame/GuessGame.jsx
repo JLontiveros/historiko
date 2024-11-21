@@ -58,9 +58,13 @@ const GuessGame = () => {
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
     const currentQuestion = questions[currentQuestionIndex];
+    
+    let updatedScore = score; // Initialize a variable to track the updated score
+  
     if (answer === currentQuestion.correct_answer) {
       setFeedback('Tama!');
-      setScore(prevScore => prevScore + 1);
+      updatedScore = score + 1; // Calculate the new score
+      setScore(updatedScore);   // Update the state
     } else {
       setFeedback(`Mali! Ang tamang sagot ay ${currentQuestion.correct_answer}`);
     }
@@ -72,29 +76,29 @@ const GuessGame = () => {
         setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       } else {
         setGameCompleted(true);
-        saveScore();  // Call saveScore when the game is completed
+        saveScore(updatedScore);  // Pass the updated score directly to saveScore
       }
     }, 2000);
-  };
+  };  
 
-  const saveScore = async () => {
+  const saveScore = async (finalScore) => {
     if (!isAuthenticated || !user) {
       console.error('User not authenticated');
       return;
     }
-
+  
     try {
       const { data, error } = await supabase
         .from('user_scores')
         .upsert({ 
           user_id: user.id, 
-          guess_game_score: score 
+          guess_game_score: finalScore // Use the passed finalScore
         }, { 
           onConflict: 'user_id',
           update: ['guess_game_score', 'updated_at']
         })
-        .select();;
-
+        .select();
+  
       if (error) throw error;
       console.log('Score saved successfully', data);
     } catch (error) {
@@ -102,6 +106,7 @@ const GuessGame = () => {
       alert('Error saving score: ' + error.message);
     }
   };
+  
 
   const restartGame = () => {
     setCurrentQuestionIndex(0);
