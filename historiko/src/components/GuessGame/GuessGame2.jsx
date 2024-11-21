@@ -3,6 +3,7 @@ import './GuessGame2.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
+import Dashboard from '../Minigames/Dashboard'; // Import the new Dashboard component
 
 const GuessGame2 = () => {
   const [questions, setQuestions] = useState([]);
@@ -18,7 +19,7 @@ const GuessGame2 = () => {
 
   const fetchQuestions = useCallback(async () => {
     const { data, error } = await supabase
-      .from('guess_game_question2')
+      .from('guess_game_questions')
       .select('*')
       .order('id', { ascending: true });
     
@@ -58,14 +59,17 @@ const GuessGame2 = () => {
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
     const currentQuestion = questions[currentQuestionIndex];
+    
+    let updatedScore = score; // Initialize a variable to track the updated score
+  
     if (answer === currentQuestion.correct_answer) {
       setFeedback('Tama!');
-      setScore(prevScore => prevScore + 1);
+      updatedScore = score + 1; // Calculate the new score
+      setScore(updatedScore);   // Update the state
     } else {
       setFeedback(`Mali! Ang tamang sagot ay ${currentQuestion.correct_answer}`);
     }
     
-    // Set a timeout to remove the 'wrong' class after the feedback duration
     setTimeout(() => {
       setSelectedAnswer(null);
       setFeedback('');
@@ -73,10 +77,10 @@ const GuessGame2 = () => {
         setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       } else {
         setGameCompleted(true);
-        saveScore();
+        saveScore(updatedScore);  // Pass the updated score directly to saveScore
       }
     }, 2000);
-  };
+  };  
 
   const saveScore = async () => {
     if (!isAuthenticated || !user) {
@@ -110,36 +114,9 @@ const GuessGame2 = () => {
   };
 
   const toggleDashboard = () => {
-    if (!showDashboard) {
-      fetchUserScores();
-    }
     setShowDashboard(!showDashboard);
   };
 
-  const Dashboard = () => (
-    <div className="dashboard">
-      <h2>User Scores</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Score</th>
-            <th>Date Taken</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userScores.map((userScore, index) => (
-            <tr key={index}>
-              <td>{userScore.users.username}</td>
-              <td>{userScore.guess_game_score}</td>
-              <td>{new Date(userScore.updated_at).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={toggleDashboard}>Close Dashboard</button>
-    </div>
-  );
 
   if (!isAuthenticated) {
     return (
@@ -164,7 +141,7 @@ const GuessGame2 = () => {
         <h2>Pagbati saiyo</h2>
         <p>Ang iyong puntos: {score} / {questions.length}</p>
         <button className="restart-button" onClick={restartGame}>Ulitin ang pag susulit</button>
-        <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang puntos</button>
+        {/* <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang puntos</button> */}
       </div>
     );
   }
