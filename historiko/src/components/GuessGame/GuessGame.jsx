@@ -141,7 +141,7 @@ const GuessGame = () => {
         <h2>Matagumpay na nakatapos!</h2>
         <p>ang iyong puntos: {score} / {questions.length}</p>
         <button className="restart-button" onClick={restartGame}>Ulitin ang pag susulit</button>
-        <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang puntos</button>
+        {/* <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang puntos</button> */}
       </div>
     );
   }
