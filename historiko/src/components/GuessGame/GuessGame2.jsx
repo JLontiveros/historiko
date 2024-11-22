@@ -35,11 +35,11 @@ const GuessGame2 = () => {
       .from('user_scores')
       .select(`
         user_id,
-        guess_game_score,
+        guess_game_score2,
         updated_at,
         users (username)
       `)
-      .order('guess_game_score', { ascending: false });
+      .order('guess_game_score2', { ascending: false });
 
     if (error) {
       console.error('Error fetching user scores:', error);
@@ -93,10 +93,10 @@ const GuessGame2 = () => {
         .from('user_scores')
         .upsert({ 
           user_id: user.id, 
-          guess_game_score: score 
+          guess_game_score2: score 
         }, { 
           onConflict: 'user_id',
-          update: ['guess_game_score', 'updated_at']
+          update: ['guess_game_score2', 'updated_at']
         });
 
       if (error) throw error;
@@ -116,7 +116,6 @@ const GuessGame2 = () => {
   const toggleDashboard = () => {
     setShowDashboard(!showDashboard);
   };
-
 
   if (!isAuthenticated) {
     return (
