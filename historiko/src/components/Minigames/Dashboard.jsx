@@ -18,7 +18,7 @@ const Dashboard = ({ onClose }) => {
           guess_game_score,
           guess_game_score2,
           updated_at,
-          users (username)
+          users (name)
         `)
         .order('guess_game_score', { ascending: false });
 
@@ -75,7 +75,7 @@ const Dashboard = ({ onClose }) => {
       <table>
         <thead>
           <tr className="contents">
-            <th>Username</th>
+            <th>Name</th>
             <th>Quiz 1 (20 pts)</th>
             <th>Quiz 2 (20 pts)</th>
             <th>Total Score (40 pts)</th>
@@ -86,7 +86,7 @@ const Dashboard = ({ onClose }) => {
         <tbody>
           {userScores.map((userScore, index) => (
             <tr key={index}>
-              <td>{userScore.users?.username || 'Unknown'}</td>
+              <td>{userScore.users?.name || 'Unknown'}</td>
               <td>{userScore.guess_game_score}</td>
               <td>{userScore.guess_game_score2}</td>
               <td>{userScore.totalScore}</td>

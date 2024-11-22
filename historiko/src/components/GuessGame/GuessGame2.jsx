@@ -168,7 +168,7 @@ const GuessGame2 = () => {
                   </div>
                 ))
               : <div className="image-item">
-                  <img src={currentQuestion.image_urls} alt="Question" />
+                  <img src={currentQuestion.image_urls} className='images-questions' alt="Question" />
                 </div>
         )}
       </div>
