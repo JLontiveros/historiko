@@ -281,7 +281,7 @@
 @media (max-width: 768px) {
   .game-area {
     grid-template-columns: 1fr;
-    margin-top: 100px;
+    margin-top: 0px;
   }
 
   .virtual-flashcard, .guess-game {
@@ -291,5 +291,10 @@
   .virtual-flashcard h2,
   .guess-game h2 {
     font-size: clamp(14px, 5vw, 20px);
+  }
+
+  .game-butt{
+    margin-top: 150px;
+    margin-right: 50px;
   }
 }
