@@ -91,14 +91,16 @@ const GuessGame2 = () => {
     try {
       const { data, error } = await supabase
         .from('user_scores')
-        .upsert({ 
-          user_id: user.id, 
-          guess_game_score2: finalScore // Use the passed finalScore
-        }, { 
-          onConflict: 'user_id',
-          update: ['guess_game_score2', 'updated_at']
-        })
-        .select();
+        .upsert(
+          {
+            user_id: user.id,
+            guess_game_score2: finalScore,
+            updated_at: new Date().toISOString() // Ensure `updated_at` is explicitly updated
+          },
+          {
+            onConflict: 'user_id'
+          }
+        );
   
       if (error) throw error;
       console.log('Score saved successfully', data);
@@ -107,6 +109,7 @@ const GuessGame2 = () => {
       alert('Error saving score: ' + error.message);
     }
   };
+  
 
   const restartGame = () => {
     setCurrentQuestionIndex(0);
