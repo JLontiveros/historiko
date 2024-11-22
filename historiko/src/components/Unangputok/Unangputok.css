@@ -17,6 +17,8 @@
 .unangputok-container-left {
   display: grid;
   grid-template-columns: 1fr;
+  align-items: center; /* Aligns content (image and date) to the center horizontally */
+  gap: 10px; /* Adds spacing between the image and date */
 }
 
 .unangputok-container-left img {
@@ -25,6 +27,16 @@
   margin-top: 65px;
   margin-bottom: 50px;
   margin-left: 50px;
+  border-radius: 20px;
+  box-shadow: 10px 10px #8c85d5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.unangputok-image {
+  width: 350px;
+  height: 400px;
+  margin: 0; /* Removes unnecessary margins */
   border-radius: 20px;
   box-shadow: 10px 10px #8c85d5;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -122,8 +134,11 @@
 .unangputok-date {
   color: #4169e1;
   font-size: 24px;
-  margin-top: -20px;
-  margin-left: 35px;
+  margin: 0; /* Aligns the date directly under the image */
+  text-align: center; /* Ensures text alignment is centered */
+  margin-top: -30px;
+  margin-left: 30px;
+  margin-bottom: 10px;
   transition: color 0.3s ease;
 }
 
