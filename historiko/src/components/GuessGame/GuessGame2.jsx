@@ -19,7 +19,7 @@ const GuessGame2 = () => {
 
   const fetchQuestions = useCallback(async () => {
     const { data, error } = await supabase
-      .from('guess_game_questions')
+      .from('guess_game_question2')
       .select('*')
       .order('id', { ascending: true });
     
