@@ -82,25 +82,26 @@ const GuessGame2 = () => {
     }, 2000);
   };  
 
-  const saveScore = async () => {
+  const saveScore = async (finalScore) => {
     if (!isAuthenticated || !user) {
       console.error('User not authenticated');
       return;
     }
-
+  
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('user_scores')
         .upsert({ 
           user_id: user.id, 
-          guess_game_score2: score 
+          guess_game_score2: finalScore // Use the passed finalScore
         }, { 
           onConflict: 'user_id',
           update: ['guess_game_score2', 'updated_at']
-        });
-
+        })
+        .select();
+  
       if (error) throw error;
-      console.log('Score saved successfully');
+      console.log('Score saved successfully', data);
     } catch (error) {
       console.error('Error saving score:', error);
       alert('Error saving score: ' + error.message);
