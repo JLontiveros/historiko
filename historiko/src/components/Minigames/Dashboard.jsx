@@ -15,6 +15,7 @@ const Dashboard = ({ onClose }) => {
         .select(`
           user_id,
           guess_game_score,
+          guess_game_score2,
           updated_at,
           users (username)
         `)
@@ -52,7 +53,8 @@ const Dashboard = ({ onClose }) => {
         <thead>
           <tr className='contents'>
             <th>Username</th>
-            <th>Score</th>
+            <th>Quiz 1</th>
+            <th>Quiz 2</th>
             <th>Date Taken</th>
           </tr>
         </thead>
@@ -61,6 +63,7 @@ const Dashboard = ({ onClose }) => {
             <tr key={index}>
               <td>{userScore.users?.username || 'Unknown'}</td>
               <td>{userScore.guess_game_score}</td>
+              <td>{userScore.guess_game_score2}</td>
               <td>{new Date(userScore.updated_at).toLocaleString()}</td>
             </tr>
           ))}
