@@ -10,7 +10,7 @@ import gregdelpillar from '../../assets/gregdelpillar.png';
 import januario from '../../assets/januario.png';
 import genfriedrich from '../../assets/genfriedrich.png';
 import macario from '../../assets/macario.png';
-import malvar from '../../assets/malvar.png';
+import fourman from '../../assets/4man.png';
 import lukban from '../../assets/lukban.png';
 import ola from '../../assets/ola.png';
 import segismundo from '../../assets/segismundo.png';
@@ -48,10 +48,7 @@ const Tirad = () => {
     { src: uss, bg: uss, description: "USS Vicksburg" },
     { src: marso, bg: marso, description: "Marso 23, 1901" },
     { src: panunumpa, bg: panunumpa, description: "" },
-    { src: macario, bg: macario, description: "Macario Sakay" },
-    { src: malvar, bg: malvar, description: "Miguel Malvar" },
-    { src: lukban, bg: lukban, description: "Vicente Lukban" },
-    { src: ola, bg: ola, description: "Simeon Ola" },
+    { src: fourman, bg: fourman, description: "Macario Sakay, Miguel Malvar, Vicente Lukban, at Simeon Ola" },
   ];
 
   const descriptions = [
@@ -68,9 +65,6 @@ const Tirad = () => {
     "Sa wakas ay narating ni Funston ang Palanan noong March 23, 1901. Si Hilario Tal Placido ay ligtas na nakarating sa kinaroroonan ni Aguinaldo, kung saan siya'y sinusunod ng pangunahing pangkat ng mga Macabebe sa isang 'di-malayong distansya. Nilihis ni Placido ang atensyon ni Aguinaldo sa pamamagitan ng kanyang pagkukuwento tungkol sa mga bagay-bagay. Sa pagdating ng mga Macabebe ay rito na nga naganap ang 'di-kanais-nais na pangyayari. Si Heneral Emilio Aguinaldo, noo'y pangulo ng Pilipinas ay ganap nang nadakip.",
     "Noong umaga ng Marso 25,1901 si Aguinaldo at tatlo sa kanyang mga kawal ay nagmartsa patungo sa baybayin ng Palanan. Ilang sandali, dumating na rin ang Vicksburg. Ang naturang barko ay dumating sa Manila Bay nang walang kamalay- malay mula sa kahit iisang kaluluwa sa Kalakhang Maynila. Si Aguinaldo ay iniprisinta kay Heneral Arthur C. MacArthur, Jr. bilang isang bilanggo ng digmaan ngunit itinuring na mabuti ng Heneral bilang isang katangi-tanging bisita ng mga sundalo sa Palasyo ng Malacañang mula Marso 28 hanggang Abril 20. Si Aguinaldo ay nanumpa ng katapatan sa pamahalaang Amerikano at noong Abril 1, 1901 ay naglabas ng isang proklamasyong nagpayo ng pagsuko sa patuloy na pag-aalsa at tanggapin na ang kapangyarihan ng mga amerikano.",
     "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
-    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
-    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
-    "Ngunit ang pagsuko ni Aguinaldo ay hindi nangangahulugan ng pagwawakas ng Himagsikan. Marami paring Pilipino ang nagpatuloy sa pakikipaglaban tulad nina Macario Sakay   nang Cordillera at ni Miguel Malvar nang Batangas, Vicente Lukban nang samar at ang huling heneral na sumuko sa mga amerikano na si Simeon Ola nang Albay.",
   ];
 
   const headings = [
@@ -86,10 +80,7 @@ const Tirad = () => {
     "Ika-sampu na pangyayari",
     "Ika-labing isa na pangyayari",
     "Ika-labing dalawa na pangyayari",
-    "Ika-labing tatlo na pangyayari",
-    "Ika-labing apat na pangyayari",
-    "Ika-labing lima na pangyayari",
-    "Ika-labing anim na pangyayari",
+    "Ika-labing tatlo na pangyayari"
   ];
 
   useEffect(() => {

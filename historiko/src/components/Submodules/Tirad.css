@@ -46,7 +46,7 @@ body::before {
   display: grid;
   text-align: justify;
   color: #0047ab;
-  margin-left: 50px;
+  margin-left: 20px;
   width: 500px;
   max-height: 400px;
   overflow-y: auto;
@@ -108,7 +108,7 @@ body::before {
   display: flex;
   gap: 20px;
   padding: 20px;
-  margin-left: 30px;
+  margin-left: 50px;
   animation: fadeInRight 0.5s ease-out;
 }
 
@@ -129,14 +129,17 @@ body::before {
 }
 
 .tirad-image-wrapper img {
+  position: relative;
+  right: 2%;
   width: auto;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   transition: transform 0.3s ease;
+  transform: scale(1.08);
 }
 
 .tirad-image-wrapper:hover img {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .tirad-image-description {
@@ -160,9 +163,10 @@ body::before {
   border-color: #0047ab;
   transform: scale(1.22);
   grid-column: 1 / -1;
-  max-width: 560px;
+  max-width: 650px;
   justify-self: center;
   margin: 0px 50px 0px 20px;
+  margin-right: 70px;
   animation: selectImage 0.3s ease-out;
 }
 

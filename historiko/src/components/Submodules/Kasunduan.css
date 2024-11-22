@@ -133,10 +133,11 @@ body::before {
   height: 100%;
   object-fit: fill;
   transition: transform 0.3s ease;
+  transform: scale(1.08);
 }
 
 .Kasunduan-image-wrapper:hover img {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .Kasunduan-image-description {
