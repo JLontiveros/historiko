@@ -1,20 +1,20 @@
 .dashboard {
-    width: 80%;
-    max-width: 900px;
-    height: 600px; /* Fixed height */
-    margin: 20px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for a clean look */
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevent content overflow */
+  width: 80%;
+  max-width: 900px;
+  height: 622px; /* Fixed height */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for a clean look */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .dashboard h2 {
   text-align: center;
   font-size: 1.8rem;
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #333;
 }
 
@@ -32,15 +32,15 @@
 }
 
 .dashboard thead th {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-    position: sticky; /* Sticks header during scroll */
-    top: 0;
-    z-index: 2; /* Keeps it above tbody */
-    border: 1px solid #ddd;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  position: sticky; /* Sticks header during scroll */
+  top: 0;
+  z-index: 2; /* Keeps it above tbody */
+  border: 1px solid #ddd;
 }
 
 .dashboard tbody {
@@ -62,7 +62,7 @@
 }
 
 .dashboard tbody tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 .dashboard th, td {
@@ -78,8 +78,13 @@
   
   th:nth-child(2), td:nth-child(2),
   th:nth-child(3), td:nth-child(3) {
-    text-align: center; /* Center-align score and date columns */
+  text-align: center; /* Center-align score and date columns */
 }  
+
+.summary {
+  margin-top: -30px;
+  margin-bottom: -10px;
+}
 
 .dashboard button {
   display: block;
