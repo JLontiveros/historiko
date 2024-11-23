@@ -19,24 +19,29 @@ const Dashboard = ({ onClose }) => {
           guess_game_score2,
           updated_at,
           users (name)
-        `)
-        .order('guess_game_score', { ascending: false });
-
+        `);
+  
       if (error) {
         console.error('Error fetching user scores:', error);
       } else {
-        // Calculate total score and percentage for each student
         const maxQuizScore = 20; // Max score for each quiz
         const maxTotalScore = maxQuizScore * 2; // Max total score across both quizzes
-
-        const scoresWithPercentage = data.map((userScore) => {
-          const quiz1Score = userScore.guess_game_score || 0;
-          const quiz2Score = userScore.guess_game_score2 || 0;
-          const totalScore = quiz1Score + quiz2Score;
-          const percentage = (totalScore / maxTotalScore) * 100; // Percentage for the student
-          return { ...userScore, totalScore, percentage };
-        });
-
+  
+        // Calculate total score, percentage, and sort by user name alphabetically
+        const scoresWithPercentage = data
+          .map((userScore) => {
+            const quiz1Score = userScore.guess_game_score || 0;
+            const quiz2Score = userScore.guess_game_score2 || 0;
+            const totalScore = quiz1Score + quiz2Score;
+            const percentage = (totalScore / maxTotalScore) * 100; // Percentage for the student
+            return { ...userScore, totalScore, percentage };
+          })
+          .sort((a, b) => {
+            const nameA = a.users?.name?.toLowerCase() || '';
+            const nameB = b.users?.name?.toLowerCase() || '';
+            return nameA.localeCompare(nameB); // Sort alphabetically
+          });
+  
         // Calculate the general passing percentage
         const totalCorrectAnswers = scoresWithPercentage.reduce(
           (sum, user) => sum + user.totalScore,
@@ -46,7 +51,7 @@ const Dashboard = ({ onClose }) => {
           scoresWithPercentage.length * maxTotalScore; // Total possible items for all students
         const passingPercentage =
           (totalCorrectAnswers / totalPossibleItems) * 100;
-
+  
         setUserScores(scoresWithPercentage);
         setGeneralPassingPercentage(passingPercentage.toFixed(2)); // Round to 2 decimals
       }
@@ -55,7 +60,7 @@ const Dashboard = ({ onClose }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  };  
 
   useEffect(() => {
     fetchUserScores();
