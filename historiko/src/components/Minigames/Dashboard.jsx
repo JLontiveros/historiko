@@ -27,7 +27,7 @@ const Dashboard = ({ onClose }) => {
         const maxQuizScore = 20; // Max score for each quiz
         const maxTotalScore = maxQuizScore * 2; // Max total score across both quizzes
   
-        // Calculate total score, percentage, and sort by user name alphabetically
+        // Calculate total score, percentage, and sort by percentage descending
         const scoresWithPercentage = data
           .map((userScore) => {
             const quiz1Score = userScore.guess_game_score || 0;
@@ -36,11 +36,7 @@ const Dashboard = ({ onClose }) => {
             const percentage = (totalScore / maxTotalScore) * 100; // Percentage for the student
             return { ...userScore, totalScore, percentage };
           })
-          .sort((a, b) => {
-            const nameA = a.users?.name?.toLowerCase() || '';
-            const nameB = b.users?.name?.toLowerCase() || '';
-            return nameA.localeCompare(nameB); // Sort alphabetically
-          });
+          .sort((a, b) => b.percentage - a.percentage); // Sort by percentage descending
   
         // Calculate the general passing percentage
         const totalCorrectAnswers = scoresWithPercentage.reduce(
@@ -60,7 +56,7 @@ const Dashboard = ({ onClose }) => {
     } finally {
       setIsLoading(false);
     }
-  };  
+  };    
 
   useEffect(() => {
     fetchUserScores();
