@@ -47,6 +47,23 @@ function App() {
   const [shouldScrollToSignup, setShouldScrollToSignup] = useState(false);
 
   useEffect(() => {
+    const preventZoom = (event) => {
+      if (event.ctrlKey && (event.type === 'wheel' || event.type === 'keydown')) {
+        event.preventDefault();
+      }
+    };
+
+    // Prevent zoom on scroll or keypress
+    window.addEventListener('wheel', preventZoom, { passive: false });
+    window.addEventListener('keydown', preventZoom);
+
+    return () => {
+      window.removeEventListener('wheel', preventZoom);
+      window.removeEventListener('keydown', preventZoom);
+    };
+  }, []);
+
+  useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('token');
       const storedUser = localStorage.getItem('user');
