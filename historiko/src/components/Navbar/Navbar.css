@@ -123,10 +123,15 @@ nav ul li svg {
 
 /* Mobile styles */
 .burger-icon {
-  display: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: white;
+  color: navy;
+  transition: transform 0.3s ease;
+}
+
+.burger-icon.open {
+  color: red; /* Optional: Change the color when open */
+  transform: rotate(90deg); /* Example transformation to indicate "close" */
 }
 
 .mobile-menu {
