@@ -182,7 +182,7 @@ const Putok = () => {
   return (
     <div className="putok">
       <ToastContainer />
-      <button onClick={handleViewMore} className='view'>View in 3D</button>
+      <button onClick={handleViewMore} className='viewputok'>View in 3D</button>
       <div className="putok-container">
         <div className="putok-description-container">
           <h1>Deskripsyon:</h1>
