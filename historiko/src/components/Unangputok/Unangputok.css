@@ -217,17 +217,20 @@
   }
   .unangputok-description {
     margin-top: 20px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    text-align: center;
   }
+
   .unangputok-description img {
-    top: -50px;
-    right: -5px;
+    top: -25px;
+    left: 150px;
+    position: relative;
   }
+
   .unangputok-blank {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 60px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
   }
   .unangputok-container-right p {
     margin-left: 0;

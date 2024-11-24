@@ -89,10 +89,10 @@ const Sigaw = () => {
     try {
       if (isMarked) {
         await removeMarkedTopic(topicId);
-        toast.success('Topic unmarked successfully!');
+        toast.success('Matagumpay na inalis ang marka!');
       } else {
         await addMarkedTopic(topicName, topicId);
-        toast.success('Topic marked successfully!');
+        toast.success('Matagumpay na minarkahan!');
       }
       setIsMarked(!isMarked);
     } catch (error) {

@@ -178,17 +178,20 @@
   }
   .tiradpass-description {
     margin-top: 20px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    text-align: center;
   }
+
   .tiradpass-description img {
-    top: -50px;
-    right: -10px;
+    top: -25px;
+    left: 130px;
+    position: relative;
   }
+
   .tiradpass-blank {
-    width: 325px;
-    margin-left: 9%;
-    margin-top: 60px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
   }
   .tiradpass-container-right{
     margin-left: -10px; 
@@ -207,6 +210,6 @@
   }
   .tiradpass-container-right button {
     margin-top: 5px;
-    margin-left: -20px;
+    margin-left: -40px;
   }
 }

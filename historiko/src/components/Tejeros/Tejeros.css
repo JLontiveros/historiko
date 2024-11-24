@@ -182,19 +182,20 @@
 
   .tejeros-description {
     margin-top: 20px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    text-align: center;
   }
 
   .tejeros-description img {
-    top: -50px;
-    right: -5px;
+    top: -25px;
+    left: 120px;
+    position: relative;
   }
 
   .tejeros-blank {
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 60px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
   }
 
   .tejeros-container-right p {
@@ -210,7 +211,7 @@
   }
 
   .tejeros-container-right button {
-    margin-left: 110px;
+    margin-left: 90px;
     margin-right: auto;
     display: block;
     margin-top: 5px;

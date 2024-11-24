@@ -184,20 +184,21 @@
   }
 
   .bato-description {
-      margin-top: 20px;
-      padding-left: 0;
-      padding-right: 0;
+    margin-top: 20px;
+    padding: 0;
+    text-align: center;
   }
 
   .bato-description img {
-      top: -70px;
-      right: -5px;
+    top: -25px;
+    left: 110px;
+    position: relative;
   }
 
   .bato-blank {
-      width: 100%;
-      margin-left: 10px;
-      margin-top: 38px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
   }
 
   .bato-container-right p {
@@ -213,7 +214,7 @@
   }
 
   .bato-container-right button {
-      margin-left: 100px;
+      margin-left: 80px;
       margin-right: auto;
       display: block;
       margin-top: 5px;

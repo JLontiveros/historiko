@@ -36,8 +36,8 @@ const Balangiga1 = () => {
 
   const headings = [
     "Unang Pangyayari",
-      "Ikalawang Pangyayari",
-      "Ikatlong Pangyayari",
+    "Ikalawang Pangyayari",
+    "Ikatlong Pangyayari",
   ];
 
   useEffect(() => {
