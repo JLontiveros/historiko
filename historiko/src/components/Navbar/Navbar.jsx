@@ -23,20 +23,14 @@ function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
-  const isStartingPage = location.pathname === '/Home';
-
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
     setShowMobileSubmenu(false); // Close submenu when closing main mobile menu
   };
 
-  const toggleNavbar = () => {
-    setShowMobileSubmenu(!showMobileSubmenu); // Toggle the submenu visibility
-    localStorage.setItem('hasLoggedIn', 'true');
+  const toggleMobileSubmenu = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    setShowMobileSubmenu(!showMobileSubmenu); // Toggle submenu visibility
   };
 
   return (
@@ -54,34 +48,78 @@ function Navbar() {
           {showMobileMenu && (
             <ul className="mobile-menu">
               <li>
-                <span onClick={toggleNavbar}>Home</span> {/* Make Home clickable to toggle submenu */}
+                <Link to="/Home" onClick={toggleMobileMenu}>
+                  Home
+                </Link>
+                <span onClick={toggleMobileSubmenu} style={{ cursor: 'pointer', marginLeft: '5px' }}>
+                  {/* Toggle submenu */}
+                  {showMobileSubmenu ? '▲' : '▼'}
+                </span>
                 {showMobileSubmenu && (
                   <ul className="mobile-submenu">
-                    <li><Link to="/Modules" onClick={toggleMobileMenu}><FaBookOpen /> Modules</Link></li>
-                    <li><Link to="/Topicmarking" onClick={toggleMobileMenu}><FaBookmark /> Topic Marking</Link></li>
-                    <li><Link to="/Quiz" onClick={toggleMobileMenu}><FaInfoCircle /> Quiz</Link></li>
+                    <li>
+                      <Link to="/Modules" onClick={toggleMobileMenu}>
+                        <FaBookOpen /> Modules
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/Topicmarking" onClick={toggleMobileMenu}>
+                        <FaBookmark /> Topic Marking
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/Quiz" onClick={toggleMobileMenu}>
+                        <FaInfoCircle /> Quiz
+                      </Link>
+                    </li>
                   </ul>
                 )}
               </li>
-              <li><Link to="/Profile" onClick={toggleMobileMenu}>Profile</Link></li>
-              <li><Link to="/About" onClick={toggleMobileMenu}>Patungkol</Link></li>
+              <li>
+                <Link to="/Profile" onClick={toggleMobileMenu}>
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/About" onClick={toggleMobileMenu}>
+                  Patungkol
+                </Link>
+              </li>
             </ul>
           )}
         </>
       ) : (
         <ul className="desktop-menu">
           <li onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
-            <li><Link to="/Home">Home</Link></li>
+            <li>
+              <Link to="/Home">Home</Link>
+            </li>
             {showDropdown && (
               <ul className="dropdown">
-                <li><Link to="/Modules"><FaBookOpen /> Modules</Link></li>
-                <li><Link to="/Topicmarking"><FaBookmark /> Topic Marking</Link></li>
-                <li><Link to="/Quiz"><FaInfoCircle /> Quiz</Link></li>
+                <li>
+                  <Link to="/Modules">
+                    <FaBookOpen /> Modules
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Topicmarking">
+                    <FaBookmark /> Topic Marking
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Quiz">
+                    <FaInfoCircle /> Quiz
+                  </Link>
+                </li>
               </ul>
             )}
           </li>
-          <li><Link to="/Profile" onClick={toggleNavbar}>Profile</Link></li>
-          <li><Link to="/About" onClick={toggleNavbar}>Patungkol</Link></li>
+          <li>
+            <Link to="/Profile">Profile</Link>
+          </li>
+          <li>
+            <Link to="/About">Patungkol</Link>
+          </li>
         </ul>
       )}
     </nav>
