@@ -89,11 +89,11 @@ const Tiradpass = () => {
     try {
       if (isMarked) {
         await removeMarkedTopic(topicId);
-        toast.success('Topic unmarked successfully!');
+        toast.success('Matagumpay na inalis ang marka!');
         setIsMarked(false);
       } else {
         await addMarkedTopic(topicName, topicId, userId);
-        toast.success('Topic marked successfully!');
+        toast.success('Matagumpay na minarkahan!');
         setIsMarked(true);
       }
     } catch (error) {

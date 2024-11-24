@@ -42,7 +42,7 @@ const Putok = () => {
     "Unang Pangyayari",
     "Ikalawang Pangyayari",
     "Ikatlong Pangyayari",
-    "Ikaapat na Pangyayari",
+    "Ika-apat na Pangyayari",
   ];
 
   // Initialize localStorage on component mount

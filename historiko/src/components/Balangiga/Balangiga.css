@@ -178,17 +178,18 @@
   }
   .balangiga-description {
     margin-top: 20px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    text-align: center;
   }
   .balangiga-description img {
-    top: -60px;
-    right: -3px;
+    top: -25px;
+    left: 150px;
+    position: relative;
   }
   .balangiga-blank {
-    width: 100%;
-    margin-left: -30px;
-    margin-top: 50px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
   }
   .balangiga-container-right p {
     margin-left: 0;
