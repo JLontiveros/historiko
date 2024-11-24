@@ -21,10 +21,6 @@ body::before {
   to { opacity: 1; }
 }
 
-.PugadLawin {
-  margin-top: 150px !important;
-}
-
 .PugadLawin-container {
   margin-top: 150px;
   display: grid;
@@ -213,7 +209,7 @@ body::before {
   transform: scale(1.2);
 }
 
-.view {
+.viewpugad {
   width: 130px;
   height: 30px;
   border-radius: 10px;
@@ -221,8 +217,8 @@ body::before {
   border: none;
   background-color: gold;
   color: #0047ab;
-  position: fixed; /* Changed from relative to fixed */
-  top: 145px; /* Adjusted top position */
+  position: relative; /* Changed from relative to fixed */
+  top: 45px; /* Adjusted top position */
   right: 40px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
@@ -354,7 +350,10 @@ body::before {
   }
 
   .PugadLawin-image-container {
-    padding: 30px;
+    padding: 20px;
+    margin-bottom: 100px;
+    position: relative;
+    left: 15px;
   }
 
   .PugadLawin-image-wrapper {
@@ -367,9 +366,9 @@ body::before {
   }
 
   .PugadLawin button {
-    top: 10px; /* Further adjusted for smaller screens */
-    right: 10px;
-    height: 50px; /* Slightly increased height for better touch target */
+    top: 159px;
+    left: 130px;
+    height: 43px;
   }
 
   .PugadLawin-headings {
@@ -380,7 +379,7 @@ body::before {
     position: fixed;
     top: 50%;
     left: 45%;
-    transform: translate(-50%, -50%) scale(2);
+    transform: translate(-50%, -50%) scale(1);
     z-index: 1000;
     width: auto;
     animation: zoomIn 0.3s ease-out;

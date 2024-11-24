@@ -171,7 +171,7 @@ const Convention = () => {
   return (
     <div className="convention">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="view">View in 3D</button>
+      <button onClick={handleViewMore} className="viewconvention">View in 3D</button>
       <div className="convention-container">
         <div className="convention-description-container">
           <h1>Deskripsyon:</h1>

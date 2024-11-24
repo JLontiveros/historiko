@@ -21,9 +21,6 @@ body::before {
   to { opacity: 1; }
 }
 
-.balangiga1 {
-  margin-top: 150px !important;
-}
 
 .balangiga1-container {
   margin-top: 120px;
@@ -212,7 +209,7 @@ body::before {
   transform: scale(1.2);
 }
 
-.view {
+.viewbalangiga {
   width: 130px;
   height: 30px;
   border-radius: 10px;
@@ -220,15 +217,15 @@ body::before {
   border: none;
   background-color: gold;
   color: #0047ab;
-  position: fixed; /* Changed from relative to fixed */
+  position: relative; /* Changed from relative to fixed */
   top: 145px; /* Adjusted top position */
-  right: 40px; /* Changed from left to right */
+  right: -605px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
 }
 
-.view:hover {
+.viewbalangiga:hover {
   transform: scale(1.2);
   background-color: #ffd700;
 }
@@ -361,7 +358,10 @@ body::before {
   }
 
   .balangiga1-image-container {
-    padding: 30px;
+    padding: 20px;
+    margin-bottom: 100px;
+    position: relative;
+    left: 15px;
   }
 
   .balangiga1-image-wrapper {
@@ -374,8 +374,8 @@ body::before {
   }
 
   .balangiga1 button {
-    top: 0px;
-    right: 20px;
+    top: 159px;
+    left: 130px;
     height: 43px;
   }
 
@@ -387,7 +387,7 @@ body::before {
     position: fixed;
     top: 50%;
     left: 45%;
-    transform: translate(-50%, -50%) scale(2);
+    transform: translate(-50%, -50%) scale(1);
     z-index: 1000;
     width: auto;
     animation: zoomIn 0.3s ease-out;

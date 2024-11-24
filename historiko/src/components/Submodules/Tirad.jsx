@@ -202,7 +202,7 @@ const Tirad = () => {
   return (
     <div className="tirad">
       <ToastContainer/>
-      <button onClick={handleViewMore} className='view'>View in 3D</button>
+      <button onClick={handleViewMore} className='viewtirad'>View in 3D</button>
       <div className="tirad-container">
         <div className="tirad-description-container">
           <h1>Deskripsyon:</h1>

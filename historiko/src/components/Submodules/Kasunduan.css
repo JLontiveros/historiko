@@ -21,10 +21,6 @@ body::before {
   to { opacity: 1; }
 }
 
-.Kasunduan {
-  margin-top: 150px !important;
-}
-
 .Kasunduan-container {
   margin-top: 120px;
   display: grid;
@@ -221,8 +217,8 @@ body::before {
   border: none;
   background-color: gold;
   color: #0047ab;
-  position: fixed; /* Changed from relative to fixed */
-  top: 145px; /* Adjusted top position */
+  position: relative; /* Changed from relative to fixed */
+  top: 45px; /* Adjusted top position */
   right: 40px; /* Changed from left to right */
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
@@ -349,7 +345,10 @@ body::before {
   }
 
   .Kasunduan-image-container {
-    padding: 30px;
+    padding: 20px;
+    margin-bottom: 100px;
+    position: relative;
+    left: 15px;
   }
 
   .Kasunduan-image-wrapper {
@@ -361,12 +360,11 @@ body::before {
     width: 50px;
   }
 
-  .view {
-    top: 10px; /* Further adjusted for smaller screens */
-    right: 10px;
-    height: 50px; /* Slightly increased height for better touch target */
+  .Kasunduan button {
+    top: 159px;
+    left: 130px;
+    height: 43px;
   }
-
 
   .Kasunduan-headings {
     display: none;
@@ -376,7 +374,7 @@ body::before {
     position: fixed;
     top: 50%;
     left: 45%;
-    transform: translate(-50%, -50%) scale(2);
+    transform: translate(-50%, -50%) scale(1);
     z-index: 1000;
     width: auto;
     animation: zoomIn 0.3s ease-out;

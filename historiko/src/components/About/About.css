@@ -154,7 +154,7 @@
 
 @media screen and (max-width: 480px) {
   .about {
-    margin-top: 80px;
+    margin-top: 130px;
   }
 
   .about h1 {
@@ -173,10 +173,12 @@
     font-size: 18px;
   }
 
+  .firstline {
+    width: 95%;
+  }
+
   .layunin {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 20px;
+    width: 95%;
   }
 
   .video-container-about {

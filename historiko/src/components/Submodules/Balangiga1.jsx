@@ -163,7 +163,7 @@ const Balangiga1 = () => {
   return (
     <div className="balangiga1">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="view">View in 3D</button>
+      <button onClick={handleViewMore} className="viewbalangiga">View in 3D</button>
       <div className="balangiga1-container">
         <div className="balangiga1-description-container">
           <h1>Deskripsyon:</h1>

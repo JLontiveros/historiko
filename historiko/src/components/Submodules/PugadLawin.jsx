@@ -209,7 +209,7 @@ const PugadLawin = () => {
   return (
     <div className="PugadLawin">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="view">View in 3D</button>
+      <button onClick={handleViewMore} className="viewpugad">View in 3D</button>
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
           <h1>Deskripsyon:</h1>
