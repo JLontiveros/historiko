@@ -158,7 +158,7 @@ const Bato = () => {
             alt="Kasunduan sa Biak-na-Bato illustration" 
             className="bato-image"
           />
-          <h2 className="bato-date">Aguinaldo and Companions leave for Hong Kong</h2>
+          <h2 className="bato-date">Si Aguinaldo at kasamahan nito patungong Hong Kong</h2>
         </div>
 
         <div className="bato-container-right">
@@ -183,12 +183,12 @@ const Bato = () => {
             <p>
             Ilan sa mga probinsyon ng Kasunduan sa Biak-na-Bato:
             <br/>
-            1.	Pagtigil ng mga pinunong rebolusyonaryo sa labanan at maninirahan sila sa Hongkong.<br/>
-            2.	Lubusang kapatawaran sa lahat ng rebolusyonaryo at pagsuko ng kanilang mga sandata.<br/>
-            3.	Pagkakaloob sa Espanya ng halagang P1,700,000 bilang kabayaran sa mga rebolusyonaryo at mga pamilya nito
+            1.	Pagtigil ng mga pinunong Rebolusyonaryo sa labanan at maninirahan sila sa Hongkong.<br/>
+            2.	Lubusang kapatawaran sa lahat ng Rebolusyonaryo at pagsuko ng kanilang mga sandata.<br/>
+            3.	Pagkakaloob sa Espanya ng halagang P1,700,000 bilang kabayaran sa mga Rebolusyonaryo at mga pamilya nito
             <br/>
             Pansamantalang umiral ang kapayapaan dulot ng
-            Kasunduan sa Biak na Bato. Nagtungo sa Hong Kong si Emilio Aguinaldo at ang ilang pinuno ng kilusan. Ngunit ipinagpatuloy nya parin ang pamahalaang rebulsyonaryo. <br/>
+            Kasunduan sa Biak na Bato. Nagtungo sa Hong Kong si Emilio Aguinaldo at ang ilang pinuno ng kilusan. Ngunit ipinagpatuloy nya parin ang pamahalaang Rebulusyonaryo. <br/>
             Hindi tinupad ng Espanya ang pangakong pagbabayad sa mga Pilipino at tanging P600,000 lamang ang binayad nito, P400,000 kay Aguinaldo at P200,000 sa mga kawal. Nasa pagtatapos ang mas detalyeng kasunduan.
 
             </p>

@@ -182,7 +182,7 @@ const Unangputok = () => {
               &nbsp;
             </div>
             <p>
-            Pebrero 4, 1899, Sumiklab ang digmaan sa pagitan ng Pilipinas at Amerika nang paputukan ni Pvt. William Walter Grayson ang tatlong Pilipinong Sundalo na naglalakad sa Calle Silencio at Sociego sa Sta. Mesa Manila. “HALT!! “ na ang ibigsabihin ay pahintuin ang mga sundalong Pilipino at ito ang naging hudyat ng simula ng Digmaang Pilipino–Amerikano. Ang isa sa apat na Pilipinong sundalo na nabaril at nasawi ay si Corporal Anastacio Felix ng ika-apat na batalyon sa ilalim ng pamumuno ni Captain Serapio Narvaez.
+            Pebrero 4, 1899, Sumiklab ang digmaan sa pagitan ng Pilipinas at Amerika nang paputukan ni Pvt. William Walter Grayson ang tatlong Pilipinong Sundalo na naglalakad sa Calle Silencio at Sociego sa Sta. Mesa Manila. “HALT!!“ na ang ibig sabihin ay pahintuin ang mga sundalong Pilipino at ito ang naging hudyat ng simula ng Digmaang Pilipino–Amerikano. Ang isa sa apat na Pilipinong sundalo na nabaril at nasawi ay si Corporal Anastacio Felix ng ika-apat na batalyon sa ilalim ng pamumuno ni Captain Serapio Narvaez.
             </p>
           </div>
           <button className="btnview" onClick={handleViewMore}>Mag-patuloy</button>
