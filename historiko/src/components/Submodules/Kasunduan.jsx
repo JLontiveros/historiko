@@ -41,24 +41,24 @@ const Kasunduan = () => {
 
   const descriptions = [
     "Hindi rin tumupad ang mga Pilipino sa kasunduan. Inihanda ni Aguinaldo ang salaping tinanggap para gamitin sa iba pang pakikipaglaban sa mga Espanyol. Maraming kawal na Pilipino ang hindi nagsuko ng kanilang mga sandata. Samantala, nagpatuloy ang labanan sa Zambales, Ilocos Sur, Manila, Cebu, Bohol, Panay at sa ibang panig na lugar sa Mindanao.",
-    "Patuloy na pinulong ni Emilio Aguinaldo ang mga pinuno ng hukbo upang bumuo ng Saligang Batas. Noong Nobyembre 1, 1897 ay nabuo ang konstitusyon ng Biak na Bato na isinulat nila Isabelo Artacho, At Feliz Ferrer na inisulat sa Biak na Bato sa bulacan na sinasabing ibinase sa saligang batas ng bansang Cuba sa Jimaguayú. ANg biak na bato ay nagbigay para sa paglikha ng kataastaasang konseho pati narin ang karapatang pangtao kasama ang kalayaan, relihiyon, at edukasyon. Nagwakas ang katipunan at napalitan ng isang pamahalaan na may konstitusyong sinusunod. Nawala man ang samahang KKK ngunit ang mga kasapi nito ay patuloy pa ring nakipaglaban sa mga Espanyol.",
-    "Naitatag ang republika ng biak na bato matapos mapagtibay ang isang saligang batas at ang mga tumayong pinuno nito ay nakasaad sa litrato. Tumagal lamang ng ilang buwan ang Republika ng biak na bato dahil noong Disyembre 15, 1897 at nagpatawag ng negosasyon si Gob-Hen Primo De Rivera sa pangkat ni Aguinaldo.",
+    "Patuloy na pinulong ni Emilio Aguinaldo ang mga pinuno ng hukbo upang bumuo ng Saligang Batas. Noong Nobyembre 1, 1897 ay nabuo ang Konstitusyon ng Biak -na-Bato na isinulat nila Isabelo Artacho, at Feliz Ferrer na isinulat sa Biak-na-Bato sa Bulacan na sinasabing ibinase sa Saligang Batas ng bansang Cuba sa Jimaguayú. Ang Biak na Bato ay nagbigay para sa paglikha ng kataas-taasang konseho pati na rin ang karapatang pang tao kasama ang kalayaan, relihiyon, at edukasyon. Nagwakas ang katipunan at napalitan ng isang pamahalaan na may konstitusyong sinusunod. Nawala man ang samahang KKK ngunit ang mga kasapi nito ay patuloy pa ring nakipaglaban sa mga Espanyol.",
+    "Naitatag ang Republika ng Biak-na-Bato matapos mapagtibay ang isang Saligang Batas at ang mga tumayong pinuno nito ay nakasaad sa litrato. Tumagal lamang ng ilang buwan ang Republika ng Biak-na-Bato dahil noong Disyembre 15, 1897 at nag patawag ng negosasyon si Gob-Hen Primo De Rivera sa pangkat ni Aguinaldo.",
     "Si Pedro Paterno, isang Kastila na ipinanganak sa Pilipinas, ay boluntaryong naging tagapamagitan sa pagitan nina Aguinaldo at Gobernador Primo de Rivera upang matapos ang mga labanan. Noong Disyembre 15, 1897, nilagdaan ni Paterno ang Kasunduan ng Biak-na-Bato bilang kinatawan ng mga rebolusyonaryo, at si de Rivera bilang kinatawan ng pamahalaang Espanyol. Ang mga pinuno ng pamahalaan na itinatag sa ilalim ng kasunduan ay sina: Emilio Aguinaldo bilang Pangulo, Mariano Trias bilang Bise-Pangulo, Antonio Montenegro bilang Kalihim, Baldomero Aguinaldo bilang Ingat-yaman, at Emilio Riego de Dios.",
-    "Nilagdaan ang isang kasulatan: 1. Pagbabayad ng 800,000 pesos (MEXICAN) sa mga sundalo A.	MXN P400,000 kapalit ng pag-alis ni Aguinaldo patungo sa hongkong B.	200,000 pesos (MEXICAN) kapalit ng mga armas na lalagpas sa 700 piraso C.	200,000 pesos (MEXICAN) kapag ang Te Deum (isang tradisyunal na Kristiyanong himno ng papuri at pasasalamat) ay inawit at ang pangkalahatang amnestiya ay iproklama ng Gobernador Heneral. 2.. Pagbibigay ng MXN P900,000 para sa mga sibilyang nadamay sa labanan.",
+    "Nilagdaan ang isang kasulatan: 1. Pagbabayad ng 800,000 Mexican Pesos sa mga sundalo A.	MXN P400,000 kapalit ng pag-alis ni Aguinaldo patungo sa Hong Kong B.	200,000 Mexican Pesos kapalit ng mga armas na lalagpas sa 700 piraso C.	200,000 Mexican Pesos kapag ang Te Deum (isang tradisyunal na Kristiyanong himno ng papuri at pasasalamat) ay inawit at ang pangkalahatang amnestiya ay iproklama ng Gobernador Heneral. 2. Pagbibigay ng MXN P900,000 para sa mga sibilyang nadamay sa labanan.",
     "Noong Disyembre 23, 1897, dumating sina Heneral Celestino Tejero at Ricardo Monet mula sa hukbong Espanyol sa Biak-na-Bato at naging mga bihag ng mga rebelde. Nagdeklara ng tigil-putukan ang magkabilang panig at nagkaroon ng kasunduan sa pagitan ni Aguinaldo at ng mga puwersang Espanyol: na ang pamahalaang Espanyol ay magbibigay ng sariling pamamahala sa Pilipinas sa loob ng tatlong taon kung aalis si Aguinaldo at isusuko ang kanyang mga armas. Bilang kapalit, makakatanggap si Aguinaldo ng P800,000 (Mexican Pesos) bilang kabayaran sa mga rebolusyonaryo at isang amnestiya. Pagkatapos makatanggap ng kalahating bayad na P400,000, umalis si Aguinaldo sakay ng barkong Uranus patungong Hong Kong noong Disyembre 27, 1897.",
     "Gayunpaman, may ilang mga heneral ng Pilipinas ang hindi naniwala sa sinseridad ng mga Kastila at tumangging isuko ang kanilang mga armas. Sa kabila nito, nagdaos pa rin ng Te Deum noong Enero 23, 1898. Ang Te Deum—isang tradisyunal na Kristiyanong himno ng pasasalamat at papuri sa Katedral ng Maynila at Palacio Real sa Madrid bilang simbolo ng kapayapaan, ang mga pagkukulang at hindi pagtupad sa mga kondisyon ng kasunduan ay nagdulot ng higit pang tensyon at hindi pagkakaintindihan.",
     "Hindi nagtitiwala sa isa't isa ang mga Pilipino at mga Kastila. Dahil dito, patuloy na nagkaroon ng mga labanan sa pagitan ng dalawang panig kahit na umalis na si Aguinaldo mula sa bansa. Hindi ibinigay ng mga Kastila ang buong napagkasunduang halaga. Ang mga pangyayaring ito ay nagpatuloy sa Digmaang Espanyol-Amerikano."
   ];
 
   const headings = [
-    "Unang pangyayari",
-    "Ika-pangalawang pangyayari",
-    "Ika-tatlong pangyayari",
-    "Ika-apat na pangyayari",
-    "Ika-limang pangyayari",
-    "Ika-anim na pangyayari",
-    "Ika-pito na pangyayari",
-    "Ika-walo na pangyayari",
+    "Unang Pangyayari",
+    "Ikalawang Pangyayari",
+    "Ikatlong Pangyayari",
+    "Ika-apat na Pangyayari",
+    "Ika-limang Pangyayari",
+    "Ika-anim na Pangyayari",
+    "Ika-pitong Pangyayari",
+    "Ika-walong Pangyayari",
   ];
 
   useEffect(() => {

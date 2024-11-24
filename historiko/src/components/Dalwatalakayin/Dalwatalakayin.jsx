@@ -115,7 +115,7 @@ function Dalwatalakayin() {
         <div className="event">
           <img src={biaknabato} alt="Bell" className="event-icon" />
           <h2>Kasunduan sa Biak-na-Bato</h2>
-          <p>Ang kasunduan sa Biak-na- Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang naging dahilan upang mabigo at muling sumiklab ang digmaan.</p>
+          <p>Ang kasunduan sa Biak-na-Bato ay isinagawa upang magkaroon ng kapayapaan sa bansa ngunit ang kawalan ng tiwala sa parehong panig ng mga Espanyol at Pilipino ang naging dahilan upang mabigo at muling sumiklab ang digmaan.</p>
             <div className="event-link">
               <button onClick={() => handleSeeMore(6, 'bato')} className="link-button">Talakayin natin</button>
             </div>

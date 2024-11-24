@@ -41,21 +41,21 @@ const PugadLawin = () => {
     { src: mariano, bg: mariano, description: "Pacto Mariano Gil" },
     { src: taxreceipt, bg: taxreceipt, description: "Tax Receipt Torn by Members of the Katipunan" },
     { src: watawat, bg: watawat, description: "Watawat" },
-    { src: baldoandfrends, bg: baldoandfrends, description: "Gen Mariano Alvarez" },
+    { src: baldoandfrends, bg: baldoandfrends, description: "Heneral Mariano Alvarez" },
     { src: magdalo, bg: magdalo, description: "Magdalo at Magdiwang Faction" },
   ];
 
   const headings = [
-    "Unang pangyayari",
-    "Ika-pangalawang pangyayari",
-    "Ika-tatlong pangyayari",
-    "Ika-apat na pangyayari",
-    "Ika-limang pangyayari",
-    "Ika-anim na pangyayari",
-    "Ika-pitong pangyayari",
-    "Ika-walong pangyayari",
-    "Ika-siyam na pangyayari",
-    "Ika-sampung pangyayari",
+    "Unang Pangyayari",
+      "Ikalawang Pangyayari",
+      "Ikatlong Pangyayari",
+      "Ika-apat na Pangyayari",
+      "Ika-limang Pangyayari",
+      "Ika-anim na Pangyayari",
+      "Ika-pitong Pangyayari",
+      "Ika-walong Pangyayari",
+      "Ika-siyam na Pangyayari",
+      "Ika-sampung Pangyayari",
 
   ];
 
@@ -65,11 +65,11 @@ const PugadLawin = () => {
     "Ang trianggulong Sistema ay ginagamit sa pagkuha ng mga kasaping katipunero. Ang dating miyembro ay maghahanap ng dalawang bagong miyembro na hindi magkakilala. Sa maikling panahon, lumaki ang samahan ng katpunan.",
     "Ang Katipun ay unang antas ng Katipunero; Password: Anak ng Bayan; Nagsusuot ng itim na may nakasulat na titik Z,B,L, Nangangahulugang Anak ng Bayan. Ang kawal ay ang ikalawang antas ng Katipunero.; Password: GOMBURZA; Nagsusuot ng berdeng pandong sa mga pagpupulong na may titik na Z,B,L nangangahulugang Anak ng Bayan; Ang bayani naman ang ikatatlong antas ng Katipunero; Password: Rizal; Nagsusuot ng pulang hood sa mga pagpupulong. Binubuo ng mga pinuno ng Katipunan.",
     "Ang Ritwal na ginagawa sa mga taong nais na maging kasapi ng Katipunan ay Pacto De Sangre. Ito ay ginagawa sa isang lihim na silid na kung tawagin ay Camara Negra (DARK CHAMBER). Ito ay nagsisimula sa isang pagsubok at nagtatapos sa paglagda sa kasunduan gamit ang sarili nilang dugo.",
-    "Gabi ng August 19, 1896, habang abala ang mga katipunero sa paghahanda ng rebolusyon, isiniwalat ni Teodoro Patino, isang katipunero, kay Padre Mariano Gil ang lihim ng Katipunan. Nagawa niya iyon dahil sa payo ng isang madre at kapatid niyang nakatira sa tahanan ng mga ulila sa Mandaluyong. Itinuro ni Patino ang mga imprenta ng mga katipunero. Natuklasan ditto ang ilang polyeto at dokumento ng Katipunan. Hinuli at ikinulong sa Fort Santiago ang mga pinaghihinalaang Pilipino na kasapi ng Katipunan.",
-    "Ang pagkatuklas ng Katipunan ay nagbunsod kay Bonifacio na tumawag ng pulong sa Balintawak, Caloocan kasama sina Jacinto, Procopio Bonifacio, at iba pang katipunero. Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki at katapangan. At isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!” at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa pugad lawin.",
-    "Sunod sunod ang mga labanang nangyari pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng cavite, batangas, bulacan, tarlac, pampanga, laguna at nueva ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat. Lalo itong nagpalubha ng labanan ng Espanyol at mga Pilipino. Sa gitna nito ay may namuong alitan laban sa pinuno ng Katipunan na si Andres Bonifacio at Heneral Emilio Aguinaldo, dahil sa alitangito, nagpatawag ng pulong ang mga rebolusyunaryo upang palitan ang Katipunan ng Rebolusyonaryong Pamahalaan.",
-    "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga caviteno at dahil dito ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Gen. Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Gen. Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
-    "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng magdiwang faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat."
+    "Gabi ng August 19, 1896, habang abala ang mga katipunero sa paghahanda ng rebolusyon, isiniwalat ni Teodoro Patino, isang katipunero, kay Padre Mariano Gil ang lihim ng Katipunan. Nagawa niya iyon dahil sa payo ng isang madre at kapatid niyang nakatira sa tahanan ng mga ulila sa Mandaluyong. Itinuro ni Patino ang mga imprenta ng mga katipunero. Natuklasan dito ang ilang polyeto at dokumento ng Katipunan. Hinuli at ikinulong sa Fort Santiago ang mga pinaghihinalaang Pilipino na kasapi ng Katipunan.",
+    "Ang pagkatuklas ng Katipunan ay nagbunsod kay Bonifacio na tumawag ng pulong sa Balintawak, Caloocan kasama sina Jacinto, Procopio Bonifacio, at iba pang katipunero. Agosto 23, 1896 ay nagkita-kita ang mga katipunero sa Pugad Lawin. Sa utos ni Bonifacio ay sabay sabay na inilabas ng mga katipunero ang kanilang mga sedula at pinunit ito ng buong pagmamalaki na may katapangan at isinigaw ang mga katagang “Mabuhay ang Pilipinas, Mabuhay ang Kalayaan. Mabuhay! Mabuhay!” at ito ay kinilala sa ating kasaysayan bilang unang sigaw sa Pugad Lawin.",
+    "Sunod sunod ang mga labanang nangyari, pinangunahan ng Maynila hanggang sa nakipaglaban na rin ang mga karatig lalawigan gaya ng Cavite, Batangas, Bulacan, Tarlac, Pampanga, Laguna at Nueva Ecija. Ang walong lalawigan na ito na nanguna sa pakikipaglaban sa mga Espanyol  na syang sumisimbolo sa walong sinag ng araw na makikita sa ating watawat. Lalo itong nagpalubha ng labanan ng Espanyol at mga Pilipino. Sa gitna nito ay may namuong alitan laban sa pinuno ng katipunan na si Andres Bonifacio at Heneral Emilio Aguinaldo, dahil sa alitang ito, nagpatawag ng pulong ang mga rebolusyunaryo upang palitan ang Katipunan ng Rebolusyonaryong Pamahalaan.",
+    "Ang himagsikan sa Cavite ay nagsimula noong Agosto 31, 1896. Laging panalo sa labanan ang mga Caviteno at dahil dito ay sumikat at naging sentro ng labanan ang lalawigan ng Cavite at ito ay nahahati sa dalawang pangkat. Una ay ang Magdalo Faction na pinamumunuan ni Heneral Baldomero Aguinaldo at ang Magdiwang Faction na pinamumunuan ni Heneral Mariano Alvarez at ang dalawang ito ay hindi nagkasundo sa kanilang pananaw.",
+    "Nais ng Magdalo Faction na palitan ang katipunan ng isang pamahalaang rebolusyonaryo na mahigpit namang tinutulan ng Magdiwang Faction dahil sa paniniwalang ang KKK ay mayroon ng konstitusyon at mga batas.  Disyembre 31, 1896 ay nagkaroon ng isang kumbensyon sa Imus, Cavite upang pagkasunduin ang dalawang grupo ngunit natapos ang pagpupulong ng walang napagkasunduan ang dalwang pangkat."
   ];
 
   useEffect(() => {

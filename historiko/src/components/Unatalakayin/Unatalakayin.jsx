@@ -95,7 +95,7 @@ function Unatalakayin() {
       <ToastContainer />
       <h1>Mga Talakayin</h1>
       <div className="events-container">
-        <div className="events">
+      <div className="events">
           <img src={plaquetteImage} alt="firstshot" className="event-icon" />
           <h2>Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa</h2>
           <p>Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino</p>
