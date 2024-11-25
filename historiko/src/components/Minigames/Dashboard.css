@@ -118,12 +118,29 @@
 @media screen and (max-width: 768px) {
   .dashboard{
     margin-top: 120px !important;
-    width: 405px !important;
-    height: 700px !important;
+    width: 350px !important;
+    height: 610px !important;
+  }
+
+  .dashboard h2 {
+    font-size: 1.2rem!important;
   }
 
  .dashboard table {
-  width: 400px !important;
+    width: 340px !important;
+    margin-top: -10px;
+  }
+
+  .dashboard th {
+    font-size: 0.6rem!important;
+    padding: 6px!important;
+    text-align: left!important;
+  }
+
+  .dashboard td {
+    font-size: 0.6rem!important;
+    padding: 8px!important;
+    text-align: left!important;
   }
 }
   
