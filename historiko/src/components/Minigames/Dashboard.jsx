@@ -72,16 +72,16 @@ const Dashboard = ({ onClose }) => {
 
   return (
     <div className="dashboard">
-      <h2>User Scores</h2>
+      <h2>Mga puntos</h2>
       <table>
         <thead>
           <tr className="contents">
             <th>Name</th>
-            <th>Quiz 1 (20 pts)</th>
-            <th>Quiz 2 (20 pts)</th>
-            <th>Total Score (40 pts)</th>
-            <th>Percentage</th>
-            <th>Date Taken</th>
+            <th>Pagsusulit 1 (20 pts)</th>
+            <th>Pagsusulit 2 (20 pts)</th>
+            <th>Kabuuang puntos (40 pts)</th>
+            <th>Porsyento</th>
+            <th>Petsa ng pagkuha</th>
           </tr>
         </thead>
         <tbody>
@@ -98,7 +98,7 @@ const Dashboard = ({ onClose }) => {
         </tbody>
       </table>
       <div className="summary">
-        <h3>General Passing Percentage: {generalPassingPercentage}%</h3>
+        <h3>Pangkalahatang Porsyentong Pagpasa: {generalPassingPercentage}%</h3>
       </div>
       <button onClick={goBack}>Bumalik</button>
     </div>
