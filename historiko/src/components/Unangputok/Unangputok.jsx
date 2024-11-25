@@ -40,7 +40,7 @@ const Unangputok = () => {
           draggable: true,
           progress: undefined,
         });
-      }, 1500);
+      }, 1000);
     }
 
     if (user) {
