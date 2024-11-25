@@ -167,6 +167,7 @@
 
   .about p, .one, .two, .bullet, .bullet2 {
     font-size: 14px;
+    text-align: left;
   }
 
   .box h2 {
@@ -174,7 +175,8 @@
   }
 
   .firstline {
-    width: 95%;
+    width: 90%;
+    text-align: justify !important;
   }
 
   .layunin {
@@ -182,6 +184,7 @@
   }
 
   .video-container-about {
-    width: 95%;
+    width: 90%;
+    margin-top: -210px;
   }
 }
