@@ -160,7 +160,7 @@ p {
 
   .flashcard-front, .flashcard-back {
     padding: 10px;
-    margin-left: -10px;
+    margin-left: 35px;
   }
 
   h2 {
@@ -171,9 +171,12 @@ p {
     font-size: 12px;
   }
 
+  .controls {
+    margin-top: -10px;
+  }
+
   button {
     font-size: 12px;
-    padding: 6px 12px;
   }
 
   .bg3 {
