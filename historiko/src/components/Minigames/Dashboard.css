@@ -118,7 +118,7 @@
 @media screen and (max-width: 768px) {
   .dashboard{
     margin-top: 120px !important;
-    width: 350px !important;
+    width: 360px !important;
     height: 610px !important;
   }
 
@@ -133,14 +133,24 @@
 
   .dashboard th {
     font-size: 0.6rem!important;
-    padding: 6px!important;
+    padding: 5px!important;
     text-align: left!important;
   }
 
   .dashboard td {
-    font-size: 0.6rem!important;
-    padding: 8px!important;
-    text-align: left!important;
+    font-size: 0.7rem!important;
+    padding: 3px!important;
+    text-align: left !important;
+  }
+
+  .summary {
+    font-size: 0.9rem !important;
+  }
+
+  .dashboard button {
+    font-size: 0.8rem!important;
+    padding: 5px 10px!important;
+    margin-top: 5px!important;
   }
 }
   
