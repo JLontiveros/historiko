@@ -218,8 +218,8 @@ body::before {
   background-color: gold;
   color: #0047ab;
   position: relative; /* Changed from relative to fixed */
-  top: 145px; /* Adjusted top position */
-  right: -605px; /* Changed from left to right */
+  top: 145px; 
+  left: 600px; 
   transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
