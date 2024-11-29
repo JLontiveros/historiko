@@ -160,7 +160,7 @@ const Tiradpass = () => {
           alt="Labanan sa Tirad pass illustration" 
           className="tiradpass-image"
         />
-        <h2 className="tiradpass-date">General Arhur McArthur</h2>
+        <h2 className="tiradpass-date">General Arthur McArthur</h2>
       </div>
 
       <div className="tiradpass-container-right">
