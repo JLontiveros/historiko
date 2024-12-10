@@ -12,6 +12,7 @@ import { storage } from '../../firebase.js';
 import { ScrollContext } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ChatBox from '../Chat/ChatBot';
 
 const Home = () => {
   const secondSectionRef = useRef(null);
@@ -185,7 +186,10 @@ const Home = () => {
           )}
         </div>
       </section>
+
+      <ChatBox />
     </div>
+    
   );
 };
 

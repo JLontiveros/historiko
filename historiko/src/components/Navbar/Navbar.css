@@ -1,5 +1,14 @@
 /* Navbar styles */
+
+@font-face {
+  font-family: 'TitleFont';
+  src: url('../../assets/SourceSansPro-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 nav {
+  font-family: 'TitleFont', sans-serif; 
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -19,8 +28,8 @@ nav {
 }
 
 .back-icon {
-  color: blue;
-  font-size: 1.5rem;
+  color: #0a0b84;
+  font-size: 1.875rem; /* Increased from 1.5rem */
   cursor: pointer;
   position: absolute;
   display: flex;
@@ -49,9 +58,11 @@ nav img {
 }
 
 .desktop-menu li a {
-  color: navy;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(1);
+  color: #0a0b84;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.875rem; /* Increased from 1.5rem */
   padding: 0.5rem;
   display: block;
 }
@@ -59,31 +70,37 @@ nav img {
 .dropdown {
   display: none;
   position: absolute;
-  background-color: #a0a7ed;
+  background-color: #0a0b84;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   padding: 10px;
   text-align: left;
-  top: 100%;
-  left: 0;
-  min-width: 200px;
+  top: 100px;
+  transform: translateX(-50%);
+  min-width: 300px;
   border-radius: 5px;
   overflow: hidden;
-  z-index: 2;
+  z-index: 4;
 }
 
 .desktop-menu li:hover .dropdown {
   display: block;
+  position: fixed;
 }
 
 .desktop-menu li a:hover {
-  color: white;
+  transform: scale(1.1);
+  background-color: #04054a;
+  padding: 10px;
+  border-radius: 20px;
+  color: #AEC7D6;
+  animation-duration: 0.3s;
 }
 
 .dropdown li {
   padding: 0.5rem;
   text-align: center;
   border-bottom: 2px solid white;
-  font-size: 18px;
+  font-size: 22.5px; /* Increased from 18px */
 }
 
 .dropdown li:last-child {
@@ -91,15 +108,12 @@ nav img {
 }
 
 .dropdown li a {
-  color: navy;
-  font-size: 1rem;
+  color: #EBF5EE;
+  font-size: 1.25rem; /* Increased from 1rem */
   text-decoration: none;
   display: block;
 }
 
-.dropdown li:hover {
-  background-color: rgba(85, 85, 85, 0.8);
-}
 
 nav ul {
   list-style-type: none;
@@ -123,7 +137,7 @@ nav ul li svg {
 
 /* Mobile styles */
 .burger-icon {
-  font-size: 1.5rem;
+  font-size: 1.875rem; /* Increased from 1.5rem */
   cursor: pointer;
   color: navy;
   transition: transform 0.3s ease;
@@ -169,7 +183,7 @@ nav ul li svg {
   .mobile-menu a {
     color: navy;
     text-decoration: none;
-    font-size: 0.9rem; /* Slightly reduce font size */
+    font-size: 1.125rem; /* Increased from 0.9rem */
     padding: 0.25rem 0;
   }
 
@@ -182,8 +196,7 @@ nav ul li svg {
   }
   
   .mobile-submenu a {
-    font-size: 0.8rem;
+    font-size: 1rem; /* Increased from 0.8rem */
     color: navy;
   }
-  
 }

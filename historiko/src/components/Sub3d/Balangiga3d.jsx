@@ -138,7 +138,14 @@ const Balangiga3d = () => {
       progress: undefined,
     });
   };
-
+	  
+	  
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/Balangiga3d2', { state: { showToast: true } });
+  };
+	  
   return (
     <div className="balangiga3d">
       <ToastContainer />
@@ -146,6 +153,8 @@ const Balangiga3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
         <h1>Balangiga Massacre</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (

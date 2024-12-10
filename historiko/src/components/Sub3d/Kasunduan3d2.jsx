@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
+import videoFile from '../../assets/kasunduan.mp4';
 
 const Kasunduan3d = () => {
   const navigate = useNavigate();
@@ -137,10 +138,11 @@ const Kasunduan3d = () => {
     });
   };
 
+
   const handleViewMore = async (e) => {
     e.preventDefault();
    
-    navigate('/kasunduan3d2', { state: { showToast: true } });
+    navigate('/kasunduan3d', { state: { showToast: true } });
   };
 
   return (
@@ -150,18 +152,17 @@ const Kasunduan3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Kasunduan sa Biak na Bato</h1>
       </div>
-      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <button onClick={handleViewMore} className='viewputok'>View 1st Video</button>
       <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (
-            <video 
-              ref={videoRef}
-              src={videoUrl}
+            <video
+              src={videoFile}
               controls
               autoPlay
               onEnded={handleVideoEnd}
-              onContextMenu={handleRightClick} // Disable right-click on the video
+              onContextMenu={handleRightClick}
               style={{ width: '100%', height: '100%' }}
             >
               Your browser does not support the video tag.

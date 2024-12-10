@@ -88,15 +88,27 @@ function Unatalakayin() {
     // After handling progress update, navigate
     navigate(`/${route}`, { state: { showToast: true } });
   };
-
+  
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/Unavid', { state: { showToast: true } });
+  };
+	  
   return (
     <div className="unatalakayin">
       <Navbar />
       <ToastContainer />
+      <button onClick={handleViewMore}  className='viewputok'>View in Video</button>
       <h1>Mga Talakayin</h1>
+      
+
       <div className="events-container">
+
       <div className="events">
           <img src={plaquetteImage} alt="firstshot" className="event-icon" />
+          <br></br>
+          <br></br>
           <h2>Unang Putok sa panlulukan ng Silencio at Sociego, Sta.Mesa</h2>
           <p>Ang hindi pagkilala ng Estados Unidos sa Republika ng Pilipinas ang unang hudyat ng pagbabago sa pakikitungo ng mga Amerikano sa mga Pilipino</p>
             <div className="event-link">
@@ -105,6 +117,7 @@ function Unatalakayin() {
         </div>
         <div className="events">
           <img src={tirad} alt="sword" className="event-icon" />
+          <br></br>
           <h2>Labanan sa Tirad Pass</h2>
           <p>Nangyari ang isa sa makasaysayang sagupaan ng mga rebolusyonaryong Pilipino, ang Labanan sa Pasong Tirad sa pangunguna ni Heneral Gregorio Del Pilar.</p>
             <div className="event-link">
@@ -113,6 +126,7 @@ function Unatalakayin() {
         </div>
         <div className="events">
           <img src={balangiga} alt="Bell" className="event-icon" />
+          <br></br>
           <h2>Balangiga Massacre</h2>
           <p>Pinakatanyag na labanan sa pagitan ng mga Amerikano at mga Pilipino ay ang labanan sa Balangiga na nangyari sa pamumuno ni Heneral Vicente Lukban sa Isla ng Samar.</p>
             <div className="event-link">

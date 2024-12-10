@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './Kasunduan3d.css';
+import './Tirad3d.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useReward } from '../context/RewardContext';
 import { useAuth } from '../../App';
 import arrownav2 from '../../assets/arrownav.png';
-import badgge from '../../assets/badgge.png';
+import badge from '../../assets/badge.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
+import videoFile from '../../assets/tirad2.mp4';
 
-const Kasunduan3d = () => {
+const Tirad3d = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { saveReward } = useReward();
@@ -22,21 +23,21 @@ const Kasunduan3d = () => {
 
   useEffect(() => {
     // Set a default value of 'false' in localStorage if it doesn't exist
-    if (localStorage.getItem('kasunduan3dToastShown') === null) {
-      localStorage.setItem('kasunduan3dToastShown', 'false');
+    if (localStorage.getItem('tirad3dToastShown') === null) {
+      localStorage.setItem('tirad3dToastShown', 'false');
     }
   
     const fetchVideo = async () => {
       try {
-        const videoRef = ref(storage, 'biaknavid.mp4');
+        const videoRef = ref(storage, 'tiradvid.mp4');
         const url = await getDownloadURL(videoRef);
         setVideoUrl(url);
   
         // After fetching the video, update localStorage and show the toast if not previously shown
-        if (localStorage.getItem('kasunduan3dToastShown') === 'false') {
+        if (localStorage.getItem('tirad3dToastShown') === 'false') {
           const userName = user ? user.name || user.username : 'Kaibigan';
           toast.info(
-            `Pagbati, ${userName}! Magpatuloy at panoorin ang 3d 'Kasunduan sa Biak-na-Bato'`, 
+            `Pagbati, ${userName}! Magpatuloy at panoorin ang 3d 'Labanan sa Tirad Pass'`, 
             {
               position: "top-right",
               autoClose: 5000,
@@ -48,7 +49,7 @@ const Kasunduan3d = () => {
             }
           );
           // Update localStorage to prevent the toast from showing again
-          localStorage.setItem('kasunduan3dToastShown', 'true');
+          localStorage.setItem('tirad3dToastShown', 'true');
         }
       } catch (error) {
         console.error("Error fetching video:", error);
@@ -86,7 +87,7 @@ const Kasunduan3d = () => {
         const { data, error } = await supabase
           .from('user_progress')
           .upsert(
-            { user_id: userUUID, topic_id: 6, progress: 100 },
+            { user_id: userUUID, topic_id: 2, progress: 100 },
             { onConflict: ['user_id', 'topic_id'] }
           );
 
@@ -100,10 +101,10 @@ const Kasunduan3d = () => {
   };
 
   const handleGoBack = async () => {
-    const rewardId = 6;
+    const rewardId = 2; // Replace with the correct reward ID
     
     if (user) {
-      await updateProgress();
+      await updateProgress(); // Update progress to 100%
       const result = await saveReward(rewardId, user.id);
       
       if (result.success) {
@@ -111,21 +112,23 @@ const Kasunduan3d = () => {
         navigate(-1);
       } else {
         console.error(result.message);
+        // Optionally, add a notification or alert to show the error to the user.
       }
     } else {
       console.error('No user is logged in');
+      // Optionally, redirect to login page or show an alert
     }
   };
 
   const handleVideoEnd = () => {
     toast.success(<div style={{ display: 'flex', alignItems: 'center' }}>
       <img 
-        src={badgge} 
+        src={badge} 
         alt="Badge" 
         style={{ width: '50px', height: '50px', marginRight: '10px' }} 
       />
-      <span>Gantimpala para sa pagtatapos ng talakayin ng Biak na Bato.</span>
-    </div>,
+      <span>Gantimpala para sa pagtatapos ng talakayin ng Labanan sa Tirad Pass.</span>
+    </div>, 
     {
       position: "top-center",
       autoClose: 5000,
@@ -137,31 +140,33 @@ const Kasunduan3d = () => {
     });
   };
 
+  	  
+	  
   const handleViewMore = async (e) => {
     e.preventDefault();
    
-    navigate('/kasunduan3d2', { state: { showToast: true } });
+    navigate('/tirad3d', { state: { showToast: true } });
   };
+	  
 
   return (
-    <div className="Kasunduan3d">
-      <ToastContainer/>
-      <div className="Kasunduan3d-container">
+    <div className="Tirad3d">
+      <ToastContainer />
+      <div className="Tirad3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
-        <h1>Kasunduan sa Biak na Bato</h1>
+        <h1>Labanan sa Tirad Pass</h1>
       </div>
-      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <button onClick={handleViewMore} className='viewputok'>View 1st Video</button>
       <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (
-            <video 
-              ref={videoRef}
-              src={videoUrl}
+            <video
+              src={videoFile}
               controls
               autoPlay
               onEnded={handleVideoEnd}
-              onContextMenu={handleRightClick} // Disable right-click on the video
+              onContextMenu={handleRightClick}
               style={{ width: '100%', height: '100%' }}
             >
               Your browser does not support the video tag.
@@ -171,6 +176,6 @@ const Kasunduan3d = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Kasunduan3d;
+export default Tirad3d;

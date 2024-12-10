@@ -132,7 +132,7 @@
 }
 
 .heading {
-  font-size: 2.5em;
+  font-size: 3.125em;
   margin-bottom: 20px;
   line-height: 1.2;
 }
@@ -143,7 +143,7 @@
 }
 
 .subheading {
-  font-size: 1.2em;
+  font-size: 1.5em;
   line-height: 1.4;
   text-align: left;
 }
@@ -195,12 +195,12 @@
   }
 
   .heading {
-    font-size: 1.3em;
+    font-size: 1.625em;
     text-align: left;
   }
 
   .subheading {
-    font-size: 0.7em;
+    font-size: 0.875em;
     text-align: left;
   }
 

@@ -137,6 +137,14 @@ const Convention3d = () => {
     });
   };
 
+
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/convention3d2', { state: { showToast: true } });
+  };
+	  
+
   return (
     <div className="convention3d">
       <ToastContainer/>
@@ -144,6 +152,8 @@ const Convention3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
         <h1>Kumben siyong Tejeros</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (

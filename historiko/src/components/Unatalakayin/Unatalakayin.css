@@ -1,3 +1,30 @@
+
+
+@font-face {
+  font-family: 'ListFont';
+  src: url('../../assets/Coolvetica Rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeadFont';
+  src: url('../../assets/Paint On The Wall.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MainFont';
+  src: url('../../assets/BLASTERAN.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+
+
 .unatalakayin {
   background-color: #cbe1ec;
   min-height: 94.5vh;
@@ -12,9 +39,11 @@
 
 .unatalakayin h1 {
   text-align: center;
-  color: #0000FF;
-  font-size: 40px;
-  margin-top: 110px;
+  color: #0a0b84;
+  font-size: 90px;
+  font-weight: 100;
+  font-family: 'MainFont', sans-serif;
+  margin-top: 80px;
   margin-bottom: 70px;
   animation: slideDown 0.5s ease-out;
 }
@@ -33,17 +62,17 @@
 }
 
 .events {
-  background-color: #8a7fd5;
+  background-color: #0a0b84;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
-  max-width: 300px;
+  max-width: 370px;
   color: white;
   text-align: center;
   margin-bottom: 80px;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 530px;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: popIn 0.5s ease-out;
@@ -75,9 +104,10 @@
 }
 
 .events h2 {
-  font-size: 1.5em;
+  font-size: 2.0em;
   margin-bottom: 15px;
   color: rgb(255, 229, 79);
+  font-family: 'HeadFont', sans-serif;
   height: 40px;
   display: flex;
   align-items: center;
@@ -94,9 +124,11 @@
 }
 
 .events p {
-  font-size: 0.9em;
+  font-size: 1.1em;
   text-align: justify;
   margin: 0;
+  color: white;
+  font-family: 'ListFont', sans-serif;
   padding: 10px;
   flex-grow: 1;
   display: flex;
@@ -118,12 +150,13 @@
 
 .link-button {
   display: inline-block;
-  background-color: rgb(255, 229, 79);
-  color: #8a7fd5;
+  background-color: #0a0b84;
+  color: white;
   text-decoration: none;
+  margin-top: 65px;
+  font-family: 'ListFont', sans-serif;
   padding: 15px 50px;
   border-radius: 25px;
-  font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   width: 80%;
   max-width: 240px;
@@ -178,6 +211,7 @@
 @media screen and (max-width: 768px) {
   .unatalakayin h1 {
     font-size: 30px;
+    font-family: 'MainFont', sans-serif;
     margin-top: 80px;
     margin-bottom: 40px;
   }
@@ -200,6 +234,7 @@
 @media screen and (max-width: 480px) {
   .unatalakayin h1 {
     font-size: 24px;
+    font-family: 'MainFont', sans-serif;
     margin-top: 130px;
     margin-bottom: 30px;
   }
@@ -216,6 +251,7 @@
 
   .event p {
     font-size: 0.8em;
+    font-family: 'ListFont', sans-serif;
   }
 
   .link-button {

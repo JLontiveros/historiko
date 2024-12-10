@@ -1,5 +1,34 @@
+
+
+@font-face {
+  font-family: 'ListFont';
+  src: url('../../assets/Coolvetica Rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeadFont';
+  src: url('../../assets/Paint On The Wall.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MainFont';
+  src: url('../../assets/BLASTERAN.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NameFont';
+  src: url('../../assets/ArgentumSans-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 .unangputok-container {
-  background-color: #e6f2ff;
+  background-color: #0a0b84;
   font-family: Arial, sans-serif;
   display: grid;
   grid-template-columns: 1.5fr 0.5fr;
@@ -28,7 +57,7 @@
   margin-bottom: 50px;
   margin-left: 50px;
   border-radius: 20px;
-  box-shadow: 10px 10px #8c85d5;
+  box-shadow: 10px 10px #177E89;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideInLeft 0.5s ease-out;
 }
@@ -38,7 +67,7 @@
   height: 400px;
   margin: 0; /* Removes unnecessary margins */
   border-radius: 20px;
-  box-shadow: 10px 10px #8c85d5;
+  box-shadow: 10px 10px #177E89;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideInLeft 0.5s ease-out;
 }
@@ -50,7 +79,7 @@
 
 .unangputok-container-left img:hover {
   transform: scale(1.05);
-  box-shadow: 15px 15px #8c85d5;
+  box-shadow: 15px 15px #177E89;
 }
 
 .unangputok-container-right {
@@ -65,15 +94,15 @@
 }
 
 .unangputok-container-right h1 {
-  color: #0047ab;
-  font-size: 30px;
-  font-weight: 800;
+  color: #FFFFFF;
+  font-size: 40px;
+  font-weight: 100;
   margin-top: 50px;
   transition: color 0.3s ease;
 }
 
 .unangputok-container-right h1:hover {
-  color: #0056d6;
+  color: #FFFFFF;
 }
 
 .unangputok-description {
@@ -115,7 +144,9 @@
 
 .unangputok-container-right p {
   border-top: 5px solid gold;
-  background-color: #8c85d5;
+  color: white;
+  font-family: 'ListFont',sans-serif ;
+  background-color: #177E89;
   margin-left: 90px;
   margin-right: 70px;
   margin-top: -70px;
@@ -128,11 +159,12 @@
 }
 
 .unangputok-container-right p:hover {
-  background-color: #9f99e0;
+  background-color: #084C61;
 }
 
 .unangputok-date {
-  color: #4169e1;
+  color: #FFFFFF;
+  font-family: 'NameFont', sans-serif;
   font-size: 24px;
   margin: 0; /* Aligns the date directly under the image */
   text-align: center; /* Ensures text alignment is centered */
@@ -143,16 +175,17 @@
 }
 
 .unangputok-date:hover {
-  color: #5a7de1;
+  color: #FFFFFF;
 }
 
 .unangputok-container-right button {
-  width: 120px;
+  width: 220px;
   margin-top: -10px;
   margin-left: 400px;
   margin-right: 400px;
   border-radius: 50px;
-  background-color: #8a7fd5;
+  background-color: #177E89;
+  font-family: 'NameFont', sans-serif;
   color: white;
   border: none;
   padding: 0px 10px;
@@ -169,7 +202,7 @@
 }
 
 .unangputok-container-right button:hover {
-  background-color: #3255b2;
+  background-color: #084C61;
   transform: scale(1.05);
 }
 
@@ -249,4 +282,10 @@
     margin-top: 5px;
     padding: 10px;
   }
+}
+
+
+
+.unangputok-title{
+  font-family: 'MainFont', sans-serif;
 }

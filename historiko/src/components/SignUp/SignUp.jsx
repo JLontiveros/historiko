@@ -139,7 +139,7 @@ const SignUp = () => {
   
       const { data, error } = await supabase
         .from('users')
-        .select('id, username, name')
+        .select('id, username, name, user_type')
         .eq('username', username)
         .eq('password', password)
         .single();
@@ -162,6 +162,7 @@ const SignUp = () => {
         localStorage.setItem('id', data.id);
         localStorage.setItem('token', newToken);
         localStorage.setItem('username', data.username);
+        localStorage.setItem('usertype', data.user_type);
         localStorage.setItem('user', JSON.stringify({
           id: data.id,
           username: data.username,

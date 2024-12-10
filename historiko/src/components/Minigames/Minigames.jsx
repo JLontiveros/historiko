@@ -80,11 +80,9 @@ const Minigame = () => {
   };
 
   const handleGameClick = (game) => {
-    if (game === 'flashcard' || isFlashcardCompleted) {
+
       setSelectedGame(game);
-    } else {
-      alert('Please complete the Virtual Flashcard game first!');
-    }
+    
   };
 
   const backToSelection = () => {
@@ -105,14 +103,18 @@ const Minigame = () => {
   if (!isAuthenticated) {
     return <div>Please log in to access the minigames.</div>;
   }
-
-  if (selectedGame === 'guessGame') {
+  
+  if ((selectedGame === 'guessGame') || (localStorage.getItem('gamechosen') === 'guessGame')) {
     return (
       <div className="minigame-container">
         <GuessGame />
       </div>
     );
   }
+  
+
+
+
 
   if (selectedGame === 'guessGame2') {
     return (
@@ -146,15 +148,15 @@ const Minigame = () => {
           <h2>Magbalik aral gamit ang FlashCard</h2>
           <img src={vf} alt='background' className='virtual-bg'/>
         </div>
-        <div className={`guess-game ${!isFlashcardCompleted ? 'locked' : ''}`} onClick={() => handleGameClick('guessGame')}>
+        <div className={`guess-game`} onClick={() => handleGameClick('guessGame')}>
           <h2>Pag susulit sa Panahon ng Himagsikang Pilipino</h2>
           <img src={gg} alt="Character" className="character-image" />
-          {!isFlashcardCompleted && <div className="lock-overlay">🔒</div>}
+         
         </div>
-        <div className={`guess-game ${!isFlashcardCompleted ? 'locked' : ''}`} onClick={() => handleGameClick('guessGame2')}>
+        <div className={`guess-game`} onClick={() => handleGameClick('guessGame2')}>
           <h2>Pag susulit sa Panahon ng Digmaang Pilipino-Amerikano</h2>
           <img src={gg2} alt="Character" className="character-image" />
-          {!isFlashcardCompleted && <div className="lock-overlay">🔒</div>}
+        
         </div>
       </div>
       </div>

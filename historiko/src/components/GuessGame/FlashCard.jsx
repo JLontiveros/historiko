@@ -72,6 +72,31 @@ const FlashCard = ({ onComplete }) => {
     }
   };
 
+  const skiptogame = () => {
+    // Check if 'gamechosen' is already set in localStorage
+    if (!localStorage.getItem('gamechosen')) {
+      // If it's not set, create it and set it to 'guessGame'
+      localStorage.setItem('gamechosen', 'guessGame');
+      console.log('gamechosen set to guessGame');
+    }
+  
+    // Now, check if 'gamechosen' is 'guessGame'
+    if (localStorage.getItem('gamechosen') === 'guessGame') {
+      console.log('Guess game is chosen!');
+      
+      // Example of creating something, e.g., a new element:
+      const newElement = document.createElement('div');
+      newElement.textContent = 'Welcome to the Guess Game!';
+      document.body.appendChild(newElement);
+    }
+  };
+  
+
+
+
+  
+
+
   const handleComplete = async () => {
     if (!isAuthenticated || !user) {
       console.error('No user found. Please ensure you are logged in.');
@@ -137,6 +162,10 @@ const FlashCard = ({ onComplete }) => {
           draggable
           pauseOnHover
         />
+        <button type="button"  onClick={() => { 
+     skiptogame();
+    window.location.href = window.location.href; 
+  }}>Skip to Quiz</button>
         <h2>Pindutin ang litrato para makita ang sagot</h2>
         <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
           <div className="flashcard-inner">

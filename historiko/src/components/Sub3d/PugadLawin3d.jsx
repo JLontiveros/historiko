@@ -59,7 +59,11 @@ const PugadLawin3d = () => {
     fetchVideo();
   }, [location, user]);
   
-
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/pugadlawin3d2', { state: { showToast: true } });
+  };
   // Disable right-click on the video
   const handleRightClick = (e) => {
     e.preventDefault();
@@ -146,6 +150,9 @@ const PugadLawin3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack}/>
         <h1>Sigaw ng Pugad Lawin</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (
