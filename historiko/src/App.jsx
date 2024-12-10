@@ -5,7 +5,7 @@ import { MarkedTopicsProvider, useMarkedTopics } from './components/context/Mark
 import { RewardProvider } from './components/context/RewardContext';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-import Chat from './components/Chat/ChatBot';
+// import Chat from './components/Chat/ChatBot';
 import NotFound from './components/Home/NotFound';
 import Profile from './components/Profile/Profile';
 import About from './components/About/About';
@@ -125,7 +125,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/Home" element={<Home />} />
-                <Route path="/Chat" element={<Chat />} />
+                { /* <Route path="/Chat" element={<Chat />} /> */}
                 <Route path="/Profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                 <Route path="/About" element={<About />} />
                 <Route path="/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
