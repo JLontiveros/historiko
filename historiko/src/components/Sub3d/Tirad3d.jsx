@@ -139,6 +139,16 @@ const Tirad3d = () => {
     });
   };
 
+
+  
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/tirad3d2', { state: { showToast: true } });
+  };
+	  
+	  
+
   return (
     <div className="Tirad3d">
       <ToastContainer />
@@ -146,6 +156,8 @@ const Tirad3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Labanan sa Tirad Pass</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (

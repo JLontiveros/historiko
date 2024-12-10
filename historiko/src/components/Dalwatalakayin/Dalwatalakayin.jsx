@@ -90,10 +90,19 @@ function Dalwatalakayin() {
   };
   
 
+  
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/Dalawavid', { state: { showToast: true } });
+  };
+
+
   return (
     <div className="dalwatalakayin">
       <Navbar />
       <ToastContainer />
+      <button onClick={handleViewMore}  className='viewputok'>View in Video</button>
       <h1>Mga Talakayin</h1>
       <div className="events-container">
         <div className="event">

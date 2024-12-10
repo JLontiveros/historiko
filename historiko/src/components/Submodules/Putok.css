@@ -207,9 +207,23 @@ body::before {
 .putok-arrow-keys img:hover {
   transform: scale(1.2);
 }
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
+}
 
 .viewputok {
-  width: 130px;
+  width: 170px;
   height: 30px;
   border-radius: 10px;
   cursor: pointer;

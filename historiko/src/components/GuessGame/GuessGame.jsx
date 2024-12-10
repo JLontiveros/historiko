@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './GuessGame.css';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
 import { supabase } from '../../supabaseClient';
@@ -14,8 +15,12 @@ const GuessGame = () => {
   const [gameCompleted, setGameCompleted] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [userScores, setUserScores] = useState([]);
+  const [timer, setTimer] = useState(30);  // State for countdown timer
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
+  const [wrongAnswerCount, setWrongAnswerCount] = useState(0);
+
+  localStorage.removeItem('gamechosen');
 
   const fetchQuestions = useCallback(async () => {
     const { data, error } = await supabase
@@ -56,6 +61,25 @@ const GuessGame = () => {
     }
   }, [isAuthenticated, navigate, fetchQuestions]);
 
+  // Start the timer whenever a new question is displayed
+  useEffect(() => {
+    if (currentQuestionIndex < questions.length) {
+      const countdown = setInterval(() => {
+        setTimer((prevTimer) => {
+          if (prevTimer <= 1) {
+            clearInterval(countdown);
+            handleNextQuestion(); // Go to the next question after timer ends
+            return 30; // Reset timer for next question
+          }
+          return prevTimer - 1;
+        });
+      }, 1000);
+      
+      // Clear interval on component unmount or when the question changes
+      return () => clearInterval(countdown);
+    }
+  }, [currentQuestionIndex, questions]);
+
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
     const currentQuestion = questions[currentQuestionIndex];
@@ -68,19 +92,52 @@ const GuessGame = () => {
       setScore(updatedScore);   // Update the state
     } else {
       setFeedback(`Mali! Ang tamang sagot ay ${currentQuestion.correct_answer}`);
+      setWrongAnswerCount((prevCount) => prevCount + 1);
     }
+
+    
+    /* Check for 3 wrong answers */
+    if (wrongAnswerCount + 1 >= 3) {
+      Swal.fire({
+        title: 'You failed the Quiz!',
+        text: "Try harder next time. You did well",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect to the "kasunduan" link if confirmed
+          window.location.href = '/Quiz';
+        }
+      });
+    
+      // Set a timeout to redirect after 2 seconds if no action is taken
+      setTimeout(() => {
+        window.location.href = '/Quiz';  // Redirect after 2 seconds
+      }, 2000); // 2000 ms = 2 seconds
+    
+      return; // Stop further processing
+    }
+    
     
     setTimeout(() => {
       setSelectedAnswer(null);
       setFeedback('');
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-      } else {
-        setGameCompleted(true);
-        saveScore(updatedScore);  // Pass the updated score directly to saveScore
-      }
+      handleNextQuestion(updatedScore);
     }, 2000);
   };  
+
+  const handleNextQuestion = (updatedScore = score) => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      setTimer(30);  // Reset timer for next question
+    } else {
+      setGameCompleted(true);
+      saveScore(updatedScore);  // Pass the updated score directly to saveScore
+    }
+  };
 
   const saveScore = async (finalScore) => {
     if (!isAuthenticated || !user) {
@@ -110,11 +167,11 @@ const GuessGame = () => {
     }
   };
   
-  
   const restartGame = () => {
     setCurrentQuestionIndex(0);
     setScore(0);
     setGameCompleted(false);
+    setTimer(30);  // Reset timer on restart
   };
 
   const toggleDashboard = () => {
@@ -138,21 +195,42 @@ const GuessGame = () => {
     return <div>Loading...</div>;
   }
 
+
   if (gameCompleted) {
-    return (
-      <div className="guess-game-container results-screen">
-        <h2>Matagumpay na nakatapos!</h2>
-        <p>ang iyong puntos: {score} / {questions.length}</p>
-        <button className="restart-button" onClick={restartGame}>Ulitin ang pag susulit</button>
-        {/* <button className="dashboard-button" onClick={toggleDashboard}>Tignan ang puntos</button> */}
-      </div>
-    );
+    Swal.fire({
+      title: 'Matagumpay na nakatapos!',
+      text: `Ang iyong puntos: ${score} / ${questions.length}`,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Subukang muli!',
+      cancelButtonText: 'Lumabas',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        restartGame(); // Restart the game if the user chooses to try again
+      } else {
+        navigate('/Quiz'); // Navigate away if the user chooses to exit
+      }
+    });
+  
+    return null; // Render nothing while SweetAlert is active
   }
+  
 
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
     <div className="guess-game-container">
+      <div className="timer">
+        <p>Time Remaining: {timer} seconds</p>
+      </div>
+      <div className="progress-bar">
+        <div
+          className="progress"
+          style={{
+            width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
+          }}
+        />
+      </div>
       <div className="image-grid">
         {currentQuestion && currentQuestion.image_urls && (
           Array.isArray(currentQuestion.image_urls)
@@ -195,8 +273,17 @@ const GuessGame = () => {
         ))}
       </div>
       <div className="progress">
-        Question {currentQuestionIndex + 1} of {questions.length}
+        <p>Question {currentQuestionIndex + 1} of {questions.length}</p>
       </div>
+      <div className="progress-container">
+  <div 
+    className="progress-bar" 
+    style={{
+      width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`
+    }}
+  />
+</div>
+
     </div>
   );
 };

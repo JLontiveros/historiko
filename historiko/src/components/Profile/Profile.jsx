@@ -365,7 +365,7 @@ const Profile = () => {
                 <input
                   type="file"
                   id="avatar"
-                  accept="image/*"
+                  accept=".jpg, .jpeg, .png, .gif"
                   onChange={handleAvatarUpload}
                   style={{ display: 'none' }}
                 />

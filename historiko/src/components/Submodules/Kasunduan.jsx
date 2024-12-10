@@ -9,6 +9,7 @@ import statue from '../../assets/statue.png';
 import groupnabiak from '../../assets/groupnabiak.png';
 import republikangbiak from '../../assets/republikangbiak.jpg';
 import trio from '../../assets/trio.png';
+import Swal from 'sweetalert2';
 import nilagdaan from '../../assets/nilagdaan.png';
 import barkonguranus from '../../assets/barkonguranus.png';
 import nota from '../../assets/nota.png';
@@ -95,6 +96,7 @@ const Kasunduan = () => {
   }
 }, [user, hasShownToast]);
 
+  const progressPercentage = ((selectedImage + 1) / images.length) * 100;
   const handlePrev = (e) => {
     e.preventDefault();
     setSelectedImage((prev) => {
@@ -104,14 +106,97 @@ const Kasunduan = () => {
     });
   };
   
-  const handleNext = (e) => {
-    e.preventDefault();
-    setSelectedImage((prev) => {
-      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
-      setCurrentHeading(headings[newIndex]);
-      return newIndex;
+ const handleNext = async (e) => {
+  e.preventDefault();
+  if (selectedImage === 7) {
+    // Show SweetAlert prompt
+    Swal.fire({
+      title: 'Next topic?',
+      text: "You are about to proceed to the next topic.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, proceed',
+      cancelButtonText: 'No, stay here'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to the "kasunduan" link if confirmed
+        window.location.href = '/kasunduan';
+      }
     });
-  };
+
+     return newIndex;
+  }
+  setSelectedImage((prev) => {
+    const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+    setCurrentHeading(headings[newIndex]);
+
+    // If on the last slide, mark progress as complete
+    if (newIndex === images.length - 1 && user) {
+      updateProgressToComplete(); // Call function to update progress to 100%
+    } else {
+      // Update progress dynamically if it's less than 100%
+      const progressPercentage = ((newIndex + 1) / images.length) * 100;
+      if (progressPercentage < 100) {
+        updateProgressToPercentage(progressPercentage); // Dynamically update progress
+      }
+    }
+
+    return newIndex;
+  });
+};
+
+const updateProgressToPercentage = async (progressPercentage) => {
+  if (user) {
+    try {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { 
+              user_id: userUUID, 
+              topic_id: topicId, 
+              progress: Math.min(progressPercentage, 100) // Ensure the progress does not exceed 100%
+            },
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log(`Progress updated to ${Math.min(progressPercentage, 100)}%`);
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching user UUID or updating progress:', err);
+    }
+  }
+};
+
+
+// Function to mark progress as 100%
+const updateProgressToComplete = async () => {
+  if (user) {
+    const userUUID = await getUserUUID(user.username);
+    if (userUUID) {
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert(
+          { user_id: userUUID, topic_id: topicId, progress: 100 },
+          { onConflict: ['user_id', 'topic_id'] }
+        );
+
+      if (error) {
+        console.error('Error updating progress to 100%:', error);
+      } else {
+        console.log('Progress updated to 100%');
+      }
+    }
+  }
+};
+
 
   const toggleZoom = (e) => {
     e.preventDefault();
@@ -195,10 +280,12 @@ const Kasunduan = () => {
     setCurrentHeading(headings[index]);
   };
 
+
+
   return (
     <div className="Kasunduan">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="viewkasunduan">View in 3D</button>
+      <button onClick={handleViewMore} className="viewkasunduan">View in Video</button>
       <div className="Kasunduan-container">
         <div className="Kasunduan-description-container">
           <h1>Deskripsyon:</h1>
@@ -226,7 +313,13 @@ const Kasunduan = () => {
             );
           })}
         </div>
-        <div className="Kasunduan-arrow-keys">
+        <div className="progress-bar-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
+        <div className="kasunduan-arrow-keys">
           <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
         </div>

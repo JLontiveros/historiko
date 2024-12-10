@@ -38,17 +38,32 @@ const Dashboard = ({ onClose }) => {
           })
           .sort((a, b) => b.percentage - a.percentage); // Sort by percentage descending
   
+        // Assuming 'loggedInUserId' is the ID of the logged-in user
+        const loggedInUserId = localStorage.getItem('id'); // Get the logged-in user's ID from your context or state
+        const loggedInUserType = localStorage.getItem('usertype'); 
+        
+        let filteredScores = []; // Declare filteredScores outside the if-else block
+  
+        if(loggedInUserType === "Student"){
+          // Filter the scores to show only the logged-in user's scores
+          filteredScores = scoresWithPercentage.filter(userScore => userScore.user_id === loggedInUserId);
+        } 
+        else if (loggedInUserType === "Teacher"){
+          // Show all scores if the logged-in user is a Teacher
+          filteredScores = scoresWithPercentage;
+        }
+  
         // Calculate the general passing percentage
-        const totalCorrectAnswers = scoresWithPercentage.reduce(
+        const totalCorrectAnswers = filteredScores.reduce(
           (sum, user) => sum + user.totalScore,
           0
         );
         const totalPossibleItems =
-          scoresWithPercentage.length * maxTotalScore; // Total possible items for all students
+          filteredScores.length * maxTotalScore; // Total possible items for the logged-in user
         const passingPercentage =
           (totalCorrectAnswers / totalPossibleItems) * 100;
   
-        setUserScores(scoresWithPercentage);
+        setUserScores(filteredScores); // Set the filtered scores
         setGeneralPassingPercentage(passingPercentage.toFixed(2)); // Round to 2 decimals
       }
     } catch (error) {
@@ -56,11 +71,13 @@ const Dashboard = ({ onClose }) => {
     } finally {
       setIsLoading(false);
     }
-  };    
-
+  };
+  
+  
   useEffect(() => {
     fetchUserScores();
   }, []);
+  
 
   const goBack = () => {
     navigate(-1);

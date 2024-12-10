@@ -21,6 +21,7 @@ import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const PugadLawin = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -115,14 +116,94 @@ const PugadLawin = () => {
     });
   };
   
-  const handleNext = (e) => {
-    e.preventDefault();
-    setSelectedImage((prev) => {
-      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
-      setCurrentHeading(headings[newIndex]);
-      return newIndex;
+  const handleNext = async (e) => {
+  e.preventDefault();
+  if (selectedImage === 9) {
+    Swal.fire({
+      title: 'Next topic?',
+      text: "You are about to proceed to the next topic.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, proceed',
+      cancelButtonText: 'No, stay here'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to the "kasunduan" link if confirmed
+        window.location.href = '/convention';
+      }
     });
-  };
+  }
+  setSelectedImage((prev) => {
+    const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+    setCurrentHeading(headings[newIndex]);
+
+    // If on the last slide, mark progress as complete
+    if (newIndex === images.length - 1 && user) {
+      updateProgressToComplete(); // Call function to update progress to 100%
+    } else {
+      // Update progress dynamically if it's less than 100%
+      const progressPercentage = ((newIndex + 1) / images.length) * 100;
+      if (progressPercentage < 100) {
+        updateProgressToPercentage(progressPercentage); // Dynamically update progress
+      }
+    }
+
+    return newIndex;
+  });
+};
+
+const updateProgressToPercentage = async (progressPercentage) => {
+  if (user) {
+    try {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { 
+              user_id: userUUID, 
+              topic_id: topicId, 
+              progress: Math.min(progressPercentage, 100) // Ensure the progress does not exceed 100%
+            },
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log(`Progress updated to ${Math.min(progressPercentage, 100)}%`);
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching user UUID or updating progress:', err);
+    }
+  }
+};
+
+
+// Function to mark progress as 100%
+const updateProgressToComplete = async () => {
+  if (user) {
+    const userUUID = await getUserUUID(user.username);
+    if (userUUID) {
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert(
+          { user_id: userUUID, topic_id: topicId, progress: 100 },
+          { onConflict: ['user_id', 'topic_id'] }
+        );
+
+      if (error) {
+        console.error('Error updating progress to 100%:', error);
+      } else {
+        console.log('Progress updated to 100%');
+      }
+    }
+  }
+};
+
 
   const toggleZoom = (e) => {
     e.preventDefault();
@@ -206,10 +287,13 @@ const PugadLawin = () => {
     setCurrentHeading(headings[index]);
   };
 
+  const progressPercentage = ((selectedImage + 1) / images.length) * 100;
+
+
   return (
     <div className="PugadLawin">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="viewpugad">View in 3D</button>
+      <button onClick={handleViewMore} className="viewpugad">View in Video</button>
       <div className="PugadLawin-container">
         <div className="PugadLawin-description-container">
           <h1>Deskripsyon:</h1>
@@ -237,7 +321,13 @@ const PugadLawin = () => {
             );
           })}
         </div>
-        <div className="PugadLawin-arrow-keys">
+        <div className="progress-bar-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
+        <div className="pugadlawin-arrow-keys">
           <img src={arrownav2} alt="left" onClick={handlePrev} />
           <img src={arrownav} alt="right" className="arrow-right" onClick={handleNext} />
         </div>

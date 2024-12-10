@@ -1,5 +1,23 @@
 /* src/components/Modules/Modules.css */
 
+@font-face {
+  font-family: 'ListFont';
+  src: url('../../assets/Coolvetica Rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeadFont';
+  src: url('../../assets/Paint On The Wall.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+
 .modules {
   display: flex;
   background-color: #cde3eb;
@@ -54,10 +72,10 @@
 }
 
 .module {
-  background-color: #8a7fd5;
+  background-color: #0a0b84;
   border-radius: 20px;
   padding: 40px;
-  width: 300px;
+  width: 375px;
   color: white;
   text-align: center;
   position: relative;
@@ -73,7 +91,8 @@
 }
 
 .module h2 {
-  font-size: 1.5em;
+  font-size: 2.3em;
+  font-family: 'HeadFont', sans-serif;
   margin-bottom: 40px;
   margin-top: -20px;
   color: rgb(214, 182, 2);
@@ -90,13 +109,15 @@
 
 .module ul {
   list-style-type: none;
+  font-size: 20px;
+  font-family: 'ListFont', sans-serif;
   padding: 0;
   text-align: left;
 }
 
 .module li {
   margin-bottom: 10px;
-  font-size: 0.9em;
+  font-size: 1.3em;
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
@@ -111,11 +132,13 @@
 
 .module button {
   border-radius: 50px;
+  font-family: 'ListFont', sans-serif;
+  font-size: 20px;
   border: none;
   padding: 15px 50px;
   margin-top: 10px;
   background-color: rgb(119, 202, 202);
-  color: white;
+  color: #0a0b84;
   cursor: pointer;
 }
 

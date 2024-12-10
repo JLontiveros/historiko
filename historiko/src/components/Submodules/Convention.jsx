@@ -13,6 +13,7 @@ import { supabase } from '../../supabaseClient';
 import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const Convention = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -33,11 +34,11 @@ const Convention = () => {
   ];
 
   const descriptions = [
-    "Hindi nagustuhan ni Andres Bonifacio ang pagtutol at pangiinsulto ni Daniel Tirona, ay kanyang ipinahayag na walang bisa ang naganap na pag-pupulong at umalis. Matapos ang paglisan ni Bonifacio ay patuloy parin ang halalan at pagpupulong sa Tejeros at isinagawa ang panunumpa sa katungkulan ng mga bagong halal na pinuno maliban kay Bonifacio sa simbahan ng Sta Cruz Malabon.",
+    "Hindi nagustuhan ni Andres Bonafacio ang pagtutol at pangiinsulto ni Daniel Tirona, ay kanyang ipinahayag na walang bisa ang naganap na pag-pupulong at umalis. Matapos ang paglisan ni Bonifacio ay patuloy parin ang halalan at pagpupulong sa Tejeros at isinagawa ang panunumpa sa katungkulan ng mga bagong halal na pinuno maliban kay Bonifacio sa simbahan ng Sta Cruz Malabon.",
     "Matapos umalis ni Andres Bonifacio ay nagtungo siya sa Naic, Cavite kasama ang kanyang matatapat na tauhan at dito ay kanilang ginawa ang isang petisyon na tinawag na  ( Acta De Tejeros ) na nilagdaan na mahigit 40 kasapi ng katipunan. Sa petisyong ito ay kanilang ipinaliwanag kung bakit hindi katanggap-tanggap ang naging resulta ng pagpupulong sa Tejeros",
     "Kasunod nito ay bumuo si Andres Bonifacio ng isang hiwalay na pamahalaan sa ilalim ng batas ng ( Kasunduang Militar sa Naic ). Ang pangyayaring ito ay nakarating kay Aguinaldo at agad nyang ipinag-utos kay Koronel Agapito Banzon ang pagdakip kay Bonifacio sa mga kasamahan niya. Nagkaroon ng palitan ng putok ng subukang arestuhin si Bonifacio at ang kanyang mga kasamahan na nauwi sa pagdakip kay Bonifacio at pagkasawi ng kanyang kapatid na si Ciriaco Bonifacio.",
     "Humarap sa kasong Rebelyon at nahatulan ng kamatayan si Andres Bonafacio, siya ay ipinahuli at ipinapatay ni Aguinaldo sa kanyang mga tauhan. Iniutos kay Mariano Noriel na ibigay ang hatol sa isang selyadong sobre kay Lazaro Makapagal. Iniutos ang pagbaril kay Bonifacio kasama ang kanyang kapatid na lalaking si Procopio Bonifacio noong 10 Mayo 1897 malapit sa Bundok Nagpatong o Bundok Buntis. Sunod-sunod ang mga labanan sa pagitan ng mga Pilipino at Espanyol pagkatapos ng unang sigaw sa Pugad Lawin. Kasabay nito ang sunod-sunod din na pagkatalo sa ibat ibang lugar sa bansa kabilang ang grupo ni Emilio Aguinaldo sa Cavite, dahil dito ay umatras at nagtungo sa Talisay Batangas. Kalaunan ay nagtungo sa San Miguel, Bulacan upang iwasan ang malaking grupo ng mga espanyol as tumutugis sa kanila.",
-    "Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang Rebolusyunaryong Pamahalaan, ngunit sa halip na magkaisa ay lalo pang tumindi ang hidwaan at humantong sa pagkamatay ni Andres Bonifacio.",
+    "Ang layunin ng Kumbensiyon sa Tejeros ay upang ayusin ang hindi pagkakaunawaan sa pagitan ng dalawang pangkat ng Katipunan sa Cavite at upang bumuo ng isang Rebolusyunaryong Pamahalaan, ngunit sa halip na magkaisa ay lalo pang tumindi ang hidwaan at humantong sa pagakamatay ni Andres Bonifacio.",
   ];
 
   const headings = [
@@ -91,14 +92,96 @@ const Convention = () => {
     });
   };
   
-  const handleNext = (e) => {
-    e.preventDefault();
-    setSelectedImage((prev) => {
-      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
-      setCurrentHeading(headings[newIndex]);
-      return newIndex;
+ const handleNext = async (e) => {
+  e.preventDefault();
+  if (selectedImage === 4) {
+    Swal.fire({
+      title: 'Next topic?',
+      text: "You are about to proceed to the next topic.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, proceed',
+      cancelButtonText: 'No, stay here'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to the "kasunduan" link if confirmed
+        window.location.href = '/kasunduan';
+      }
     });
-  };
+  }
+  setSelectedImage((prev) => {
+    const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+    setCurrentHeading(headings[newIndex]);
+
+    // If on the last slide, mark progress as complete
+    if (newIndex === images.length - 1 && user) {
+      updateProgressToComplete(); // Call function to update progress to 100%
+    } else {
+      // Update progress dynamically if it's less than 100%
+      const progressPercentage = ((newIndex + 1) / images.length) * 100;
+      if (progressPercentage < 100) {
+        updateProgressToPercentage(progressPercentage); // Dynamically update progress
+      }
+    }
+
+    return newIndex;
+  });
+};
+
+const updateProgressToPercentage = async (progressPercentage) => {
+  if (user) {
+    try {
+      const userUUID = await getUserUUID(user.username);
+      if (userUUID) {
+        const { error } = await supabase
+          .from('user_progress')
+          .upsert(
+            { 
+              user_id: userUUID, 
+              topic_id: topicId, 
+              progress: Math.min(progressPercentage, 100) // Ensure the progress does not exceed 100%
+            },
+            { onConflict: ['user_id', 'topic_id'] }
+          );
+
+        if (error) {
+          console.error('Error updating progress:', error);
+        } else {
+          console.log(`Progress updated to ${Math.min(progressPercentage, 100)}%`);
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching user UUID or updating progress:', err);
+    }
+  }
+};
+
+
+// Function to mark progress as 100%
+const updateProgressToComplete = async () => {
+  if (user) {
+    const userUUID = await getUserUUID(user.username);
+    if (userUUID) {
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert(
+          { user_id: userUUID, topic_id: topicId, progress: 100 },
+          { onConflict: ['user_id', 'topic_id'] }
+        );
+
+      if (error) {
+        console.error('Error updating progress to 100%:', error);
+      } else {
+        console.log('Progress updated to 100%');
+      }
+    }
+  }
+};
+
+const progressPercentage = ((selectedImage + 1) / images.length) * 100;
+
 
   const toggleZoom = (e) => {
     e.preventDefault();
@@ -171,7 +254,7 @@ const Convention = () => {
   return (
     <div className="convention">
       <ToastContainer/>
-      <button onClick={handleViewMore} className="viewconvention">View in 3D</button>
+      <button onClick={handleViewMore} className="viewconvention">View in Video</button>
       <div className="convention-container">
         <div className="convention-description-container">
           <h1>Deskripsyon:</h1>
@@ -198,6 +281,12 @@ const Convention = () => {
               </div>
             );
           })}
+        </div>
+        <div className="progress-bar-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
         </div>
         <div className="convention-arrow-keys">
           <img src={arrownav2} alt="left" onClick={handlePrev} />

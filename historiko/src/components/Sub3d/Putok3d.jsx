@@ -139,6 +139,15 @@ const Putok3d = () => {
     });
   };
 
+	  
+	  
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/Putok3d2', { state: { showToast: true } });
+  };
+	  
+
   return (
     <div className="Putok3d">
       <ToastContainer />
@@ -146,6 +155,8 @@ const Putok3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Unang Putok sa panulukan ng Silencio at Sociego</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (

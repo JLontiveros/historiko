@@ -137,6 +137,12 @@ const Kasunduan3d = () => {
     });
   };
 
+  const handleViewMore = async (e) => {
+    e.preventDefault();
+   
+    navigate('/kasunduan3d2', { state: { showToast: true } });
+  };
+
   return (
     <div className="Kasunduan3d">
       <ToastContainer/>
@@ -144,6 +150,8 @@ const Kasunduan3d = () => {
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Kasunduan sa Biak na Bato</h1>
       </div>
+      <button onClick={handleViewMore} className='viewputok'>View 2nd Video</button>
+      <br></br>
       <div className="picture3d">
         <div className="video-container">
           {videoUrl && (

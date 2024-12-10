@@ -183,7 +183,7 @@ body::before {
   to { transform: translate(-50%, -50%) scale(2); }
 }
 
-.Kasunduan-arrow-keys {
+.kasunduan-arrow-keys {
   position: fixed;
   bottom: 10px;
   left: 50%;
@@ -198,19 +198,19 @@ body::before {
   to { transform: translate(-50%, 0); opacity: 1; }
 }
 
-.Kasunduan-arrow-keys img {
+.kasunduan-arrow-keys img {
   height: 80px;
   width: 80px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.Kasunduan-arrow-keys img:hover {
+.kasunduan-arrow-keys img:hover {
   transform: scale(1.2);
 }
 
 .viewkasunduan {
-  width: 130px;
+  width: 170px;
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
@@ -324,11 +324,11 @@ body::before {
     max-width: 100%;
   }
 
-  .Kasunduan-arrow-keys {
+  .kasunduan-arrow-keys {
     bottom: 20px;
   }
 
-  .Kasunduan-arrow-keys img {
+  .kasunduan-arrow-keys img {
     height: 40px;
     width: 40px;
   }
@@ -355,7 +355,7 @@ body::before {
     max-width: 250px;
   }
 
-  .Kasunduan-arrow-keys img {
+  .kasunduan-arrow-keys img {
     height: 50px;
     width: 50px;
   }
