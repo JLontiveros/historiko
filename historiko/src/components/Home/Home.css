@@ -1,0 +1,241 @@
+.home-container {
+  height: auto;
+  min-height: 200vh; /* Accommodate two full-height sections */
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  padding: 0;
+  margin: 0;
+}
+
+.video-section {
+  scroll-snap-align: start;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-background,
+.video2-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video-background video,
+.video2-background video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: fill;
+}
+
+/* Ensure the second video section is positioned below the first */
+
+
+.mobile-only {
+  display: none;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .video-background video,
+  .video2-background video {
+    width: 100%;
+    height: 56.25vw;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .video-background video,
+  .video2-background video {
+    width: auto;
+    height: 177.78vh;
+  }
+}
+
+.text-overlay {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.heading h1, .subheading h3 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.desktop-video {
+  display: block;
+}
+
+.mobile-video {
+  display: none;
+}
+
+.text-overlay,
+.signup-overlay {
+  position: absolute;
+  top: 20%;
+  left: 30px;
+  width: calc(100% - 60px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.signup-overlay {
+  width: 100%;
+  height: 100%;
+  margin-top: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-slide {
+  width: 100%;
+  height: 100%;
+  margin-top: 150px;
+  max-width: 1000px; /* Adjust as needed */
+  max-height: 500px; /* Adjust as needed */
+}
+
+.text-overlay h1 h3 {
+  animation-timing-function: ease-in;
+}
+
+@keyframes mymovehome {
+  from {left: -400px;}
+  to {left: 30px;}
+}
+
+.heading,
+.subheading {
+  color: navy;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  max-width: 100%;
+}
+
+.heading {
+  font-size: 3.125em;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.heading h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.subheading {
+  font-size: 1.5em;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.subheading h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.video-section.snap-in {
+  animation: snapIn 0.5s ease-out;
+}
+
+@keyframes snapIn {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.signup-overlay .auth-container {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  max-width: 768px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .text-overlay {
+    top: 15%;
+    left: 15px;
+    width: calc(100% - 30px);
+  }
+
+  .signup-overlay {
+    margin-top: 0;
+    height: auto;
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: -400px;  /* Move container 20px from the right */
+    width: calc(100% - 70px);  /* Adjust width to account for right space */
+  }
+
+  .heading {
+    font-size: 1.625em;
+    text-align: left;
+  }
+
+  .subheading {
+    font-size: 0.875em;
+    text-align: left;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+
+  /* New styles for mobile video */
+  .video-background,
+  .video2-background {
+    display: none; /* Hide desktop videos */
+  }
+
+  .mobile-only {
+    display: block; /* Show mobile videos */
+  }
+
+  .video-background.mobile-only,
+  .video2-background.mobile-only {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .video-background.mobile-only video,
+  .video2-background.mobile-only video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the video covers the entire container */
+  }
+
+  .video-section {
+    height: 100vh; /* Ensure full viewport height on mobile */
+  }
+}

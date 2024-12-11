@@ -1,0 +1,25 @@
+/* App.css */
+
+body, html {
+  overflow-x: hidden; /* Prevent horizontal scroll on the whole page */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6599FF;
+  overflow-y: auto;
+}
+
+  
+.App {
+  text-align: center;
+}
+  
+  
+  
+  

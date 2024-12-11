@@ -1,0 +1,193 @@
+.flash-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.flashcard-reviewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.flashcard {
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  left: -15%;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-image {
+  max-width: 100%;
+  max-height: 60%;
+  border-radius: 10px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 80px;
+  width: 100%;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444;
+  text-align: center;
+}
+
+.pagtatapos-button {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .flashcard {
+    height: 250px;
+  }
+
+  .flashcard-front, .flashcard-back {
+    padding: 10px;
+    margin-left: -10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .bg3 {
+    height: 100px;
+    width: 200px;
+    left: 0%;
+  }
+
+  .bg4 {
+    height: 300px;
+    width: 500px;
+    left: -40%;
+  }
+}
+
+@media (max-width: 480px) {
+  .flashcard {
+    height: 200px;
+  }
+
+  .flashcard-front, .flashcard-back {
+    padding: 10px;
+    margin-left: 35px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .controls {
+    margin-top: -10px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  .bg3 {
+    height: 100px;
+    width: 200px;
+    left: 0%;
+  }
+
+  .bg4 {
+    height: 300px;
+    width: 500px;
+    left: -40%;
+  }
+}

@@ -1,0 +1,202 @@
+/* Navbar styles */
+
+@font-face {
+  font-family: 'TitleFont';
+  src: url('../../assets/SourceSansPro-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+nav {
+  font-family: 'TitleFont', sans-serif; 
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  position: fixed;
+  width: 90%;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  width: 120px;
+}
+
+.back-icon {
+  color: #0a0b84;
+  font-size: 1.875rem; /* Increased from 1.5rem */
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  margin-left: 90%;
+  left: 5%;
+}
+
+nav img {
+  height: 120px;
+  width: 120px;
+  display: block;
+}
+
+.desktop-menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: end;
+  align-items: center;
+}
+
+.desktop-menu li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.desktop-menu li a {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(1);
+  color: #0a0b84;
+  text-decoration: none;
+  font-size: 1.875rem; /* Increased from 1.5rem */
+  padding: 0.5rem;
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #0a0b84;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: left;
+  top: 100px;
+  transform: translateX(-50%);
+  min-width: 300px;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.desktop-menu li:hover .dropdown {
+  display: block;
+  position: fixed;
+}
+
+.desktop-menu li a:hover {
+  transform: scale(1.1);
+  background-color: #04054a;
+  padding: 10px;
+  border-radius: 20px;
+  color: #AEC7D6;
+  animation-duration: 0.3s;
+}
+
+.dropdown li {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 2px solid white;
+  font-size: 22.5px; /* Increased from 18px */
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.dropdown li a {
+  color: #EBF5EE;
+  font-size: 1.25rem; /* Increased from 1rem */
+  text-decoration: none;
+  display: block;
+}
+
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+nav ul li svg {
+  margin-right: 8px;
+}
+
+.mobile-submenu li, .dropdown li {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+/* Mobile styles */
+.burger-icon {
+  font-size: 1.875rem; /* Increased from 1.5rem */
+  cursor: pointer;
+  color: navy;
+  transition: transform 0.3s ease;
+}
+
+.burger-icon.open {
+  color: red; /* Optional: Change the color when open */
+  transform: rotate(90deg); /* Example transformation to indicate "close" */
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .burger-icon {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust this value to position the top of the menu correctly */
+    right: 10px; /* Position it on the right side */
+    width: 60%; /* Adjust the width as needed */
+    max-height: 70vh; /* Limit the height to approximately match the drawn area */
+    background-color: #a0a7ed;
+    padding: 0.5rem;
+    overflow-y: auto;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+
+  .mobile-menu li {
+    margin: 0.25rem 0;
+  }
+
+  .mobile-menu a {
+    color: navy;
+    text-decoration: none;
+    font-size: 1.125rem; /* Increased from 0.9rem */
+    padding: 0.25rem 0;
+  }
+
+  .mobile-submenu {
+    margin-left: 1rem; /* Adjust as needed */
+  }
+  
+  .mobile-submenu li {
+    margin: 0.1rem 0;
+  }
+  
+  .mobile-submenu a {
+    font-size: 1rem; /* Increased from 0.8rem */
+    color: navy;
+  }
+}
