@@ -1,0 +1,291 @@
+
+
+@font-face {
+  font-family: 'ListFont';
+  src: url('../../assets/Coolvetica Rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeadFont';
+  src: url('../../assets/Paint On The Wall.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MainFont';
+  src: url('../../assets/BLASTERAN.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NameFont';
+  src: url('../../assets/ArgentumSans-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+.unangputok-container {
+  background-color: #0a0b84;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  margin-top: 130px;
+  margin-left: 100px;
+  margin-right: 80px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.unangputok-container-left {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center; /* Aligns content (image and date) to the center horizontally */
+  gap: 10px; /* Adds spacing between the image and date */
+}
+
+.unangputok-container-left img {
+  width: 350px;
+  height: 400px;
+  margin-top: 65px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  border-radius: 20px;
+  box-shadow: 10px 10px #177E89;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.unangputok-image {
+  width: 350px;
+  height: 400px;
+  margin: 0; /* Removes unnecessary margins */
+  border-radius: 20px;
+  box-shadow: 10px 10px #177E89;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.unangputok-container-left img:hover {
+  transform: scale(1.05);
+  box-shadow: 15px 15px #177E89;
+}
+
+.unangputok-container-right {
+  display: grid;
+  grid-template-columns: 1fr;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.unangputok-container-right h1 {
+  color: #FFFFFF;
+  font-size: 40px;
+  font-weight: 100;
+  margin-top: 50px;
+  transition: color 0.3s ease;
+}
+
+.unangputok-container-right h1:hover {
+  color: #FFFFFF;
+}
+
+.unangputok-description {
+  position: relative;
+  margin-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.unangputok-description img {
+  position: absolute;
+  top: -88px;
+  right: 85px;
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.unangputok-description img:hover {
+  transform: scale(1.2);
+  background-color: #ffd700;
+}
+
+/* .unangputok-blank {
+  position: absolute;
+  top: -70px;
+  left: 10;
+  height: 4px;
+  width: 720px;
+  margin-left: 90px;
+  background-color: gold;
+  transition: width 0.3s ease;
+} */
+
+
+.unangputok-container-right p {
+  border-top: 5px solid gold;
+  color: white;
+  font-family: 'ListFont',sans-serif ;
+  background-color: #177E89;
+  margin-left: 90px;
+  margin-right: 70px;
+  margin-top: -70px;
+  padding: 10px 5px;
+  text-align: justify;
+  font-size: 20px;
+  display: block;
+  line-height: 1.7;
+  transition: background-color 0.3s ease;
+}
+
+.unangputok-container-right p:hover {
+  background-color: #084C61;
+}
+
+.unangputok-date {
+  color: #FFFFFF;
+  font-family: 'NameFont', sans-serif;
+  font-size: 24px;
+  margin: 0; /* Aligns the date directly under the image */
+  text-align: center; /* Ensures text alignment is centered */
+  margin-top: -30px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.unangputok-date:hover {
+  color: #FFFFFF;
+}
+
+.unangputok-container-right button {
+  width: 220px;
+  margin-top: -10px;
+  margin-left: 400px;
+  margin-right: 400px;
+  border-radius: 50px;
+  background-color: #177E89;
+  font-family: 'NameFont', sans-serif;
+  color: white;
+  border: none;
+  padding: 0px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.unangputok-container-right button:hover {
+  background-color: #084C61;
+  transform: scale(1.05);
+}
+
+.btnview {
+  height: 50px;
+  animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  min-height: 64px;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media screen and (max-width: 768px) {
+  .unangputok-container {
+    grid-template-columns: 1fr;
+    margin: 20px;
+    margin-top: 130px;
+  }
+  .unangputok-container-left img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+  }
+  .unangputok-container-right h1 {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  .unangputok-description {
+    margin-top: 20px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .unangputok-description img {
+    top: -25px;
+    left: 150px;
+    position: relative;
+  }
+
+  .unangputok-blank {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .unangputok-container-right p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -90px;
+    font-size: 16px;
+  }
+  .unangputok-date {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .unangputok-container-right button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5px;
+    padding: 10px;
+  }
+}
+
+
+
+.unangputok-title{
+  font-family: 'MainFont', sans-serif;
+}

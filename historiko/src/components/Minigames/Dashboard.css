@@ -1,0 +1,156 @@
+.dashboard {
+  width: 1000px;
+  max-width: 900px;
+  height: 622px; /* Fixed height */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for a clean look */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.dashboard h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 20px;
+  color: #333;
+}
+
+.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Ensures consistent column widths */
+  overflow: hidden; /* Prevents unnecessary visual overflow */
+}
+
+.dashboard thead {
+  display: table;
+  width: 100%; /* Matches the table width */
+  table-layout: fixed; /* Aligns with tbody */
+}
+
+.dashboard thead th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  position: sticky; /* Sticks header during scroll */
+  top: 0;
+  z-index: 2; /* Keeps it above tbody */
+  border: 1px solid #ddd;
+}
+
+.dashboard tbody {
+  display: block;
+  max-height: 400px; /* Sets scrollable height */
+  overflow-y: scroll; /* Enables vertical scrolling */
+  overflow-x: hidden;
+  width: 100%; /* Matches thead width */
+}
+
+.dashboard tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.dashboard tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.dashboard tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.dashboard th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.dashboard th:first-child, td:first-child {
+  text-align: left; /* Align username column */
+}
+  
+  th:nth-child(2), td:nth-child(2),
+  th:nth-child(3), td:nth-child(3) {
+  text-align: center; /* Center-align score and date columns */
+}  
+
+.summary {
+  margin-top: -30px;
+  margin-bottom: -10px;
+}
+
+.dashboard button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  
+.dashboard button:hover {
+  background-color: #0056b3;
+}
+
+.dashboard::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dashboard::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.dashboard::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard{
+    margin-top: 120px !important;
+    width: 360px !important;
+    height: 610px !important;
+  }
+
+  .dashboard h2 {
+    font-size: 1.2rem!important;
+  }
+
+ .dashboard table {
+    width: 340px !important;
+    margin-top: -10px;
+  }
+
+  .dashboard th {
+    font-size: 0.6rem!important;
+    padding: 5px!important;
+    text-align: left!important;
+  }
+
+  .dashboard td {
+    font-size: 0.7rem!important;
+    padding: 3px!important;
+    text-align: left !important;
+  }
+
+  .summary {
+    font-size: 0.9rem !important;
+  }
+
+  .dashboard button {
+    font-size: 0.8rem!important;
+    padding: 5px 10px!important;
+    margin-top: 5px!important;
+  }
+}
+  

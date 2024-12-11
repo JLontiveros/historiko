@@ -1,0 +1,156 @@
+.Tirad3d {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.Tirad3d-container {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    margin-top: 130px;
+    margin-left: 50px;
+    animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.Tirad3d-container img {
+    height: 60px;
+    width: 70px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    top: 50px;
+    left: 150px;
+    animation: rotateIn 0.5s ease-out;
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-180deg); opacity: 0; }
+    to { transform: rotate(0); opacity: 1; }
+}
+
+.Tirad3d-container img:hover {
+    transform: scale(1.2) rotate(360deg);
+    transition: transform 0.5s ease;
+}
+
+.Tirad3d-container h1 {
+    width: 65%;
+    font-weight: 900;
+    font-size: 45px;
+    color: #0047ab;
+    margin-left: 30px;
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.picture3d {
+    animation: zoomIn 0.5s ease-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.picture3d img {
+    position: relative;
+    left: 23%;
+    height: 450px;
+    width: 800px;
+    border: 10px solid white;
+    border-radius: 20px;
+    margin-top: -20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .Tirad3d-container {
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+        margin-left: 20px;
+    }
+
+    .Tirad3d-container img {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .Tirad3d-container h1 {
+        width: 90%;
+        font-size: 36px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .picture3d img {
+        left: 0;
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        margin: 20px auto;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Tirad3d-container {
+        margin-top: 80px;
+        margin-left: 10px;
+    }
+
+    .Tirad3d-container h1 {
+        font-size: 30px;
+    }
+
+    .picture3d img {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Tirad3d-container {
+        margin-top: 150px;
+        margin-left: 5px;
+    }
+
+    .Tirad3d-container img {
+        height: 50px;
+        width: 60px;
+        left: 30px;
+        top: 60px;
+    }
+
+    .Tirad3d-container h1 {
+        font-size: 24px;
+        margin-left: 40px;
+        margin-bottom: 30px;
+    }
+
+    .picture3d {
+        max-width: 380px;
+        max-height: 220px;
+        margin-left: -90px;
+    }
+
+    .picture3d img {
+        border-width: 5px;
+    }
+
+    .video-container {
+        max-width: 380px;
+    }
+}

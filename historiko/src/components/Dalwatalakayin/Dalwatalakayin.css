@@ -1,0 +1,271 @@
+
+
+@font-face {
+  font-family: 'ListFont';
+  src: url('../../assets/Coolvetica Rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeadFont';
+  src: url('../../assets/Paint On The Wall.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MainFont';
+  src: url('../../assets/BLASTERAN.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+
+
+.dalwatalakayin {
+  background-color: #cbe1ec;
+  min-height: 94.5vh;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dalwatalakayin h1 {
+  text-align: center;
+  color: #0a0b84;
+  font-size: 90px;
+  font-weight: 100;
+  font-family: 'MainFont', sans-serif;
+  margin-top: 80px;
+  margin-bottom: 70px;
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.events-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event {
+  background-color: #0a0b84;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 370px;
+  color: white;
+  text-align: center;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.events:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-icon {
+  width: 180px;
+  height: 200px;
+  margin-bottom: 10px;
+  margin-top: -70px;
+  align-self: center;
+  border: 3px solid white;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.events:hover .event-icon {
+  transform: scale(1.05);
+}
+
+.event h2 {
+  font-size: 2.0em;
+  margin-bottom: 15px;
+  color: rgb(255, 229, 79);
+  font-family: 'HeadFont', sans-serif;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.events:hover h2 {
+  color: #ffffff;
+}
+
+.event-content {
+  flex-grow: 1;
+}
+
+.event p {
+  font-size: 1.1em;
+  text-align: justify;
+  margin: 0;
+  color: white;
+  font-family: 'ListFont', sans-serif;
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.events:hover p {
+  opacity: 0.8;
+}
+
+.event-link {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+}
+
+.link-button {
+  display: inline-block;
+  background-color: #0a0b84;
+  color: white;
+  text-decoration: none;
+  margin-top: 65px;
+  font-family: 'ListFont', sans-serif;
+  padding: 15px 50px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  width: 80%;
+  max-width: 240px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  background-color: #669999;
+  color: white;
+  transform: scale(1.05);
+}
+
+.eventbtns2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.eventbtns2 button {
+  background-color: rgb(255, 229, 79);
+  border: none;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.eventbtns2 button:hover {
+  background-color: #669999;
+}
+
+/* Desktop Layout (3 columns) */
+@media screen and (min-width: 1024px) {
+  .events-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .event {
+    margin-bottom: 60px;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .dalwatalakayin h1 {
+    font-size: 30px;
+    font-family: 'MainFont', sans-serif;
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+
+  .event {
+    width: 100%;
+    max-width: none;
+  }
+
+  .event-icon {
+    width: 150px;
+    height: 170px;
+  }
+
+  .link-button {
+    padding: 10px 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dalwatalakayin h1 {
+    font-size: 24px;
+    font-family: 'MainFont', sans-serif;
+    margin-top: 130px;
+    margin-bottom: 30px;
+  }
+
+  .event-icon {
+    width: 120px;
+    height: 140px;
+    margin-top: 0px;
+  }
+
+  .event h2 {
+    font-size: 1.2em;
+  }
+
+  .event p {
+    font-size: 0.8em;
+    font-family: 'ListFont', sans-serif;
+  }
+
+  .link-button {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.events:hover .link-button {
+  animation: pulse 1s infinite;
+}
