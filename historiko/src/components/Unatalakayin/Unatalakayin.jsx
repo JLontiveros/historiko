@@ -99,7 +99,7 @@ function Unatalakayin() {
     <div className="unatalakayin">
       <Navbar />
       <ToastContainer />
-      <button onClick={handleViewMore}  className='viewputok'>View in Video</button>
+     
       <h1>Mga Talakayin</h1>
       
 
