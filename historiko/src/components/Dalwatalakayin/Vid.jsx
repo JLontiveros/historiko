@@ -148,6 +148,7 @@ const Putok3d = () => {
   return (
     <div className="Putok3d">
       <ToastContainer />
+      <button onClick={handleViewMore}  className='viewputok'>View in Video</button>
       <div className="Putok3d-container">
         <img src={arrownav2} alt="left" onClick={handleGoBack} />
         <h1>Pangalawang Talakayin</h1>
