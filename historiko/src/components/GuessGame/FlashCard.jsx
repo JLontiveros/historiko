@@ -4,6 +4,7 @@ import { useAuth } from '../../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './FlashCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const FlashCard = ({ onComplete }) => {
   const [flashcards, setFlashcards] = useState([]);
@@ -164,7 +165,8 @@ const FlashCard = ({ onComplete }) => {
         />
         <button type="button"  onClick={() => { 
      skiptogame();
-    window.location.href = window.location.href; 
+     const navigate = useNavigate();
+     navigate(0); 
   }}>Skip to Quiz</button>
         <h2>Pindutin ang litrato para makita ang sagot</h2>
         <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
