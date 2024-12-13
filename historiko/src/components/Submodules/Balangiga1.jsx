@@ -102,14 +102,14 @@ const Balangiga1 = () => {
   if (selectedImage === 5) {
      // Show SweetAlert prompt
      Swal.fire({
-      title: 'Next topic?',
-      text: "You are about to proceed to the next topic.",
+      title: 'Mahusay!',
+      text: " Nais mo bang magpatuloy sa susunod na talakayin?",
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, proceed',
-      cancelButtonText: 'No, stay here'
+      confirmButtonText: 'Magpatuloy',
+      cancelButtonText: 'Manatili'
     }).then((result) => {
       if (result.isConfirmed) {
         // Redirect to the "kasunduan" link if confirmed
