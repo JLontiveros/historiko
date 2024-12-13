@@ -62,8 +62,7 @@ const Dashboard = ({ onClose }) => {
         );
         const totalPossibleItems =
           filteredScores.length * maxTotalScore; // Total possible items for the logged-in user
-        const passingPercentage =
-          (totalCorrectAnswers / totalPossibleItems) * 100;
+          const passingPercentage = totalPossibleItems === 0 ? 0 : (totalCorrectAnswers / totalPossibleItems) * 100;
   
         setUserScores(filteredScores); // Set the filtered scores
         setGeneralPassingPercentage(passingPercentage.toFixed(2)); // Round to 2 decimals

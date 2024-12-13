@@ -100,8 +100,8 @@ const GuessGame = () => {
     /* Check for 3 wrong answers */
     if (wrongAnswerCount + 1 >= 3) {
       Swal.fire({
-        title: 'You failed the Quiz!',
-        text: "Try harder next time. You did well",
+        title: 'Nakamit mo ang 3 maling sagot, ' + localStorage.getItem("name"),
+        text: "Mahusay, ngunit mag-balik aral kang muli",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -117,7 +117,7 @@ const GuessGame = () => {
       // Set a timeout to redirect after 2 seconds if no action is taken
       setTimeout(() => {
         window.location.href = window.location.href;  // Redirect after 2 seconds
-      }, 2000); // 2000 ms = 2 seconds
+      }, 15000); // 2000 ms = 2 seconds
     
       return; // Stop further processing
     }

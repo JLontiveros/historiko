@@ -5,6 +5,8 @@ import 'jquery';
 import 'font-awesome/css/font-awesome.min.css';
 import './ChatBot.css';
 import andresAI from './andresAI.jpg'; 
+import { tavily } from '@tavily/core';
+
 
 const supabaseUrl = 'https://mqomhecazbpagsbfskzv.supabase.co'
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xb21oZWNhemJwYWdzYmZza3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ2MDM5NjIsImV4cCI6MjA0MDE3OTk2Mn0.1zP8UxASY-wcTFtL8ln3jxzdnUsmn4L4DUQAq-edf2Q'
@@ -12,6 +14,61 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 const Chatbox = () => {
+  const [response, setResponse] = useState(null);
+    const [query, setQuery] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+        
+
+  const tvly = tavily({ apiKey: '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' });
+
+    // Step 2: Function to execute search query
+    {/* const executeSearch = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            // Step 3: Executing a simple search query
+            const result = await tvly.search(query);
+            const storeFirstContent = (data) => {
+              if (data.results && data.results.length > 0) {
+                const firstContent = data.results[0].content;
+                // Storing the content in a variable or local storage
+                console.log(firstContent); // For demonstration purposes
+                return firstContent; // Return or further process as needed
+              }
+              return null; // Return null if no results are found
+            };
+            const firstContent = storeFirstContent(result);
+            const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(firstContent)}&langpair=en|tl`);
+            const data = await response.json();
+            setResponse(data.responseData.translatedText);
+            
+        } catch (err) {
+            setError('Failed to fetch data');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Step 4: Use useEffect to trigger search on component mount
+    useEffect(() => {
+        executeSearch();
+    }, []);
+
+    */}
+
+    const predefinedResponses = {
+      "ano ang pangalan mo?": "Ang pangalan ko ay ANDRES AI.",
+      "paano ka makakatulong?": "Ako ay isang AI chatbot na handang magbigay ng tulong o sagutin ang iyong mga tanong.",
+      "saan ako makakahanap ng impormasyon?": "Maaari kang magtanong tungkol sa anumang paksa at tutulungan kita sa paghahanap ng impormasyon.",
+      "ano ang weather ngayon?": "Paumanhin, wala akong kakayahan na magbigay ng real-time na balita tulad ng weather.",
+      "puwede mo bang mag-translate?": "Oo, maaari akong mag-translate ng mga teksto sa iba't ibang wika.",
+      "ano ang ginagawa ng ai?": "Ang AI ay isang teknolohiya na kayang magsagawa ng mga task na karaniwang ginagawa ng tao, tulad ng pagkatuto, pagsusuri, at paggawa ng desisyon.",
+      "puwede ba akong magtanong ng math?": "Oo, puwede kitang tulungan sa mga math problems!",
+      "saan ako makakakuha ng mga libro?": "Maaari kang maghanap ng mga libro online o sa mga local bookstores.",
+      "ano ang ibig sabihin ng 'ai'?": "Ang 'AI' ay nangangahulugang 'Artificial Intelligence' o Artipisyal na Intelihensiya, isang sangay ng agham na tumatalakay sa paggawa ng mga makina na may katalinuhan.",
+      "puwede ba kitang i-save?": "Wala akong kakayahang i-save ang mga datos, ngunit maaari mong i-save ang aming mga pag-uusap sa iyong sarili."
+    };
   const [userId, setUserId] = useState(localStorage.getItem('id'));
   const [messages, setMessages] = useState([]);
   const [userMessage, setUserMessage] = useState('');
@@ -41,76 +98,64 @@ const Chatbox = () => {
 
   const handleSendMessage = async () => {
     if (userMessage.trim()) {
-      const newMessage = {
-        user_id: userId,
-        message: userMessage,
-        sender_type: 'user-message',
-        index: messages.length + 1,
-      };
-  
-      setMessages([...messages, { sender: 'user', text: userMessage }]);
-      setUserMessage('');
-  
-      const { error } = await supabase.from('bot_messages').insert(newMessage);
-  
-      if (error) {
-        console.error('Error saving message:', error);
-      } else {
-        setTimeout(async () => {
-          // Call the external API
-          const response = await fetch(
-            `https://api-ai-historiko-rfzur0z07-eidrian-ramos-projects.vercel.app/api/search?query=${encodeURIComponent(userMessage)}`, 
-            {
-              headers: {
-                'Authorization': `Bearer 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`
-              }
-            }
-          );
-          
-          const data = await response.json();
-  
-          // Check if the response contains valid content
-          if (data.content) {
-            const botResponseText = `Here is what I found: ${data.content}. For more details, visit: ${data.url}`;
-            const botResponse = {
-              user_id: userId,
-              message: botResponseText,
-              sender_type: 'bot-message',
-              index: messages.length + 2,
+        // User message handling
+        const newMessage = {
+            user_id: userId,
+            message: userMessage,
+            sender_type: 'user-message',
+            index: messages.length + 1,
+        };
+        setMessages([...messages, { sender: 'user', text: userMessage }]);
+        setUserMessage('');
+
+        // Save to Supabase
+        const { error } = await supabase.from('bot_messages').insert(newMessage);
+        if (error) return console.error('Error saving user message:', error);
+
+        const normalizedUserMessage = userMessage.toLowerCase();
+        const matchingResponse = Object.keys(predefinedResponses).find(question =>
+            normalizedUserMessage.includes(question.toLowerCase())
+        );
+
+        if (matchingResponse) {
+            const botResponse = predefinedResponses[matchingResponse];
+            const botResponseObj = {
+                user_id: userId,
+                message: botResponse,
+                sender_type: 'bot-message',
+                index: messages.length + 2,
             };
-  
-            setMessages((prevMessages) => [
-              ...prevMessages,
-              { sender: 'bot', text: botResponseText },
-            ]);
-  
-            const { error: botError } = await supabase.from('bot_messages').insert(botResponse);
-            if (botError) {
-              console.error('Error saving bot response:', botError);
+            setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: botResponse }]);
+            const { error: botError } = await supabase.from('bot_messages').insert(botResponseObj);
+            if (botError) return console.error('Error saving bot response:', botError);
+        } else {
+            try {
+                const result = await tvly.search(userMessage);
+                const firstContent = result?.results?.[0]?.content || "Sorry, I couldn't find an answer to your question.";
+                
+                const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(firstContent)}&langpair=en|tl`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const translatedText = data?.responseData?.translatedText || "Translation unavailable.";
+
+                const botResponseObj = {
+                    user_id: userId,
+                    message: translatedText,
+                    sender_type: 'bot-message',
+                    index: messages.length + 2,
+                };
+
+                setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: translatedText }]);
+                const { error: botError } = await supabase.from('bot_messages').insert(botResponseObj);
+                if (botError) console.error('Error saving bot response:', botError);
+            } catch (err) {
+                console.error("Error processing the request:", err);
+                setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: "I'm sorry, I encountered an error." }]);
             }
-          } else {
-            const botResponseText = "Sorry, I couldn't find an answer to your question.";
-            const botResponse = {
-              user_id: userId,
-              message: botResponseText,
-              sender_type: 'bot-message',
-              index: messages.length + 2,
-            };
-  
-            setMessages((prevMessages) => [
-              ...prevMessages,
-              { sender: 'bot', text: botResponseText },
-            ]);
-  
-            const { error: botError } = await supabase.from('bot_messages').insert(botResponse);
-            if (botError) {
-              console.error('Error saving bot response:', botError);
-            }
-          }
-        }, 1000);
-      }
+        }
     }
-  };
+};
+
   
 
   const handlePopupClick = () => {
@@ -133,7 +178,7 @@ const Chatbox = () => {
       {/* Popup message box */}
       {isPopupVisible && (
         <div className="popup-message" onClick={handlePopupClick}>
-          May tanong ka ba sa kasaysayan? Tara mag usap tayo!
+          Maari mo akong kausapin: {localStorage.getItem('username')}
         </div>
       )}
 
@@ -146,7 +191,7 @@ const Chatbox = () => {
             style={{ border: '2px solid black', borderRadius: '100px', width: '50px' }}
           />
           <h6 className='h6name'>ANDRES AI</h6>
-          <h6 >Alamin ang Nayon at Dambana ng Revolusyon, Edukasyon, at Salaysay</h6>
+          <h6 >Maaari mo akong tanunging, {localStorage.getItem('username')}</h6>
         </div>
 
         <div className="chat-content-unique">

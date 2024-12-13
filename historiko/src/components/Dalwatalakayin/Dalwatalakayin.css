@@ -39,7 +39,7 @@
 
 .dalwatalakayin h1 {
   text-align: center;
-  color: #0a0b84;
+  color: #8a7fd5;
   font-size: 90px;
   font-weight: 100;
   font-family: 'MainFont', sans-serif;
@@ -62,7 +62,7 @@
 }
 
 .event {
-  background-color: #0a0b84;
+  background-color: #8a7fd5;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
@@ -150,7 +150,7 @@
 
 .link-button {
   display: inline-block;
-  background-color: #0a0b84;
+  background-color: #8a7fd5;
   color: white;
   text-decoration: none;
   margin-top: 65px;

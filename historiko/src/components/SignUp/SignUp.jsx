@@ -167,6 +167,7 @@ const SignUp = () => {
         localStorage.setItem('id', data.id);
         localStorage.setItem('token', newToken);
         localStorage.setItem('username', data.username);
+        localStorage.setItem('name', data.name);
         localStorage.setItem('usertype', data.user_type);
         localStorage.setItem('user', JSON.stringify({
           id: data.id,
@@ -391,7 +392,7 @@ const SignUp = () => {
                 required
               />
               <hr></hr>
-            <label htmlFor="role">Select Role:</label>
+            <label htmlFor="role">Gampanin:</label>
             <select
               id="role"
               
@@ -399,9 +400,9 @@ const SignUp = () => {
               className="input-field"
               required
             >
-              <option value="">-- Select --</option>
-              <option value="Student">Student</option>
-              <option value="Teacher">Teacher</option>
+              <option value="">-- Pumili --</option>
+              <option value="Student">Estudyante</option>
+              <option value="Teacher">Guro</option>
             </select>
               <button className="btn" type="submit">Mag-sign up</button>
             </form>
@@ -477,7 +478,7 @@ const SignUp = () => {
                   />
                   <div className="role-selection">
                     <hr></hr>
-            <label htmlFor="role">Select Role:</label>
+            <label htmlFor="role">Gampanin:</label>
             <select
               id="role"
               
@@ -485,9 +486,9 @@ const SignUp = () => {
               className="input-field"
               required
             >
-              <option value="">-- Select --</option>
-              <option value="Student">Student</option>
-              <option value="Teacher">Teacher</option>
+              <option value="">-- Pumili --</option>
+              <option value="Student">Estudyante</option>
+              <option value="Teacher">Guro</option>
             </select>
           </div>
                   <p className="forgot-password" onClick={() => setForgotPassword(true)}>

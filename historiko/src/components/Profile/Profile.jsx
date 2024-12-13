@@ -443,7 +443,28 @@ const Profile = () => {
           </div>
   
           <div className="second-container">
-           
+            <div className="gantimpala-container">
+              <h1>Mga Gantimpala</h1>
+              <div className="gantimpala-content">
+                {rewards.length > 0 ? (
+                  rewards.map((userReward, index) => (
+                    <div key={userReward.id} className={`gantimpalas ${index === 0 ? 'first' : index === 1 ? 'second' : 'third'}`}>
+                      <img 
+                        src={userReward.rewards?.image_url || 'path/to/default/badge.png'} 
+                        className='badge' 
+                        alt={userReward.rewards?.reward || 'Badge'}
+                      />
+                      <div className="info">
+                        <span>{userReward.rewards?.reward || 'Unnamed Reward'}</span>
+                        <span>Date: {new Date(userReward.created_at).toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-rewards">No rewards found</div>
+                )}
+              </div>
+            </div>
             <div className="resulta-container">
             <h1>Resulta</h1>
             {topics.map((topic) => (

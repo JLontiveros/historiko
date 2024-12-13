@@ -35,14 +35,19 @@ const Minigame = () => {
   const [isQuiz2ModalVisible, setIsQuiz2ModalVisible] = useState(false);
 
   const openQuiz1Modal = () => {
+    localStorage.setItem("modal1copy", 143)
     setIsQuiz1ModalVisible(true);
   };
 
   const openQuiz2Modal = () => {
+    localStorage.setItem("modal2copy", 143)
     setIsQuiz2ModalVisible(true);
   };
 
   const closeModal = () => {
+    localStorage.setItem("modal1copy", 0)
+    localStorage.setItem("modal2copy", 0)
+
     setIsQuiz1ModalVisible(false);
     setIsQuiz2ModalVisible(false);
   };
@@ -67,6 +72,32 @@ const Minigame = () => {
     } catch (error) {
       console.error('Error fetching user scores:', error);
     }
+  };
+
+  const [copied1, setCopied1] = useState(false);
+  const handleCopy1 = () => {
+    
+    setTimeout(function() {  if(localStorage.getItem("modal1copy") == 143){
+      const linkText = document.getElementById("link1").innerText;
+      navigator.clipboard.writeText(linkText).then(() => {
+        setCopied1(true);
+        setTimeout(() => {setCopied1(false); closeModal();} , 1000); // Reset copied status after 2 seconds
+      });
+    } }, 2000);
+    
+  };
+
+  const [copied2, setCopied2] = useState(false);
+  const handleCopy2 = () => {
+    
+    setTimeout(function() {  if(localStorage.getItem("modal2copy") == 143){
+      const linkText = document.getElementById("link2").innerText;
+      navigator.clipboard.writeText(linkText).then(() => {
+        setCopied2(true);
+        setTimeout(() => {setCopied2(false); closeModal();} , 1000); // Reset copied status after 2 seconds
+      });
+    } }, 2000);
+    
   };
 
   const checkFlashcardCompletion = async () => {
@@ -262,10 +293,14 @@ const Minigame = () => {
         </div>
 
         {isQuiz1ModalVisible && (
-          <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-overlay" onClick={closeModal}  >
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <h2>Quiz 1: Create Link:</h2>
-              <p>https://historiko.vercel.app/Quiz?teacher_id={localStorage.getItem("id")}s&quiz=quiz1</p>
+              <button onClick={handleCopy1()} style={{ marginBottom: "10px", padding: "10px" }}>
+        Copy Link
+      </button>
+      {copied1 && <p style={{ color: "green" }}>Link copied!</p>}
+      <p id="link1">https://historiko.vercel.app/Quiz?teacher_id={localStorage.getItem("id")}s&quiz=quiz1</p>
               <button onClick={closeModal}>Close</button>
             </div>
           </div>
@@ -276,7 +311,11 @@ const Minigame = () => {
           <div className="modal-overlay" onClick={closeModal}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <h2>Quiz 2: Create Link</h2>
-              <p>https://historiko.vercel.app/Quiz?teacher_id={localStorage.getItem("id")}s&quiz=quiz2</p>
+              <button onClick={handleCopy2()} style={{ marginBottom: "10px", padding: "10px" }}>
+        Copy Link
+      </button>
+      {copied2 && <p style={{ color: "green" }}>Link copied!</p>}
+      <p id="link2">https://historiko.vercel.app/Quiz?teacher_id={localStorage.getItem("id")}s&quiz=quiz2</p>
               <button onClick={closeModal}>Close</button>
             </div>
           </div>
