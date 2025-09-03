@@ -163,7 +163,7 @@ const Putok3d = () => {
           {videoUrl && (
             <video 
               ref={videoRef}
-              src={videoUrl}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/unangvid.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvdW5hbmd2aWQubXA0IiwiaWF0IjoxNzU2ODQyMDk1LCJleHAiOjQ4Nzg5MDYwOTV9.KwLFLZJtiGy51rmI1t6e0nHBn6Ey0G10E7sUaKjB9Gw"
               controls
               autoPlay
               onEnded={handleVideoEnd}

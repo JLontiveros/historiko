@@ -155,8 +155,8 @@ const Home = () => {
         {!isMobile && (
           <div className="video2-background">
             {underHeroVideoUrl && (
-              <video autoPlay loop muted playsInline>
-                <source src={underHeroVideoUrl} type="video/mp4" />
+              <video src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/underhero.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvdW5kZXJoZXJvLm1wNCIsImlhdCI6MTc1NjgzOTEyNSwiZXhwIjo0ODc4OTAzMTI1fQ.LB8RS8oTSxAdGnnLEutXHmvB2WZo0ZjMqIsaEFy0C4g" 
+              autoPlay loop muted playsInline>
                 Your browser does not support the video tag.
               </video>
             )}

@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
-import videoFile from '../../assets/putok2.mp4';
 
 
 const Putok3d = () => {
@@ -166,7 +165,7 @@ const Putok3d = () => {
         <div className="video-container">
           {videoUrl && (
             <video
-              src={videoFile}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/putok2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvcHV0b2syLm1wNCIsImlhdCI6MTc1NjgzNTc2MSwiZXhwIjo0ODc4ODk5NzYxfQ.auMYAA02H9PXzSckEV5vR4cREf2Md2N8qTec0OcXxUQ"
               controls
               autoPlay
               onEnded={handleVideoEnd}

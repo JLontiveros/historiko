@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
-import videoFile from '../../assets/tejeros2.mp4';
 
 const Convention3d = () => {
   const navigate = useNavigate();
@@ -162,7 +161,7 @@ const Convention3d = () => {
         <div className="video-container">
           {videoUrl && (
             <video
-              src={videoFile}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/tejeros2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvdGVqZXJvczIubXA0IiwiaWF0IjoxNzU2ODM1NzMxLCJleHAiOjQ4Nzg4OTk3MzF9.PwIqddgzCSOvmD100TCrgkyHO4q3fBa-iJ0ZusNIle0"
               controls
               autoPlay
               onEnded={handleVideoEnd}

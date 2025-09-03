@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
-import videoFile from '../../assets/tirad2.mp4';
 
 const Tirad3d = () => {
   const navigate = useNavigate();
@@ -163,7 +162,7 @@ const Tirad3d = () => {
         <div className="video-container">
           {videoUrl && (
             <video
-              src={videoFile}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/tirad2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvdGlyYWQyLm1wNCIsImlhdCI6MTc1NjgzNTUwOCwiZXhwIjo0ODc4ODk5NTA4fQ.E7l_sIbf3xcrgwhtNAXf7B8jUOOXAXFNMQmDIjejKAM"
               controls
               autoPlay
               onEnded={handleVideoEnd}

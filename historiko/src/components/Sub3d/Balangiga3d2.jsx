@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
-import videoFile from '../../assets/balanggiga2.mp4';
 
 const Balangiga3d = () => {
   const navigate = useNavigate();
@@ -161,7 +160,7 @@ const Balangiga3d = () => {
         <div className="video-container">
           {videoUrl && (
             <video
-              src={videoFile}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/balanggiga2%20(1).mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3MvYmFsYW5nZ2lnYTIgKDEpLm1wNCIsImlhdCI6MTc1NjgzNzgzNSwiZXhwIjo0ODc4OTAxODM1fQ.LOeYJoSpMzLQttlwRnPEE40zCGXDV2DblBJNl8NXpug"
               controls
               autoPlay
               onEnded={handleVideoEnd}

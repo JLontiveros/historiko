@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../supabaseClient';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
-import videoFile from '../../assets/kasunduan.mp4';
+
 
 const Kasunduan3d = () => {
   const navigate = useNavigate();
@@ -159,7 +159,7 @@ const Kasunduan3d = () => {
         <div className="video-container">
           {videoUrl && (
             <video
-              src={videoFile}
+              src="https://mxaaqrclbxmpgvpxnjfc.supabase.co/storage/v1/object/sign/secondVideos/kasunduan.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NTNiMTQ2MC1lZDA1LTQ4OTItODk1Mi1jYjAxYjk3MTUwZWUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWNvbmRWaWRlb3Mva2FzdW5kdWFuLm1wNCIsImlhdCI6MTc1NjgzNTgwMiwiZXhwIjo0ODc4ODk5ODAyfQ.Asa0qFnb-k7N3sP-bwb7-cC6dQmKJlrLYy3RVMm710c"
               controls
               autoPlay
               onEnded={handleVideoEnd}
